@@ -394,8 +394,28 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4519580217779878447, guid: 678128c199ca5d8429e6f80fa1501a01, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4519580217779878447, guid: 678128c199ca5d8429e6f80fa1501a01, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4519580217779878447, guid: 678128c199ca5d8429e6f80fa1501a01, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1367193928}
+    - target: {fileID: 4519580217779878447, guid: 678128c199ca5d8429e6f80fa1501a01, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4519580217779878447, guid: 678128c199ca5d8429e6f80fa1501a01, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4519580217779878447, guid: 678128c199ca5d8429e6f80fa1501a01, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: LoginSceneUiController, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5720065379200082858, guid: 678128c199ca5d8429e6f80fa1501a01, type: 3}
       propertyPath: m_Name
@@ -470,4 +490,23 @@ PrefabInstance:
     - {fileID: 5030068797217978978, guid: 9a1a320ee5e28424da56dea2279662cb, type: 3}
     - {fileID: 3139145448339912061, guid: 9a1a320ee5e28424da56dea2279662cb, type: 3}
     - {fileID: 4018288777520648907, guid: 9a1a320ee5e28424da56dea2279662cb, type: 3}
+    - {fileID: 7665459172200137918, guid: 9a1a320ee5e28424da56dea2279662cb, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 9a1a320ee5e28424da56dea2279662cb, type: 3}
+--- !u!1 &1367193928 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4468862614129480654, guid: 9a1a320ee5e28424da56dea2279662cb, type: 3}
+  m_PrefabInstance: {fileID: 1367193927}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1367193929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1367193928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05892ac2a5d0e05468c0cda1b810f1b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  endpointAddress: http://localhost

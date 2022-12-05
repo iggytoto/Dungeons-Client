@@ -5,14 +5,9 @@ using Services.Login;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-/***
- * Live implementation of login service.
- * Also, this is an interface-mono behaviour - this means that all virtual methods should be treated as interface methods.
- */
+[RequireComponent(typeof(GameService))]
 public class LoginService : MonoBehaviour
 {
-    [SerializeField] public string endpointAddress = "http://localhost";
-
     private static UserContext _userContext;
     private LoginServiceApiAdapter _apiAdapter;
     private ConnectionState _connectionState = ConnectionState.Disconnected;
@@ -20,7 +15,7 @@ public class LoginService : MonoBehaviour
     private void Start()
     {
         _apiAdapter = gameObject.AddComponent<LoginServiceApiAdapter>();
-        _apiAdapter.endpointAddress = endpointAddress;
+        _apiAdapter.endpointAddress = FindObjectOfType<GameService>().endpointAddress;
     }
 
     /***

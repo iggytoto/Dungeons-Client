@@ -5,46 +5,50 @@ using Services.UnitShop;
 using Unity.VisualScripting;
 using UnityEngine;
 
+[RequireComponent(typeof(GameService))]
 [RequireComponent(typeof(LoginService))]
 public class UnitShopService : MonoBehaviour
 {
     [SerializeField] public float shopRefreshInterval = 15;
-    [SerializeField] public LoginService loginService;
-
+    private LoginService _loginService;
     private TavernServiceApiAdapter _apiAdapter;
     private float _shopRefreshTimer;
     private readonly ObservableCollection<UnitForSale> _availableUnits = new();
 
     private void Start()
     {
+        _loginService = FindObjectOfType<LoginService>();
         _apiAdapter = gameObject.AddComponent<TavernServiceApiAdapter>();
-        _apiAdapter.endpointAddress = loginService.endpointAddress;
+        _apiAdapter.endpointAddress = FindObjectOfType<GameService>().endpointAddress;
     }
 
     private void Update()
     {
-        _shopRefreshTimer -= Time.deltaTime;
-        if (_shopRefreshTimer <= 0)
+        if (shopRefreshInterval > 0)
         {
-            RefreshShop();
+            _shopRefreshTimer -= Time.deltaTime;
+            if (_shopRefreshTimer <= 0)
+            {
+                RefreshShop();
+            }
         }
     }
 
     private void RefreshShop()
     {
-        if (loginService == null)
+        if (_loginService == null)
         {
             _shopRefreshTimer = long.MaxValue;
             Debug.LogError("Login Service dependency not set for UnitShopService");
             return;
         }
 
-        if (loginService.UserContext == null)
+        if (_loginService.UserContext == null)
         {
             Debug.LogWarning("User context is not set cannot do without user context");
         }
 
-        _apiAdapter.GetAvailableUnits(loginService.UserContext, OnGetSuccess, OnError);
+        _apiAdapter.GetAvailableUnits(_loginService.UserContext, OnGetSuccess, OnError);
         _shopRefreshTimer = shopRefreshInterval;
     }
 
@@ -66,7 +70,7 @@ public class UnitShopService : MonoBehaviour
 
     public virtual void BuyUnit(Unit unit)
     {
-        _apiAdapter.BuyUnit(unit, loginService.UserContext, OnBuyUnitSuccess, OnError);
+        _apiAdapter.BuyUnit(unit, _loginService.UserContext, OnBuyUnitSuccess, OnError);
     }
 
     private void OnBuyUnitSuccess(object sender, BuyUnitResponse e)

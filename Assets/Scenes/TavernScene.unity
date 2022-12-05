@@ -258,7 +258,7 @@ PrefabInstance:
     - target: {fileID: 5030068797217978978, guid: 9a1a320ee5e28424da56dea2279662cb, type: 3}
       propertyPath: loginService
       value: 
-      objectReference: {fileID: 1462030736}
+      objectReference: {fileID: 0}
     - target: {fileID: 6697086511545433353, guid: 9a1a320ee5e28424da56dea2279662cb, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -311,6 +311,7 @@ PrefabInstance:
     - {fileID: 4018288777520648907, guid: 9a1a320ee5e28424da56dea2279662cb, type: 3}
     - {fileID: 3139145448339912061, guid: 9a1a320ee5e28424da56dea2279662cb, type: 3}
     - {fileID: 7665459172200137918, guid: 9a1a320ee5e28424da56dea2279662cb, type: 3}
+    - {fileID: 5030068797217978978, guid: 9a1a320ee5e28424da56dea2279662cb, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 9a1a320ee5e28424da56dea2279662cb, type: 3}
 --- !u!1 &1462030728 stripped
 GameObject:
@@ -338,21 +339,32 @@ MonoBehaviour:
   m_GameObject: {fileID: 1462030728}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04562962969ab9440908071caad6ab01, type: 3}
+  m_Script: {fileID: 11500000, guid: d9a4e7db3c31c5944a048ecec3c620f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  endpointAddress: http://localhost
-  userId: 1
-  token: permanent
---- !u!114 &1462030737 stripped
+  shopRefreshInterval: 15
+--- !u!114 &1462030738
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5030068797217978978, guid: 9a1a320ee5e28424da56dea2279662cb, type: 3}
-  m_PrefabInstance: {fileID: 1127495708}
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1462030728}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8ae4cfe853e3684082ee5c6f99809b3, type: 3}
+  m_Script: {fileID: 11500000, guid: 71a6e44e60e1b404cb4cb2cff26c143d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1462030739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1462030728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05892ac2a5d0e05468c0cda1b810f1b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1513612806
@@ -471,7 +483,7 @@ PrefabInstance:
     - target: {fileID: 211588253471722033, guid: 15f1ee7e6eeff2c4ca6f5a710f26f5b1, type: 3}
       propertyPath: unitButtonClicked.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1462030737}
+      objectReference: {fileID: 1462030736}
     - target: {fileID: 211588253471722033, guid: 15f1ee7e6eeff2c4ca6f5a710f26f5b1, type: 3}
       propertyPath: unitButtonClicked.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -482,7 +494,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 211588253471722033, guid: 15f1ee7e6eeff2c4ca6f5a710f26f5b1, type: 3}
       propertyPath: unitButtonClicked.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: UnitShopService, Assembly-CSharp
+      value: MockUnitShopService, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 211588253471722033, guid: 15f1ee7e6eeff2c4ca6f5a710f26f5b1, type: 3}
       propertyPath: unitButtonClicked.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -522,7 +534,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1879798082578229287, guid: 15f1ee7e6eeff2c4ca6f5a710f26f5b1, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 500
+      value: 499.99997
       objectReference: {fileID: 0}
     - target: {fileID: 1914926398123913016, guid: 15f1ee7e6eeff2c4ca6f5a710f26f5b1, type: 3}
       propertyPath: m_AnchorMax.y

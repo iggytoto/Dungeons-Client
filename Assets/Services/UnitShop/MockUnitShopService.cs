@@ -20,6 +20,7 @@ public class MockUnitShopService : UnitShopService
 
     private void Start()
     {
+        shopRefreshInterval = -1;
         _mockBarracksService = FindObjectOfType<MockBarracksService>();
     }
 

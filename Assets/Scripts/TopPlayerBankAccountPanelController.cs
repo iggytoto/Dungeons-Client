@@ -3,7 +3,7 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 
-public class TopPlayerBanAccountPanelController : MonoBehaviour
+public class TopPlayerBankAccountPanelController : MonoBehaviour
 {
     public TMP_Text goldAmountText;
     private PlayerBankService _playerBankService;

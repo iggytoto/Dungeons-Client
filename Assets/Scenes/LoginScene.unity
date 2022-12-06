@@ -497,7 +497,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4468862614129480654, guid: 9a1a320ee5e28424da56dea2279662cb, type: 3}
   m_PrefabInstance: {fileID: 1367193927}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1367193929
+--- !u!114 &1367193932
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -506,7 +506,32 @@ MonoBehaviour:
   m_GameObject: {fileID: 1367193928}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05892ac2a5d0e05468c0cda1b810f1b5, type: 3}
+  m_Script: {fileID: 11500000, guid: 925f31d9bcdf04c49bb48b112936b7a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  endpointAddress: http://localhost
+  onLoginMessage:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1896590688}
+        m_TargetAssemblyTypeName: LoginSceneUiController, Assembly-CSharp
+        m_MethodName: OnLoginMessage
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1896590688 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 413754325829628174, guid: 678128c199ca5d8429e6f80fa1501a01, type: 3}
+  m_PrefabInstance: {fileID: 976217381}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6081370abeea164cab5491329e4d4a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -3,6 +3,7 @@ using System.Text;
 using Services.Dto;
 using Services.Login;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(GameService))]
@@ -28,6 +29,11 @@ public class LoginService : MonoBehaviour
      */
     public virtual UserContext UserContext => _userContext;
 
+    /***
+     * Last text of error was provided by api
+     */
+    public UnityEvent<string> onLoginMessage = new();
+
     /**
      * Logins with given credentials, if succeeded navigates to the town scene
      * <exception cref="InvalidOperationException">In case called not from Login scene</exception>
@@ -52,7 +58,9 @@ public class LoginService : MonoBehaviour
 
     private void OnRegisterSuccess(object sender, RegisterResponse e)
     {
-        Debug.Log($"Successfully registered with userid {e.userId}");
+        var message = $"Successfully registered with userid {e.userId}";
+        onLoginMessage.Invoke(message);
+        Debug.Log(message);
     }
 
     private static void CheckIfLoginScene()
@@ -73,12 +81,14 @@ public class LoginService : MonoBehaviour
 
     private void OnError(object sender, ErrorResponse e)
     {
+        onLoginMessage.Invoke(e.message);
         Debug.LogError(e.message);
     }
 
 
-    protected static void ToTownScene()
+    protected  void ToTownScene()
     {
+        onLoginMessage.Invoke("Login success...");
         SceneManager.LoadScene(SceneConstants.TownSceneName);
     }
 }

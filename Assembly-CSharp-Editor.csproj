@@ -41,8 +41,8 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Libs\Conifers [BOTD]\Render Pipeline Support\Built-in RP\CTI Runtime Components\Scripts\Editor\CTI_ShaderGUI.cs" />
      <Compile Include="Assets\Libs\Conifers [BOTD]\Render Pipeline Support\Built-in RP\CTI Runtime Components\Scripts\Editor\CTI_DetailsEnum.cs" />
+     <Compile Include="Assets\Libs\Conifers [BOTD]\Render Pipeline Support\Built-in RP\CTI Runtime Components\Scripts\Editor\CTI_ShaderGUI.cs" />
      <Compile Include="Assets\Libs\Conifers [BOTD]\Render Pipeline Support\Built-in RP\CTI Runtime Components\Scripts\Editor\CTI_AdvancedEdgeFluttering.cs" />
      <Folder Include="Assets\Libs\Conifers [BOTD]\Render Pipeline Support\Built-in RP\CTI Runtime Components\Scripts\Editor" />
      <Reference Include="UnityEngine">
@@ -335,6 +335,21 @@
      </Reference>
      <Reference Include="Newtonsoft.Json">
      <HintPath>D:\development\unity\projects\Dungeons\Library\PackageCache\com.unity.nuget.newtonsoft-json@3.0.2\Runtime\Newtonsoft.Json.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.Burst.Unsafe">
+     <HintPath>D:\development\unity\projects\Dungeons\Library\PackageCache\com.unity.burst@1.7.3\Unity.Burst.Unsafe.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.Burst.Cecil.Mdb">
+     <HintPath>D:\development\unity\projects\Dungeons\Library\PackageCache\com.unity.burst@1.7.3\Unity.Burst.CodeGen\Unity.Burst.Cecil.Mdb.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.Burst.Cecil.Pdb">
+     <HintPath>D:\development\unity\projects\Dungeons\Library\PackageCache\com.unity.burst@1.7.3\Unity.Burst.CodeGen\Unity.Burst.Cecil.Pdb.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.Burst.Cecil">
+     <HintPath>D:\development\unity\projects\Dungeons\Library\PackageCache\com.unity.burst@1.7.3\Unity.Burst.CodeGen\Unity.Burst.Cecil.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.Burst.Cecil.Rocks">
+     <HintPath>D:\development\unity\projects\Dungeons\Library\PackageCache\com.unity.burst@1.7.3\Unity.Burst.CodeGen\Unity.Burst.Cecil.Rocks.dll</HintPath>
      </Reference>
      <Reference Include="nunit.framework">
      <HintPath>D:\development\unity\projects\Dungeons\Library\PackageCache\com.unity.ext.nunit@1.0.6\net35\unity-custom\nunit.framework.dll</HintPath>
@@ -831,6 +846,94 @@
     <ProjectReference Include="Unity.VisualScripting.State.csproj">
       <Project>{b86b7fb5-b5d9-eda8-3e5b-6d8958323b67}</Project>
       <Name>Unity.VisualScripting.State</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.TerrainTools.csproj">
+      <Project>{935fe5b7-b019-6489-a2e4-50f18088675f}</Project>
+      <Name>Unity.TerrainTools</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.TerrainTools.Editor.csproj">
+      <Project>{6fcd6f45-1097-0b40-e3f2-c1d5d287a4f7}</Project>
+      <Name>Unity.TerrainTools.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.VisualEffectGraph.Editor.csproj">
+      <Project>{d995540d-da97-977a-8bee-ec9a2d99ca36}</Project>
+      <Name>Unity.VisualEffectGraph.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.VisualEffectGraph.Runtime.csproj">
+      <Project>{c5381d06-fe00-85d0-e199-949201f0f0fb}</Project>
+      <Name>Unity.VisualEffectGraph.Runtime</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.RenderPipelines.HighDefinition.Runtime.csproj">
+      <Project>{c55c496d-c2d8-f5ac-75d8-41fb6b9c32e5}</Project>
+      <Name>Unity.RenderPipelines.HighDefinition.Runtime</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.RenderPipelines.Core.Runtime.csproj">
+      <Project>{1799b25e-9aaf-248d-ac80-49a63e84a81f}</Project>
+      <Name>Unity.RenderPipelines.Core.Runtime</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.RenderPipelines.Universal.Editor.csproj">
+      <Project>{48831559-85e4-f965-bffc-77deb86e6a2e}</Project>
+      <Name>Unity.RenderPipelines.Universal.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.RenderPipelines.HighDefinition.Config.Runtime.csproj">
+      <Project>{bcf5195d-7fb6-463e-b16d-a9d00ecc474b}</Project>
+      <Name>Unity.RenderPipelines.HighDefinition.Config.Runtime</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.RenderPipeline.Universal.ShaderLibrary.csproj">
+      <Project>{3951f678-b7f8-8e61-6f31-294607c9814f}</Project>
+      <Name>Unity.RenderPipeline.Universal.ShaderLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Mathematics.csproj">
+      <Project>{cae4ac58-16a9-3f46-1b12-f3790f9ca5d6}</Project>
+      <Name>Unity.Mathematics</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Burst.Editor.csproj">
+      <Project>{06632e8d-6f90-8ac6-92e9-f11a394b0982}</Project>
+      <Name>Unity.Burst.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.RenderPipelines.Universal.Shaders.csproj">
+      <Project>{7dbdb8c3-beab-0860-5e24-456ee7339071}</Project>
+      <Name>Unity.RenderPipelines.Universal.Shaders</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.RenderPipelines.HighDefinition.Editor.csproj">
+      <Project>{1ae647d5-41ac-348e-3d56-504eb4eec6e1}</Project>
+      <Name>Unity.RenderPipelines.HighDefinition.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Searcher.Editor.csproj">
+      <Project>{9d534cd2-0f40-1002-3f2d-06c0e195d23d}</Project>
+      <Name>Unity.Searcher.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="PPv2URPConverters.csproj">
+      <Project>{7ff50038-041b-aafc-3cd9-d69c7c4da3cc}</Project>
+      <Name>PPv2URPConverters</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Mathematics.Editor.csproj">
+      <Project>{d1f1786b-50c5-36a1-71f3-49697c00964a}</Project>
+      <Name>Unity.Mathematics.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.RenderPipelines.Core.Editor.csproj">
+      <Project>{0102bbf8-a87a-9b25-31d7-359e2652e063}</Project>
+      <Name>Unity.RenderPipelines.Core.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.RenderPipelines.Core.ShaderLibrary.csproj">
+      <Project>{c7a124ec-22fc-fefb-e7a2-43a9c43d8b75}</Project>
+      <Name>Unity.RenderPipelines.Core.ShaderLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.csproj">
+      <Project>{baf6e661-e18f-feab-69a9-35ae7bb2935b}</Project>
+      <Name>Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Burst.csproj">
+      <Project>{91f08fad-dee6-0aac-bb14-d52ef6f70cca}</Project>
+      <Name>Unity.Burst</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.ShaderGraph.Editor.csproj">
+      <Project>{09fd9485-a48e-98e7-01aa-c29c9d997ed9}</Project>
+      <Name>Unity.ShaderGraph.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.RenderPipelines.Universal.Runtime.csproj">
+      <Project>{c4c14d04-ff4c-ed75-adb7-a9a1e30d0676}</Project>
+      <Name>Unity.RenderPipelines.Universal.Runtime</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

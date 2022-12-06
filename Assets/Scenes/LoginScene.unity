@@ -334,7 +334,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DirectionalLight: {fileID: 705507994}
   Preset: {fileID: 11400000, guid: 96a984392f6e63c4cb6b106906b98bfa, type: 2}
-  TimeOfDay: 20.5
 --- !u!1001 &676965893
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -614,6 +613,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4112646592188868764, guid: 678128c199ca5d8429e6f80fa1501a01, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4348635921993271866, guid: 678128c199ca5d8429e6f80fa1501a01, type: 3}
       propertyPath: m_RootOrder
       value: 0

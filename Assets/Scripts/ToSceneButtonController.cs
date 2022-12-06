@@ -6,11 +6,12 @@ public class ToSceneButtonController : MonoBehaviour
 {
 
     public string sceneName;
-    public TMP_Text buttonText;
+    public string buttonText;
+    public TMP_Text buttonTextField;
 
     private void Start()
     {
-        buttonText.text = sceneName;
+        buttonTextField.text = buttonText;
     }
 
     public void OnClick()

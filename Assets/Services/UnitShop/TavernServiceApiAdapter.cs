@@ -11,22 +11,13 @@ namespace Services.UnitShop
         private const string Port = ":8081";
         private const string GetAvailableUnitsPath = "/tavern/availableUnits";
         private const string BuyUnitPath = "/tavern/buyUnit";
-        private const string Authorization = "Authorization";
-        private const string Bearer = "Bearer ";
-
 
         public void GetAvailableUnits(UserContext loginServiceUserContext,
             EventHandler<GetAvailableUnitsResponse> successHandler,
             EventHandler<ErrorResponse> errorHandler)
         {
-            var token = Convert.ToBase64String(
-                System.Text.Encoding.UTF8.GetBytes(JsonUtility.ToJson(new TokenDto
-                {
-                    value = loginServiceUserContext.value,
-                    userId = loginServiceUserContext.userId
-                })));
             StartCoroutine(DoRequestCoroutine(endpointAddress + Port + GetAvailableUnitsPath, null,
-                Get, new Dictionary<string, string> { { Authorization, Bearer + token } },
+                Get, new Dictionary<string, string> { { Authorization, GetTokenValueHeader(loginServiceUserContext) } },
                 successHandler,
                 errorHandler));
         }
@@ -41,10 +32,8 @@ namespace Services.UnitShop
             {
                 unitId = unit.Id
             });
-            var token = Convert.ToBase64String(
-                System.Text.Encoding.UTF8.GetBytes(JsonUtility.ToJson(loginServiceUserContext)));
             StartCoroutine(DoRequestCoroutine(endpointAddress + Port + BuyUnitPath, requestBody, Post,
-                new Dictionary<string, string> { { Authorization, Bearer + token } },
+                new Dictionary<string, string> { { Authorization, GetTokenValueHeader(loginServiceUserContext) } },
                 successHandler,
                 errorHandler));
         }

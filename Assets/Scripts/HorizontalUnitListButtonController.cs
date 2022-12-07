@@ -25,7 +25,7 @@ public class HorizontalUnitListButtonController : MonoBehaviour
             armorText.gameObject.SetActive(true);
             mrText.gameObject.SetActive(true);
             trainingExpText.gameObject.SetActive(true);
-            nameText.text = $"Name:{unit.Name}";
+            nameText.text = $"{unit.Name}";
             hpText.text = $"HP:{unit.HitPoints.ToString()}";
             armorText.text = $"ARM:{unit.Armor.ToString()}";
             mrText.text = $"MR:{unit.MagicResistance.ToString()}";

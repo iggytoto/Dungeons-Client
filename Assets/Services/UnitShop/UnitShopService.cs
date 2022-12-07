@@ -15,6 +15,8 @@ public class UnitShopService : MonoBehaviour
     private float _shopRefreshTimer;
     private readonly ObservableCollection<UnitForSale> _availableUnits = new();
 
+    public virtual ObservableCollection<UnitForSale> AvailableUnits => _availableUnits;
+
     private void Start()
     {
         _loginService = FindObjectOfType<LoginService>();
@@ -65,8 +67,6 @@ public class UnitShopService : MonoBehaviour
             _availableUnits.AddRange(e.units.Select(x => x.ToUnitForSale()));
         }
     }
-
-    public virtual ObservableCollection<UnitForSale> AvailableUnits => _availableUnits;
 
     public virtual void BuyUnit(Unit unit)
     {

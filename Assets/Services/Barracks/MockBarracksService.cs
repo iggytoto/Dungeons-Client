@@ -1,4 +1,5 @@
 using System.Collections.ObjectModel;
+using System.Linq;
 
 public class MockBarracksService : BarracksService
 {
@@ -12,4 +13,10 @@ public class MockBarracksService : BarracksService
         Unit.Random(),
         Unit.Random(),
     };
+
+
+    public override void TrainUnit(long selectedUnitId)
+    {
+        _availableUnits.Remove(_availableUnits.First(u => u.Id == selectedUnitId));
+    }
 }

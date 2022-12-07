@@ -13,6 +13,8 @@ namespace Services.Dto
         private const string ApplicationJson = "application/json";
         protected const string Post = "POST";
         protected const string Get = "GET";
+        protected const string Authorization = "Authorization";
+        protected const string Bearer = "Bearer ";
 
         protected IEnumerator DoRequestCoroutine<TResponse>(
             string url,
@@ -79,6 +81,16 @@ namespace Services.Dto
                     StopCoroutine(DoRequestCoroutine(url, requestBody, requestType, successHandler, errorHandler));
                     throw new ArgumentOutOfRangeException();
             }
+        }
+
+        protected static string GetTokenValueHeader(UserContext ctx)
+        {
+            return Bearer + Convert.ToBase64String(
+                System.Text.Encoding.UTF8.GetBytes(JsonUtility.ToJson(new TokenDto
+                {
+                    value = ctx.value,
+                    userId = ctx.userId
+                })));
         }
     }
 }

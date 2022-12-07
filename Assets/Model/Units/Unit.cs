@@ -17,6 +17,7 @@ public class Unit : ModelBase
         return new Unit
         {
             Id = rng.Next(0, 1000000),
+            Name = rng.Next(0, 10000).ToString(),
             HitPoints = rng.Next(100, 200),
             Armor = rng.Next(0, 100),
             MagicResistance = rng.Next(0, 100),

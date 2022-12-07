@@ -10,6 +10,7 @@ public class HorizontalUnitListButtonController : MonoBehaviour
     public TMP_Text mrText;
     public TMP_Text trainingExpText;
     public TMP_Text costText;
+    public TMP_Text damageText;
 
     public event EventHandler<Unit> ButtonClicked;
     private Unit _unit;
@@ -25,15 +26,17 @@ public class HorizontalUnitListButtonController : MonoBehaviour
             armorText.gameObject.SetActive(true);
             mrText.gameObject.SetActive(true);
             trainingExpText.gameObject.SetActive(true);
+            damageText.gameObject.SetActive(true);
             nameText.text = $"{unit.Name}";
-            hpText.text = $"HP:{unit.HitPoints.ToString()}";
-            armorText.text = $"ARM:{unit.Armor.ToString()}";
-            mrText.text = $"MR:{unit.MagicResistance.ToString()}";
-            trainingExpText.text = $"TE:{unit.TrainingExperience.ToString()}";
+            hpText.text = $"{unit.HitPoints.ToString()}";
+            armorText.text = $"{unit.Armor.ToString()}";
+            mrText.text = $"{unit.MagicResistance.ToString()}";
+            trainingExpText.text = $"{unit.TrainingExperience.ToString()}";
+            damageText.text = $"{unit.Damage.ToString()}";
             if (unit is UnitForSale sale)
             {
                 costText.gameObject.SetActive(true);
-                costText.text = $"COST:{sale.GoldPrice.ToString()}";
+                costText.text = $"{sale.GoldPrice.ToString()}";
             }
             else
             {
@@ -48,11 +51,13 @@ public class HorizontalUnitListButtonController : MonoBehaviour
             mrText.gameObject.SetActive(false);
             trainingExpText.gameObject.SetActive(false);
             costText.gameObject.SetActive(false);
+            damageText.gameObject.SetActive(false);
             hpText.text = null;
             armorText.text = null;
             mrText.text = null;
             trainingExpText.text = null;
             costText.text = null;
+            damageText.text = null;
         }
     }
 

@@ -12,6 +12,13 @@ public class MockBarracksService : BarracksService
         Unit.Random(),
         Unit.Random(),
         Unit.Random(),
+        Unit.Random(),
+        Unit.Random(),
+        Unit.Random(),
+        Unit.Random(),
+        Unit.Random(),
+        Unit.Random(),
+        Unit.Random(),
     };
 
 

@@ -10,6 +10,7 @@ public class Unit : ModelBase
 
     public long OwnerId { get; set; }
     public long TrainingExperience { get; set; }
+    public UnitActivity Activity { get; set; }
 
     public static Unit Random()
     {
@@ -22,6 +23,14 @@ public class Unit : ModelBase
             Armor = rng.Next(0, 100),
             MagicResistance = rng.Next(0, 100),
             Damage = rng.Next(20, 100),
+            Activity = (UnitActivity)Enum.GetValues(typeof(UnitActivity)).GetValue(rng.Next(3))
         };
+    }
+
+    public enum UnitActivity
+    {
+        Idle,
+        Training,
+        Dead
     }
 }

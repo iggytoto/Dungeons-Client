@@ -11,6 +11,8 @@ public class HorizontalUnitListButtonController : MonoBehaviour
     public TMP_Text trainingExpText;
     public TMP_Text costText;
     public TMP_Text damageText;
+    public TMP_Text activityText;
+    public GameObject activityPanel;
 
     public event EventHandler<Unit> ButtonClicked;
     private Unit _unit;
@@ -33,6 +35,16 @@ public class HorizontalUnitListButtonController : MonoBehaviour
             mrText.text = $"{unit.MagicResistance.ToString()}";
             trainingExpText.text = $"{unit.TrainingExperience.ToString()}";
             damageText.text = $"{unit.Damage.ToString()}";
+            if (unit.Activity != Unit.UnitActivity.Idle)
+            {
+                activityPanel.SetActive(true);
+                activityText.text = unit.Activity.ToString();
+            }
+            else
+            {
+                activityPanel.SetActive(false);
+            }
+
             if (unit is UnitForSale sale)
             {
                 costText.gameObject.SetActive(true);
@@ -52,6 +64,7 @@ public class HorizontalUnitListButtonController : MonoBehaviour
             trainingExpText.gameObject.SetActive(false);
             costText.gameObject.SetActive(false);
             damageText.gameObject.SetActive(false);
+            activityPanel.SetActive(false);
             hpText.text = null;
             armorText.text = null;
             mrText.text = null;

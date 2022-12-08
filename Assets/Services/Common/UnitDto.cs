@@ -15,6 +15,7 @@ namespace Services.Dto
         public long trainingExperience;
         public long unitId;
         public long goldAmount;
+        public Unit.UnitActivity activity;
 
         public Unit ToUnit()
         {
@@ -27,7 +28,8 @@ namespace Services.Dto
                 HitPoints = hitPoints,
                 MagicResistance = magicResistance,
                 OwnerId = ownerId,
-                TrainingExperience = trainingExperience
+                TrainingExperience = trainingExperience,
+                Activity = activity
             };
         }
 

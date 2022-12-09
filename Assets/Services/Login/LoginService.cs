@@ -6,7 +6,6 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
-[RequireComponent(typeof(GameService))]
 public class LoginService : MonoBehaviour
 {
     private static UserContext _userContext;
@@ -36,12 +35,10 @@ public class LoginService : MonoBehaviour
 
     /**
      * Logins with given credentials, if succeeded navigates to the town scene
-     * <exception cref="InvalidOperationException">In case called not from Login scene</exception>
+     * 
      */
     public virtual void TryLogin(string login, string password)
     {
-        CheckIfLoginScene();
-
         _connectionState = ConnectionState.Connecting;
         _apiAdapter.Login(login, password, OnLoginSuccess, OnError);
     }
@@ -52,7 +49,6 @@ public class LoginService : MonoBehaviour
      */
     public virtual void Register(string login, string password)
     {
-        CheckIfLoginScene();
         _apiAdapter.Register(login, password, OnRegisterSuccess, OnError);
     }
 
@@ -61,14 +57,6 @@ public class LoginService : MonoBehaviour
         var message = $"Successfully registered with userid {e.userId}";
         onLoginMessage.Invoke(message);
         Debug.Log(message);
-    }
-
-    private static void CheckIfLoginScene()
-    {
-        if (!SceneManager.GetActiveScene().name.Equals(SceneConstants.LoginSceneName))
-        {
-            throw new InvalidOperationException("This method should be called only from login scene.");
-        }
     }
 
     private void OnLoginSuccess(object sender, LoginResponse e)
@@ -86,7 +74,7 @@ public class LoginService : MonoBehaviour
     }
 
 
-    protected  void ToTownScene()
+    protected void ToTownScene()
     {
         onLoginMessage.Invoke("Login success...");
         SceneManager.LoadScene(SceneConstants.TownSceneName);

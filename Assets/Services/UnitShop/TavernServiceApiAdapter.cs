@@ -1,14 +1,13 @@
 using System;
 using System.Collections.Generic;
 using Services.Dto;
-using Services.Login;
 using UnityEngine;
 
 namespace Services.UnitShop
 {
     public class TavernServiceApiAdapter : ApiAdapterBase
     {
-        private const string Port = ":8081";
+        private const string Port = ":8080";
         private const string GetAvailableUnitsPath = "/tavern/availableUnits";
         private const string BuyUnitPath = "/tavern/buyUnit";
 
@@ -25,7 +24,7 @@ namespace Services.UnitShop
 
         public void BuyUnit(Unit unit,
             UserContext loginServiceUserContext,
-            EventHandler<BuyUnitResponse> successHandler,
+            EventHandler<EmptyResponse> successHandler,
             EventHandler<ErrorResponse> errorHandler)
         {
             var requestBody = JsonUtility.ToJson(new BuyUnitRequest

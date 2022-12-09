@@ -73,7 +73,7 @@ public class UnitShopService : MonoBehaviour
         _apiAdapter.BuyUnit(unit, _loginService.UserContext, OnBuyUnitSuccess, OnError);
     }
 
-    private void OnBuyUnitSuccess(object sender, BuyUnitResponse e)
+    private void OnBuyUnitSuccess(object sender, EmptyResponse e)
     {
         RefreshShop();
     }

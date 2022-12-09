@@ -62,11 +62,11 @@ namespace Services.Dto
                         JsonUtility.FromJson<TResponse>(System.Text.Encoding.UTF8.GetString(req.downloadHandler.data));
                     if (response.code == 0)
                     {
-                        successHandler.Invoke(this, response);
+                        successHandler?.Invoke(this, response);
                     }
                     else
                     {
-                        errorHandler.Invoke(this, new ErrorResponse { message = response.message });
+                        errorHandler?.Invoke(this, new ErrorResponse { message = response.message });
                     }
 
                     StopCoroutine(DoRequestCoroutine(url, requestBody, requestType, successHandler, errorHandler));

@@ -8,7 +8,7 @@ namespace Services.Barracks
 {
     public class BarrackServiceApiAdapter : ApiAdapterBase
     {
-        private const string Port = ":8082";
+        private const string Port = ":8080";
         private const string GetAvailableUnitsPath = "/barrack/availableUnits";
         private const string TrainUnitPath = "/barrack/trainUnit";
 

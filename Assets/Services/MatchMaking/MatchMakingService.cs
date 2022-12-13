@@ -7,8 +7,7 @@ using UnityEngine.Events;
 
 public class MatchMakingService : MonoBehaviour
 {
-    [SerializeField] private string address;
-    [SerializeField] private string port;
+
     private LoginService _loginService;
     private MatchMakingServiceApiAdapter _apiAdapter;
 
@@ -35,7 +34,7 @@ public class MatchMakingService : MonoBehaviour
         _apiAdapter.Status(_loginService.UserContext, OnStatusSuccess, OnError);
     }
 
-    public virtual void ApplyForServer()
+    public virtual void ApplyForServer(string address, string port)
     {
         _apiAdapter.ApplyAsServer(address, port, _loginService.UserContext, OnApplyForServerSuccess, OnError);
     }

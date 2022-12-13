@@ -1,33 +1,38 @@
-using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LoginSceneUiController : MonoBehaviour
 {
-    public TMP_InputField LoginInput;
-    public TMP_InputField PassInput;
-    public TMP_Text MessageText;
+    public TMP_InputField loginInput;
+    public TMP_InputField passInput;
+    public TMP_Text messageText;
 
     private LoginService _loginService;
 
     private void Start()
     {
         _loginService = FindObjectOfType<LoginService>();
-        MessageText.text = "";
+        messageText.text = "";
     }
 
     public void OnLoginClick()
     {
-        _loginService.TryLogin(LoginInput.text, PassInput.text);
+        _loginService.TryLogin(loginInput.text, passInput.text, OnLoginSuccess);
+    }
+
+    private static void OnLoginSuccess(object sender, UserContext e)
+    {
+        SceneManager.LoadScene(SceneConstants.TownSceneName);
     }
 
     public void OnRegisterClick()
     {
-        _loginService.Register(LoginInput.text, PassInput.text);
+        _loginService.Register(loginInput.text, passInput.text);
     }
 
     public void OnLoginMessage(string message)
     {
-        MessageText.text = message;
+        messageText.text = message;
     }
 }

@@ -21,7 +21,7 @@ namespace Services.Login
 
         private void TryReconnect()
         {
-            TryLogin(login, password);
+            TryLogin(login, password, null);
             _currentReconnectTimer = reconnectInterval;
         }
     }

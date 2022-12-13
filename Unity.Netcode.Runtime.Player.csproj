@@ -11,12 +11,12 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace></RootNamespace>
-    <ProjectGuid>{887caf48-f352-53db-9fd6-865d302d6cf5}</ProjectGuid>
+    <RootNamespace>Unity.Netcode</RootNamespace>
+    <ProjectGuid>{c8eef210-3c39-0d57-97de-b15c7cbde790}</ProjectGuid>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <AssemblyName>UnityEngine.UI</AssemblyName>
+    <AssemblyName>Unity.Netcode.Runtime</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <BaseDirectory>.</BaseDirectory>
@@ -25,12 +25,12 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>Temp\Bin\Debug\UnityEngine.UI\Player\</OutputPath>
-    <DefineConstants>UNITY_2021_3_14;UNITY_2021_3;UNITY_2021;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_4_OR_NEWER;UNITY_2018_1_OR_NEWER;UNITY_2018_2_OR_NEWER;UNITY_2018_3_OR_NEWER;UNITY_2018_4_OR_NEWER;UNITY_2019_1_OR_NEWER;UNITY_2019_2_OR_NEWER;UNITY_2019_3_OR_NEWER;UNITY_2019_4_OR_NEWER;UNITY_2020_1_OR_NEWER;UNITY_2020_2_OR_NEWER;UNITY_2020_3_OR_NEWER;UNITY_2021_1_OR_NEWER;UNITY_2021_2_OR_NEWER;UNITY_2021_3_OR_NEWER;UNITY_INCLUDE_TESTS;USE_SEARCH_ENGINE_API;USE_SEARCH_TABLE;USE_SEARCH_MODULE;USE_PROPERTY_DATABASE;USE_SEARCH_EXTENSION_API;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_TEXTURE_STREAMING;ENABLE_UNET;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_UNITYWEBREQUEST;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_COLLAB_SOFTLOCKS;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_MANAGED_JOBS;ENABLE_MANAGED_TRANSFORM_JOBS;ENABLE_MANAGED_ANIMATION_JOBS;ENABLE_MANAGED_AUDIO_JOBS;ENABLE_ENGINE_CODE_STRIPPING;ENABLE_MANAGED_UNITYTLS;RENDER_SOFTWARE_CURSOR;ENABLE_VIDEO;ENABLE_ACCELERATOR_CLIENT_DEBUGGING;PLATFORM_WEBGL;TEXTCORE_1_0_OR_NEWER;UNITY_WEBGL;UNITY_WEBGL_API;UNITY_DISABLE_WEB_VERIFICATION;UNITY_GFX_USE_PLATFORM_VSYNC;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_SPATIALTRACKING;ENABLE_IL2CPP;NET_STANDARD_2_0;NET_STANDARD;NET_STANDARD_2_1;NETSTANDARD;NETSTANDARD2_1;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_DIRECTOR;ENABLE_LOCALIZATION;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_TILEMAP;ENABLE_TIMELINE;ENABLE_LEGACY_INPUT_MANAGER;PACKAGE_PHYSICS;PACKAGE_PHYSICS2D;PACKAGE_TILEMAP;PACKAGE_ANIMATION;PACKAGE_UITOOLKIT;CSHARP_7_OR_LATER;CSHARP_7_3_OR_NEWER</DefineConstants>
+    <OutputPath>Temp\Bin\Debug\Unity.Netcode.Runtime\Player\</OutputPath>
+    <DefineConstants>UNITY_2021_3_14;UNITY_2021_3;UNITY_2021;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_4_OR_NEWER;UNITY_2018_1_OR_NEWER;UNITY_2018_2_OR_NEWER;UNITY_2018_3_OR_NEWER;UNITY_2018_4_OR_NEWER;UNITY_2019_1_OR_NEWER;UNITY_2019_2_OR_NEWER;UNITY_2019_3_OR_NEWER;UNITY_2019_4_OR_NEWER;UNITY_2020_1_OR_NEWER;UNITY_2020_2_OR_NEWER;UNITY_2020_3_OR_NEWER;UNITY_2021_1_OR_NEWER;UNITY_2021_2_OR_NEWER;UNITY_2021_3_OR_NEWER;UNITY_INCLUDE_TESTS;USE_SEARCH_ENGINE_API;USE_SEARCH_TABLE;USE_SEARCH_MODULE;USE_PROPERTY_DATABASE;USE_SEARCH_EXTENSION_API;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_TEXTURE_STREAMING;ENABLE_UNET;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_UNITYWEBREQUEST;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_COLLAB_SOFTLOCKS;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_MANAGED_JOBS;ENABLE_MANAGED_TRANSFORM_JOBS;ENABLE_MANAGED_ANIMATION_JOBS;ENABLE_MANAGED_AUDIO_JOBS;ENABLE_ENGINE_CODE_STRIPPING;ENABLE_MANAGED_UNITYTLS;RENDER_SOFTWARE_CURSOR;ENABLE_VIDEO;ENABLE_ACCELERATOR_CLIENT_DEBUGGING;PLATFORM_WEBGL;TEXTCORE_1_0_OR_NEWER;UNITY_WEBGL;UNITY_WEBGL_API;UNITY_DISABLE_WEB_VERIFICATION;UNITY_GFX_USE_PLATFORM_VSYNC;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_SPATIALTRACKING;ENABLE_IL2CPP;NET_STANDARD_2_0;NET_STANDARD;NET_STANDARD_2_1;NETSTANDARD;NETSTANDARD2_1;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_DIRECTOR;ENABLE_LOCALIZATION;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_TILEMAP;ENABLE_TIMELINE;ENABLE_LEGACY_INPUT_MANAGER;UNITY_UNET_PRESENT;CSHARP_7_OR_LATER;CSHARP_7_3_OR_NEWER</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoWarn>0169,0649</NoWarn>
-    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
     <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup>
@@ -41,108 +41,129 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\UI\Core\Image.cs" />
-     <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\UI\Core\GraphicRaycaster.cs" />
-     <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\UI\Core\ScrollRect.cs" />
-     <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\EventSystem\UIElements\PanelRaycaster.cs" />
-     <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\UI\Core\Layout\LayoutElement.cs" />
-     <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\UI\Core\Selectable.cs" />
-     <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\UI\Core\VertexModifiers\Shadow.cs" />
-     <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\UI\Core\Utility\VertexHelper.cs" />
-     <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\EventSystem\EventData\BaseEventData.cs" />
-     <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\EventSystem\EventData\PointerEventData.cs" />
-     <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\EventSystem\MoveDirection.cs" />
-     <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\EventSystem\UIBehaviour.cs" />
-     <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\UI\Core\Utility\ReflectionMethodsCache.cs" />
-     <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\UI\Core\Layout\LayoutUtility.cs" />
-     <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\UI\Core\SpriteState.cs" />
-     <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\UI\Core\RawImage.cs" />
-     <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\UI\Core\Culling\RectangularVertexClipper.cs" />
-     <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\EventSystem\EventInterfaces.cs" />
-     <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\UI\Core\Graphic.cs" />
-     <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\UI\Core\MaterialModifiers\IMaterialModifier.cs" />
-     <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\UI\Core\SetPropertyUtility.cs" />
-     <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\EventSystem\EventSystem.cs" />
-     <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\UI\Core\StencilMaterial.cs" />
-     <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\UI\Core\Culling\IClipRegion.cs" />
-     <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\UI\Core\InputField.cs" />
-     <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\UI\Core\ToggleGroup.cs" />
-     <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\EventSystem\RaycastResult.cs" />
-     <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\UI\Core\Button.cs" />
-     <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\UI\Core\Navigation.cs" />
-     <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\UI\Core\Layout\ContentSizeFitter.cs" />
-     <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\EventSystem\InputModules\BaseInput.cs" />
-     <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\UI\Core\Layout\ILayoutElement.cs" />
-     <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\UI\Core\MaskUtilities.cs" />
-     <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\UI\Core\GraphicRegistry.cs" />
-     <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\UI\Core\CanvasUpdateRegistry.cs" />
-     <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\UI\Core\Mask.cs" />
-     <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\EventSystem\Raycasters\PhysicsRaycaster.cs" />
-     <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\UI\Core\RectMask2D.cs" />
-     <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\UI\Core\DefaultControls.cs" />
-     <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\EventSystem\EventData\AxisEventData.cs" />
-     <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\UI\Core\SpecializedCollections\IndexedSet.cs" />
-     <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\EventSystem\EventTriggerType.cs" />
-     <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\UI\Core\MultipleDisplayUtilities.cs" />
-     <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\UI\Core\VertexModifiers\BaseMeshEffect.cs" />
-     <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\UI\Core\Layout\LayoutRebuilder.cs" />
-     <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\UI\Core\IMask.cs" />
-     <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\UI\Core\Layout\HorizontalOrVerticalLayoutGroup.cs" />
-     <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\EventSystem\InputModules\BaseInputModule.cs" />
-     <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\UI\Core\Layout\GridLayoutGroup.cs" />
-     <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\EventSystem\InputModules\PointerInputModule.cs" />
-     <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\EventSystem\RaycasterManager.cs" />
-     <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\UI\Core\Toggle.cs" />
-     <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\UI\Core\IGraphicEnabledDisabled.cs" />
-     <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\UI\Core\Slider.cs" />
-     <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\UI\Core\Layout\HorizontalLayoutGroup.cs" />
-     <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\UI\Core\IMaskable.cs" />
-     <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\UI\Core\VertexModifiers\IMeshModifier.cs" />
-     <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\EventSystem\UIElements\PanelEventHandler.cs" />
-     <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\UI\Core\Text.cs" />
-     <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\UI\Animation\CoroutineTween.cs" />
-     <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\UI\Core\Layout\CanvasScaler.cs" />
-     <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\UI\Core\Layout\AspectRatioFitter.cs" />
-     <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\UI\Core\Misc.cs" />
-     <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\EventSystem\InputModules\StandaloneInputModule.cs" />
-     <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\UI\Core\Scrollbar.cs" />
-     <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\UI\Core\FontUpdateTracker.cs" />
-     <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\UI\Core\ColorBlock.cs" />
-     <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\UI\Core\VertexModifiers\Outline.cs" />
-     <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\UI\Core\Culling\ClipperRegistry.cs" />
-     <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\UI\Core\Layout\VerticalLayoutGroup.cs" />
-     <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\EventSystem\Raycasters\Physics2DRaycaster.cs" />
-     <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\UI\Core\VertexModifiers\PositionAsUV1.cs" />
-     <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\EventSystem\ExecuteEvents.cs" />
-     <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\EventSystem\EventTrigger.cs" />
-     <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\UI\Core\FontData.cs" />
-     <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\UI\Core\Dropdown.cs" />
-     <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\UI\Core\GraphicRebuildTracker.cs" />
-     <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\UI\Core\Culling\Clipping.cs" />
-     <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\EventSystem\Raycasters\BaseRaycaster.cs" />
-     <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\UI\Core\MaskableGraphic.cs" />
-     <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\UI\Core\AnimationTriggers.cs" />
-     <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\Properties\AssemblyInfo.cs" />
-     <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\EventSystem\EventHandle.cs" />
-     <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\UI\Core\Layout\LayoutGroup.cs" />
-     <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\EventSystem\InputModules\TouchInputModule.cs" />
-     <Folder Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\UI\Core" />
-     <Folder Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\Properties" />
-     <Folder Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\EventSystem\EventData" />
-     <Folder Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\UI\Animation" />
-     <Folder Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\UI" />
-     <Folder Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\EventSystem\Raycasters" />
-     <Folder Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\UI\Core\Utility" />
-     <Folder Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\UI\Core\Culling" />
-     <Folder Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\UI\Core\SpecializedCollections" />
-     <Folder Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\UI\Core\Layout" />
-     <Folder Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime" />
-     <None Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\UnityEngine.UI.asmdef" />
-     <Folder Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\UI\Core\MaterialModifiers" />
-     <Folder Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\EventSystem\UIElements" />
-     <Folder Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\EventSystem\InputModules" />
-     <Folder Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\EventSystem" />
-     <Folder Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\UI\Core\VertexModifiers" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Messaging\Messages\ConnectionRequestMessage.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Transports\UTP\NetworkMetricsPipelineStage.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Serialization\NetworkObjectReference.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\NetworkVariable\NetworkVariablePermission.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Metrics\NetworkMetrics.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Configuration\NetworkPrefab.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Messaging\INetworkHooks.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Configuration\NetworkConstants.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Serialization\BufferSerializerWriter.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Connection\NetworkClient.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Core\ComponentFactory.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Transports\UTP\SecretsLoaderHelper.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Spawning\NetworkSpawnManager.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Messaging\RpcAttributes.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Serialization\FastBufferReader.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Exceptions\VisibilityChangeException.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Messaging\Messages\UnnamedMessage.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Serialization\Arithmetic.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Transports\UTP\NetworkMetricsContext.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Messaging\Messages\CreateObjectMessage.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Transports\NetworkDelivery.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Transports\NetworkTransport.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Core\NetworkManager.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Metrics\INetworkMetrics.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Serialization\IReaderWriter.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Messaging\IMessageSender.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Serialization\BitCounter.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Transports\UNET\UNetTransport.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Messaging\Messages\TimeSyncMessage.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\SceneManagement\NetworkSceneManager.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Exceptions\InvalidParentException.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Metrics\NetworkObjectProvider.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Messaging\RpcParams.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Timing\NetworkTimeSystem.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Serialization\INetworkSerializable.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Exceptions\NetworkConfigurationException.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\SceneManagement\SceneEventData.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Messaging\Messages\DestroyObjectMessage.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\SceneManagement\ISceneManagerHandler.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Transports\UTP\UnityTransport.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Serialization\BufferSerializer.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Hashing\XXHash\XXHash.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Messaging\Messages\NamedMessage.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Messaging\Messages\OrderingMessage.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Messaging\NetworkContext.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Messaging\IMessageProvider.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Logging\NetworkLog.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\SceneManagement\SceneEventProgress.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\NetworkVariable\NetworkVariableBase.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Serialization\BytePacker.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Serialization\ForceNetworkSerializeByMemcpy.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Messaging\Messages\NetworkVariableDeltaMessage.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Core\NetworkBehaviour.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Profiling\ProfilingHooks.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\NetworkVariable\NetworkVariableSerialization.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Core\NetworkBehaviourUpdater.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Messaging\BatchHeader.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Serialization\NetworkBehaviourReference.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Configuration\HashSize.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Connection\PendingClient.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Transports\UTP\BatchedSendQueue.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Messaging\IDeferredMessageManager.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Messaging\DeferredMessageManager.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Messaging\Messages\ServerLogMessage.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\AssemblyInfo.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Serialization\BitReader.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Core\NetworkObject.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Serialization\FastBufferWriter.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Exceptions\NotListeningException.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Metrics\MetricHooks.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Serialization\INetworkSerializeByMemcpy.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Metrics\NullNetworkMetrics.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Messaging\CustomMessageManager.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Exceptions\NotServerException.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Transports\NetworkEvent.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Serialization\MemoryStructures\ByteBool.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Transports\UTP\BatchedReceiveQueue.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Messaging\Messages\ConnectionApprovedMessage.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Messaging\Messages\ChangeOwnershipMessage.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Serialization\ByteUnpacker.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Timing\NetworkTickSystem.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Messaging\Messages\ParentSyncMessage.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Messaging\Messages\RpcMessages.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Core\NetworkUpdateLoop.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Timing\NetworkTime.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Logging\LogLevel.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Serialization\BufferSerializerReader.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Exceptions\SpawnStateException.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Spawning\NetworkPrefabHandler.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\NetworkVariable\NetworkVariable.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Serialization\MemoryStructures\UIntFloat.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Messaging\ILPPMessageProvider.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Messaging\MessageHeader.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Messaging\MessagingSystem.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Serialization\BitWriter.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\NetworkVariable\Collections\NetworkList.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Configuration\NetworkConfig.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Messaging\Messages\SceneEventMessage.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Spawning\ReleasedNetworkId.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Messaging\INetworkMessage.cs" />
+     <Folder Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\NetworkVariable" />
+     <Folder Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Transports\UNET" />
+     <Folder Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Hashing" />
+     <Folder Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\NetworkVariable\Collections" />
+     <Folder Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Transports\UTP" />
+     <Folder Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Configuration" />
+     <None Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\com.unity.netcode.runtime.asmdef" />
+     <Folder Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Transports" />
+     <Folder Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Exceptions" />
+     <Folder Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Messaging" />
+     <Folder Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Connection" />
+     <Folder Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime" />
+     <Folder Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Spawning" />
+     <Folder Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Serialization\MemoryStructures" />
+     <Folder Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Metrics" />
+     <Folder Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Core" />
+     <Folder Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Logging" />
+     <Folder Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Hashing\XXHash" />
+     <Folder Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Messaging\Messages" />
+     <Folder Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Profiling" />
+     <Folder Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Serialization" />
+     <Folder Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\Timing" />
+     <Folder Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Runtime\SceneManagement" />
      <Reference Include="UnityEngine">
      <HintPath>D:\development\unity\2021.3.14f1\Editor\Data\PlaybackEngines\WebGLSupport\Managed\UnityEngine.dll</HintPath>
      </Reference>
@@ -725,6 +746,24 @@
      <Reference Include="System.Xml.Serialization">
      <HintPath>D:\development\unity\2021.3.14f1\Editor\Data\NetStandard\compat\2.1.0\shims\netfx\System.Xml.Serialization.dll</HintPath>
      </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Unity.Networking.Transport.Player.csproj">
+      <Project>{0f7de55a-8730-218f-2334-fb56bd451326}</Project>
+      <Name>Unity.Networking.Transport.Player</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Collections.Player.csproj">
+      <Project>{2b957bf5-203f-11f3-b8de-f2e4932f6fee}</Project>
+      <Name>Unity.Collections.Player</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Burst.Player.csproj">
+      <Project>{f07861ff-5462-d0c6-bd31-c19ea66ae3e7}</Project>
+      <Name>Unity.Burst.Player</Name>
+    </ProjectReference>
+    <ProjectReference Include="UnityEngine.UI.Player.csproj">
+      <Project>{887caf48-f352-53db-9fd6-865d302d6cf5}</Project>
+      <Name>UnityEngine.UI.Player</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

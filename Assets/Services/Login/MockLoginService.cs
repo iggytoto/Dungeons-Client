@@ -1,9 +1,10 @@
-using UnityEngine.SceneManagement;
+using System;
+using Services.Login;
 
 public class MockLoginService : LoginService
 {
-    public override ConnectionState ConnectionState => ConnectionState.Disconnected;
-    
+    public override ConnectionState ConnectionState => ConnectionState.Connected;
+
     public override UserContext UserContext => new()
     {
         userId = 1,
@@ -12,8 +13,8 @@ public class MockLoginService : LoginService
     };
 
 
-    public override void TryLogin(string login, string password)
+    public override void TryLogin(string login, string password, EventHandler<UserContext> onSuccess)
     {
-        ToTownScene();
+        onSuccess?.Invoke(this, UserContext);
     }
 }

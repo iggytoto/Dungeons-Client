@@ -9,6 +9,7 @@ using UnityEngine.SceneManagement;
 public class LoginService : MonoBehaviour
 {
     private static UserContext _userContext;
+    private EventHandler<UserContext> _onLoginSuccessResponseOuter;
     private LoginServiceApiAdapter _apiAdapter;
     private ConnectionState _connectionState = ConnectionState.Disconnected;
 
@@ -37,9 +38,10 @@ public class LoginService : MonoBehaviour
      * Logins with given credentials, if succeeded navigates to the town scene
      * 
      */
-    public virtual void TryLogin(string login, string password)
+    public virtual void TryLogin(string login, string password, EventHandler<UserContext> onSuccess)
     {
         _connectionState = ConnectionState.Connecting;
+        _onLoginSuccessResponseOuter = onSuccess;
         _apiAdapter.Login(login, password, OnLoginSuccess, OnError);
     }
 
@@ -64,19 +66,12 @@ public class LoginService : MonoBehaviour
         _connectionState = ConnectionState.Connected;
         var tokenJson = Encoding.UTF8.GetString(Convert.FromBase64String(e.token));
         _userContext = JsonUtility.FromJson<UserContext>(tokenJson);
-        ToTownScene();
+        _onLoginSuccessResponseOuter?.Invoke(this, _userContext);
     }
 
     private void OnError(object sender, ErrorResponse e)
     {
         onLoginMessage.Invoke(e.message);
         Debug.LogError(e.message);
-    }
-
-
-    protected void ToTownScene()
-    {
-        onLoginMessage.Invoke("Login success...");
-        SceneManager.LoadScene(SceneConstants.TownSceneName);
     }
 }

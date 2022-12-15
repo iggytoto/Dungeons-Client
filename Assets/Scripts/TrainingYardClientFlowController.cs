@@ -6,14 +6,11 @@ using Unity.Netcode.Transports.UTP;
 public class TrainingYardClientFlowController : NetworkBehaviour
 {
     private IMatchMakingService _matchMakingService;
-    private ILoginService _loginService;
 
 // #if !DEDICATED
     private void Start()
     {
         _matchMakingService = FindObjectOfType<GameService>().MatchMakingService;
-        _loginService = FindObjectOfType<GameService>().LoginService;
-
         StartNetCodeClient();
     }
 
@@ -27,10 +24,21 @@ public class TrainingYardClientFlowController : NetworkBehaviour
             Port = Convert.ToUInt16(matchData.serverPort)
         };
         NetworkManager.Singleton.StartClient();
+        NetworkManager.Singleton.OnClientDisconnectCallback += OnClientDisconnected;
     }
 
-    public override void OnNetworkSpawn()
+    private void OnClientDisconnected(ulong clientId)
+    {
+        if (clientId != NetworkManager.Singleton.LocalClientId)
+        {
+            return;
+        }
+
+        ShowBattleResultsPanel();
+    }
+
+    private void ShowBattleResultsPanel()
     {
     }
-// #endif
+    // #endif
 }

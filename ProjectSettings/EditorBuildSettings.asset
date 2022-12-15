@@ -5,16 +5,16 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/LoginScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/TavernScene.unity
     guid: 68c61b7098d2fdc4f845626785261682
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/TownScene.unity
     guid: 293af72cb09dd2d4aa0f3178ff51d92c
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/BarrackScene.unity
     guid: 7585969f7190e2744a6156c5c995504f
   - enabled: 1

@@ -20,6 +20,9 @@ public class TrainingYardServerFlowController : NetworkBehaviour
         _loginService = FindObjectOfType<GameService>().LoginService;
         _matchMakingService = FindObjectOfType<GameService>().MatchMakingService;
         _trainingBattleFlowController = FindObjectOfType<TrainingBattleFlowController>();
+#if DEDICATED
+        NetworkManager.Singleton.StartServer();
+#endif
     }
 
     public override void OnNetworkSpawn()

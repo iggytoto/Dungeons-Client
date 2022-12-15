@@ -12,6 +12,7 @@ public class UnitShopService : MonoBehaviour , ITavernService
     private ILoginService _loginService;
     private TavernServiceApiAdapter _apiAdapter;
     private float _shopRefreshTimer;
+    private ObservableCollection<Unit> _availableUnits;
 
     public ObservableCollection<UnitForSale> AvailableUnits { get; } = new();
 

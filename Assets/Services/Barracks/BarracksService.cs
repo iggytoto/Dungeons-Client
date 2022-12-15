@@ -8,7 +8,7 @@ using Services.UnitShop;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class BarracksService : MonoBehaviour , IBarrackService
+public class BarracksService : MonoBehaviour, IBarrackService
 {
     public ObservableCollection<Unit> AvailableUnits { get; } = new();
 
@@ -81,4 +81,6 @@ public class BarracksService : MonoBehaviour , IBarrackService
     {
         Refresh();
     }
+
+    public ObservableCollection<Unit> Units => AvailableUnits;
 }

@@ -5,6 +5,8 @@ using Services.Common;
 
 public class MockMatchMakingService : IMatchMakingService
 {
+    public MatchDto MatchContext { get; private set; }
+
     public void Register(IEnumerable<long> roster)
     {
     }
@@ -13,9 +15,9 @@ public class MockMatchMakingService : IMatchMakingService
     {
     }
 
-    public void Status(EventHandler<MatchDto> onSuccess)
+    public void ApplyForServer(string address, string port)
     {
-        onSuccess?.Invoke(this, new MatchDto
+        MatchContext = new MatchDto
         {
             id = 1,
             serverIpAddress = "127.0.0.1",
@@ -23,19 +25,6 @@ public class MockMatchMakingService : IMatchMakingService
             status = "ServerFound",
             userOneId = 1,
             userTwoId = 2
-        });
-    }
-
-    public void ApplyForServer(string address, string port, EventHandler<MatchDto> onSuccess)
-    {
-        onSuccess?.Invoke(this, new MatchDto
-        {
-            id = 1,
-            serverIpAddress = "127.0.0.1",
-            serverPort = "7777",
-            status = "ServerFound",
-            userOneId = 1,
-            userTwoId = 2
-        });
+        };
     }
 }

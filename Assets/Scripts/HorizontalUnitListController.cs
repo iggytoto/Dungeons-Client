@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using DefaultNamespace;
 using Services;
 using UnityEngine;
 using UnityEngine.Events;
@@ -9,6 +10,7 @@ using UnityEngine.Events;
 public class HorizontalUnitListController : MonoBehaviour
 {
     [SerializeField] public SourceType source = SourceType.Tavern;
+    [SerializeField] public GameObject unitListProvider;
     public GameObject content;
     public GameObject unitButtonPrefab;
 
@@ -16,15 +18,19 @@ public class HorizontalUnitListController : MonoBehaviour
 
     private readonly List<HorizontalUnitListButtonController> _contentButtonControllers = new();
 
+
     private void Start()
     {
         switch (source)
         {
             case SourceType.Tavern:
-                ProcessSource(FindObjectOfType<GameService>().TavernService.AvailableUnits);
+                ProcessSource(FindObjectOfType<GameService>().TavernService.Units);
                 break;
             case SourceType.Barrack:
-                ProcessSource(FindObjectOfType<GameService>().BarrackService.AvailableUnits);
+                ProcessSource(FindObjectOfType<GameService>().BarrackService.Units);
+                break;
+            case SourceType.Property:
+                ProcessSource(unitListProvider.GetComponent<IUnitListProvider<Unit>>().Units);
                 break;
             default:
                 throw new ArgumentOutOfRangeException();
@@ -59,6 +65,7 @@ public class HorizontalUnitListController : MonoBehaviour
         {
             SourceType.Tavern => FindObjectOfType<GameService>().TavernService.AvailableUnits,
             SourceType.Barrack => FindObjectOfType<GameService>().BarrackService.AvailableUnits,
+            SourceType.Property => unitListProvider.GetComponent<IUnitListProvider<Unit>>().Units,
             _ => throw new ArgumentOutOfRangeException()
         };
     }
@@ -81,6 +88,7 @@ public class HorizontalUnitListController : MonoBehaviour
     public enum SourceType
     {
         Tavern,
-        Barrack
+        Barrack,
+        Property
     }
 }

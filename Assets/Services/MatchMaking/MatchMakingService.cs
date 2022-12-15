@@ -1,4 +1,4 @@
-using System;
+using System.Collections;
 using System.Collections.Generic;
 using Services;
 using Services.Common;
@@ -8,6 +8,10 @@ using UnityEngine;
 
 public class MatchMakingService : MonoBehaviour, IMatchMakingService
 {
+    [SerializeField] private int matchWaitTimeOutSeconds = 30;
+    public MatchDto MatchContext => _matchContext;
+    private static MatchDto _matchContext;
+
     private ILoginService _loginService;
     private MatchMakingServiceApiAdapter _apiAdapter;
 
@@ -20,26 +24,39 @@ public class MatchMakingService : MonoBehaviour, IMatchMakingService
     public void Register(IEnumerable<long> roster)
     {
         _apiAdapter.Register(roster, _loginService.UserContext, null, OnError);
+        StartCoroutine(UpdateStatus());
+    }
+
+    private IEnumerator UpdateStatus()
+    {
+        var waitingFor = 0;
+        while (waitingFor <= matchWaitTimeOutSeconds)
+        {
+            _apiAdapter.Status(_loginService.UserContext, (_, r) => _matchContext = r.match, OnError);
+            waitingFor++;
+            yield return new WaitForSeconds(1);
+        }
+
+        yield return null;
     }
 
     public void Cancel()
     {
         _apiAdapter.Cancel(_loginService.UserContext, null, OnError);
+        _matchContext = null;
+        StopAllCoroutines();
     }
 
-    public void Status(EventHandler<MatchDto> onSuccess)
-    {
-        _apiAdapter.Status(_loginService.UserContext, (source, data) => onSuccess.Invoke(source, data.match), OnError);
-    }
-
-    public void ApplyForServer(string address, string port, EventHandler<MatchDto> onSuccess)
+    public void ApplyForServer(string address, string port)
     {
         _apiAdapter.ApplyAsServer(address, port, _loginService.UserContext,
-            (source, data) => onSuccess.Invoke(source, data.match), OnError);
+            (_, r) => _matchContext = r.match, OnError);
+        StartCoroutine(UpdateStatus());
     }
 
     private void OnError(object sender, ErrorResponse e)
     {
+        StopAllCoroutines();
         Debug.Log(e.message);
     }
 }

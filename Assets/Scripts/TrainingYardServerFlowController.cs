@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Linq;
 using Services;
-using Services.Common;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -21,16 +20,6 @@ public class TrainingYardServerFlowController : NetworkBehaviour
         _loginService = FindObjectOfType<GameService>().LoginService;
         _matchMakingService = FindObjectOfType<GameService>().MatchMakingService;
         _trainingBattleFlowController = FindObjectOfType<TrainingBattleFlowController>();
-    }
-
-    private void OnMatchStatusReceived(MatchDto match)
-    {
-        if (!IsServer)
-        {
-            return;
-        }
-
-        StartCoroutine(StartTrainingYardCombat(match));
     }
 
     public override void OnNetworkSpawn()
@@ -57,7 +46,8 @@ public class TrainingYardServerFlowController : NetworkBehaviour
                 case ConnectionState.Connected:
                     StopAllCoroutines();
                     Debug.Log($"Registering dedicated server as {Host}:{Port}");
-                    _matchMakingService.ApplyForServer(Host, Port, (sender, dto) => OnMatchStatusReceived(dto));
+                    _matchMakingService.ApplyForServer(Host, Port);
+                    StartCoroutine(WaitForMatch());
                     yield return null;
                     break;
                 default:
@@ -68,14 +58,33 @@ public class TrainingYardServerFlowController : NetworkBehaviour
         }
     }
 
-    private IEnumerator StartTrainingYardCombat(MatchDto match)
+    private IEnumerator WaitForMatch()
+    {
+        var waitingSeconds = 0;
+        while (waitingSeconds <= 60)
+        {
+            Debug.Log("WaitingForMatch...");
+            if (_matchMakingService.MatchContext is { status: "ServerFound" })
+            {
+                StopAllCoroutines();
+                StartCoroutine(StartTrainingYardCombat());
+            }
+
+            waitingSeconds++;
+            yield return new WaitForSeconds(1);
+        }
+    }
+
+    private IEnumerator StartTrainingYardCombat()
     {
         Debug.Log("Waiting for players to connect...");
         yield return new WaitForSeconds(5);
         Debug.Log("Starting the training...");
         StopAllCoroutines();
         _trainingBattleFlowController.OnBattleFinished += OnBattleFinished;
-        _trainingBattleFlowController.StartBattle(match.userOneId, match.userTwoId);
+        _trainingBattleFlowController.StartBattle(
+            _matchMakingService.MatchContext.userOneId,
+            _matchMakingService.MatchContext.userTwoId);
         yield return null;
     }
 

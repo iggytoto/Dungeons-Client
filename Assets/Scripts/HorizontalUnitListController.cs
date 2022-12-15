@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using Services;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -20,10 +21,10 @@ public class HorizontalUnitListController : MonoBehaviour
         switch (source)
         {
             case SourceType.Tavern:
-                ProcessSource(FindObjectOfType<UnitShopService>().AvailableUnits);
+                ProcessSource(FindObjectOfType<GameService>().TavernService.AvailableUnits);
                 break;
             case SourceType.Barrack:
-                ProcessSource(FindObjectOfType<BarracksService>().AvailableUnits);
+                ProcessSource(FindObjectOfType<GameService>().BarrackService.AvailableUnits);
                 break;
             default:
                 throw new ArgumentOutOfRangeException();
@@ -56,8 +57,8 @@ public class HorizontalUnitListController : MonoBehaviour
     {
         return source switch
         {
-            SourceType.Tavern => FindObjectOfType<UnitShopService>().AvailableUnits,
-            SourceType.Barrack => FindObjectOfType<BarracksService>().AvailableUnits,
+            SourceType.Tavern => FindObjectOfType<GameService>().TavernService.AvailableUnits,
+            SourceType.Barrack => FindObjectOfType<GameService>().BarrackService.AvailableUnits,
             _ => throw new ArgumentOutOfRangeException()
         };
     }

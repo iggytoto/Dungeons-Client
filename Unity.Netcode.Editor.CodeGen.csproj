@@ -41,13 +41,13 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Editor\CodeGen\RuntimeAccessModifiersILPP.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Editor\CodeGen\PostProcessorReflectionImporter.cs" />
+     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Editor\CodeGen\INetworkSerializableILPP.cs" />
      <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Editor\CodeGen\INetworkMessageILPP.cs" />
      <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Editor\CodeGen\CodeGenHelpers.cs" />
-     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Editor\CodeGen\PostProcessorReflectionImporter.cs" />
      <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Editor\CodeGen\PostProcessorReflectionImporterProvider.cs" />
      <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Editor\CodeGen\PostProcessorAssemblyResolver.cs" />
-     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Editor\CodeGen\RuntimeAccessModifiersILPP.cs" />
-     <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Editor\CodeGen\INetworkSerializableILPP.cs" />
      <Compile Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Editor\CodeGen\NetworkBehaviourILPP.cs" />
      <Folder Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Editor\CodeGen" />
      <None Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Editor\CodeGen\com.unity.netcode.editor.codegen.asmdef" />

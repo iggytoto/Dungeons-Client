@@ -1,31 +1,31 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using Services;
 using Services.Barracks;
 using Services.Dto;
 using Services.UnitShop;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class BarracksService : MonoBehaviour
+public class BarracksService : MonoBehaviour , IBarrackService
 {
-    public virtual ObservableCollection<Unit> AvailableUnits => _availableUnits;
-    private readonly ObservableCollection<Unit> _availableUnits = new();
+    public ObservableCollection<Unit> AvailableUnits { get; } = new();
 
 
     [SerializeField] public float refreshInterval = 15;
-    private LoginService _loginService;
+    private ILoginService _loginService;
     private BarrackServiceApiAdapter _apiAdapter;
     private float _refreshTimer;
 
-    public virtual void TrainUnit(long selectedUnitId)
+    public void TrainUnit(long selectedUnitId)
     {
         _apiAdapter.TrainUnit(selectedUnitId, _loginService.UserContext, OnTrainSuccess, OnError);
     }
 
     private void Start()
     {
-        _loginService = FindObjectOfType<LoginService>();
+        _loginService = FindObjectOfType<GameService>().LoginService;
         _apiAdapter = gameObject.AddComponent<BarrackServiceApiAdapter>();
         _apiAdapter.endpointAddress = FindObjectOfType<GameService>().endpointAddress;
     }
@@ -65,10 +65,10 @@ public class BarracksService : MonoBehaviour
 
     private void RefreshLocal(IEnumerable<Unit> e)
     {
-        _availableUnits.Clear();
+        AvailableUnits.Clear();
         if (e != null)
         {
-            _availableUnits.AddRange(e);
+            AvailableUnits.AddRange(e);
         }
     }
 

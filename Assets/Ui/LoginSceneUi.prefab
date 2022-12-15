@@ -1257,9 +1257,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6081370abeea164cab5491329e4d4a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LoginInput: {fileID: 6964374395167355787}
-  PassInput: {fileID: 425685358901161087}
-  MessageText: {fileID: 1683543692273536737}
+  loginInput: {fileID: 6964374395167355787}
+  passInput: {fileID: 425685358901161087}
+  messageText: {fileID: 1683543692273536737}
 --- !u!1 &7596605888279678710
 GameObject:
   m_ObjectHideFlags: 0

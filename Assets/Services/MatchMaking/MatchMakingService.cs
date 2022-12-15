@@ -1,52 +1,41 @@
+using System;
 using System.Collections.Generic;
+using Services;
 using Services.Common;
 using Services.Dto;
 using Services.MatchMaking;
 using UnityEngine;
-using UnityEngine.Events;
 
-public class MatchMakingService : MonoBehaviour
+public class MatchMakingService : MonoBehaviour, IMatchMakingService
 {
-
-    private LoginService _loginService;
+    private ILoginService _loginService;
     private MatchMakingServiceApiAdapter _apiAdapter;
-
-    public UnityEvent<MatchDto> matchStatusReceived = new();
 
     private void Start()
     {
         _apiAdapter = gameObject.AddComponent<MatchMakingServiceApiAdapter>();
-        _loginService = FindObjectOfType<LoginService>();
+        _loginService = FindObjectOfType<GameService>().LoginService;
     }
 
-    public virtual void Register(IEnumerable<long> roster)
+    public void Register(IEnumerable<long> roster)
     {
         _apiAdapter.Register(roster, _loginService.UserContext, null, OnError);
     }
 
-    public virtual void Cancel()
+    public void Cancel()
     {
         _apiAdapter.Cancel(_loginService.UserContext, null, OnError);
     }
 
-    public virtual void Status()
+    public void Status(EventHandler<MatchDto> onSuccess)
     {
-        _apiAdapter.Status(_loginService.UserContext, OnStatusSuccess, OnError);
+        _apiAdapter.Status(_loginService.UserContext, (source, data) => onSuccess.Invoke(source, data.match), OnError);
     }
 
-    public virtual void ApplyForServer(string address, string port)
+    public void ApplyForServer(string address, string port, EventHandler<MatchDto> onSuccess)
     {
-        _apiAdapter.ApplyAsServer(address, port, _loginService.UserContext, OnApplyForServerSuccess, OnError);
-    }
-
-    private void OnStatusSuccess(object sender, MatchMakingStatusResponse e)
-    {
-        matchStatusReceived.Invoke(e.match);
-    }
-
-    private void OnApplyForServerSuccess(object sender, MatchMakingApplyAsServerResponse e)
-    {
-        matchStatusReceived.Invoke(e.match);
+        _apiAdapter.ApplyAsServer(address, port, _loginService.UserContext,
+            (source, data) => onSuccess.Invoke(source, data.match), OnError);
     }
 
     private void OnError(object sender, ErrorResponse e)

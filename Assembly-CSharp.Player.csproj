@@ -45,11 +45,14 @@
      <Compile Include="Assets\Scripts\LightingPreset.cs" />
      <Compile Include="Assets\Services\UnitShop\TavernServiceApiAdapter.cs" />
      <Compile Include="Assets\Services\Barracks\TrainUnitResponse.cs" />
+     <Compile Include="Assets\Services\GameServiceConfiguration\ServicesConfiguration.cs" />
+     <Compile Include="Assets\Services\IBarrackService.cs" />
      <Compile Include="Assets\Services\Login\MockLoginService.cs" />
      <Compile Include="Assets\Services\Common\TokenDto.cs" />
      <Compile Include="Assets\Scripts\LoginSceneUiController.cs" />
-     <Compile Include="Assets\Services\PlayerBank\MockPlayerBankService.cs" />
+     <Compile Include="Assets\Services\PlayerBank\MockPlayerAccountService.cs" />
      <Compile Include="Assets\Scripts\HorizontalUnitListController.cs" />
+     <Compile Include="Assets\Services\ILoginService.cs" />
      <Compile Include="Assets\Scenes\SceneConstants.cs" />
      <Compile Include="Assets\Services\Login\UserContext.cs" />
      <Compile Include="Assets\Scripts\ToSceneButtonController.cs" />
@@ -58,19 +61,24 @@
      <Compile Include="Assets\Services\Login\AutoReconnectLoginService.cs" />
      <Compile Include="Assets\Services\Login\LoginResponse.cs" />
      <Compile Include="Assets\Services\Login\LoginRequest.cs" />
+     <Compile Include="Assets\TrainingBattleFlowController.cs" />
      <Compile Include="Assets\Scripts\HorizontalUnitListButtonController.cs" />
      <Compile Include="Assets\Services\UnitShop\UnitShopService.cs" />
      <Compile Include="Assets\Scripts\SelectedUnitPanelController.cs" />
      <Compile Include="Assets\Services\Login\ConnectionState.cs" />
      <Compile Include="Assets\Services\MatchMaking\MatchMakingApplyAsServerResponse.cs" />
      <Compile Include="Assets\Services\Common\ResponseBase.cs" />
-     <Compile Include="Assets\Services\PlayerBank\PlayerBankService.cs" />
+     <Compile Include="Assets\Services\ITavernService.cs" />
      <Compile Include="Assets\Services\Common\UnitDto.cs" />
+     <Compile Include="Assets\Scripts\NetworkManagerDebugHelperController.cs" />
+     <Compile Include="Assets\Services\IPlayerAccountService.cs" />
      <Compile Include="Assets\Services\Common\ApiAdapterBase.cs" />
      <Compile Include="Assets\Services\UnitShop\BuyUnitRequest.cs" />
      <Compile Include="Assets\Services\Common\GetAvailableUnitsResponse.cs" />
      <Compile Include="Assets\Services\Barracks\BarrackServiceApiAdapter.cs" />
      <Compile Include="Assets\Scripts\TopPlayerBankAccountPanelController.cs" />
+     <Compile Include="Assets\Services\MatchMaking\MockMatchMakingService.cs" />
+     <Compile Include="Assets\Services\IMatchMakingService.cs" />
      <Compile Include="Assets\Services\Barracks\TrainUnitRequest.cs" />
      <Compile Include="Assets\Model\ModelBase.cs" />
      <Compile Include="Assets\Model\Currency\Gold.cs" />
@@ -91,14 +99,12 @@
      <Compile Include="Assets\Services\MatchMaking\MatchMakingApplyAsServerRequest.cs" />
      <Compile Include="Assets\Services\MatchMaking\MatchMakingService.cs" />
      <Compile Include="Assets\Services\GameService.cs" />
+     <Compile Include="Assets\Scripts\TrainingYardServerFlowController.cs" />
      <Compile Include="Assets\Services\Login\PermanentLoginService.cs" />
      <Compile Include="Assets\Services\Common\EmptyResponse.cs" />
      <Compile Include="Assets\Services\Login\RegisterRequest.cs" />
      <Compile Include="Assets\Model\Currency\Currency.cs" />
-     <Compile Include="Assets\Scripts\NetworkManagerDebugHelperController.cs" />
-     <Compile Include="Assets\Scripts\TrainingYardServerFlowController.cs" />
-     <Compile Include="Assets\TrainingBattleFlowController.cs" />
-     <Compile Include="Assets\Services\MatchMaking\MatchMakingMockService.cs" />
+     <Compile Include="Assets\TavernSceneUiController.cs" />
      <Folder Include="Assets" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.6\Lib\Editor\PlasticSCM\localization\mergetool.ja.txt" />
      <Folder Include="Assets\Libs\Tiny Fantasy Icons\Keys" />
@@ -251,6 +257,7 @@
      <Folder Include="Library\PackageCache\com.unity.nuget.mono-cecil@1.10.1\Tests" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.6\Lib\Editor\PlasticSCM\localization\images.zh-Hant.txt" />
      <None Include="Library\PackageCache\com.unity.modules.unityanalytics@1.0.0\package.json" />
+     <Folder Include="Assets\Services\GameServiceConfiguration" />
      <Folder Include="Library\PackageCache\com.unity.terrain-tools@4.0.3\Tests" />
      <Folder Include="Library\PackageCache\com.unity.transport@1.3.0" />
      <Folder Include="Library\PackageCache\com.unity.modules.subsystems@1.0.0" />
@@ -711,9 +718,6 @@
      <Reference Include="Newtonsoft.Json">
      <HintPath>D:\development\unity\projects\Dungeons\Library\PackageCache\com.unity.nuget.newtonsoft-json@3.0.2\Runtime\AOT\Newtonsoft.Json.dll</HintPath>
      </Reference>
-     <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
-     <HintPath>D:\development\unity\projects\Dungeons\Library\PackageCache\com.unity.visualscripting@1.7.8\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
-     </Reference>
      <Reference Include="Unity.Collections.LowLevel.ILSupport">
      <HintPath>D:\development\unity\projects\Dungeons\Library\PackageCache\com.unity.collections@1.2.4\Unity.Collections.LowLevel.ILSupport\Unity.Collections.LowLevel.ILSupport.dll</HintPath>
      </Reference>
@@ -731,6 +735,9 @@
      </Reference>
      <Reference Include="Unity.Burst.Cecil.Rocks">
      <HintPath>D:\development\unity\projects\Dungeons\Library\PackageCache\com.unity.burst@1.6.6\Unity.Burst.CodeGen\Unity.Burst.Cecil.Rocks.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
+     <HintPath>D:\development\unity\projects\Dungeons\Library\PackageCache\com.unity.visualscripting@1.7.8\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
      </Reference>
      <Reference Include="netstandard">
      <HintPath>D:\development\unity\2021.3.14f1\Editor\Data\NetStandard\ref\2.1.0\netstandard.dll</HintPath>
@@ -1112,6 +1119,10 @@
       <Project>{ca54947b-a239-fcdb-66ac-f31f4ec8cda9}</Project>
       <Name>Unity.VisualScripting.Flow.Player</Name>
     </ProjectReference>
+    <ProjectReference Include="Unity.Netcode.Runtime.Player.csproj">
+      <Project>{c8eef210-3c39-0d57-97de-b15c7cbde790}</Project>
+      <Name>Unity.Netcode.Runtime.Player</Name>
+    </ProjectReference>
     <ProjectReference Include="UnityEngine.UI.Player.csproj">
       <Project>{887caf48-f352-53db-9fd6-865d302d6cf5}</Project>
       <Name>UnityEngine.UI.Player</Name>
@@ -1124,45 +1135,41 @@
       <Project>{2b7ef6f6-cbca-27d7-50a6-ff84b40df8a3}</Project>
       <Name>Unity.VisualScripting.Core.Player</Name>
     </ProjectReference>
-    <ProjectReference Include="Unity.TerrainTools.Player.csproj">
-      <Project>{64f42479-83a6-4111-b939-035790eb232e}</Project>
-      <Name>Unity.TerrainTools.Player</Name>
-    </ProjectReference>
-    <ProjectReference Include="Unity.Services.Core.Analytics.Player.csproj">
-      <Project>{64f9a58a-b6d0-cced-9d7e-65be3e5290cc}</Project>
-      <Name>Unity.Services.Core.Analytics.Player</Name>
-    </ProjectReference>
-    <ProjectReference Include="Unity.Services.Core.Environments.Player.csproj">
-      <Project>{85399e9e-c462-5169-77ed-1c4d94c2e7b4}</Project>
-      <Name>Unity.Services.Core.Environments.Player</Name>
-    </ProjectReference>
-    <ProjectReference Include="Unity.VisualScripting.State.Player.csproj">
-      <Project>{ff85277c-e1d7-b905-acc7-51a1a4fdc7c8}</Project>
-      <Name>Unity.VisualScripting.State.Player</Name>
-    </ProjectReference>
-    <ProjectReference Include="Unity.Collections.Player.csproj">
-      <Project>{2b957bf5-203f-11f3-b8de-f2e4932f6fee}</Project>
-      <Name>Unity.Collections.Player</Name>
-    </ProjectReference>
     <ProjectReference Include="Unity.Networking.Transport.Player.csproj">
       <Project>{0f7de55a-8730-218f-2334-fb56bd451326}</Project>
       <Name>Unity.Networking.Transport.Player</Name>
-    </ProjectReference>
-    <ProjectReference Include="Unity.Netcode.Runtime.Player.csproj">
-      <Project>{c8eef210-3c39-0d57-97de-b15c7cbde790}</Project>
-      <Name>Unity.Netcode.Runtime.Player</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.Mathematics.Player.csproj">
       <Project>{536f5275-8c23-5ff3-ad34-14501d37bbc5}</Project>
       <Name>Unity.Mathematics.Player</Name>
     </ProjectReference>
-    <ProjectReference Include="Unity.Burst.Player.csproj">
-      <Project>{f07861ff-5462-d0c6-bd31-c19ea66ae3e7}</Project>
-      <Name>Unity.Burst.Player</Name>
+    <ProjectReference Include="Unity.TerrainTools.Player.csproj">
+      <Project>{64f42479-83a6-4111-b939-035790eb232e}</Project>
+      <Name>Unity.TerrainTools.Player</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.Netcode.Components.Player.csproj">
       <Project>{3115d77a-2f94-f6ba-5de8-8490a30e5f5f}</Project>
       <Name>Unity.Netcode.Components.Player</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Services.Core.Analytics.Player.csproj">
+      <Project>{64f9a58a-b6d0-cced-9d7e-65be3e5290cc}</Project>
+      <Name>Unity.Services.Core.Analytics.Player</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Burst.Player.csproj">
+      <Project>{f07861ff-5462-d0c6-bd31-c19ea66ae3e7}</Project>
+      <Name>Unity.Burst.Player</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Services.Core.Environments.Player.csproj">
+      <Project>{85399e9e-c462-5169-77ed-1c4d94c2e7b4}</Project>
+      <Name>Unity.Services.Core.Environments.Player</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Collections.Player.csproj">
+      <Project>{2b957bf5-203f-11f3-b8de-f2e4932f6fee}</Project>
+      <Name>Unity.Collections.Player</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.VisualScripting.State.Player.csproj">
+      <Project>{ff85277c-e1d7-b905-acc7-51a1a4fdc7c8}</Project>
+      <Name>Unity.VisualScripting.State.Player</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

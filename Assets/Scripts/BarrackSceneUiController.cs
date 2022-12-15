@@ -1,6 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+using Services;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,13 +6,13 @@ public class BarrackSceneUiController : MonoBehaviour
 {
     [SerializeField] public Unit selectedUnit;
     [SerializeField] public Button trainUnitButton;
-    private BarracksService _barracksService;
+    private IBarrackService _barracksService;
 
     private void Start()
     {
         trainUnitButton.enabled = false;
         trainUnitButton.onClick.AddListener(OnTrainButtonClicked);
-        _barracksService = FindObjectOfType<BarracksService>();
+        _barracksService = FindObjectOfType<GameService>().BarrackService;
     }
 
     private void OnTrainButtonClicked()

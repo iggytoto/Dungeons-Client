@@ -9,7 +9,6 @@ namespace Services.Login
         [SerializeField] private float reconnectInterval = 10;
         private float _currentReconnectTimer;
 
-
         private void Update()
         {
             _currentReconnectTimer -= Time.deltaTime;

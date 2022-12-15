@@ -1,20 +1,23 @@
 using System;
-using Services.Login;
+using Services;
 
-public class MockLoginService : LoginService
+public class MockLoginService : ILoginService
 {
-    public override ConnectionState ConnectionState => ConnectionState.Connected;
+    public ConnectionState ConnectionState => ConnectionState.Connected;
 
-    public override UserContext UserContext => new()
+    public UserContext UserContext => new()
     {
         userId = 1,
         value = "token",
         userName = "Username"
     };
 
-
-    public override void TryLogin(string login, string password, EventHandler<UserContext> onSuccess)
+    public void TryLogin(string login, string password, EventHandler<UserContext> onSuccess)
     {
         onSuccess?.Invoke(this, UserContext);
+    }
+
+    public void Register(string login, string password)
+    {
     }
 }

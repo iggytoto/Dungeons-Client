@@ -1,3 +1,4 @@
+using Services;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -8,11 +9,11 @@ public class LoginSceneUiController : MonoBehaviour
     public TMP_InputField passInput;
     public TMP_Text messageText;
 
-    private LoginService _loginService;
+    private ILoginService _loginService;
 
     private void Start()
     {
-        _loginService = FindObjectOfType<LoginService>();
+        _loginService = FindObjectOfType<GameService>().LoginService;
         messageText.text = "";
     }
 

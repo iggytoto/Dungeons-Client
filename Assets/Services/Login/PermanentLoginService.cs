@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 /**
@@ -9,7 +8,7 @@ public class PermanentLoginService : LoginService
     [SerializeField] public long userId = 1;
     [SerializeField] public string token = "permanent";
 
-    public override UserContext UserContext => new()
+    public new UserContext UserContext => new()
     {
         userId = userId,
         value = token

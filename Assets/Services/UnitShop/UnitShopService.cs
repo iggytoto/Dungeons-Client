@@ -1,25 +1,23 @@
 using System.Collections.ObjectModel;
 using System.Linq;
+using Services;
 using Services.Dto;
 using Services.UnitShop;
 using Unity.VisualScripting;
 using UnityEngine;
 
-[RequireComponent(typeof(GameService))]
-[RequireComponent(typeof(LoginService))]
-public class UnitShopService : MonoBehaviour
+public class UnitShopService : MonoBehaviour , ITavernService
 {
     [SerializeField] public float shopRefreshInterval = 15;
-    private LoginService _loginService;
+    private ILoginService _loginService;
     private TavernServiceApiAdapter _apiAdapter;
     private float _shopRefreshTimer;
-    private readonly ObservableCollection<UnitForSale> _availableUnits = new();
 
-    public virtual ObservableCollection<UnitForSale> AvailableUnits => _availableUnits;
+    public ObservableCollection<UnitForSale> AvailableUnits { get; } = new();
 
     private void Start()
     {
-        _loginService = FindObjectOfType<LoginService>();
+        _loginService = FindObjectOfType<GameService>().LoginService;
         _apiAdapter = gameObject.AddComponent<TavernServiceApiAdapter>();
         _apiAdapter.endpointAddress = FindObjectOfType<GameService>().endpointAddress;
     }
@@ -61,14 +59,14 @@ public class UnitShopService : MonoBehaviour
 
     private void OnGetSuccess(object sender, GetAvailableUnitsResponse e)
     {
-        _availableUnits.Clear();
+        AvailableUnits.Clear();
         if (e.units != null && e.units.Any())
         {
-            _availableUnits.AddRange(e.units.Select(x => x.ToUnitForSale()));
+            AvailableUnits.AddRange(e.units.Select(x => x.ToUnitForSale()));
         }
     }
 
-    public virtual void BuyUnit(Unit unit)
+    public void BuyUnit(Unit unit)
     {
         _apiAdapter.BuyUnit(unit, _loginService.UserContext, OnBuyUnitSuccess, OnError);
     }

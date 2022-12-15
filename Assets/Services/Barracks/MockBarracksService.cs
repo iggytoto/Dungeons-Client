@@ -1,11 +1,10 @@
 using System.Collections.ObjectModel;
 using System.Linq;
+using Services;
 
-public class MockBarracksService : BarracksService
+public class MockBarracksService : IBarrackService
 {
-    public override ObservableCollection<Unit> AvailableUnits => _availableUnits;
-
-    private readonly ObservableCollection<Unit> _availableUnits = new()
+    public ObservableCollection<Unit> AvailableUnits { get; } = new()
     {
         Unit.Random(),
         Unit.Random(),
@@ -22,8 +21,8 @@ public class MockBarracksService : BarracksService
     };
 
 
-    public override void TrainUnit(long selectedUnitId)
+    public void TrainUnit(long selectedUnitId)
     {
-        _availableUnits.Remove(_availableUnits.First(u => u.Id == selectedUnitId));
+        AvailableUnits.Remove(AvailableUnits.First(u => u.Id == selectedUnitId));
     }
 }

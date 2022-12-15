@@ -285,6 +285,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4271042742655406263, guid: 9a1a320ee5e28424da56dea2279662cb, type: 3}
+      propertyPath: servicesConfiguration
+      value: 
+      objectReference: {fileID: 11400000, guid: 5da9724a3f94bf846a47aa97f4e27700, type: 2}
     - target: {fileID: 4468862614129480654, guid: 9a1a320ee5e28424da56dea2279662cb, type: 3}
       propertyPath: m_Name
       value: GameService
@@ -339,41 +343,6 @@ PrefabInstance:
     - {fileID: 7665459172200137918, guid: 9a1a320ee5e28424da56dea2279662cb, type: 3}
     - {fileID: 3139145448339912061, guid: 9a1a320ee5e28424da56dea2279662cb, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 9a1a320ee5e28424da56dea2279662cb, type: 3}
---- !u!1 &863672096 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4468862614129480654, guid: 9a1a320ee5e28424da56dea2279662cb, type: 3}
-  m_PrefabInstance: {fileID: 863672095}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &863672100
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 863672096}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05892ac2a5d0e05468c0cda1b810f1b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onLoginMessage:
-    m_PersistentCalls:
-      m_Calls: []
---- !u!114 &863672101
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 863672096}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d897039058c08444ba2a18cecd0a7e9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  matchStatusReceived:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &995597568
 GameObject:
   m_ObjectHideFlags: 0

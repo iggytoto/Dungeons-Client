@@ -1,17 +1,18 @@
 using System.Globalization;
 using System.Linq;
+using Services;
 using TMPro;
 using UnityEngine;
 
 public class TopPlayerBankAccountPanelController : MonoBehaviour
 {
     public TMP_Text goldAmountText;
-    private PlayerBankService _playerBankService;
+    private IPlayerAccountService _playerBankService;
     private float _updateInterval = 1;
 
     private void Start()
     {
-        _playerBankService = FindObjectOfType<PlayerBankService>();
+        _playerBankService = FindObjectOfType<GameService>().PlayerAccountService;
         UpdateAccount();
     }
 

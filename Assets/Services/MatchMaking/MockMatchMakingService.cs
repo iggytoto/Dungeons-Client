@@ -1,19 +1,21 @@
+using System;
 using System.Collections.Generic;
+using Services;
 using Services.Common;
 
-public class MatchMakingMockService : MatchMakingService
+public class MockMatchMakingService : IMatchMakingService
 {
-    public override void Register(IEnumerable<long> roster)
+    public void Register(IEnumerable<long> roster)
     {
     }
 
-    public override void Cancel()
+    public void Cancel()
     {
     }
 
-    public override void Status()
+    public void Status(EventHandler<MatchDto> onSuccess)
     {
-        matchStatusReceived?.Invoke(new MatchDto
+        onSuccess?.Invoke(this, new MatchDto
         {
             id = 1,
             serverIpAddress = "127.0.0.1",
@@ -24,9 +26,9 @@ public class MatchMakingMockService : MatchMakingService
         });
     }
 
-    public override void ApplyForServer(string address, string port)
+    public void ApplyForServer(string address, string port, EventHandler<MatchDto> onSuccess)
     {
-        matchStatusReceived?.Invoke(new MatchDto
+        onSuccess?.Invoke(this, new MatchDto
         {
             id = 1,
             serverIpAddress = "127.0.0.1",

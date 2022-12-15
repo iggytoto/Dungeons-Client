@@ -1,13 +1,10 @@
 using System.Collections.ObjectModel;
 using System.Linq;
-using UnityEngine;
+using Services;
 
-[RequireComponent(typeof(MockBarracksService))]
-public class MockUnitShopService : UnitShopService
+public class MockUnitShopService : ITavernService
 {
-    public override ObservableCollection<UnitForSale> AvailableUnits => _availableUnits;
-
-    private readonly ObservableCollection<UnitForSale> _availableUnits = new()
+    public ObservableCollection<UnitForSale> AvailableUnits { get; } = new()
     {
         UnitForSale.Of(Unit.Random(), 100),
         UnitForSale.Of(Unit.Random(), 100),
@@ -16,18 +13,9 @@ public class MockUnitShopService : UnitShopService
         UnitForSale.Of(Unit.Random(), 100),
     };
 
-    private MockBarracksService _mockBarracksService;
-
-    private void Start()
+    public void BuyUnit(Unit unit)
     {
-        shopRefreshInterval = -1;
-        _mockBarracksService = FindObjectOfType<MockBarracksService>();
-    }
-
-    public override void BuyUnit(Unit unit)
-    {
-        var unitToBuy = _availableUnits.First(u => u.Id == unit.Id);
+        var unitToBuy = AvailableUnits.First(u => u.Id == unit.Id);
         AvailableUnits.Remove(unitToBuy);
-        _mockBarracksService.AvailableUnits.Add(unitToBuy);
     }
 }

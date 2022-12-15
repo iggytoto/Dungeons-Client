@@ -25,11 +25,11 @@ public class LightingManager : MonoBehaviour
 
     private void UpdateLighting(float timePercent)
     {
-        RenderSettings.ambientLight = Preset.AmbientColor.Evaluate(timePercent);
-        RenderSettings.fogColor = Preset.FogColor.Evaluate(timePercent);
+        RenderSettings.ambientLight = Preset.ambientColor.Evaluate(timePercent);
+        RenderSettings.fogColor = Preset.fogColor.Evaluate(timePercent);
         if (DirectionalLight != null)
         {
-            DirectionalLight.color = Preset.DirectionalColor.Evaluate(timePercent);
+            DirectionalLight.color = Preset.directionalColor.Evaluate(timePercent);
             DirectionalLight.transform.localRotation =
                 Quaternion.Euler(new Vector3((timePercent * 360f) - 90f, 170f, 0));
         }

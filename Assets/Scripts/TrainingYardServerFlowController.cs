@@ -1,14 +1,15 @@
 using System;
 using System.Collections;
 using System.Linq;
+using Services;
 using Services.Common;
 using Unity.Netcode;
 using UnityEngine;
 
 public class TrainingYardServerFlowController : NetworkBehaviour
 {
-    private LoginService _loginService;
-    private MatchMakingService _matchMakingService;
+    private ILoginService _loginService;
+    private IMatchMakingService _matchMakingService;
     private TrainingBattleFlowController _trainingBattleFlowController;
     private const string Username = "server";
     private const string Password = "password";
@@ -17,9 +18,8 @@ public class TrainingYardServerFlowController : NetworkBehaviour
 
     private void Start()
     {
-        _loginService = FindObjectOfType<LoginService>();
-        _matchMakingService = FindObjectOfType<MatchMakingService>();
-        _matchMakingService.matchStatusReceived.AddListener(OnMatchStatusReceived);
+        _loginService = FindObjectOfType<GameService>().LoginService;
+        _matchMakingService = FindObjectOfType<GameService>().MatchMakingService;
         _trainingBattleFlowController = FindObjectOfType<TrainingBattleFlowController>();
     }
 
@@ -57,7 +57,7 @@ public class TrainingYardServerFlowController : NetworkBehaviour
                 case ConnectionState.Connected:
                     StopAllCoroutines();
                     Debug.Log($"Registering dedicated server as {Host}:{Port}");
-                    _matchMakingService.ApplyForServer(Host, Port);
+                    _matchMakingService.ApplyForServer(Host, Port, (sender, dto) => OnMatchStatusReceived(dto));
                     yield return null;
                     break;
                 default:

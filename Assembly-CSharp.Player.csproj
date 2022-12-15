@@ -1149,10 +1149,6 @@
       <Project>{887caf48-f352-53db-9fd6-865d302d6cf5}</Project>
       <Name>UnityEngine.UI.Player</Name>
     </ProjectReference>
-    <ProjectReference Include="Unity.Services.Core.Player.csproj">
-      <Project>{cd796692-c037-594f-86a3-85bb61913898}</Project>
-      <Name>Unity.Services.Core.Player</Name>
-    </ProjectReference>
     <ProjectReference Include="Unity.VisualScripting.Core.Player.csproj">
       <Project>{2b7ef6f6-cbca-27d7-50a6-ff84b40df8a3}</Project>
       <Name>Unity.VisualScripting.Core.Player</Name>
@@ -1172,6 +1168,10 @@
     <ProjectReference Include="Unity.Netcode.Components.Player.csproj">
       <Project>{3115d77a-2f94-f6ba-5de8-8490a30e5f5f}</Project>
       <Name>Unity.Netcode.Components.Player</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Services.Core.Player.csproj">
+      <Project>{cd796692-c037-594f-86a3-85bb61913898}</Project>
+      <Name>Unity.Services.Core.Player</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.Services.Core.Analytics.Player.csproj">
       <Project>{64f9a58a-b6d0-cced-9d7e-65be3e5290cc}</Project>

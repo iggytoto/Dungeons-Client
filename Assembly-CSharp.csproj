@@ -1204,6 +1204,10 @@
       <Project>{c76b03b7-0476-f608-c102-424f93cd4e25}</Project>
       <Name>Unity.VisualStudio.Editor</Name>
     </ProjectReference>
+    <ProjectReference Include="Unity.Sysroot.Linux_x86_64.csproj">
+      <Project>{943dda3a-8829-3d25-6c8b-5ac7b7d89a2c}</Project>
+      <Name>Unity.Sysroot.Linux_x86_64</Name>
+    </ProjectReference>
     <ProjectReference Include="Unity.Timeline.csproj">
       <Project>{d58868ac-7d70-9e70-e9ea-017da0049021}</Project>
       <Name>Unity.Timeline</Name>
@@ -1264,17 +1268,13 @@
       <Project>{d1cb036c-87f2-dbb7-e5f5-07a9da43b63c}</Project>
       <Name>UnityEngine.UI</Name>
     </ProjectReference>
-    <ProjectReference Include="Unity.Services.Core.csproj">
-      <Project>{74016874-60fc-57bb-58c9-5dc350d762a1}</Project>
-      <Name>Unity.Services.Core</Name>
+    <ProjectReference Include="Unity.EditorCoroutines.Editor.csproj">
+      <Project>{89ca6d8c-62ea-9ed8-ebd4-0ee60facff45}</Project>
+      <Name>Unity.EditorCoroutines.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.VisualScripting.Core.csproj">
       <Project>{a7146dbd-5d3e-66a1-2d40-2e8c470acd00}</Project>
       <Name>Unity.VisualScripting.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="Unity.EditorCoroutines.Editor.csproj">
-      <Project>{89ca6d8c-62ea-9ed8-ebd4-0ee60facff45}</Project>
-      <Name>Unity.EditorCoroutines.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.Networking.Transport.csproj">
       <Project>{397fda72-2928-1b2d-f567-90a6a90de5ec}</Project>
@@ -1291,6 +1291,10 @@
     <ProjectReference Include="Unity.Netcode.Components.csproj">
       <Project>{bb1a7d22-0e7f-184a-86b9-c54ff3ab3b47}</Project>
       <Name>Unity.Netcode.Components</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Services.Core.csproj">
+      <Project>{74016874-60fc-57bb-58c9-5dc350d762a1}</Project>
+      <Name>Unity.Services.Core</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.Services.Core.Analytics.csproj">
       <Project>{02d38000-d258-e7e6-9f8f-a8b206bbbf5c}</Project>
@@ -1316,6 +1320,10 @@
       <Project>{2f98d827-28b1-b208-b185-c37fd6944cc2}</Project>
       <Name>Unity.Timeline.Editor</Name>
     </ProjectReference>
+    <ProjectReference Include="Unity.Toolchain.Win-x86_64-Linux-x86_64.csproj">
+      <Project>{358f946f-3d00-a67a-8e4a-3e0839f794dd}</Project>
+      <Name>Unity.Toolchain.Win-x86_64-Linux-x86_64</Name>
+    </ProjectReference>
     <ProjectReference Include="Unity.Mathematics.Editor.csproj">
       <Project>{d1f1786b-50c5-36a1-71f3-49697c00964a}</Project>
       <Name>Unity.Mathematics.Editor</Name>
@@ -1335,14 +1343,6 @@
     <ProjectReference Include="Unity.VisualScripting.State.csproj">
       <Project>{b86b7fb5-b5d9-eda8-3e5b-6d8958323b67}</Project>
       <Name>Unity.VisualScripting.State</Name>
-    </ProjectReference>
-    <ProjectReference Include="Unity.Sysroot.Linux_x86_64.csproj">
-      <Project>{943dda3a-8829-3d25-6c8b-5ac7b7d89a2c}</Project>
-      <Name>Unity.Sysroot.Linux_x86_64</Name>
-    </ProjectReference>
-    <ProjectReference Include="Unity.Toolchain.Win-x86_64-Linux-x86_64.csproj">
-      <Project>{358f946f-3d00-a67a-8e4a-3e0839f794dd}</Project>
-      <Name>Unity.Toolchain.Win-x86_64-Linux-x86_64</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.SysrootPackage.Editor.csproj">
       <Project>{965c3000-175b-5610-344a-5b83ab6c50ff}</Project>

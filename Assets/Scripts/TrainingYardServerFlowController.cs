@@ -15,14 +15,21 @@ public class TrainingYardServerFlowController : NetworkBehaviour
     private const string Host = "127.0.0.1";
     private const string Port = "7777";
 
+#if DEDICATED
     private void Start()
     {
         _loginService = FindObjectOfType<GameService>().LoginService;
         _matchMakingService = FindObjectOfType<GameService>().MatchMakingService;
         _trainingBattleFlowController = FindObjectOfType<TrainingBattleFlowController>();
-#if DEDICATED
+
+        StartNetCodeServer();
+    }
+
+    private void StartNetCodeServer()
+    {
         NetworkManager.Singleton.StartServer();
-#endif
+        NetworkManager.OnClientConnectedCallback += clientId => Debug.Log($"Client connected with id:{clientId}");
+        NetworkManager.OnClientDisconnectCallback += clientId => Debug.Log($"Client disconnected with id:{clientId}");
     }
 
     public override void OnNetworkSpawn()
@@ -102,4 +109,5 @@ public class TrainingYardServerFlowController : NetworkBehaviour
 
         StartCoroutine(LoginAndRegisterAsDedicatedServer());
     }
+#endif
 }

@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   loginServiceType: 0
   barrackServiceType: 1
-  matchMakingServiceType: 0
+  matchMakingServiceType: 1
   playerAccountServiceType: 0
   tavernServiceType: 0

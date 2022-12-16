@@ -10,7 +10,7 @@ public class LoginServiceApiAdapter : ApiAdapterBase
     private const string Port = ":8080";
 
     public void Login(string login, string password, EventHandler<LoginResponse> successHandler,
-        EventHandler<ErrorResponse> errorHandler)
+        EventHandler<ErrorResponseDto> errorHandler)
     {
         var requestBody = JsonUtility.ToJson(new LoginRequest
         {
@@ -22,7 +22,7 @@ public class LoginServiceApiAdapter : ApiAdapterBase
     }
 
     public void Register(string login, string password, EventHandler<RegisterResponse> successHandler,
-        EventHandler<ErrorResponse> errorHandler)
+        EventHandler<ErrorResponseDto> errorHandler)
     {
         var requestBody = JsonUtility.ToJson(new RegisterRequest
         {

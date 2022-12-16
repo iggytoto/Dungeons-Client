@@ -6,7 +6,7 @@ namespace Services
     /**
      * Barracks functions service
      */
-    public interface IBarrackService : IUnitListProvider<Unit>
+    public interface IBarrackService : IUnitListProvider<Unit> , IService
     {
         /**
          * Collection of available units for player

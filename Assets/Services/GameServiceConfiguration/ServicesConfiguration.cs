@@ -1,6 +1,7 @@
 using System;
 using Services;
-using Services.Login;
+using Services.TrainingYard;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [Serializable]
@@ -8,11 +9,15 @@ using UnityEngine;
     menuName = "Scriptables/Configuration/Services", order = 1)]
 public class ServicesConfiguration : ScriptableObject
 {
-    [SerializeField] private LoginServiceType loginServiceType;
-    [SerializeField] private BarrackServiceType barrackServiceType;
-    [SerializeField] private MatchMakingServiceType matchMakingServiceType;
-    [SerializeField] private PlayerAccountServiceType playerAccountServiceType;
-    [SerializeField] private TavernServiceType tavernServiceType;
+    [SerializeField] private LoginServiceType loginServiceType = LoginServiceType.None;
+    [SerializeField] private BarrackServiceType barrackServiceType = BarrackServiceType.None;
+    [SerializeField] private MatchMakingServiceType matchMakingServiceType = MatchMakingServiceType.None;
+    [SerializeField] private PlayerAccountServiceType playerAccountServiceType = PlayerAccountServiceType.None;
+    [SerializeField] private TavernServiceType tavernServiceType = TavernServiceType.None;
+    [SerializeField] private TrainingYardServiceType trainingYardServiceType = TrainingYardServiceType.None;
+    [SerializeField] private string apiHostHttp = "http";
+    [SerializeField] private string apiHostAddress = "localhost";
+    [SerializeField] private ushort apiHostPort = 8080;
 
     public void SetServices(GameService gs)
     {
@@ -21,62 +26,145 @@ public class ServicesConfiguration : ScriptableObject
         SetMatchMakingService(gs);
         SetPlayerAccountsService(gs);
         SetTavernService(gs);
+        SetTrainingYardService(gs);
+    }
+
+    private void SetTrainingYardService(GameService gs)
+    {
+        ITrainingYardService service;
+        switch (trainingYardServiceType)
+        {
+            case TrainingYardServiceType.None:
+                service = null;
+                break;
+            case TrainingYardServiceType.Mocked:
+                service = new MockTrainingYardService();
+                break;
+            case TrainingYardServiceType.Api:
+                var s = gs.AddComponent<TrainingYardService>();
+                s.EndpointAddress = apiHostAddress;
+                s.EndpointPort = apiHostPort;
+                s.EndpointHttpType = apiHostHttp;
+                service = s;
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
+
+        gs.TrainingYardService = service;
     }
 
     private void SetTavernService(GameService gs)
     {
-        gs.TavernService = tavernServiceType switch
+        ITavernService service;
+        switch (tavernServiceType)
         {
-            TavernServiceType.None => null,
-            TavernServiceType.Live => gs.gameObject.AddComponent<UnitShopService>(),
-            TavernServiceType.Mocked => new MockUnitShopService(),
-            _ => throw new ArgumentOutOfRangeException()
-        };
+            case TavernServiceType.None:
+                service = null;
+                break;
+            case TavernServiceType.Mocked:
+                service = new MockUnitShopService();
+                break;
+            case TavernServiceType.Api:
+                var s = gs.AddComponent<UnitShopService>();
+                s.EndpointAddress = apiHostAddress;
+                s.EndpointPort = apiHostPort;
+                s.EndpointHttpType = apiHostHttp;
+                service = s;
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
+
+        gs.TavernService = service;
     }
 
     private void SetPlayerAccountsService(GameService gs)
     {
-        gs.PlayerAccountService = playerAccountServiceType switch
+        IPlayerAccountService service = playerAccountServiceType switch
         {
             PlayerAccountServiceType.None => null,
             PlayerAccountServiceType.Mocked => new MockPlayerAccountService(),
             _ => throw new ArgumentOutOfRangeException()
         };
+        gs.PlayerAccountService = service;
     }
 
     private void SetMatchMakingService(GameService gs)
     {
-        gs.MatchMakingService = matchMakingServiceType switch
+        IMatchMakingService service;
+        switch (matchMakingServiceType)
         {
-            MatchMakingServiceType.None => null,
-            MatchMakingServiceType.Live => gs.gameObject.AddComponent<MatchMakingService>(),
-            MatchMakingServiceType.Mocked => new MockMatchMakingService(),
-            _ => throw new ArgumentOutOfRangeException()
-        };
+            case MatchMakingServiceType.None:
+                service = null;
+                break;
+            case MatchMakingServiceType.Mocked:
+                service = new MockMatchMakingService();
+                break;
+            case MatchMakingServiceType.Api:
+                var s = gs.gameObject.AddComponent<MatchMakingService>();
+                s.EndpointAddress = apiHostAddress;
+                s.EndpointPort = apiHostPort;
+                s.EndpointHttpType = apiHostHttp;
+                service = s;
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
+
+        gs.MatchMakingService = service;
     }
 
     private void SetBarrackService(GameService gs)
     {
-        gs.BarrackService = barrackServiceType switch
+        IBarrackService service;
+        switch (barrackServiceType)
         {
-            BarrackServiceType.None => null,
-            BarrackServiceType.Mocked => new MockBarracksService(),
-            BarrackServiceType.Live => gs.gameObject.AddComponent<BarracksService>(),
-            _ => throw new ArgumentOutOfRangeException()
-        };
+            case BarrackServiceType.None:
+                service = null;
+                break;
+            case BarrackServiceType.Mocked:
+                service = new MockBarracksService();
+                break;
+            case BarrackServiceType.Api:
+                var s = gs.gameObject.AddComponent<BarracksService>();
+                s.EndpointAddress = apiHostAddress;
+                s.EndpointPort = apiHostPort;
+                s.EndpointHttpType = apiHostHttp;
+                service = s;
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
+
+        gs.BarrackService = service;
     }
 
     private void SetLoginService(GameService gs)
     {
-        gs.LoginService = loginServiceType switch
+        ILoginService service;
+        switch (loginServiceType)
         {
-            LoginServiceType.None => null,
-            LoginServiceType.Mocked => new MockLoginService(),
-            LoginServiceType.AutoReconnect => gs.gameObject.AddComponent<AutoReconnectLoginService>(),
-            LoginServiceType.PermanentLogin => gs.gameObject.AddComponent<PermanentLoginService>(),
-            LoginServiceType.Live => gs.gameObject.AddComponent<LoginService>(),
-            _ => throw new ArgumentOutOfRangeException()
-        };
+            case LoginServiceType.None:
+                service = null;
+                break;
+            case LoginServiceType.Mocked:
+                service = new MockLoginService();
+                break;
+            case LoginServiceType.AutoReconnect:
+            case LoginServiceType.PermanentLogin:
+            case LoginServiceType.Api:
+                var s = gs.gameObject.AddComponent<LoginService>();
+                s.EndpointAddress = apiHostAddress;
+                s.EndpointPort = apiHostPort;
+                s.EndpointHttpType = apiHostHttp;
+                service = s;
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
+
+        gs.LoginService = service;
     }
 
     public enum LoginServiceType
@@ -85,21 +173,21 @@ public class ServicesConfiguration : ScriptableObject
         Mocked,
         AutoReconnect,
         PermanentLogin,
-        Live
+        Api
     }
 
     public enum BarrackServiceType
     {
         None,
         Mocked,
-        Live
+        Api
     }
 
     public enum MatchMakingServiceType
     {
         None,
         Mocked,
-        Live
+        Api
     }
 
     public enum PlayerAccountServiceType
@@ -112,6 +200,13 @@ public class ServicesConfiguration : ScriptableObject
     {
         None,
         Mocked,
-        Live
+        Api
+    }
+
+    public enum TrainingYardServiceType
+    {
+        None,
+        Mocked,
+        Api
     }
 }

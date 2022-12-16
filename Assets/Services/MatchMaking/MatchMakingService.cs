@@ -6,7 +6,7 @@ using Services.Dto;
 using Services.MatchMaking;
 using UnityEngine;
 
-public class MatchMakingService : MonoBehaviour, IMatchMakingService
+public class MatchMakingService : ServiceBase, IMatchMakingService
 {
     [SerializeField] private int matchWaitTimeOutSeconds = 30;
     public MatchDto MatchContext => _matchContext;
@@ -18,6 +18,9 @@ public class MatchMakingService : MonoBehaviour, IMatchMakingService
     private void Start()
     {
         _apiAdapter = gameObject.AddComponent<MatchMakingServiceApiAdapter>();
+        _apiAdapter.endpointHttp = EndpointHttp;
+        _apiAdapter.endpointAddress = EndpointHost;
+        _apiAdapter.endpointPort = EndpointPrt;
         _loginService = FindObjectOfType<GameService>().LoginService;
     }
 
@@ -54,7 +57,7 @@ public class MatchMakingService : MonoBehaviour, IMatchMakingService
         StartCoroutine(UpdateStatus());
     }
 
-    private void OnError(object sender, ErrorResponse e)
+    private void OnError(object sender, ErrorResponseDto e)
     {
         StopAllCoroutines();
         Debug.Log(e.message);

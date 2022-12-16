@@ -3,7 +3,7 @@ using DefaultNamespace;
 
 namespace Services
 {
-    public interface ITavernService : IUnitListProvider<UnitForSale>
+    public interface ITavernService : IUnitListProvider<UnitForSale> ,IService 
     {
         public ObservableCollection<UnitForSale> AvailableUnits { get; }
         public void BuyUnit(Unit unit);

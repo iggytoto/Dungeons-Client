@@ -1,17 +1,23 @@
 using System;
 using System.Collections;
-using System.Collections.ObjectModel;
+using Services;
 using Unity.Netcode;
 using UnityEngine;
 
 public sealed class TrainingBattleFlowController : NetworkBehaviour
 {
     public event Action OnBattleFinished;
+    private ITrainingYardService _trainingYardService;
 
-    public void StartBattle(long userOneId, long userTwoId)
+    private void Start()
     {
-        var rosterOne = GetRosterForUser(userOneId);
-        var rosterTwo = GetRosterForUser(userTwoId);
+        _trainingYardService = FindObjectOfType<GameService>().TrainingYardService;
+    }
+
+    public async void StartBattle(long userOneId, long userTwoId)
+    {
+        var rosterOne = await _trainingYardService.GetRosterForUserAsync(userOneId);
+        var rosterTwo = await _trainingYardService.GetRosterForUserAsync(userTwoId);
         SpawnUnits(rosterOne);
         SpawnUnits(rosterTwo);
         StartCoroutine(WaitForBattleEnd());
@@ -51,21 +57,8 @@ public sealed class TrainingBattleFlowController : NetworkBehaviour
         throw new NotImplementedException();
     }
 
-    private void SpawnUnits(Collection<Unit> rosterOne)
+    private void SpawnUnits(IEnumerable rosterOne)
     {
         throw new NotImplementedException();
-    }
-
-    private Collection<Unit> GetRosterForUser(long userOneId)
-    {
-        throw new NotImplementedException();
-    }
-
-    private IEnumerator FakeBattle()
-    {
-        yield return new WaitForSeconds(20);
-        StopAllCoroutines();
-        OnBattleFinished?.Invoke();
-        yield return null;
     }
 }

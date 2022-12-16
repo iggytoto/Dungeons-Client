@@ -14,8 +14,8 @@ namespace Services.MatchMaking
         private const string Port = ":8080";
 
         public void Register(IEnumerable<long> rosterUnitsIds, UserContext context,
-            EventHandler<EmptyResponse> successHandler,
-            EventHandler<ErrorResponse> errorHandler)
+            EventHandler<EmptyResponseDto> successHandler,
+            EventHandler<ErrorResponseDto> errorHandler)
         {
             var requestBody = JsonUtility.ToJson(new MatchMakingRegisterRequest()
             {
@@ -26,8 +26,8 @@ namespace Services.MatchMaking
                 errorHandler));
         }
 
-        public void Cancel(UserContext context, EventHandler<EmptyResponse> successHandler,
-            EventHandler<ErrorResponse> errorHandler)
+        public void Cancel(UserContext context, EventHandler<EmptyResponseDto> successHandler,
+            EventHandler<ErrorResponseDto> errorHandler)
         {
             StartCoroutine(DoRequestCoroutine(endpointAddress + Port + CancelPath, null, Post,
                 new Dictionary<string, string> { { Authorization, GetTokenValueHeader(context) } }, successHandler,
@@ -35,7 +35,7 @@ namespace Services.MatchMaking
         }
 
         public void Status(UserContext context, EventHandler<MatchMakingStatusResponse> successHandler,
-            EventHandler<ErrorResponse> errorHandler)
+            EventHandler<ErrorResponseDto> errorHandler)
         {
             StartCoroutine(DoRequestCoroutine(endpointAddress + Port + StatusPath, null, Get,
                 new Dictionary<string, string> { { Authorization, GetTokenValueHeader(context) } }, successHandler,
@@ -44,7 +44,7 @@ namespace Services.MatchMaking
 
         public void ApplyAsServer(string ip, string port, UserContext context,
             EventHandler<MatchMakingApplyAsServerResponse> successHandler,
-            EventHandler<ErrorResponse> errorHandler)
+            EventHandler<ErrorResponseDto> errorHandler)
         {
             var requestBody = JsonUtility.ToJson(new MatchMakingApplyAsServerRequest()
             {

@@ -10,10 +10,10 @@ public class TrainingYardServerFlowController : NetworkBehaviour
     private ILoginService _loginService;
     private IMatchMakingService _matchMakingService;
     private TrainingBattleFlowController _trainingBattleFlowController;
-    private const string Username = "server";
-    private const string Password = "password";
-    private const string Host = "127.0.0.1";
-    private const string Port = "7777";
+    [SerializeField] public string username = "server";
+    [SerializeField] public string password = "password";
+    [SerializeField] public string host = "127.0.0.1";
+    [SerializeField] public string port = "7777";
 
 #if DEDICATED
     private void Start()
@@ -47,16 +47,16 @@ public class TrainingYardServerFlowController : NetworkBehaviour
             switch (_loginService.ConnectionState)
             {
                 case ConnectionState.Disconnected:
-                    Debug.Log($"Trying to login with credentials: {Username}:{Password}");
-                    _loginService.TryLogin(Username, Password, null);
+                    Debug.Log($"Trying to login with credentials: {username}:{password}");
+                    _loginService.TryLogin(username, password, null);
                     break;
                 case ConnectionState.Connecting:
                     Debug.Log("Connecting...");
                     break;
                 case ConnectionState.Connected:
                     StopAllCoroutines();
-                    Debug.Log($"Registering dedicated server as {Host}:{Port}");
-                    _matchMakingService.ApplyForServer(Host, Port);
+                    Debug.Log($"Registering dedicated server as {host}:{port}");
+                    _matchMakingService.ApplyForServer(host, port);
                     StartCoroutine(WaitForMatch());
                     yield return null;
                     break;

@@ -4,7 +4,7 @@ using Services.Dto;
 namespace Services.Login
 {
     [Serializable]
-    public class LoginResponse : ResponseBase
+    public class LoginResponse : ResponseBaseDto
     {
         public long userId;
         public string token;

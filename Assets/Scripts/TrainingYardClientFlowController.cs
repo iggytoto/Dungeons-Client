@@ -7,7 +7,7 @@ public class TrainingYardClientFlowController : NetworkBehaviour
 {
     private IMatchMakingService _matchMakingService;
 
-// #if !DEDICATED
+#if !DEDICATED
     private void Start()
     {
         _matchMakingService = FindObjectOfType<GameService>().MatchMakingService;
@@ -40,5 +40,5 @@ public class TrainingYardClientFlowController : NetworkBehaviour
     private void ShowBattleResultsPanel()
     {
     }
-    // #endif
+    #endif
 }

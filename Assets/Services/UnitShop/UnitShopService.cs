@@ -1,26 +1,31 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using Services;
+using Services.Common.Dto;
 using Services.Dto;
 using Services.UnitShop;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class UnitShopService : MonoBehaviour , ITavernService
+public class UnitShopService : ServiceBase, ITavernService
 {
     [SerializeField] public float shopRefreshInterval = 15;
+
     private ILoginService _loginService;
     private TavernServiceApiAdapter _apiAdapter;
     private float _shopRefreshTimer;
     private ObservableCollection<Unit> _availableUnits;
 
     public ObservableCollection<UnitForSale> AvailableUnits { get; } = new();
+    
 
     private void Start()
     {
         _loginService = FindObjectOfType<GameService>().LoginService;
         _apiAdapter = gameObject.AddComponent<TavernServiceApiAdapter>();
-        _apiAdapter.endpointAddress = FindObjectOfType<GameService>().endpointAddress;
+        _apiAdapter.endpointHttp = EndpointHttp;
+        _apiAdapter.endpointAddress = EndpointHost;
+        _apiAdapter.endpointPort = EndpointPrt;
     }
 
     private void Update()
@@ -53,12 +58,12 @@ public class UnitShopService : MonoBehaviour , ITavernService
         _shopRefreshTimer = shopRefreshInterval;
     }
 
-    private void OnError(object sender, ErrorResponse e)
+    private void OnError(object sender, ErrorResponseDto e)
     {
         Debug.Log(e.message);
     }
 
-    private void OnGetSuccess(object sender, GetAvailableUnitsResponse e)
+    private void OnGetSuccess(object sender, UnitListResponseDto e)
     {
         AvailableUnits.Clear();
         if (e.units != null && e.units.Any())
@@ -72,7 +77,7 @@ public class UnitShopService : MonoBehaviour , ITavernService
         _apiAdapter.BuyUnit(unit, _loginService.UserContext, OnBuyUnitSuccess, OnError);
     }
 
-    private void OnBuyUnitSuccess(object sender, EmptyResponse e)
+    private void OnBuyUnitSuccess(object sender, EmptyResponseDto e)
     {
         RefreshShop();
     }

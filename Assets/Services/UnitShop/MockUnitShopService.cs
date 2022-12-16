@@ -18,4 +18,8 @@ public class MockUnitShopService : ITavernService
         var unitToBuy = AvailableUnits.First(u => u.Id == unit.Id);
         AvailableUnits.Remove(unitToBuy);
     }
+
+    public string EndpointHttpType { get; set; }
+    public string EndpointAddress { get; set; }
+    public ushort EndpointPort { get; set; }
 }

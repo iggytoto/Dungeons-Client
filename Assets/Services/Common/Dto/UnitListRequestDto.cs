@@ -1,11 +1,12 @@
 using System;
 using System.Collections.Generic;
+using Services.Common.Dto;
 using Services.Dto;
 
-namespace Services.UnitShop
+namespace Services.Common
 {
     [Serializable]
-    public class GetAvailableUnitsResponse : ResponseBase
+    public class UnitListRequestDto
     {
         public List<UnitDto> units;
     }

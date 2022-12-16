@@ -8,21 +8,23 @@ namespace Services.Dto
 {
     public class ApiAdapterBase : MonoBehaviour
     {
-        public string endpointAddress;
+        public string endpointHttp = "http";
+        public string endpointAddress = "localhost";
+        public ushort endpointPort = 8080;
         private const string ContentType = "Content-Type";
         private const string ApplicationJson = "application/json";
         protected const string Post = "POST";
         protected const string Get = "GET";
         protected const string Authorization = "Authorization";
-        protected const string Bearer = "Bearer ";
+        private const string Bearer = "Bearer ";
 
         protected IEnumerator DoRequestCoroutine<TResponse>(
             string url,
             string requestBody,
             string requestType,
             EventHandler<TResponse> successHandler,
-            EventHandler<ErrorResponse> errorHandler)
-            where TResponse : ResponseBase
+            EventHandler<ErrorResponseDto> errorHandler)
+            where TResponse : ResponseBaseDto
         {
             return DoRequestCoroutine(url, requestBody, requestType, null, successHandler, errorHandler);
         }
@@ -33,8 +35,8 @@ namespace Services.Dto
             string requestType,
             Dictionary<string, string> headers,
             EventHandler<TResponse> successHandler,
-            EventHandler<ErrorResponse> errorHandler)
-            where TResponse : ResponseBase
+            EventHandler<ErrorResponseDto> errorHandler)
+            where TResponse : ResponseBaseDto
         {
             using var req = new UnityWebRequest(url, requestType);
             if (requestType != Get && requestBody != null)
@@ -66,7 +68,7 @@ namespace Services.Dto
                     }
                     else
                     {
-                        errorHandler?.Invoke(this, new ErrorResponse { message = response.message });
+                        errorHandler?.Invoke(this, new ErrorResponseDto { message = response.message });
                     }
 
                     StopCoroutine(DoRequestCoroutine(url, requestBody, requestType, successHandler, errorHandler));
@@ -74,7 +76,7 @@ namespace Services.Dto
                 case UnityWebRequest.Result.ConnectionError:
                 case UnityWebRequest.Result.ProtocolError:
                 case UnityWebRequest.Result.DataProcessingError:
-                    errorHandler.Invoke(this, new ErrorResponse { message = req.error });
+                    errorHandler.Invoke(this, new ErrorResponseDto { message = req.error });
                     StopCoroutine(DoRequestCoroutine(url, requestBody, requestType, successHandler, errorHandler));
                     break;
                 default:
@@ -91,6 +93,11 @@ namespace Services.Dto
                     value = ctx.value,
                     userId = ctx.userId
                 })));
+        }
+
+        protected string GetConnectionAddress()
+        {
+            return $"{endpointHttp}://{endpointAddress}:{endpointPort}";
         }
     }
 }

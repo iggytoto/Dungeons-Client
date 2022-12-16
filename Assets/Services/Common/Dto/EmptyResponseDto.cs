@@ -2,6 +2,6 @@ using System;
 using Services.Dto;
 
 [Serializable]
-public class EmptyResponse : ResponseBase
+public class EmptyResponseDto : ResponseBaseDto
 {
 }

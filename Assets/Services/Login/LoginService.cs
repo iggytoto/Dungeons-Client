@@ -5,7 +5,7 @@ using Services.Dto;
 using Services.Login;
 using UnityEngine;
 
-public class LoginService : MonoBehaviour, ILoginService
+public class LoginService : ServiceBase, ILoginService
 {
     private static UserContext _userContext;
     private EventHandler<UserContext> _onLoginSuccessResponseOuter;
@@ -15,12 +15,15 @@ public class LoginService : MonoBehaviour, ILoginService
     private void Start()
     {
         _apiAdapter = gameObject.AddComponent<LoginServiceApiAdapter>();
-        _apiAdapter.endpointAddress = FindObjectOfType<GameService>().endpointAddress;
+        _apiAdapter.endpointHttp = EndpointHttp;
+        _apiAdapter.endpointAddress = EndpointHost;
+        _apiAdapter.endpointPort = EndpointPrt;
     }
 
     public ConnectionState ConnectionState => _connectionState;
 
     public UserContext UserContext => _userContext;
+
     public void TryLogin(string login, string password, EventHandler<UserContext> onSuccess)
     {
         _connectionState = ConnectionState.Connecting;
@@ -47,8 +50,9 @@ public class LoginService : MonoBehaviour, ILoginService
         _onLoginSuccessResponseOuter?.Invoke(this, _userContext);
     }
 
-    private void OnError(object sender, ErrorResponse e)
+    private void OnError(object sender, ErrorResponseDto e)
     {
+        _connectionState = ConnectionState.Disconnected;
         Debug.LogError(e.message);
     }
 }

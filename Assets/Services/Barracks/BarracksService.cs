@@ -3,12 +3,12 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using Services;
 using Services.Barracks;
+using Services.Common.Dto;
 using Services.Dto;
-using Services.UnitShop;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class BarracksService : MonoBehaviour, IBarrackService
+public class BarracksService : ServiceBase, IBarrackService
 {
     public ObservableCollection<Unit> AvailableUnits { get; } = new();
 
@@ -27,7 +27,9 @@ public class BarracksService : MonoBehaviour, IBarrackService
     {
         _loginService = FindObjectOfType<GameService>().LoginService;
         _apiAdapter = gameObject.AddComponent<BarrackServiceApiAdapter>();
-        _apiAdapter.endpointAddress = FindObjectOfType<GameService>().endpointAddress;
+        _apiAdapter.endpointHttp = EndpointHttp;
+        _apiAdapter.endpointAddress = EndpointHost;
+        _apiAdapter.endpointPort = EndpointPrt;
     }
 
     private void Update()
@@ -58,7 +60,7 @@ public class BarracksService : MonoBehaviour, IBarrackService
         _refreshTimer = refreshInterval;
     }
 
-    private void OnGetSuccess(object sender, GetAvailableUnitsResponse e)
+    private void OnGetSuccess(object sender, UnitListResponseDto e)
     {
         RefreshLocal(e?.units.Select(x => x.ToUnit()));
     }
@@ -72,7 +74,7 @@ public class BarracksService : MonoBehaviour, IBarrackService
         }
     }
 
-    private static void OnError(object sender, ErrorResponse e)
+    private static void OnError(object sender, ErrorResponseDto e)
     {
         Debug.Log(e.message);
     }

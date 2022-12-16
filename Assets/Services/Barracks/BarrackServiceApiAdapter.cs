@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Services.Common.Dto;
 using Services.Dto;
 using Services.UnitShop;
 using UnityEngine;
@@ -15,7 +16,7 @@ namespace Services.Barracks
 
         // ReSharper disable Unity.PerformanceAnalysis
         public void GetAvailableUnits(UserContext loginServiceUserContext,
-            EventHandler<GetAvailableUnitsResponse> successHandler, EventHandler<ErrorResponse> errorHandler)
+            EventHandler<UnitListResponseDto> successHandler, EventHandler<ErrorResponseDto> errorHandler)
         {
             StartCoroutine(DoRequestCoroutine(endpointAddress + Port + GetAvailableUnitsPath, null,
                 Get, new Dictionary<string, string> { { Authorization, GetTokenValueHeader(loginServiceUserContext) } },
@@ -24,7 +25,7 @@ namespace Services.Barracks
         }
 
         public void TrainUnit(long unitId, UserContext loginServiceUserContext,
-            EventHandler<TrainUnitResponse> successHandler, EventHandler<ErrorResponse> errorHandler)
+            EventHandler<TrainUnitResponse> successHandler, EventHandler<ErrorResponseDto> errorHandler)
         {
             var requestBody = JsonUtility.ToJson(new TrainUnitRequest
             {

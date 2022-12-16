@@ -3,7 +3,7 @@ using System;
 namespace Services.Dto
 {
     [Serializable]
-    public class ErrorResponse : ResponseBase
+    public class ErrorResponseDto : ResponseBaseDto
     {
     }
 }

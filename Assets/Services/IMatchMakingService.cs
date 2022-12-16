@@ -3,7 +3,7 @@ using Services.Common;
 
 namespace Services
 {
-    public interface IMatchMakingService
+    public interface IMatchMakingService : IService
     {
         public MatchDto MatchContext { get; }
 

@@ -2,7 +2,7 @@ using System;
 
 namespace Services
 {
-    public interface ILoginService
+    public interface ILoginService : IService
     {
         /***
         * Current connection state with login service. 

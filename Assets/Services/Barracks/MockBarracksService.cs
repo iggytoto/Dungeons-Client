@@ -25,4 +25,8 @@ public class MockBarracksService : IBarrackService
     {
         AvailableUnits.Remove(AvailableUnits.First(u => u.Id == selectedUnitId));
     }
+
+    public string EndpointHttpType { get; set; }
+    public string EndpointAddress { get; set; }
+    public ushort EndpointPort { get; set; }
 }

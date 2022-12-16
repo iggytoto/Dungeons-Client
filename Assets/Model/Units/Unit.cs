@@ -7,6 +7,8 @@ public class Unit : ModelBase
     public long Armor { get; set; }
     public long MagicResistance { get; set; }
     public long Damage { get; set; }
+    public long MaxHp { get; set; }
+    public float AttackSpeed { get; set; }
 
     public long OwnerId { get; set; }
     public long TrainingExperience { get; set; }
@@ -20,6 +22,8 @@ public class Unit : ModelBase
             Id = rng.Next(0, 1000000),
             Name = rng.Next(0, 10000).ToString(),
             HitPoints = rng.Next(100, 200),
+            MaxHp = rng.Next(100, 200),
+            AttackSpeed = 1,
             Armor = rng.Next(0, 100),
             MagicResistance = rng.Next(0, 100),
             Damage = rng.Next(20, 100),

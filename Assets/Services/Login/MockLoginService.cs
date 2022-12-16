@@ -20,4 +20,8 @@ public class MockLoginService : ILoginService
     public void Register(string login, string password)
     {
     }
+
+    public string EndpointHttpType { get; set; }
+    public string EndpointAddress { get; set; }
+    public ushort EndpointPort { get; set; }
 }

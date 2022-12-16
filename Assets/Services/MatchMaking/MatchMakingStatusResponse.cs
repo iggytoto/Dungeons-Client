@@ -5,7 +5,7 @@ using Services.Dto;
 namespace Services.MatchMaking
 {
     [Serializable]
-    public class MatchMakingStatusResponse : ResponseBase
+    public class MatchMakingStatusResponse : ResponseBaseDto
     {
         public MatchDto match;
     }

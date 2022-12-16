@@ -45,4 +45,8 @@ public class MockMatchMakingService : IMatchMakingService
             userTwoId = 2
         };
     }
+
+    public string EndpointHttpType { get; set; }
+    public string EndpointAddress { get; set; }
+    public ushort EndpointPort { get; set; }
 }

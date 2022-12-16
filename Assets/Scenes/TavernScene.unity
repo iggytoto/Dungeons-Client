@@ -194,6 +194,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: TavernSceneUi
       objectReference: {fileID: 0}
+    - target: {fileID: 8096633511920688753, guid: 15f1ee7e6eeff2c4ca6f5a710f26f5b1, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8096633511920688753, guid: 15f1ee7e6eeff2c4ca6f5a710f26f5b1, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8096633511920688753, guid: 15f1ee7e6eeff2c4ca6f5a710f26f5b1, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15f1ee7e6eeff2c4ca6f5a710f26f5b1, type: 3}
 --- !u!1 &1039265264
@@ -327,7 +339,7 @@ PrefabInstance:
     - target: {fileID: 4271042742655406263, guid: 9a1a320ee5e28424da56dea2279662cb, type: 3}
       propertyPath: servicesConfiguration
       value: 
-      objectReference: {fileID: 11400000, guid: 21e3f0456897c364a9fc20082a2019b1, type: 2}
+      objectReference: {fileID: 11400000, guid: 1ff3c7cd68cda5b4896e82a1ae946bc5, type: 2}
     - target: {fileID: 4468862614129480654, guid: 9a1a320ee5e28424da56dea2279662cb, type: 3}
       propertyPath: m_Name
       value: GameService

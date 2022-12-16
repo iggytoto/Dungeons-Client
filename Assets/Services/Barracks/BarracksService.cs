@@ -62,7 +62,12 @@ public class BarracksService : ServiceBase, IBarrackService
 
     private void OnGetSuccess(object sender, UnitListResponseDto e)
     {
-        RefreshLocal(e?.units.Select(x => x.ToUnit()));
+        if (e == null)
+        {
+            return;
+        }
+
+        RefreshLocal(e.units?.Select(x => x.ToUnit()));
     }
 
     private void RefreshLocal(IEnumerable<Unit> e)

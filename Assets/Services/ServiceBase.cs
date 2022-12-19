@@ -22,5 +22,7 @@ namespace Services
         {
             set => EndpointPrt = value;
         }
+
+        public abstract void InitService();
     }
 }

@@ -22,4 +22,8 @@ public class MockUnitShopService : ITavernService
     public string EndpointHttpType { get; set; }
     public string EndpointAddress { get; set; }
     public ushort EndpointPort { get; set; }
+
+    public void InitService()
+    {
+    }
 }

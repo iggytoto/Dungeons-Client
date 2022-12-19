@@ -14,7 +14,9 @@ namespace Services
 
         private void Awake()
         {
+            Debug.Log("Configuration start");
             servicesConfiguration.SetServices(this);
+            Debug.Log("Configuration finished");
         }
     }
 }

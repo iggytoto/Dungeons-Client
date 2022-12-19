@@ -12,11 +12,11 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{f14cc763-360f-5f7a-381b-647e5d4c3e9a}</ProjectGuid>
+    <ProjectGuid>{fbb73151-ab0e-49e6-0ffa-8fe58ec63aa4}</ProjectGuid>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <AssemblyName>SeparateAssembly</AssemblyName>
+    <AssemblyName>Unity.InputSystem.TestFramework</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <BaseDirectory>.</BaseDirectory>
@@ -41,8 +41,8 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Folder Include="Library\PackageCache\com.unity.burst@1.7.3\Tests\Editor\SeparateAssembly" />
-     <None Include="Library\PackageCache\com.unity.burst@1.7.3\Tests\Editor\SeparateAssembly\SeparateAssembly.asmdef" />
+     <Folder Include="Library\PackageCache\com.unity.inputsystem@1.4.4\Tests\TestFixture" />
+     <None Include="Library\PackageCache\com.unity.inputsystem@1.4.4\Tests\TestFixture\Unity.InputSystem.TestFramework.asmdef" />
      <Reference Include="UnityEngine">
      <HintPath>D:\development\unity\2021.3.14f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
      </Reference>

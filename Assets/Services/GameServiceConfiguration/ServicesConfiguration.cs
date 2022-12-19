@@ -45,6 +45,7 @@ public class ServicesConfiguration : ScriptableObject
                 s.EndpointAddress = apiHostAddress;
                 s.EndpointPort = apiHostPort;
                 s.EndpointHttpType = apiHostHttp;
+                s.InitService();
                 service = s;
                 break;
             default:
@@ -70,6 +71,7 @@ public class ServicesConfiguration : ScriptableObject
                 s.EndpointAddress = apiHostAddress;
                 s.EndpointPort = apiHostPort;
                 s.EndpointHttpType = apiHostHttp;
+                s.InitService();
                 service = s;
                 break;
             default:
@@ -106,6 +108,7 @@ public class ServicesConfiguration : ScriptableObject
                 s.EndpointAddress = apiHostAddress;
                 s.EndpointPort = apiHostPort;
                 s.EndpointHttpType = apiHostHttp;
+                s.InitService();
                 service = s;
                 break;
             default:
@@ -131,6 +134,7 @@ public class ServicesConfiguration : ScriptableObject
                 s.EndpointAddress = apiHostAddress;
                 s.EndpointPort = apiHostPort;
                 s.EndpointHttpType = apiHostHttp;
+                s.InitService();
                 service = s;
                 break;
             default:
@@ -158,12 +162,12 @@ public class ServicesConfiguration : ScriptableObject
                 s.EndpointAddress = apiHostAddress;
                 s.EndpointPort = apiHostPort;
                 s.EndpointHttpType = apiHostHttp;
+                s.InitService();
                 service = s;
                 break;
             default:
                 throw new ArgumentOutOfRangeException();
         }
-
         gs.LoginService = service;
     }
 

@@ -10,23 +10,29 @@ public class LoginService : ServiceBase, ILoginService
     private static UserContext _userContext;
     private EventHandler<UserContext> _onLoginSuccessResponseOuter;
     private LoginServiceApiAdapter _apiAdapter;
-    private ConnectionState _connectionState = ConnectionState.Disconnected;
 
-    private void Start()
+    public ConnectionState ConnectionState { get; private set; } = ConnectionState.Disconnected;
+
+    public UserContext UserContext => _userContext;
+
+    public override void InitService()
     {
         _apiAdapter = gameObject.AddComponent<LoginServiceApiAdapter>();
         _apiAdapter.endpointHttp = EndpointHttp;
         _apiAdapter.endpointAddress = EndpointHost;
         _apiAdapter.endpointPort = EndpointPrt;
+        Debug.Log(
+            $"Login service adapter configured with endpoint:{_apiAdapter.GetConnectionAddress()}");
     }
-
-    public ConnectionState ConnectionState => _connectionState;
-
-    public UserContext UserContext => _userContext;
 
     public void TryLogin(string login, string password, EventHandler<UserContext> onSuccess)
     {
-        _connectionState = ConnectionState.Connecting;
+        if (_apiAdapter == null)
+        {
+            Debug.LogWarning("TryLogin method called before");
+        }
+
+        ConnectionState = ConnectionState.Connecting;
         _onLoginSuccessResponseOuter = onSuccess;
         _apiAdapter.Login(login, password, OnLoginSuccess, OnError);
     }
@@ -44,7 +50,7 @@ public class LoginService : ServiceBase, ILoginService
 
     private void OnLoginSuccess(object sender, LoginResponse e)
     {
-        _connectionState = ConnectionState.Connected;
+        ConnectionState = ConnectionState.Connected;
         var tokenJson = Encoding.UTF8.GetString(Convert.FromBase64String(e.token));
         _userContext = JsonUtility.FromJson<UserContext>(tokenJson);
         _onLoginSuccessResponseOuter?.Invoke(this, _userContext);
@@ -52,7 +58,7 @@ public class LoginService : ServiceBase, ILoginService
 
     private void OnError(object sender, ErrorResponseDto e)
     {
-        _connectionState = ConnectionState.Disconnected;
+        ConnectionState = ConnectionState.Disconnected;
         Debug.LogError(e.message);
     }
 }

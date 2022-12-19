@@ -42,6 +42,14 @@ public class TrainingYardServerFlowController : NetworkBehaviour
 
     private IEnumerator LoginAndRegisterAsDedicatedServer()
     {
+        if (_loginService == null || _matchMakingService == null)
+        {
+            Debug.LogError(
+                $"Failed to start registration process. Login service :{_loginService}, MM service {_matchMakingService}");
+            StopAllCoroutines();
+            yield return null;
+        }
+
         while (true)
         {
             switch (_loginService.ConnectionState)

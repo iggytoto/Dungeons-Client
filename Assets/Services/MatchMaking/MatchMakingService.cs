@@ -15,13 +15,15 @@ public class MatchMakingService : ServiceBase, IMatchMakingService
     private ILoginService _loginService;
     private MatchMakingServiceApiAdapter _apiAdapter;
 
-    private void Start()
+    public override void InitService()
     {
         _apiAdapter = gameObject.AddComponent<MatchMakingServiceApiAdapter>();
         _apiAdapter.endpointHttp = EndpointHttp;
         _apiAdapter.endpointAddress = EndpointHost;
         _apiAdapter.endpointPort = EndpointPrt;
         _loginService = FindObjectOfType<GameService>().LoginService;
+        Debug.Log(
+            $"MM service adapter configured with endpoint:{_apiAdapter.GetConnectionAddress()}");
     }
 
     public void Register(IEnumerable<long> roster)

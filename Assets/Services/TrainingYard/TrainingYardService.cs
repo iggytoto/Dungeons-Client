@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Services.Common;
 using Services.Common.Dto;
+using UnityEngine;
 
 namespace Services.TrainingYard
 {
@@ -12,13 +13,15 @@ namespace Services.TrainingYard
         private TrainingYardServiceApiAdapter _apiAdapter;
         private ILoginService _loginService;
 
-        private void Start()
+        public override void InitService()
         {
             _apiAdapter = gameObject.AddComponent<TrainingYardServiceApiAdapter>();
             _loginService = FindObjectOfType<GameService>().LoginService;
             _apiAdapter.endpointHttp = EndpointHttp;
             _apiAdapter.endpointAddress = EndpointHost;
             _apiAdapter.endpointPort = EndpointPrt;
+            Debug.Log(
+                $"TrainingYard service adapter configured with endpoint:{_apiAdapter.GetConnectionAddress()}");
         }
 
         public void GetRosterForUser(long userId, EventHandler<IEnumerable<Unit>> onSuccessHandler,

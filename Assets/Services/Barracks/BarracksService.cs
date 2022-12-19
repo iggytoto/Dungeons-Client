@@ -23,13 +23,15 @@ public class BarracksService : ServiceBase, IBarrackService
         _apiAdapter.TrainUnit(selectedUnitId, _loginService.UserContext, OnTrainSuccess, OnError);
     }
 
-    private void Start()
+    public override void InitService()
     {
         _loginService = FindObjectOfType<GameService>().LoginService;
         _apiAdapter = gameObject.AddComponent<BarrackServiceApiAdapter>();
         _apiAdapter.endpointHttp = EndpointHttp;
         _apiAdapter.endpointAddress = EndpointHost;
         _apiAdapter.endpointPort = EndpointPrt;
+        Debug.Log(
+            $"Barrack service adapter configured with endpoint:{_apiAdapter.GetConnectionAddress()}");
     }
 
     private void Update()

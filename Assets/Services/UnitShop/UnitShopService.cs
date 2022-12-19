@@ -19,13 +19,15 @@ public class UnitShopService : ServiceBase, ITavernService
     public ObservableCollection<UnitForSale> AvailableUnits { get; } = new();
     
 
-    private void Start()
+    public override void InitService()
     {
         _loginService = FindObjectOfType<GameService>().LoginService;
         _apiAdapter = gameObject.AddComponent<TavernServiceApiAdapter>();
         _apiAdapter.endpointHttp = EndpointHttp;
         _apiAdapter.endpointAddress = EndpointHost;
         _apiAdapter.endpointPort = EndpointPrt;
+        Debug.Log(
+            $"Tavern service adapter configured with endpoint:{_apiAdapter.GetConnectionAddress()}");
     }
 
     private void Update()

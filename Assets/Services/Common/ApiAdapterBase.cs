@@ -95,7 +95,7 @@ namespace Services.Dto
                 })));
         }
 
-        protected string GetConnectionAddress()
+        public string GetConnectionAddress()
         {
             return $"{endpointHttp}://{endpointAddress}:{endpointPort}";
         }

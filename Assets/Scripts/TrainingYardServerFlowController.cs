@@ -1,7 +1,6 @@
-using System;
-using System.Collections;
 using System.Linq;
 using Services;
+using Services.Common;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -14,6 +13,10 @@ public class TrainingYardServerFlowController : NetworkBehaviour
     [SerializeField] public string password = "password";
     [SerializeField] public string host = "127.0.0.1";
     [SerializeField] public string port = "7777";
+    [SerializeField] public float updateInterval = 5;
+    private float _updateTime;
+    private MatchDto _matchStatus;
+    private bool _matchInProgress;
 
 #if DEDICATED
     private void Start()
@@ -32,78 +35,52 @@ public class TrainingYardServerFlowController : NetworkBehaviour
         NetworkManager.OnClientDisconnectCallback += clientId => Debug.Log($"Client disconnected with id:{clientId}");
     }
 
-    public override void OnNetworkSpawn()
+    private void Update()
     {
-        if (IsServer && !IsHost)
+        if (!IsServer) return;
+        _updateTime -= Time.deltaTime;
+        if (!(_updateTime <= 0)) return;
+        if (_loginService.UserContext == null || _loginService.ConnectionState == ConnectionState.Disconnected)
         {
-            StartCoroutine(LoginAndRegisterAsDedicatedServer());
+            ProcessLogin();
+        }
+        else if (_loginService.ConnectionState == ConnectionState.Connecting)
+        {
+        }
+        else
+        {
+            ProcessMatch();
+        }
+
+        _updateTime = updateInterval;
+    }
+
+    private void ProcessMatch()
+    {
+        if (_matchStatus == null)
+        {
+            _matchMakingService.ApplyForServer(
+                host,
+                port,
+                (_, r) => _matchStatus = r,
+                (_, e) => Debug.LogError(e.message));
+        }
+        else
+        {
+            if (_matchInProgress || _matchStatus.status != "ServerFound") return;
+            _matchInProgress = true;
+            Debug.Log("Starting the training...");
+            _trainingBattleFlowController.OnBattleFinished += OnBattleFinished;
+            _trainingBattleFlowController.StartBattle(
+                _matchStatus.userOneId,
+                _matchStatus.userTwoId);
         }
     }
 
-    private IEnumerator LoginAndRegisterAsDedicatedServer()
+    private void ProcessLogin()
     {
-        if (_loginService == null || _matchMakingService == null)
-        {
-            Debug.LogError(
-                $"Failed to start registration process. Login service :{_loginService}, MM service {_matchMakingService}");
-            StopAllCoroutines();
-            yield return null;
-        }
-
-        while (true)
-        {
-            switch (_loginService.ConnectionState)
-            {
-                case ConnectionState.Disconnected:
-                    Debug.Log($"Trying to login with credentials: {username}:{password}");
-                    _loginService.TryLogin(username, password, null);
-                    break;
-                case ConnectionState.Connecting:
-                    Debug.Log("Connecting...");
-                    break;
-                case ConnectionState.Connected:
-                    StopAllCoroutines();
-                    Debug.Log($"Registering dedicated server as {host}:{port}");
-                    _matchMakingService.ApplyForServer(host, port);
-                    StartCoroutine(WaitForMatch());
-                    yield return null;
-                    break;
-                default:
-                    throw new InvalidOperationException();
-            }
-
-            yield return new WaitForSeconds(5);
-        }
-    }
-
-    private IEnumerator WaitForMatch()
-    {
-        var waitingSeconds = 0;
-        while (waitingSeconds <= 60)
-        {
-            Debug.Log("WaitingForMatch...");
-            if (_matchMakingService.MatchContext is { status: "ServerFound" })
-            {
-                StopAllCoroutines();
-                StartCoroutine(StartTrainingYardCombat());
-            }
-
-            waitingSeconds++;
-            yield return new WaitForSeconds(1);
-        }
-    }
-
-    private IEnumerator StartTrainingYardCombat()
-    {
-        Debug.Log("Waiting for players to connect...");
-        yield return new WaitForSeconds(5);
-        Debug.Log("Starting the training...");
-        StopAllCoroutines();
-        _trainingBattleFlowController.OnBattleFinished += OnBattleFinished;
-        _trainingBattleFlowController.StartBattle(
-            _matchMakingService.MatchContext.userOneId,
-            _matchMakingService.MatchContext.userTwoId);
-        yield return null;
+        Debug.Log($"Trying to login with credentials: {username}:{password}");
+        _loginService.TryLogin(username, password, (_, _) => ProcessMatch());
     }
 
     private void OnBattleFinished()
@@ -115,7 +92,8 @@ public class TrainingYardServerFlowController : NetworkBehaviour
             NetworkManager.DisconnectClient(clientId);
         }
 
-        StartCoroutine(LoginAndRegisterAsDedicatedServer());
+        _matchInProgress = false;
+        _matchStatus = null;
     }
 #endif
 }

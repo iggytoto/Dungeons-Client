@@ -767,6 +767,10 @@ PrefabInstance:
       propertyPath: m_PresetInfoIsWorld
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6575903953921641078, guid: a908bb0742082f44c802e771a281c174, type: 3}
+      propertyPath: refreshInterval
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7643676099306286609, guid: a908bb0742082f44c802e771a281c174, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

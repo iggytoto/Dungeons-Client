@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 using Services.Common.Dto;
 using Services.Dto;
-using UnityEngine;
 
 namespace Services.Barracks
 {
@@ -23,7 +23,7 @@ namespace Services.Barracks
         public void TrainUnit(long unitId, UserContext loginServiceUserContext,
             EventHandler<TrainUnitResponse> successHandler, EventHandler<ErrorResponseDto> errorHandler)
         {
-            var requestBody = JsonUtility.ToJson(new TrainUnitRequest
+            var requestBody = JsonConvert.SerializeObject(new TrainUnitRequest
             {
                 unitId = unitId
             });

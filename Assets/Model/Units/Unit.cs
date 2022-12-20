@@ -1,4 +1,5 @@
 using System;
+using Model.Units;
 
 [Serializable]
 public class Unit : ModelBase
@@ -9,10 +10,10 @@ public class Unit : ModelBase
     public long Damage { get; set; }
     public long MaxHp { get; set; }
     public float AttackSpeed { get; set; }
-
     public long OwnerId { get; set; }
     public long TrainingExperience { get; set; }
     public UnitActivity Activity { get; set; }
+    public UnitType Type => UnitType.Dummy;
 
     public static Unit Random()
     {

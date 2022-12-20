@@ -454,6 +454,7 @@ MonoBehaviour:
   password: password
   host: 127.0.0.1
   port: 7777
+  updateInterval: 5
 --- !u!4 &995597571
 Transform:
   m_ObjectHideFlags: 0

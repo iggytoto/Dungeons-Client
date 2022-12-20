@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -39,7 +40,7 @@ namespace Services.Dto
             where TResponse : ResponseBaseDto
         {
             using var req = new UnityWebRequest(url, requestType);
-            if (requestType != Get && requestBody != null)
+            if (requestBody != null)
             {
                 req.uploadHandler = new UploadHandlerRaw(new System.Text.UTF8Encoding().GetBytes(requestBody));
             }
@@ -61,14 +62,19 @@ namespace Services.Dto
                     break;
                 case UnityWebRequest.Result.Success:
                     var response =
-                        JsonUtility.FromJson<TResponse>(System.Text.Encoding.UTF8.GetString(req.downloadHandler.data));
-                    if (response.code == 0)
+                        JsonConvert.DeserializeObject<TResponse>(
+                            System.Text.Encoding.UTF8.GetString(req.downloadHandler.data));
+
+                    if (response is
+                        {
+                            code: 0
+                        })
                     {
                         successHandler?.Invoke(this, response);
                     }
                     else
                     {
-                        errorHandler?.Invoke(this, new ErrorResponseDto { message = response.message });
+                        errorHandler?.Invoke(this, new ErrorResponseDto { message = response?.message });
                     }
 
                     StopCoroutine(DoRequestCoroutine(url, requestBody, requestType, successHandler, errorHandler));

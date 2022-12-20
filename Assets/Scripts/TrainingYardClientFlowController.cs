@@ -1,7 +1,11 @@
 using System;
 using Services;
+using Services.Common;
+using Services.Dto;
 using Unity.Netcode;
 using Unity.Netcode.Transports.UTP;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TrainingYardClientFlowController : NetworkBehaviour
 {
@@ -11,17 +15,23 @@ public class TrainingYardClientFlowController : NetworkBehaviour
     private void Start()
     {
         _matchMakingService = FindObjectOfType<GameService>().MatchMakingService;
-        StartNetCodeClient();
+        _matchMakingService.Status((_, r) => StartNetCodeClient(r), OnFailedToGetMatchStatus);
     }
 
-    private void StartNetCodeClient()
+
+    private static void OnFailedToGetMatchStatus(object sender, ErrorResponseDto e)
     {
-        var matchData = _matchMakingService.MatchContext;
+        Debug.LogError("Failed to get match status, returning to the town scene");
+        SceneManager.LoadScene(SceneConstants.TownSceneName);
+    }
+
+    private void StartNetCodeClient(MatchDto match)
+    {
         var transport = (UnityTransport)NetworkManager.Singleton.NetworkConfig.NetworkTransport;
         transport.ConnectionData = new UnityTransport.ConnectionAddressData
         {
-            Address = matchData.serverIpAddress,
-            Port = Convert.ToUInt16(matchData.serverPort)
+            Address = match.serverIpAddress,
+            Port = Convert.ToUInt16(match.serverPort)
         };
         NetworkManager.Singleton.StartClient();
         NetworkManager.Singleton.OnClientDisconnectCallback += OnClientDisconnected;
@@ -40,5 +50,5 @@ public class TrainingYardClientFlowController : NetworkBehaviour
     private void ShowBattleResultsPanel()
     {
     }
-    #endif
+#endif
 }

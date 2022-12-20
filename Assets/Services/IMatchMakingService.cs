@@ -1,16 +1,27 @@
+using System;
 using System.Collections.Generic;
 using Services.Common;
+using Services.Dto;
 
 namespace Services
 {
     public interface IMatchMakingService : IService
     {
-        public MatchDto MatchContext { get; }
-
-        public void Register(IEnumerable<long> roster);
+        public void Register(
+            IEnumerable<long> roster,
+            EventHandler<MatchDto> onSuccess,
+            EventHandler<ErrorResponseDto> onError);
 
         public void Cancel();
 
-        public void ApplyForServer(string address, string port);
+        public void Status(
+            EventHandler<MatchDto> onSuccess,
+            EventHandler<ErrorResponseDto> onError);
+
+        public void ApplyForServer(
+            string address,
+            string port,
+            EventHandler<MatchDto> onSuccess,
+            EventHandler<ErrorResponseDto> onError);
     }
 }

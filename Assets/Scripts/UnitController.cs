@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class UnitController : MonoBehaviour
@@ -43,5 +44,20 @@ public class UnitController : MonoBehaviour
         {
             gameObject.transform.forward = move;
         }
+    }
+
+    public void Init(Unit unit)
+    {
+        
+    }
+
+    public Unit ToUnit()
+    {
+        throw new NotImplementedException();
+    }
+
+    public bool IsDead()
+    {
+        return false;
     }
 }

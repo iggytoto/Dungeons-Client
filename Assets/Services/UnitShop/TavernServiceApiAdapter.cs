@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 using Services.Common.Dto;
 using Services.Dto;
-using UnityEngine;
 
 namespace Services.UnitShop
 {
@@ -20,14 +20,12 @@ namespace Services.UnitShop
                 successHandler,
                 errorHandler));
         }
-
-
         public void BuyUnit(Unit unit,
             UserContext loginServiceUserContext,
             EventHandler<EmptyResponseDto> successHandler,
             EventHandler<ErrorResponseDto> errorHandler)
         {
-            var requestBody = JsonUtility.ToJson(new BuyUnitRequest
+            var requestBody = JsonConvert.SerializeObject(new BuyUnitRequest
             {
                 unitId = unit.Id
             });

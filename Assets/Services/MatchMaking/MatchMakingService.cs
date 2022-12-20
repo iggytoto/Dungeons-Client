@@ -1,4 +1,4 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using Services;
 using Services.Common;
@@ -8,10 +8,6 @@ using UnityEngine;
 
 public class MatchMakingService : ServiceBase, IMatchMakingService
 {
-    [SerializeField] private int matchWaitTimeOutSeconds = 30;
-    public MatchDto MatchContext => _matchContext;
-    private static MatchDto _matchContext;
-
     private ILoginService _loginService;
     private MatchMakingServiceApiAdapter _apiAdapter;
 
@@ -26,42 +22,42 @@ public class MatchMakingService : ServiceBase, IMatchMakingService
             $"MM service adapter configured with endpoint:{_apiAdapter.GetConnectionAddress()}");
     }
 
-    public void Register(IEnumerable<long> roster)
+    public void Register(IEnumerable<long> roster, EventHandler<MatchDto> onSuccess,
+        EventHandler<ErrorResponseDto> onError)
     {
-        _apiAdapter.Register(roster, _loginService.UserContext, null, OnError);
-        StartCoroutine(UpdateStatus());
-    }
-
-    private IEnumerator UpdateStatus()
-    {
-        var waitingFor = 0;
-        while (waitingFor <= matchWaitTimeOutSeconds)
-        {
-            _apiAdapter.Status(_loginService.UserContext, (_, r) => _matchContext = r.match, OnError);
-            waitingFor++;
-            yield return new WaitForSeconds(1);
-        }
-
-        yield return null;
+        _apiAdapter.Register(
+            roster,
+            _loginService.UserContext,
+            (o, r) => onSuccess?.Invoke(o, r.match),
+            (o, r) => onError?.Invoke(o, r));
     }
 
     public void Cancel()
     {
-        _apiAdapter.Cancel(_loginService.UserContext, null, OnError);
-        _matchContext = null;
-        StopAllCoroutines();
+        _apiAdapter.Cancel(_loginService.UserContext, null, null);
     }
 
-    public void ApplyForServer(string address, string port)
+    public void Status(EventHandler<MatchDto> onSuccess, EventHandler<ErrorResponseDto> onError)
     {
-        _apiAdapter.ApplyAsServer(address, port, _loginService.UserContext,
-            (_, r) => _matchContext = r.match, OnError);
-        StartCoroutine(UpdateStatus());
+        if (_loginService?.UserContext == null)
+        {
+            Debug.LogWarning("Service called without connection context");
+            return;
+        }
+
+        _apiAdapter.Status(
+            _loginService.UserContext,
+            (o, r) => onSuccess?.Invoke(o, r.match),
+            (o, r) => onError?.Invoke(o, r));
     }
 
-    private void OnError(object sender, ErrorResponseDto e)
+    public void ApplyForServer(string address, string port, EventHandler<MatchDto> onSuccess,
+        EventHandler<ErrorResponseDto> onError)
     {
-        StopAllCoroutines();
-        Debug.Log(e.message);
+        _apiAdapter.ApplyAsServer(address,
+            port,
+            _loginService.UserContext,
+            (o, r) => onSuccess.Invoke(o, r.match),
+            onError);
     }
 }

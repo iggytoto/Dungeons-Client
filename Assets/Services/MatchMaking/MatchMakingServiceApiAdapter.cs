@@ -1,7 +1,8 @@
 using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
+using Services.Common;
 using Services.Dto;
-using UnityEngine;
 
 namespace Services.MatchMaking
 {
@@ -11,17 +12,16 @@ namespace Services.MatchMaking
         private const string CancelPath = "/matchMaking/cancel";
         private const string StatusPath = "/matchMaking/status";
         private const string ApplyAsServerPath = "/matchMaking/applyServer";
-        private const string Port = ":8080";
 
         public void Register(IEnumerable<long> rosterUnitsIds, UserContext context,
-            EventHandler<EmptyResponseDto> successHandler,
+            EventHandler<MatchMakingStatusResponse> successHandler,
             EventHandler<ErrorResponseDto> errorHandler)
         {
-            var requestBody = JsonUtility.ToJson(new MatchMakingRegisterRequest()
+            var requestBody = JsonConvert.SerializeObject(new MatchMakingRegisterRequest()
             {
                 rosterUnitsIds = new List<long>(rosterUnitsIds)
             });
-            StartCoroutine(DoRequestCoroutine(endpointAddress + Port + RegisterPath, requestBody, Post,
+            StartCoroutine(DoRequestCoroutine(GetConnectionAddress() + RegisterPath, requestBody, Post,
                 new Dictionary<string, string> { { Authorization, GetTokenValueHeader(context) } }, successHandler,
                 errorHandler));
         }
@@ -29,7 +29,7 @@ namespace Services.MatchMaking
         public void Cancel(UserContext context, EventHandler<EmptyResponseDto> successHandler,
             EventHandler<ErrorResponseDto> errorHandler)
         {
-            StartCoroutine(DoRequestCoroutine(endpointAddress + Port + CancelPath, null, Post,
+            StartCoroutine(DoRequestCoroutine(GetConnectionAddress() + CancelPath, null, Post,
                 new Dictionary<string, string> { { Authorization, GetTokenValueHeader(context) } }, successHandler,
                 errorHandler));
         }
@@ -37,7 +37,7 @@ namespace Services.MatchMaking
         public void Status(UserContext context, EventHandler<MatchMakingStatusResponse> successHandler,
             EventHandler<ErrorResponseDto> errorHandler)
         {
-            StartCoroutine(DoRequestCoroutine(endpointAddress + Port + StatusPath, null, Get,
+            StartCoroutine(DoRequestCoroutine(GetConnectionAddress() + StatusPath, null, Get,
                 new Dictionary<string, string> { { Authorization, GetTokenValueHeader(context) } }, successHandler,
                 errorHandler));
         }
@@ -46,12 +46,12 @@ namespace Services.MatchMaking
             EventHandler<MatchMakingApplyAsServerResponse> successHandler,
             EventHandler<ErrorResponseDto> errorHandler)
         {
-            var requestBody = JsonUtility.ToJson(new MatchMakingApplyAsServerRequest()
+            var requestBody = JsonConvert.SerializeObject(new MatchMakingApplyAsServerRequest()
             {
                 ip = ip,
                 port = port
             });
-            StartCoroutine(DoRequestCoroutine(endpointAddress + Port + ApplyAsServerPath, requestBody, Post,
+            StartCoroutine(DoRequestCoroutine(GetConnectionAddress() + ApplyAsServerPath, requestBody, Post,
                 new Dictionary<string, string> { { Authorization, GetTokenValueHeader(context) } }, successHandler,
                 errorHandler));
         }

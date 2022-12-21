@@ -12,6 +12,8 @@ public class Unit : ModelBase
     public float AttackSpeed { get; set; }
     public long OwnerId { get; set; }
     public long TrainingExperience { get; set; }
+    public float MovementSpeed => 4;
+    public BattleBehaviour BattleBehaviour => BattleBehaviour.StraightAttack;
     public UnitActivity Activity { get; set; }
     public UnitType Type => UnitType.Dummy;
 

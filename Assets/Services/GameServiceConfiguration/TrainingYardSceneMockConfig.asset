@@ -17,3 +17,7 @@ MonoBehaviour:
   matchMakingServiceType: 1
   playerAccountServiceType: 1
   tavernServiceType: 1
+  trainingYardServiceType: 1
+  apiHostHttp: http
+  apiHostAddress: localhost
+  apiHostPort: 8080

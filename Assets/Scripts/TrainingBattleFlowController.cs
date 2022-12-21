@@ -38,9 +38,9 @@ public sealed class TrainingBattleFlowController : NetworkBehaviour
         Debug.Log($"Requesting roster for user with id:{userTwoId}");
         var rosterTwo = await _trainingYardService.GetRosterForUserAsync(userTwoId);
         Debug.Log($"Spawning roster for user with id:{userOneId}");
-        //SpawnUnits(rosterOne, true);
+        SpawnUnits(rosterOne, true);
         Debug.Log($"Spawning roster for user with id:{userTwoId}");
-        //SpawnUnits(rosterTwo, false);
+        SpawnUnits(rosterTwo, false);
         Debug.Log("Waiting for battle to finish...");
         StartCoroutine(WaitForBattleEnd());
     }
@@ -120,7 +120,7 @@ public sealed class TrainingBattleFlowController : NetworkBehaviour
             x => ResourcesManager.LoadPrefabForUnitType(x.Type));
         foreach (var (unit, prefab) in unitToPrefabMap)
         {
-            var go = Instantiate(prefab, Vector3.zero, Quaternion.identity);
+            var go = Instantiate(prefab, new Vector3(90,1,90), Quaternion.identity);
             var no = go.GetComponent<NetworkObject>();
             var uc = go.GetComponent<UnitController>();
             no.Spawn();

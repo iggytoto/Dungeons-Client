@@ -20,7 +20,7 @@ public class UnitController : NetworkBehaviour
 
     private void OnUnitDeath()
     {
-        _animator.SetTrigger("Death");
+        _animator.SetBool("IsDead", true);
     }
 
     public Unit ToUnit()

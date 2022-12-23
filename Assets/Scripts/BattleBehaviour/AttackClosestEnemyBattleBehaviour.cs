@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -24,7 +25,8 @@ namespace DefaultNamespace.BattleBehaviour
 
             if (CanAttack())
             {
-                UnitController.Attack(Target.transform.position, 1 / UnitController.Unit.AttackSpeed);
+                var attackDuration = 1 / UnitController.Unit.AttackSpeed;
+                UnitController.Attack(Target.transform.position, attackDuration);
                 Target.Unit.DoDamage(UnitController.Unit.Damage);
                 _attackCooldown = 1 / UnitController.Unit.AttackSpeed;
             }
@@ -53,6 +55,13 @@ namespace DefaultNamespace.BattleBehaviour
             }
 
             return _availableTargets;
+        }
+
+        public IEnumerator WaitThen(float waitSeconds, Action thenAction)
+        {
+            yield return new WaitForSeconds(waitSeconds);
+            thenAction.Invoke();
+            yield return null;
         }
     }
 }

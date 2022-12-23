@@ -48,6 +48,7 @@
      <Compile Include="Assets\Scripts\LoginSceneUiController.cs" />
      <Compile Include="Assets\Services\IService.cs" />
      <Compile Include="Assets\Scripts\TrainingUnitSelectionModalController.cs" />
+     <Compile Include="Assets\Scripts\UnitHpBarController.cs" />
      <Compile Include="Assets\Scripts\TavernSceneUiController.cs" />
      <Compile Include="Assets\Services\TrainingYard\MockTrainingYardService.cs" />
      <Compile Include="Assets\Scenes\SceneConstants.cs" />
@@ -117,6 +118,7 @@
      <Compile Include="Assets\Model\Currency\Gold.cs" />
      <Compile Include="Assets\Services\Barracks\BarracksService.cs" />
      <Compile Include="Assets\Scripts\BarrackSceneUiController.cs" />
+     <Compile Include="Assets\Scripts\BillboardUiBehavior.cs" />
      <Compile Include="Assets\Services\Common\Dto\ErrorResponseDto.cs" />
      <Compile Include="Assets\Model\Units\UnitForSale.cs" />
      <Compile Include="Assets\Services\Common\Dto\MatchDto.cs" />
@@ -128,8 +130,6 @@
      <Compile Include="Assets\Services\Login\RegisterRequest.cs" />
      <Compile Include="Assets\Scripts\ResourcesManager.cs" />
      <Compile Include="Assets\Model\Currency\Currency.cs" />
-     <Compile Include="Assets\Scripts\BillboardUiBehavior.cs" />
-     <Compile Include="Assets\Scripts\UnitHpBarController.cs" />
      <Folder Include="Assets" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\mergetool.ja.txt" />
      <Folder Include="Assets\Libs\Tiny Fantasy Icons\Keys" />
@@ -140,7 +140,9 @@
      <Folder Include="Assets\Resources\Characters\Dummy" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\guihelp.zh-Hant.txt" />
      <None Include="Library\PackageCache\com.unity.terrain-tools@4.0.3\Shaders\NoiseLib\Strata\Ridge.hlsl" />
+     <None Include="Assets\Libs\TerrainSampleAssets\ThirdPartyNotices.txt" />
      <None Include="Assets\Libs\TextMesh Pro\Shaders\TMPro.cginc" />
+     <Folder Include="Assets\Libs\TerrainSampleAssets\Textures\Terrain" />
      <None Include="Library\PackageCache\com.unity.modules.jsonserialize@1.0.0\package.json" />
      <Folder Include="Library\PackageCache\com.unity.test-framework@1.1.31" />
      <None Include="Library\PackageCache\com.unity.terrain-tools@4.0.3\Shaders\NoiseLib\Strata\Voronoi.hlsl" />
@@ -153,7 +155,9 @@
      <None Include="Library\PackageCache\com.unity.modules.cloth@1.0.0\package.json" />
      <None Include="Assets\Libs\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Library\PackageCache\com.unity.terrain-tools@4.0.3\Shaders\Generated\NoiseFillFbm.shader" />
+     <Folder Include="Assets\Libs\Medieval Village Building Pack\Prefabs" />
      <Folder Include="Library\PackageCache\com.unity.modules.imgui@1.0.0" />
+     <Folder Include="Assets\Libs\TerrainSampleAssets\ShaderGraphs\CustomFunctions" />
      <Folder Include="Assets\Resources\Characters\Dummy\Materials" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\plastic-gui.zh-Hant.txt" />
      <Folder Include="Assets\Libs\TextMesh Pro\Sprites" />
@@ -168,6 +172,7 @@
      <Folder Include="Library\PackageCache\com.unity.modules.animation@1.0.0" />
      <None Include="Library\PackageCache\com.unity.inputsystem@1.4.4\ValidationConfig.json" />
      <Folder Include="Library\PackageCache\com.unity.sysroot@2.0.4\Tests" />
+     <Folder Include="Assets\Libs\TerrainSampleAssets\ShaderGraphs" />
      <None Include="Library\PackageCache\com.unity.ugui@1.0.0\package.json" />
      <Folder Include="Assets\Libs\Tiny Fantasy Icons\Time" />
      <Folder Include="Library\PackageCache\com.unity.modules.xr@1.0.0" />
@@ -185,6 +190,7 @@
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\semantic.zh-Hant.txt" />
      <None Include="Library\PackageCache\com.unity.terrain-tools@4.0.3\Shaders\NoiseLib\Implementation\BillowImpl.hlsl" />
      <None Include="Library\PackageCache\com.unity.terrain-tools@4.0.3\Shaders\NoiseLib\None\Voronoi.hlsl" />
+     <Folder Include="Assets\Libs\TerrainSampleAssets\Models" />
      <None Include="Library\PackageCache\com.unity.terrain-tools@4.0.3\Shaders\TwistHeight.shader" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\clientcommon.es.txt" />
      <Folder Include="Library\PackageCache\com.unity.cinemachine@2.8.9" />
@@ -194,6 +200,7 @@
      <Folder Include="Assets\Libs\Tiny Fantasy Icons" />
      <Folder Include="Assets\Resources\Characters" />
      <None Include="Assets\Libs\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
+     <Folder Include="Assets\Libs\TerrainSampleAssets\Textures\Details" />
      <Folder Include="Assets\Libs" />
      <None Include="Library\PackageCache\com.unity.textmeshpro@3.0.6\package.json" />
      <Folder Include="Assets\Services\TrainingYard" />
@@ -201,6 +208,7 @@
      <None Include="Library\PackageCache\com.unity.modules.imgui@1.0.0\package.json" />
      <Folder Include="Library\PackageCache\com.unity.visualscripting@1.7.8\Graphics" />
      <Folder Include="Library\PackageCache\com.unity.sysroot.linux-x86_64@2.0.3" />
+     <Folder Include="Assets\Libs\laxer tree pkg\Textures" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\ValidationExceptions.json" />
      <None Include="Library\PackageCache\com.unity.sysroot.linux-x86_64@2.0.3\package.json" />
      <None Include="Library\PackageCache\com.unity.modules.tilemap@1.0.0\package.json" />
@@ -209,6 +217,7 @@
      <Folder Include="Library\PackageCache\com.unity.modules.assetbundle@1.0.0" />
      <Folder Include="Library\PackageCache\com.unity.burst@1.7.3\Tests" />
      <Folder Include="Library\PackageCache\com.unity.terrain-tools@4.0.3" />
+     <None Include="Assets\Libs\Medieval Village Building Pack\Shaders\RMHATransparency.shader" />
      <Folder Include="Assets\Services" />
      <Folder Include="Assets\Libs\GUI_Parts\Icons" />
      <None Include="Library\PackageCache\com.unity.timeline@1.6.4\package.json" />
@@ -233,6 +242,7 @@
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\basecommands.zh-Hant.txt" />
      <None Include="Assets\Libs\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\cm-help.es.txt" />
+     <Folder Include="Assets\Libs\Medieval Village Building Pack\Textures" />
      <None Include="Library\PackageCache\com.unity.modules.terrainphysics@1.0.0\package.json" />
      <None Include="Library\PackageCache\com.unity.mathematics@1.2.6\package.json" />
      <Folder Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM" />
@@ -253,6 +263,7 @@
      <None Include="Library\PackageCache\com.unity.visualscripting@1.7.8\package.json" />
      <None Include="Library\PackageCache\com.unity.editorcoroutines@1.0.0\package.json" />
      <None Include="Library\PackageCache\com.unity.timeline@1.6.4\ValidationExceptions.json" />
+     <Folder Include="Assets\Libs\laxer tree pkg\Mobile\Normal Edited" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\package.json" />
      <Folder Include="Assets\Libs\Tiny Fantasy Icons\PetEggs" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\xdiff.zh-Hans.txt" />
@@ -267,10 +278,13 @@
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\basecommands.zh-Hans.txt" />
      <None Include="Library\PackageCache\com.unity.terrain-tools@4.0.3\Shaders\NoiseLib\Implementation\PerlinImpl.hlsl" />
      <Folder Include="Assets\Scripts\Animations" />
+     <None Include="Assets\Libs\laxer tree pkg\README.txt" />
      <None Include="Library\PackageCache\com.unity.textmeshpro@3.0.6\PackageConversionData.json" />
      <None Include="Library\PackageCache\com.unity.modules.unitywebrequestassetbundle@1.0.0\package.json" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\guihelp.en.txt" />
+     <Folder Include="Library\PackageCache\com.unity.render-pipelines.high-definition-config@12.1.8\Tests" />
      <Folder Include="Library\PackageCache\com.unity.feature.development@1.0.1" />
+     <Folder Include="Library\PackageCache\com.unity.render-pipelines.high-definition-config@12.1.8" />
      <Folder Include="Library\PackageCache\com.unity.ext.nunit@1.0.6" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\differences.ja.txt" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\configurehelper.ja.txt" />
@@ -287,6 +301,9 @@
      <Folder Include="Library\PackageCache\com.unity.modules.imageconversion@1.0.0" />
      <None Include="Library\PackageCache\com.unity.terrain-tools@4.0.3\Shaders\NoiseLib\Fbm\Perlin.hlsl" />
      <None Include="Library\PackageCache\com.unity.terrain-tools@4.0.3\Shaders\NoiseLib\Noise.hlsl" />
+     <None Include="Assets\Libs\Medieval Village Building Pack\Shaders\WindowTransparent.shader" />
+     <Folder Include="Assets\Libs\Medieval Village Building Pack\Scene" />
+     <None Include="Assets\Libs\Medieval Village Building Pack\Shaders\RMHTransparency.shader" />
      <Folder Include="Library\PackageCache\com.unity.modules.terrainphysics@1.0.0" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\plastic-gui.zh-Hans.txt" />
      <None Include="Library\PackageCache\com.unity.modules.imageconversion@1.0.0\package.json" />
@@ -303,10 +320,13 @@
      <Folder Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\Tests" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\commontypes.en.txt" />
      <Folder Include="Assets\Libs\Tiny Fantasy Icons\Coins" />
+     <Folder Include="Assets\Libs\Medieval Village Building Pack\Scene\Preview_Scene" />
      <None Include="Library\PackageCache\com.unity.terrain-tools@4.0.3\package.json" />
+     <Folder Include="Assets\Libs\laxer tree pkg\Models\Materials" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\commontypes.es.txt" />
      <Folder Include="Assets\Libs\TextMesh Pro" />
      <Folder Include="Library\PackageCache\com.unity.nuget.mono-cecil@1.10.1\Tests" />
+     <Folder Include="Assets\Libs\TerrainSampleAssets\TerrainBrushes" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\images.zh-Hant.txt" />
      <None Include="Library\PackageCache\com.unity.modules.unityanalytics@1.0.0\package.json" />
      <Folder Include="Assets\Services\GameServiceConfiguration" />
@@ -319,6 +339,7 @@
      <None Include="Library\PackageCache\com.unity.terrain-tools@4.0.3\Shaders\Generated\NoiseFillNone.shader" />
      <None Include="Library\PackageCache\com.unity.searcher@4.9.1\package.json" />
      <None Include="Library\PackageCache\com.unity.modules.video@1.0.0\package.json" />
+     <Folder Include="Assets\Libs\TerrainSampleAssets\Prefabs" />
      <Folder Include="Library\PackageCache\com.unity.terrain-tools@4.0.3\Shaders\Templates" />
      <None Include="Library\PackageCache\com.unity.shadergraph@12.1.8\ValidationConfig.json" />
      <None Include="Library\PackageCache\com.unity.terrain-tools@4.0.3\Shaders\SmoothHeight.shader" />
@@ -328,6 +349,7 @@
      <Folder Include="Library\PackageCache\com.unity.modules.unityanalytics@1.0.0" />
      <Folder Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\TestHelpers" />
      <Folder Include="Library\PackageCache\com.unity.modules.physics@1.0.0" />
+     <Folder Include="Assets\Libs\laxer tree pkg\Mobile" />
      <Folder Include="Library\PackageCache\com.unity.textmeshpro@3.0.6\Scripts" />
      <Folder Include="Library\PackageCache\com.unity.terrain-tools@4.0.3\Shaders\NoiseLib\Fbm" />
      <Folder Include="Library\PackageCache\com.unity.visualscripting@1.7.8\Runtime" />
@@ -347,6 +369,7 @@
      <Folder Include="Assets\Model\Units" />
      <Folder Include="Library\PackageCache\com.unity.toolchain.win-x86_64-linux-x86_64@2.0.3\Tests" />
      <None Include="Library\PackageCache\com.unity.terrain-tools@4.0.3\Shaders\PaintAspect.shader" />
+     <Folder Include="Assets\Libs\TerrainSampleAssets" />
      <Folder Include="Library\PackageCache\com.unity.inputsystem@1.4.4" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\cm-help.en.txt" />
      <Folder Include="Library\PackageCache\com.unity.ai.navigation@1.0.0-exp.4" />
@@ -369,6 +392,7 @@
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\differences.zh-Hans.txt" />
      <Folder Include="Assets\Libs\Tiny Fantasy Icons\Food" />
      <None Include="Library\PackageCache\com.unity.modules.vr@1.0.0\package.json" />
+     <Folder Include="Assets\Libs\laxer tree pkg\Ambient-Occlusion" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\binmergetool.en.txt" />
      <None Include="Library\PackageCache\com.unity.services.core@1.6.0\package.json" />
      <Folder Include="Library\PackageCache\com.unity.modules.uielements@1.0.0" />
@@ -387,6 +411,7 @@
      <None Include="Library\PackageCache\com.unity.toolchain.win-x86_64-linux-x86_64@2.0.3\ValidationConfig.json" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\workspaceserver.en.txt" />
      <None Include="Library\PackageCache\com.unity.ide.visualstudio@2.0.16\ValidationExceptions.json" />
+     <Folder Include="Assets\Libs\laxer tree pkg" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\cm-help.zh-Hant.txt" />
      <Folder Include="Assets\Services\Barracks" />
      <None Include="Library\PackageCache\com.unity.nuget.newtonsoft-json@3.0.2\link.xml" />
@@ -408,6 +433,7 @@
      <Folder Include="Library\PackageCache\com.unity.modules.tilemap@1.0.0" />
      <Folder Include="Library\PackageCache\com.unity.editorcoroutines@1.0.0" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\i3.zh-Hant.txt" />
+     <Folder Include="Assets\Libs\Medieval Village Building Pack\Materials" />
      <None Include="Library\PackageCache\com.unity.terrain-tools@4.0.3\Shaders\PaintMaterialBrushPreview.shader" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\cm.ko.txt" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\guihelp.zh-Hans.txt" />
@@ -422,10 +448,12 @@
      <Folder Include="Assets\Libs\Tiny Fantasy Icons\PowerUps" />
      <Folder Include="Library\PackageCache\com.unity.mathematics@1.2.6" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\FileSystemWatcherLicense.txt" />
+     <Folder Include="Assets\Libs\Medieval Village Building Pack\Meshes" />
      <Folder Include="Library\PackageCache\com.unity.modules.androidjni@1.0.0" />
      <Folder Include="Assets\Libs\GUI_Parts\Gui_parts" />
      <Folder Include="Assets\Libs\Tiny Fantasy Icons\Explosives" />
      <Folder Include="Library\PackageCache\com.unity.performance.profile-analyzer@1.1.1\Tests" />
+     <Folder Include="Library\PackageCache\com.unity.render-pipelines.high-definition@12.1.8" />
      <None Include="Assets\Libs\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
      <Folder Include="Library\PackageCache\com.unity.cinemachine@2.8.9\Gizmos" />
      <None Include="Library\PackageCache\com.unity.inputsystem@1.4.4\ValidationExceptions.json" />
@@ -439,10 +467,13 @@
      <Folder Include="Library\PackageCache\com.unity.collab-proxy@1.17.7" />
      <Folder Include="Library\PackageCache\com.unity.render-pipelines.universal@12.1.8\Textures\2D" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\binmergetool.zh-Hans.txt" />
+     <Folder Include="Assets\Libs\TerrainSampleAssets\Materials" />
      <Folder Include="Library\PackageCache\com.unity.toolchain.win-x86_64-linux-x86_64@2.0.3" />
      <None Include="Library\PackageCache\com.unity.render-pipelines.universal@12.1.8\ValidationExceptions.json" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\i3.es.txt" />
      <Folder Include="Assets\Libs\TextMesh Pro\Resources\Style Sheets" />
+     <Folder Include="Assets\Libs\TerrainSampleAssets\Settings" />
+     <Folder Include="Assets\Libs\laxer tree pkg\Models" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\mergetool.zh-Hans.txt" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\commontypes.zh-Hant.txt" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\differences.ko.txt" />
@@ -453,6 +484,7 @@
      <None Include="Library\PackageCache\com.unity.terrain-tools@4.0.3\Shaders\TerraceErosion.shader" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\images.en.txt" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\binmergetool.ja.txt" />
+     <Folder Include="Assets\Libs\Medieval Village Building Pack\Shaders" />
      <None Include="Library\PackageCache\com.unity.testtools.codecoverage@1.0.1\package.json" />
      <Folder Include="Assets\Libs\Tiny Fantasy Icons\Runes" />
      <Folder Include="Library\PackageCache\com.unity.textmeshpro@3.0.6" />
@@ -487,8 +519,10 @@
      <Folder Include="Library\PackageCache\com.unity.modules.vehicles@1.0.0" />
      <None Include="Library\PackageCache\com.unity.modules.xr@1.0.0\package.json" />
      <Folder Include="Library\PackageCache\com.unity.textmeshpro@3.0.6\Tests" />
+     <Folder Include="Assets\Libs\TerrainSampleAssets\Textures" />
      <Folder Include="Assets\Resources" />
      <Folder Include="Library\PackageCache\com.unity.terrain-tools@4.0.3\Shaders\Visualization\Builtin" />
+     <None Include="Assets\Libs\Medieval Village Building Pack\Shaders\RMHA.shader" />
      <Folder Include="Library\PackageCache\com.unity.services.core@1.6.0" />
      <None Include="Library\PackageCache\com.unity.textmeshpro@3.0.6\Editor Resources\Shaders\TMP_Properties.cginc" />
      <None Include="Library\PackageCache\com.unity.terrain-tools@4.0.3\Shaders\CloneBrush.shader" />
@@ -504,6 +538,7 @@
      <None Include="Library\PackageCache\com.unity.terrain-tools@4.0.3\Shaders\NoiseLib\Strata\Billow.hlsl" />
      <Folder Include="Library\PackageCache\com.unity.modules.umbra@1.0.0" />
      <Folder Include="Assets\Model" />
+     <Folder Include="Assets\Libs\TerrainSampleAssets\Textures\Heightmaps" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\mergetool.zh-Hant.txt" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\clientcommon.zh-Hans.txt" />
      <Folder Include="Assets\Ui" />
@@ -522,7 +557,9 @@
      <Folder Include="Library\PackageCache\com.unity.modules.director@1.0.0" />
      <Folder Include="Library\PackageCache\com.unity.modules.audio@1.0.0" />
      <Folder Include="Library\PackageCache\com.unity.settings-manager@1.0.3\Content" />
+     <Folder Include="Assets\Libs\Medieval Village Building Pack" />
      <None Include="Library\PackageCache\com.unity.terrain-tools@4.0.3\Shaders\PaintHeight.shader" />
+     <Folder Include="Library\PackageCache\com.unity.render-pipelines.high-definition@12.1.8\Tests" />
      <None Include="Library\PackageCache\com.unity.modules.terrain@1.0.0\package.json" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\commontypes.ko.txt" />
      <None Include="Library\PackageCache\com.unity.cinemachine@2.8.9\package.json" />
@@ -534,6 +571,7 @@
      <Folder Include="Assets\Services\Login" />
      <None Include="Assets\Libs\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\commontypes.ja.txt" />
+     <Folder Include="Assets\Libs\TerrainSampleAssets\TerrainLayers" />
      <Folder Include="Library\PackageCache\com.unity.modules.video@1.0.0" />
      <None Include="Library\PackageCache\com.unity.terrain-tools@4.0.3\Shaders\NoiseLib\Preview.shader" />
      <None Include="Library\PackageCache\com.unity.terrain-tools@4.0.3\Shaders\NoiseLib\Strata\Value.hlsl" />
@@ -547,6 +585,7 @@
      <None Include="Library\PackageCache\com.unity.terrain-tools@4.0.3\Shaders\NoiseLib\None\Perlin.hlsl" />
      <Folder Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Editor" />
      <Folder Include="Library\PackageCache\com.unity.render-pipelines.universal@12.1.8\Textures\BlueNoise16\L" />
+     <Folder Include="Assets\Libs\TerrainSampleAssets\ShaderGraphs\Subgraphs" />
      <None Include="Library\PackageCache\com.unity.mathematics@1.2.6\ValidationExceptions.json" />
      <None Include="Library\PackageCache\com.unity.terrain-tools@4.0.3\Shaders\Visualization\Builtin\BLT_TerrainVisualizationCommon.cginc" />
      <Folder Include="Library\PackageCache\com.unity.textmeshpro@3.0.6\Package Resources" />
@@ -559,6 +598,7 @@
      <Folder Include="Library\PackageCache\com.unity.nuget.newtonsoft-json@3.0.2" />
      <None Include="Library\PackageCache\com.unity.terrain-tools@4.0.3\Shaders\NoiseLib\Fbm\Ridge.hlsl" />
      <Folder Include="Assets\Libs\TextMesh Pro\Documentation" />
+     <Folder Include="Assets\RPDefaultResources" />
      <Folder Include="Library\PackageCache\com.unity.modules.uielementsnative@1.0.0" />
      <Folder Include="Library\PackageCache\com.unity.testtools.codecoverage@1.0.1\lib" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\guihelp.es.txt" />
@@ -586,6 +626,8 @@
      <None Include="Library\PackageCache\com.unity.modules.uielements@1.0.0\package.json" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\plastic-gui.ja.txt" />
      <None Include="Library\PackageCache\com.unity.burst@1.7.3\package.json" />
+     <None Include="Assets\Libs\TerrainSampleAssets\ShaderGraphs\CustomFunctions\CustomLighting.hlsl" />
+     <None Include="Library\PackageCache\com.unity.render-pipelines.high-definition@12.1.8\package.json" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\i3.en.txt" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\workspaceserver.zh-Hant.txt" />
      <Folder Include="Library\PackageCache\com.unity.modules.unitywebrequesttexture@1.0.0" />
@@ -599,7 +641,9 @@
      <Folder Include="Library\PackageCache\com.unity.cinemachine@2.8.9\Presets" />
      <Folder Include="Library\PackageCache\com.unity.terrain-tools@4.0.3\Shaders\NoiseLib\Templates" />
      <None Include="Library\PackageCache\com.unity.terrain-tools@4.0.3\Shaders\SlopeFlatten.shader" />
+     <None Include="Library\PackageCache\com.unity.render-pipelines.high-definition-config@12.1.8\package.json" />
      <None Include="Library\PackageCache\com.unity.modules.ui@1.0.0\package.json" />
+     <None Include="Library\PackageCache\com.unity.render-pipelines.high-definition@12.1.8\ValidationConfig.json" />
      <None Include="Assets\Libs\TextMesh Pro\Shaders\TMP_Sprite.shader" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\semantic.zh-Hans.txt" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\i3.ko.txt" />
@@ -1358,6 +1402,10 @@
       <Project>{e3987163-bfc3-37b5-e2e9-3f2424cd880f}</Project>
       <Name>Unity.AI.Navigation.Editor</Name>
     </ProjectReference>
+    <ProjectReference Include="Unity.RenderPipelines.HighDefinition.Config.Runtime.csproj">
+      <Project>{bcf5195d-7fb6-463e-b16d-a9d00ecc474b}</Project>
+      <Name>Unity.RenderPipelines.HighDefinition.Config.Runtime</Name>
+    </ProjectReference>
     <ProjectReference Include="Unity.Collections.csproj">
       <Project>{2d5be2b1-06b6-4312-d6d9-cf57a29acea1}</Project>
       <Name>Unity.Collections</Name>
@@ -1369,6 +1417,10 @@
     <ProjectReference Include="Unity.VisualScripting.Flow.Editor.csproj">
       <Project>{5cd6ffed-940f-9178-2b00-3a71ca6043f1}</Project>
       <Name>Unity.VisualScripting.Flow.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.VisualEffectGraph.Editor.csproj">
+      <Project>{d995540d-da97-977a-8bee-ec9a2d99ca36}</Project>
+      <Name>Unity.VisualEffectGraph.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.RenderPipelines.Universal.Runtime.csproj">
       <Project>{c4c14d04-ff4c-ed75-adb7-a9a1e30d0676}</Project>
@@ -1386,6 +1438,10 @@
       <Project>{943dda3a-8829-3d25-6c8b-5ac7b7d89a2c}</Project>
       <Name>Unity.Sysroot.Linux_x86_64</Name>
     </ProjectReference>
+    <ProjectReference Include="Unity.VisualEffectGraph.Runtime.csproj">
+      <Project>{c5381d06-fe00-85d0-e199-949201f0f0fb}</Project>
+      <Name>Unity.VisualEffectGraph.Runtime</Name>
+    </ProjectReference>
     <ProjectReference Include="Unity.Timeline.csproj">
       <Project>{d58868ac-7d70-9e70-e9ea-017da0049021}</Project>
       <Name>Unity.Timeline</Name>
@@ -1402,9 +1458,17 @@
       <Project>{06632e8d-6f90-8ac6-92e9-f11a394b0982}</Project>
       <Name>Unity.Burst.Editor</Name>
     </ProjectReference>
+    <ProjectReference Include="Unity.RenderPipelines.HighDefinition.Runtime.csproj">
+      <Project>{c55c496d-c2d8-f5ac-75d8-41fb6b9c32e5}</Project>
+      <Name>Unity.RenderPipelines.HighDefinition.Runtime</Name>
+    </ProjectReference>
     <ProjectReference Include="Unity.RenderPipelines.Core.Runtime.csproj">
       <Project>{1799b25e-9aaf-248d-ac80-49a63e84a81f}</Project>
       <Name>Unity.RenderPipelines.Core.Runtime</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.RenderPipelines.HighDefinition.Editor.csproj">
+      <Project>{1ae647d5-41ac-348e-3d56-504eb4eec6e1}</Project>
+      <Name>Unity.RenderPipelines.HighDefinition.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.VisualScripting.Flow.csproj">
       <Project>{5db34d40-4106-f829-6bd5-70682d7a4080}</Project>

@@ -7,9 +7,13 @@ using Services;
 using Services.Common;
 using Unity.Netcode;
 using UnityEngine;
+using Random = System.Random;
 
 public sealed class TrainingBattleFlowController : NetworkBehaviour
 {
+    [SerializeField] private List<GameObject> TeamOneSpawnPositions = new();
+    [SerializeField] private List<GameObject> TeamTwoSpawnPositions = new();
+
     public event Action OnBattleFinished;
     private ITrainingYardService _trainingYardService;
     private readonly List<UnitController> _rosterOne = new();
@@ -55,12 +59,27 @@ public sealed class TrainingBattleFlowController : NetworkBehaviour
             {
                 SaveRosters();
                 SaveBattleResult();
+                CleanUpObjects();
                 OnBattleFinished?.Invoke();
                 StopAllCoroutines();
+                _isBattleInProgress = false;
                 yield return null;
             }
 
             yield return new WaitForSeconds(1);
+        }
+    }
+
+    private void CleanUpObjects()
+    {
+        foreach (var go in _rosterOne.Select(uc => uc.gameObject))
+        {
+            Destroy(go);
+        }
+
+        foreach (var go in _rosterTwo.Select(uc => uc.gameObject))
+        {
+            Destroy(go);
         }
     }
 
@@ -118,9 +137,14 @@ public sealed class TrainingBattleFlowController : NetworkBehaviour
     {
         var unitToPrefabMap = roster.ToDictionary(x => x,
             x => ResourcesManager.LoadPrefabForUnitType(x.Type));
+        var spawnPositions = new List<GameObject>(playerOne ? TeamOneSpawnPositions : TeamTwoSpawnPositions);
         foreach (var (unit, prefab) in unitToPrefabMap)
         {
-            var go = Instantiate(prefab, new Vector3(90,1,90), Quaternion.identity);
+            var rng = new Random();
+            var positionIndex = rng.Next(spawnPositions.Count);
+            var position = spawnPositions[positionIndex];
+            spawnPositions.RemoveAt(positionIndex);
+            var go = Instantiate(prefab, position.transform.position, Quaternion.identity);
             var no = go.GetComponent<NetworkObject>();
             var uc = go.GetComponent<UnitController>();
             no.Spawn();

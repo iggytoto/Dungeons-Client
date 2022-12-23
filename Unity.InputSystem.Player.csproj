@@ -58,8 +58,8 @@
      <Compile Include="Library\PackageCache\com.unity.inputsystem@1.4.4\InputSystem\Devices\Commands\QuerySamplingFrequencyCommand.cs" />
      <Compile Include="Library\PackageCache\com.unity.inputsystem@1.4.4\InputSystem\Plugins\HID\HID.cs" />
      <Compile Include="Library\PackageCache\com.unity.inputsystem@1.4.4\InputSystem\Devices\Precompiled\FastMouse.cs" />
-     <Compile Include="Library\PackageCache\com.unity.inputsystem@1.4.4\InputSystem\Devices\Commands\QueryPairedUserAccountCommand.cs" />
      <Compile Include="Library\PackageCache\com.unity.inputsystem@1.4.4\InputSystem\Devices\Touchscreen.cs" />
+     <Compile Include="Library\PackageCache\com.unity.inputsystem@1.4.4\InputSystem\Devices\Commands\QueryPairedUserAccountCommand.cs" />
      <Compile Include="Library\PackageCache\com.unity.inputsystem@1.4.4\InputSystem\Editor\Internal\AdvancedDropdown\AdvancedDropdownWindow.cs" />
      <Compile Include="Library\PackageCache\com.unity.inputsystem@1.4.4\InputSystem\Utilities\Substring.cs" />
      <Compile Include="Library\PackageCache\com.unity.inputsystem@1.4.4\InputSystem\Plugins\XR\GenericXRDevice.cs" />
@@ -106,8 +106,8 @@
      <Compile Include="Library\PackageCache\com.unity.inputsystem@1.4.4\InputSystem\Plugins\WebGL\WebGLSupport.cs" />
      <Compile Include="Library\PackageCache\com.unity.inputsystem@1.4.4\InputSystem\Devices\Commands\InitiateUserAccountPairingCommand.cs" />
      <Compile Include="Library\PackageCache\com.unity.inputsystem@1.4.4\InputSystem\Plugins\XR\Devices\WindowsMR.cs" />
-     <Compile Include="Library\PackageCache\com.unity.inputsystem@1.4.4\InputSystem\State\InputStateBlock.cs" />
      <Compile Include="Library\PackageCache\com.unity.inputsystem@1.4.4\InputSystem\Events\InputEventBuffer.cs" />
+     <Compile Include="Library\PackageCache\com.unity.inputsystem@1.4.4\InputSystem\State\InputStateBlock.cs" />
      <Compile Include="Library\PackageCache\com.unity.inputsystem@1.4.4\InputSystem\Events\IMECompositionEvent.cs" />
      <Compile Include="Library\PackageCache\com.unity.inputsystem@1.4.4\InputSystem\Plugins\OnScreen\OnScreenStick.cs" />
      <Compile Include="Library\PackageCache\com.unity.inputsystem@1.4.4\InputSystem\Actions\InputBindingCompositeContext.cs" />
@@ -175,8 +175,8 @@
      <Compile Include="Library\PackageCache\com.unity.inputsystem@1.4.4\InputSystem\Events\DeviceRemoveEvent.cs" />
      <Compile Include="Library\PackageCache\com.unity.inputsystem@1.4.4\InputSystem\Plugins\XInput\IXboxOneRumble.cs" />
      <Compile Include="Library\PackageCache\com.unity.inputsystem@1.4.4\InputSystem\Editor\ControlPicker\InputControlPickerDropdown.cs" />
-     <Compile Include="Library\PackageCache\com.unity.inputsystem@1.4.4\InputSystem\Events\InputEventStream.cs" />
      <Compile Include="Library\PackageCache\com.unity.inputsystem@1.4.4\InputSystem\Editor\InputLayoutCodeGenerator.cs" />
+     <Compile Include="Library\PackageCache\com.unity.inputsystem@1.4.4\InputSystem\Events\InputEventStream.cs" />
      <Compile Include="Library\PackageCache\com.unity.inputsystem@1.4.4\InputSystem\Plugins\Users\InputUserChange.cs" />
      <Compile Include="Library\PackageCache\com.unity.inputsystem@1.4.4\InputSystem\Plugins\UI\ExtendedPointerEventData.cs" />
      <Compile Include="Library\PackageCache\com.unity.inputsystem@1.4.4\InputSystem\Actions\InputActionPhase.cs" />
@@ -318,8 +318,8 @@
      <Compile Include="Library\PackageCache\com.unity.inputsystem@1.4.4\InputSystem\Controls\Processors\InvertProcessor.cs" />
      <Compile Include="Library\PackageCache\com.unity.inputsystem@1.4.4\InputSystem\Actions\InputActionProperty.cs" />
      <Compile Include="Library\PackageCache\com.unity.inputsystem@1.4.4\InputSystem\Plugins\XR\Devices\GoogleVR.cs" />
-     <Compile Include="Library\PackageCache\com.unity.inputsystem@1.4.4\InputSystem\Devices\Commands\EnableDeviceCommand.cs" />
      <Compile Include="Library\PackageCache\com.unity.inputsystem@1.4.4\InputSystem\InputManager.cs" />
+     <Compile Include="Library\PackageCache\com.unity.inputsystem@1.4.4\InputSystem\Devices\Commands\EnableDeviceCommand.cs" />
      <Compile Include="Library\PackageCache\com.unity.inputsystem@1.4.4\InputSystem\Devices\TrackedDevice.cs" />
      <Compile Include="Library\PackageCache\com.unity.inputsystem@1.4.4\InputSystem\Editor\PropertyDrawers\InputActionDrawer.cs" />
      <Compile Include="Library\PackageCache\com.unity.inputsystem@1.4.4\InputSystem\Plugins\OnScreen\OnScreenControl.cs" />

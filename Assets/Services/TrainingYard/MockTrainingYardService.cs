@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using Model.Units;
 using Services.Common;
 
 namespace Services.TrainingYard
@@ -13,26 +15,27 @@ namespace Services.TrainingYard
             onSuccessHandler?.Invoke(this,
                 new List<Unit>
                 {
-                    Unit.Random(),
-                    Unit.Random(),
-                    Unit.Random(),
-                    Unit.Random(),
-                    Unit.Random(),
-                    Unit.Random()
-                });
+                    Unit.Random(BattleBehaviour.Panic),
+                    Unit.Random(BattleBehaviour.StraightAttack)
+                }.Select(x =>
+                {
+                    x.OwnerId = userId;
+                    return x;
+                }));
         }
 
         public Task<IEnumerable<Unit>> GetRosterForUserAsync(long userId)
         {
-            return Task.FromResult<IEnumerable<Unit>>(new List<Unit>
+            return Task.FromResult(new List<Unit>
             {
-                Unit.Random(),
-                Unit.Random(),
-                Unit.Random(),
-                Unit.Random(),
-                Unit.Random(),
-                Unit.Random()
-            });
+                Unit.Random(BattleBehaviour.Panic),
+                Unit.Random(BattleBehaviour.StraightAttack)
+                
+            }.Select(x =>
+            {
+                x.OwnerId = userId;
+                return x;
+            }));
         }
 
         public void SaveRosters(IEnumerable<Unit> units)

@@ -98,8 +98,8 @@ public sealed class TrainingBattleFlowController : NetworkBehaviour
 
     private bool IsBattleEnded()
     {
-        var rosterOneDead = _rosterOne.All(x => x.IsDead());
-        var rosterTwoDead = _rosterTwo.All(x => x.IsDead());
+        var rosterOneDead = _rosterOne.All(x => x.Unit.IsDead());
+        var rosterTwoDead = _rosterTwo.All(x => x.Unit.IsDead());
 
         switch (rosterOneDead)
         {

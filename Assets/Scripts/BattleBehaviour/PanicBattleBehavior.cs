@@ -2,18 +2,23 @@ using UnityEngine;
 
 namespace DefaultNamespace.BattleBehaviour
 {
-    public class PanicBehavior : BaseBattleBehaviour, IBattleBehaviour
+    public class PanicBattleBehavior : NavMeshAgentBasedBattleBehaviour, IBattleBehaviour
     {
         [SerializeField] public float changeDestinationInterval = 2;
         private float _changeDestinationTimer;
 
 
-        private void Update()
+        private new void Update()
         {
+            if(UnitController.Unit.IsDead()) return;
             _changeDestinationTimer -= Time.deltaTime;
-            if (!(_changeDestinationTimer <= 0)) return;
-            UnitController.MoveTo(GetRandomPositionNearBy());
-            _changeDestinationTimer = changeDestinationInterval;
+            if (_changeDestinationTimer <= 0)
+            {
+                SetPathTo(GetRandomPositionNearBy());
+                _changeDestinationTimer = changeDestinationInterval;
+            }
+
+            base.Update();
         }
 
         private Vector3 GetRandomPositionNearBy()

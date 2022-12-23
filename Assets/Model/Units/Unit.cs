@@ -10,12 +10,15 @@ public class Unit : ModelBase
     public long Damage { get; set; }
     public long MaxHp { get; set; }
     public float AttackSpeed { get; set; }
+    public float AttackRange => 2;
     public long OwnerId { get; set; }
     public long TrainingExperience { get; set; }
     public float MovementSpeed => 4;
-    public BattleBehaviour BattleBehaviour => BattleBehaviour.StraightAttack;
+    public BattleBehaviour BattleBehaviour { get; set; }
     public UnitActivity Activity { get; set; }
     public UnitType Type => UnitType.Dummy;
+
+    public event Action OnDeath;
 
     public static Unit Random()
     {
@@ -34,10 +37,31 @@ public class Unit : ModelBase
         };
     }
 
+    public static Unit Random(BattleBehaviour bb)
+    {
+        var result = Random();
+        result.BattleBehaviour = bb;
+        return result;
+    }
+
+    public bool IsDead()
+    {
+        return HitPoints <= 0;
+    }
+
     public enum UnitActivity
     {
         Idle,
         Training,
         Dead
+    }
+
+    public void DoDamage(long unitDamage)
+    {
+        HitPoints -= (long)(unitDamage * Math.Log(Armor, 1.1) / 100);
+        if (HitPoints <= 0)
+        {
+            OnDeath?.Invoke();
+        }
     }
 }

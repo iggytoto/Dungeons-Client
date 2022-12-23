@@ -1,26 +1,26 @@
-using System.Collections.Generic;
-using System.Linq;
-using DefaultNamespace.Animations;
 using DefaultNamespace.BattleBehaviour;
 using Unity.Netcode;
 using UnityEngine;
-using UnityEngine.AI;
 
-[RequireComponent(typeof(NavMeshAgent))]
+
 public class UnitController : NetworkBehaviour
 {
     public Unit Unit => _unit.Value;
 
     private readonly NetworkVariable<Unit> _unit = new();
     private Animator _animator;
-    private bool _isMoving;
-    private NavMeshAgent _navMeshAgent;
-    private readonly List<Vector3> _movementPath = new();
+    private const float AttackAnimationTime = 2.267f;
 
     public void Init(Unit unit)
     {
         _unit.Value = unit;
+        unit.OnDeath += OnUnitDeath;
         BattleBehaviourManager.UpdateBattleBehaviour(this);
+    }
+
+    private void OnUnitDeath()
+    {
+        _animator.SetTrigger("Death");
     }
 
     public Unit ToUnit()
@@ -28,64 +28,35 @@ public class UnitController : NetworkBehaviour
         return _unit.Value;
     }
 
-    public bool IsDead()
-    {
-        return _unit.Value.HitPoints <= 0;
-    }
-
-    public void MoveTo(Vector3 destination)
-    {
-        Stop();
-        _isMoving = true;
-        var nmp = new NavMeshPath();
-        _navMeshAgent.CalculatePath(destination, nmp);
-        _movementPath.AddRange(nmp.corners);
-        _animator.SetBool(CommonAnimationsConstants.IsAttacking, false);
-        _animator.SetBool(CommonAnimationsConstants.IsRunning, true);
-    }
-
     private void Start()
     {
         _animator = gameObject.GetComponentInChildren<Animator>();
-        _navMeshAgent = gameObject.GetComponent<NavMeshAgent>();
     }
 
-    private void Update()
+    public void Attack(Vector3 destination, float animationTime)
     {
-        if (_isMoving)
-        {
-            ProcessMovement();
-        }
+        Stop();
+        transform.LookAt(destination);
+        _animator.SetTrigger("Attack");
+        _animator.speed = AttackAnimationTime / animationTime;
     }
 
-    private void ProcessMovement()
+    public void Move(Vector3 destination)
     {
-        if (!_movementPath.Any()) return;
-        var currentPosition = gameObject.transform.position;
-        if (Vector3.Distance(currentPosition, _movementPath[0]) <= .01)
-        {
-            _movementPath.RemoveAt(0);
-        }
-
-        if (!_movementPath.Any())
-        {
-            return;
-        }
-
-        var nextPointToMove = _movementPath[0];
+        Stop();
+        _animator.SetBool("IsRunning", true);
         transform.position =
-            Vector3.MoveTowards(transform.position, nextPointToMove, _unit.Value.MovementSpeed * Time.deltaTime);
-        transform.LookAt(nextPointToMove);
-        if (Vector3.Distance(transform.position, nextPointToMove) < 0.01f)
+            Vector3.MoveTowards(transform.position, destination, _unit.Value.MovementSpeed * Time.deltaTime);
+        transform.LookAt(destination);
+        if (Vector3.Distance(transform.position, destination) < 0.01f)
         {
             Stop();
         }
     }
 
-    private void Stop()
+    public void Stop()
     {
-        _animator.SetBool(CommonAnimationsConstants.IsRunning, false);
-        _animator.SetBool(CommonAnimationsConstants.IsAttacking, false);
-        _movementPath.Clear();
+        _animator.speed = 1;
+        _animator.SetBool("IsRunning", false);
     }
 }

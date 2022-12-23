@@ -43,6 +43,7 @@
   <ItemGroup>
      <Compile Include="Assets\Services\Login\LoginService.cs" />
      <Compile Include="Assets\Services\UnitShop\TavernServiceApiAdapter.cs" />
+     <Compile Include="Assets\Scripts\BattleBehaviour\BattleBehaviourManager.cs" />
      <Compile Include="Assets\Scripts\IUnitListProvider.cs" />
      <Compile Include="Assets\Scripts\LoginSceneUiController.cs" />
      <Compile Include="Assets\Services\IService.cs" />
@@ -59,7 +60,9 @@
      <Compile Include="Assets\Model\Units\UnitType.cs" />
      <Compile Include="Assets\Services\Login\LoginRequest.cs" />
      <Compile Include="Assets\Scripts\TrainingBattleFlowController.cs" />
+     <Compile Include="Assets\Scripts\BattleBehaviour\BaseBattleBehaviour.cs" />
      <Compile Include="Assets\Services\UnitShop\UnitShopService.cs" />
+     <Compile Include="Assets\Scripts\BattleBehaviour\PanicBattleBehavior.cs" />
      <Compile Include="Assets\Services\MatchMaking\MatchMakingApplyAsServerResponse.cs" />
      <Compile Include="Assets\Services\Common\Dto\ResponseBaseDto.cs" />
      <Compile Include="Assets\Services\ITavernService.cs" />
@@ -82,9 +85,11 @@
      <Compile Include="Assets\Scripts\CurrentTimePanelController.cs" />
      <Compile Include="Assets\Services\Login\LoginServiceApiAdapter.cs" />
      <Compile Include="Assets\Model\Units\Unit.cs" />
+     <Compile Include="Assets\Scripts\BattleBehaviour\DoNothingBattleBehaviour.cs" />
      <Compile Include="Assets\Services\MatchMaking\MatchMakingApplyAsServerRequest.cs" />
      <Compile Include="Assets\Services\MatchMaking\MatchMakingService.cs" />
      <Compile Include="Assets\Scripts\TrainingYardServerFlowController.cs" />
+     <Compile Include="Assets\Scripts\BattleBehaviour\IBattleBehaviour.cs" />
      <Compile Include="Assets\Services\TrainingYard\TrainingYardService.cs" />
      <Compile Include="Assets\Services\Common\Dto\EmptyResponseDto.cs" />
      <Compile Include="Assets\Scripts\LightingPreset.cs" />
@@ -96,11 +101,14 @@
      <Compile Include="Assets\Services\PlayerBank\MockPlayerAccountService.cs" />
      <Compile Include="Assets\Scripts\HorizontalUnitListController.cs" />
      <Compile Include="Assets\Services\ILoginService.cs" />
+     <Compile Include="Assets\Scripts\BattleBehaviour\AttackClosestEnemyBattleBehaviour.cs" />
+     <Compile Include="Assets\Scripts\UnitController.cs" />
      <Compile Include="Assets\Services\Login\LoginResponse.cs" />
      <Compile Include="Assets\Scripts\HorizontalUnitListButtonController.cs" />
      <Compile Include="Assets\Scripts\SelectedUnitPanelController.cs" />
      <Compile Include="Assets\Services\Login\ConnectionState.cs" />
      <Compile Include="Assets\Services\Common\Dto\MatchResultDto.cs" />
+     <Compile Include="Assets\Scripts\BattleBehaviour\NavMeshAgentBasedBattleBehaviour.cs" />
      <Compile Include="Assets\Services\Common\Dto\UserIdRequestDto.cs" />
      <Compile Include="Assets\Services\Common\ApiAdapterBase.cs" />
      <Compile Include="Assets\Services\ServiceBase.cs" />
@@ -116,17 +124,12 @@
      <Compile Include="Assets\Scripts\LightingManager.cs" />
      <Compile Include="Assets\Services\GameService.cs" />
      <Compile Include="Assets\Services\Login\PermanentLoginService.cs" />
+     <Compile Include="Assets\Model\Units\BattleBehaviour.cs" />
      <Compile Include="Assets\Services\Login\RegisterRequest.cs" />
      <Compile Include="Assets\Scripts\ResourcesManager.cs" />
      <Compile Include="Assets\Model\Currency\Currency.cs" />
-     <Compile Include="Assets\Scripts\UnitController.cs" />
-     <Compile Include="Assets\Scripts\BattleBehaviour\DoNothingBattleBehaviour.cs" />
-     <Compile Include="Assets\Scripts\BattleBehaviour\BattleBehaviourManager.cs" />
-     <Compile Include="Assets\Scripts\Animations\CommonAnimationsConstants.cs" />
-     <Compile Include="Assets\Scripts\BattleBehaviour\IBattleBehaviour.cs" />
-     <Compile Include="Assets\Model\Units\BattleBehaviour.cs" />
-     <Compile Include="Assets\Scripts\BattleBehaviour\BaseBattleBehaviour.cs" />
-     <Compile Include="Assets\Scripts\BattleBehaviour\PanicBehavior.cs" />
+     <Compile Include="Assets\Scripts\BillboardUiBehavior.cs" />
+     <Compile Include="Assets\Scripts\UnitHpBarController.cs" />
      <Folder Include="Assets" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\mergetool.ja.txt" />
      <Folder Include="Assets\Libs\Tiny Fantasy Icons\Keys" />
@@ -1343,9 +1346,17 @@
       <Project>{3951f678-b7f8-8e61-6f31-294607c9814f}</Project>
       <Name>Unity.RenderPipeline.Universal.ShaderLibrary</Name>
     </ProjectReference>
+    <ProjectReference Include="Unity.AI.Navigation.csproj">
+      <Project>{92e37c86-5671-e070-2e16-05078096973e}</Project>
+      <Name>Unity.AI.Navigation</Name>
+    </ProjectReference>
     <ProjectReference Include="Unity.Mathematics.Editor.csproj">
       <Project>{d1f1786b-50c5-36a1-71f3-49697c00964a}</Project>
       <Name>Unity.Mathematics.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.AI.Navigation.Editor.csproj">
+      <Project>{e3987163-bfc3-37b5-e2e9-3f2424cd880f}</Project>
+      <Name>Unity.AI.Navigation.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.Collections.csproj">
       <Project>{2d5be2b1-06b6-4312-d6d9-cf57a29acea1}</Project>
@@ -1470,14 +1481,6 @@
     <ProjectReference Include="Unity.SysrootPackage.Editor.csproj">
       <Project>{965c3000-175b-5610-344a-5b83ab6c50ff}</Project>
       <Name>Unity.SysrootPackage.Editor</Name>
-    </ProjectReference>
-    <ProjectReference Include="Unity.AI.Navigation.csproj">
-      <Project>{92e37c86-5671-e070-2e16-05078096973e}</Project>
-      <Name>Unity.AI.Navigation</Name>
-    </ProjectReference>
-    <ProjectReference Include="Unity.AI.Navigation.Editor.csproj">
-      <Project>{e3987163-bfc3-37b5-e2e9-3f2424cd880f}</Project>
-      <Name>Unity.AI.Navigation.Editor</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -12,9 +12,9 @@ public class UnitHpBarController : MonoBehaviour
     {
         if (unitController == null || unitController.Unit == null) return;
         if (slider == null) return;
-        slider.maxValue = unitController.Unit.MaxHp;
+        slider.maxValue = unitController.Unit.maxHp;
         slider.minValue = 0;
-        slider.value = unitController.Unit.HitPoints;
+        slider.value = unitController.Unit.hitPoints;
         if (unitController.Unit.IsDead())
         {
             gameObject.SetActive(false);

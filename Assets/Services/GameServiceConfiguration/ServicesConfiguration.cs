@@ -1,5 +1,6 @@
 using System;
 using Services;
+using Services.Login;
 using Services.TrainingYard;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -9,15 +10,27 @@ using UnityEngine;
     menuName = "Scriptables/Configuration/Services", order = 1)]
 public class ServicesConfiguration : ScriptableObject
 {
-    [SerializeField] private LoginServiceType loginServiceType = LoginServiceType.None;
-    [SerializeField] private BarrackServiceType barrackServiceType = BarrackServiceType.None;
-    [SerializeField] private MatchMakingServiceType matchMakingServiceType = MatchMakingServiceType.None;
-    [SerializeField] private PlayerAccountServiceType playerAccountServiceType = PlayerAccountServiceType.None;
-    [SerializeField] private TavernServiceType tavernServiceType = TavernServiceType.None;
-    [SerializeField] private TrainingYardServiceType trainingYardServiceType = TrainingYardServiceType.None;
+    [Header("Common")]
     [SerializeField] private string apiHostHttp = "http";
     [SerializeField] private string apiHostAddress = "localhost";
     [SerializeField] private ushort apiHostPort = 8080;
+    [Header("Login")]
+    [SerializeField] private LoginServiceType loginServiceType = LoginServiceType.None;
+    [SerializeField] public string login = "server";
+    [SerializeField] public string password = "password";
+    [SerializeField] public float reconnectInterval = 5;
+    [Header("Barrack")]
+    [SerializeField] private BarrackServiceType barrackServiceType = BarrackServiceType.None;
+    [Header("MatchMaking")]
+    [SerializeField] private MatchMakingServiceType matchMakingServiceType = MatchMakingServiceType.None;
+    [Header("PlayerAccount")]
+    [SerializeField] private PlayerAccountServiceType playerAccountServiceType = PlayerAccountServiceType.None;
+    [Header("Tavern")]
+    [SerializeField] private TavernServiceType tavernServiceType = TavernServiceType.None;
+    [Header("TrainingYard")]
+    [SerializeField] private TrainingYardServiceType trainingYardServiceType = TrainingYardServiceType.None;
+    
+    
 
     public void SetServices(GameService gs)
     {
@@ -156,14 +169,24 @@ public class ServicesConfiguration : ScriptableObject
                 service = new MockLoginService();
                 break;
             case LoginServiceType.AutoReconnect:
+                var ars = gs.gameObject.AddComponent<AutoReconnectLoginService>();
+                ars.EndpointAddress = apiHostAddress;
+                ars.EndpointPort = apiHostPort;
+                ars.EndpointHttpType = apiHostHttp;
+                ars.InitService();
+                ars.login = login;
+                ars.password = password;
+                ars.reconnectInterval = reconnectInterval;
+                service = ars;
+                break;
             case LoginServiceType.PermanentLogin:
             case LoginServiceType.Api:
-                var s = gs.gameObject.AddComponent<LoginService>();
-                s.EndpointAddress = apiHostAddress;
-                s.EndpointPort = apiHostPort;
-                s.EndpointHttpType = apiHostHttp;
-                s.InitService();
-                service = s;
+                var ls = gs.gameObject.AddComponent<LoginService>();
+                ls.EndpointAddress = apiHostAddress;
+                ls.EndpointPort = apiHostPort;
+                ls.EndpointHttpType = apiHostHttp;
+                ls.InitService();
+                service = ls;
                 break;
             default:
                 throw new ArgumentOutOfRangeException();

@@ -133,7 +133,7 @@ PrefabInstance:
     - target: {fileID: 4271042742655406263, guid: 9a1a320ee5e28424da56dea2279662cb, type: 3}
       propertyPath: servicesConfiguration
       value: 
-      objectReference: {fileID: 11400000, guid: 1df030d5723dcb641aed6cbd981f1a29, type: 2}
+      objectReference: {fileID: 11400000, guid: a2e8754b8b11ee644b956428d78e2f65, type: 2}
     - target: {fileID: 4468862614129480654, guid: 9a1a320ee5e28424da56dea2279662cb, type: 3}
       propertyPath: m_Name
       value: GameService

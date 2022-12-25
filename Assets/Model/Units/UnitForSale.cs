@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using Newtonsoft.Json;
 
 [Serializable]
 public class UnitForSale : Unit
@@ -12,14 +10,14 @@ public class UnitForSale : Unit
         return new UnitForSale
         {
             Id = unit.Id,
-            Armor = unit.Armor,
-            Damage = unit.Damage,
+            armor = unit.armor,
+            damage = unit.damage,
             Icon = unit.Icon,
             Name = unit.Name,
-            HitPoints = unit.HitPoints,
-            MagicResistance = unit.MagicResistance,
-            OwnerId = unit.OwnerId,
-            TrainingExperience = unit.TrainingExperience,
+            hitPoints = unit.hitPoints,
+            magicResistance = unit.magicResistance,
+            ownerId = unit.ownerId,
+            trainingExperience = unit.trainingExperience,
             GoldPrice = goldPrice
         };
     }

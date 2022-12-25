@@ -19,7 +19,7 @@ namespace Services.TrainingYard
                     Unit.Random(BattleBehaviour.StraightAttack)
                 }.Select(x =>
                 {
-                    x.OwnerId = userId;
+                    x.ownerId = userId;
                     return x;
                 }));
         }
@@ -33,7 +33,7 @@ namespace Services.TrainingYard
                 
             }.Select(x =>
             {
-                x.OwnerId = userId;
+                x.ownerId = userId;
                 return x;
             }));
         }

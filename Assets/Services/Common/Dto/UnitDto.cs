@@ -1,4 +1,5 @@
 using System;
+using Model.Units;
 
 namespace Services.Common.Dto
 {
@@ -18,6 +19,11 @@ namespace Services.Common.Dto
         public long unitId;
         public long goldAmount;
         public Unit.UnitActivity activity;
+        public float attackRange;
+        public float movementSpeed;
+        public BattleBehaviour battleBehavior;
+        public UnitType unitType;
+        public DateTime startedAt;
 
         public Unit ToUnit()
         {
@@ -25,15 +31,19 @@ namespace Services.Common.Dto
             {
                 Id = id,
                 Name = name,
-                Armor = armor,
-                Damage = damage,
-                HitPoints = hitPoints,
-                MaxHp = maxHitPoints,
-                AttackSpeed = attackSpeed,
-                MagicResistance = magicResistance,
-                OwnerId = ownerId,
-                TrainingExperience = trainingExperience,
-                Activity = activity
+                armor = armor,
+                damage = damage,
+                hitPoints = hitPoints,
+                maxHp = maxHitPoints,
+                attackSpeed = attackSpeed,
+                magicResistance = magicResistance,
+                ownerId = ownerId,
+                trainingExperience = trainingExperience,
+                activity = activity,
+                type = unitType,
+                attackRange = attackRange,
+                battleBehaviour = battleBehavior,
+                movementSpeed = movementSpeed
             };
         }
 
@@ -48,15 +58,19 @@ namespace Services.Common.Dto
             {
                 id = u.Id,
                 name = u.Name,
-                armor = u.Armor,
-                damage = u.Damage,
-                hitPoints = u.HitPoints,
-                maxHitPoints = u.MaxHp,
-                attackSpeed = u.AttackSpeed,
-                magicResistance = u.MagicResistance,
-                ownerId = u.OwnerId,
-                trainingExperience = u.TrainingExperience,
-                activity = u.Activity
+                armor = u.armor,
+                damage = u.damage,
+                hitPoints = u.hitPoints,
+                maxHitPoints = u.maxHp,
+                attackSpeed = u.attackSpeed,
+                magicResistance = u.magicResistance,
+                ownerId = u.ownerId,
+                trainingExperience = u.trainingExperience,
+                activity = u.activity,
+                attackRange = u.attackRange,
+                battleBehavior = u.battleBehaviour,
+                movementSpeed = u.movementSpeed,
+                unitType = u.type
             };
         }
     }

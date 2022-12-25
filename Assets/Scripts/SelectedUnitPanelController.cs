@@ -27,11 +27,11 @@ public class SelectedUnitPanelController : MonoBehaviour
         else
         {
             nameText.text = u.Name;
-            hpText.text = u.HitPoints.ToString();
-            damageText.text = u.Damage.ToString();
-            armorText.text = u.Armor.ToString();
-            mrText.text = u.MagicResistance.ToString();
-            teText.text = u.TrainingExperience.ToString();
+            hpText.text = u.hitPoints.ToString();
+            damageText.text = u.damage.ToString();
+            armorText.text = u.armor.ToString();
+            mrText.text = u.magicResistance.ToString();
+            teText.text = u.trainingExperience.ToString();
         }
     }
 

@@ -31,7 +31,7 @@ public class TrainingUnitSelectionModalController : MonoBehaviour, IUnitListProv
     {
         gameObject.SetActive(true);
         Units.Clear();
-        Units.AddRange(_barrackService.AvailableUnits.Where(u => u.Activity == Unit.UnitActivity.Idle));
+        Units.AddRange(_barrackService.AvailableUnits.Where(u => u.activity == Unit.UnitActivity.Idle));
     }
 
     public void HideModal()

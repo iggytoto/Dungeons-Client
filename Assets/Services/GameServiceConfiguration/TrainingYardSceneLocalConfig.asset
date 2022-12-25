@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dc5252f6fb74404b8ff25f2067acf5a, type: 3}
   m_Name: TrainingYardSceneLocalConfig
   m_EditorClassIdentifier: 
-  loginServiceType: 4
+  loginServiceType: 2
   barrackServiceType: 0
   matchMakingServiceType: 2
   playerAccountServiceType: 0

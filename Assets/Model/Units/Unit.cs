@@ -1,22 +1,24 @@
 using System;
 using Model.Units;
+using Unity.Netcode;
+using Random = System.Random;
 
 [Serializable]
-public class Unit : ModelBase
+public class Unit : ModelBase, INetworkSerializable
 {
-    public long HitPoints { get; set; }
-    public long Armor { get; set; }
-    public long MagicResistance { get; set; }
-    public long Damage { get; set; }
-    public long MaxHp { get; set; }
-    public float AttackSpeed { get; set; }
-    public float AttackRange => 2;
-    public long OwnerId { get; set; }
-    public long TrainingExperience { get; set; }
-    public float MovementSpeed => 4;
-    public BattleBehaviour BattleBehaviour { get; set; }
-    public UnitActivity Activity { get; set; }
-    public UnitType Type => UnitType.Dummy;
+    public long hitPoints;
+    public long armor;
+    public long magicResistance;
+    public long damage;
+    public long maxHp;
+    public float attackSpeed;
+    public float attackRange;
+    public long ownerId;
+    public long trainingExperience;
+    public float movementSpeed;
+    public BattleBehaviour battleBehaviour;
+    public UnitActivity activity;
+    public UnitType type;
 
     public event Action OnDeath;
 
@@ -27,28 +29,29 @@ public class Unit : ModelBase
         {
             Id = rng.Next(0, 1000000),
             Name = rng.Next(0, 10000).ToString(),
-            HitPoints = rng.Next(100, 200),
-            MaxHp = rng.Next(100, 200),
-            AttackSpeed = 1,
-            Armor = rng.Next(0, 100),
-            MagicResistance = rng.Next(0, 100),
-            Damage = rng.Next(20, 100),
-            Activity = (UnitActivity)Enum.GetValues(typeof(UnitActivity)).GetValue(rng.Next(3))
+            hitPoints = rng.Next(100, 200),
+            maxHp = rng.Next(100, 200),
+            attackSpeed = 1,
+            armor = rng.Next(0, 100),
+            magicResistance = rng.Next(0, 100),
+            damage = rng.Next(20, 100),
+            activity = (UnitActivity)Enum.GetValues(typeof(UnitActivity)).GetValue(rng.Next(3))
         };
     }
 
     public static Unit Random(BattleBehaviour bb)
     {
         var result = Random();
-        result.BattleBehaviour = bb;
+        result.battleBehaviour = bb;
         return result;
     }
 
     public bool IsDead()
     {
-        return HitPoints <= 0;
+        return hitPoints <= 0;
     }
 
+    [Serializable]
     public enum UnitActivity
     {
         Idle,
@@ -58,10 +61,29 @@ public class Unit : ModelBase
 
     public void DoDamage(long unitDamage)
     {
-        HitPoints -= (long)(unitDamage * Math.Log(Armor, 1.1) / 100);
-        if (HitPoints <= 0)
+        hitPoints -= (long)(unitDamage * Math.Log(armor, 1.1) / 100);
+        if (hitPoints <= 0)
         {
             OnDeath?.Invoke();
         }
+    }
+
+    public void NetworkSerialize<T>(BufferSerializer<T> serializer) where T : IReaderWriter
+    {
+        serializer.SerializeValue(ref Id);
+        serializer.SerializeValue(ref Name);
+        serializer.SerializeValue(ref hitPoints);
+        serializer.SerializeValue(ref armor);
+        serializer.SerializeValue(ref magicResistance);
+        serializer.SerializeValue(ref damage);
+        serializer.SerializeValue(ref maxHp);
+        serializer.SerializeValue(ref attackSpeed);
+        serializer.SerializeValue(ref attackRange);
+        serializer.SerializeValue(ref ownerId);
+        serializer.SerializeValue(ref trainingExperience);
+        serializer.SerializeValue(ref movementSpeed);
+        serializer.SerializeValue(ref battleBehaviour);
+        serializer.SerializeValue(ref activity);
+        serializer.SerializeValue(ref type);
     }
 }

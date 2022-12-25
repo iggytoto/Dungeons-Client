@@ -30,15 +30,15 @@ public class HorizontalUnitListButtonController : MonoBehaviour
             trainingExpText.gameObject.SetActive(true);
             damageText.gameObject.SetActive(true);
             nameText.text = $"{unit.Name}";
-            hpText.text = $"{unit.HitPoints.ToString()}";
-            armorText.text = $"{unit.Armor.ToString()}";
-            mrText.text = $"{unit.MagicResistance.ToString()}";
-            trainingExpText.text = $"{unit.TrainingExperience.ToString()}";
-            damageText.text = $"{unit.Damage.ToString()}";
-            if (unit.Activity != Unit.UnitActivity.Idle)
+            hpText.text = $"{unit.hitPoints.ToString()}";
+            armorText.text = $"{unit.armor.ToString()}";
+            mrText.text = $"{unit.magicResistance.ToString()}";
+            trainingExpText.text = $"{unit.trainingExperience.ToString()}";
+            damageText.text = $"{unit.damage.ToString()}";
+            if (unit.activity != Unit.UnitActivity.Idle)
             {
                 activityPanel.SetActive(true);
-                activityText.text = unit.Activity.ToString();
+                activityText.text = unit.activity.ToString();
             }
             else
             {

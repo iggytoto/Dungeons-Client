@@ -25,10 +25,10 @@ namespace DefaultNamespace.BattleBehaviour
 
             if (CanAttack())
             {
-                var attackDuration = 1 / UnitController.Unit.AttackSpeed;
+                var attackDuration = 1 / UnitController.Unit.attackSpeed;
                 UnitController.Attack(Target.transform.position, attackDuration);
-                Target.Unit.DoDamage(UnitController.Unit.Damage);
-                _attackCooldown = 1 / UnitController.Unit.AttackSpeed;
+                Target.Unit.DoDamage(UnitController.Unit.damage);
+                _attackCooldown = 1 / UnitController.Unit.attackSpeed;
             }
             else
             {
@@ -51,7 +51,7 @@ namespace DefaultNamespace.BattleBehaviour
             if (!_availableTargets.Any())
             {
                 _availableTargets.AddRange(FindObjectsOfType<UnitController>()
-                    .Where(uc => uc.Unit.OwnerId != UnitController.Unit.OwnerId));
+                    .Where(uc => uc.Unit.ownerId != UnitController.Unit.ownerId));
             }
 
             return _availableTargets;

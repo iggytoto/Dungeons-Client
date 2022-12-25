@@ -25,7 +25,7 @@ namespace DefaultNamespace.BattleBehaviour
             return Target != null &&
                    _attackCooldown <= 0 &&
                    Vector3.Distance(Target.transform.position, UnitController.transform.position) <=
-                   UnitController.Unit.AttackRange;
+                   UnitController.Unit.attackRange;
         }
     }
 }

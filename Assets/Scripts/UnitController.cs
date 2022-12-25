@@ -46,9 +46,9 @@ public class UnitController : NetworkBehaviour
         Stop();
         _animator.SetBool("IsRunning", true);
         transform.position =
-            Vector3.MoveTowards(transform.position, destination, _unit.Value.MovementSpeed * Time.deltaTime);
+            Vector3.MoveTowards(transform.position, destination, _unit.Value.movementSpeed * Time.deltaTime);
         transform.LookAt(destination);
-        if (Vector3.Distance(transform.position, destination) < 0.01f)
+        if (Vector3.Distance(transform.position, destination) < 0.001f)
         {
             Stop();
         }

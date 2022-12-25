@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using DefaultNamespace;
 using Services;
@@ -11,10 +12,11 @@ using Random = System.Random;
 
 public sealed class TrainingBattleFlowController : NetworkBehaviour
 {
-    [SerializeField] private List<GameObject> TeamOneSpawnPositions = new();
-    [SerializeField] private List<GameObject> TeamTwoSpawnPositions = new();
+    [SerializeField] private List<GameObject> teamOneSpawnPositions = new();
+    [SerializeField] private List<GameObject> teamTwoSpawnPositions = new();
 
     public event Action OnBattleFinished;
+    public ObservableCollection<Unit> UnitStatuses { get; } = new();
     private ITrainingYardService _trainingYardService;
     private readonly List<UnitController> _rosterOne = new();
     private readonly List<UnitController> _rosterTwo = new();
@@ -52,22 +54,28 @@ public sealed class TrainingBattleFlowController : NetworkBehaviour
     private IEnumerator WaitForBattleEnd()
     {
         var secondsWaited = 0;
-        while (secondsWaited <= 20)
+        while (secondsWaited <= 300)
         {
             secondsWaited++;
             if (IsBattleEnded())
             {
-                SaveRosters();
-                SaveBattleResult();
-                CleanUpObjects();
-                OnBattleFinished?.Invoke();
-                StopAllCoroutines();
-                _isBattleInProgress = false;
+                EndBattle();
                 yield return null;
             }
 
             yield return new WaitForSeconds(1);
         }
+        EndBattle();
+    }
+
+    private void EndBattle()
+    {
+        SaveRosters();
+        SaveBattleResult();
+        CleanUpObjects();
+        OnBattleFinished?.Invoke();
+        StopAllCoroutines();
+        _isBattleInProgress = false;
     }
 
     private void CleanUpObjects()
@@ -81,6 +89,10 @@ public sealed class TrainingBattleFlowController : NetworkBehaviour
         {
             Destroy(go);
         }
+        
+        UnitStatuses.Clear();
+        _rosterOne.Clear();
+        _rosterTwo.Clear();
     }
 
     private void SaveBattleResult()
@@ -109,7 +121,7 @@ public sealed class TrainingBattleFlowController : NetworkBehaviour
     {
         foreach (var unit in allUnits)
         {
-            unit.TrainingExperience += 100;
+            unit.trainingExperience += 100;
         }
 
         return allUnits;
@@ -136,10 +148,11 @@ public sealed class TrainingBattleFlowController : NetworkBehaviour
     private void SpawnUnits(IEnumerable<Unit> roster, bool playerOne)
     {
         var unitToPrefabMap = roster.ToDictionary(x => x,
-            x => ResourcesManager.LoadPrefabForUnitType(x.Type));
-        var spawnPositions = new List<GameObject>(playerOne ? TeamOneSpawnPositions : TeamTwoSpawnPositions);
+            x => ResourcesManager.LoadPrefabForUnitType(x.type));
+        var spawnPositions = new List<GameObject>(playerOne ? teamOneSpawnPositions : teamTwoSpawnPositions);
         foreach (var (unit, prefab) in unitToPrefabMap)
         {
+            UnitStatuses.Add(unit);
             var rng = new Random();
             var positionIndex = rng.Next(spawnPositions.Count);
             var position = spawnPositions[positionIndex];

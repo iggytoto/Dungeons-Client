@@ -27,6 +27,6 @@ public class BarrackSceneUiController : MonoBehaviour
     public void SetSelectedUnit(Unit u)
     {
         selectedUnit = u;
-        trainUnitButton.enabled = u is { Activity: Unit.UnitActivity.Idle };
+        trainUnitButton.enabled = u is { activity: Unit.UnitActivity.Idle };
     }
 }

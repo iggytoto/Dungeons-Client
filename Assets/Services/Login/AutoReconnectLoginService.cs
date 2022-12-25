@@ -4,9 +4,9 @@ namespace Services.Login
 {
     public class AutoReconnectLoginService : LoginService
     {
-        [SerializeField] private string login;
-        [SerializeField] private string password;
-        [SerializeField] private float reconnectInterval = 10;
+        [SerializeField] public string login ;
+        [SerializeField] public string password ;
+        [SerializeField] public float reconnectInterval = 5;
         private float _currentReconnectTimer;
 
         private void Update()

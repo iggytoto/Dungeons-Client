@@ -130,6 +130,7 @@
      <Compile Include="Assets\Services\Login\RegisterRequest.cs" />
      <Compile Include="Assets\Scripts\ResourcesManager.cs" />
      <Compile Include="Assets\Model\Currency\Currency.cs" />
+     <Compile Include="Assets\TrainingYardSceneUiController.cs" />
      <Folder Include="Assets" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\mergetool.ja.txt" />
      <Folder Include="Assets\Libs\Tiny Fantasy Icons\Keys" />

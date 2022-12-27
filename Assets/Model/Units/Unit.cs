@@ -29,12 +29,14 @@ public class Unit : ModelBase, INetworkSerializable
         {
             Id = rng.Next(0, 1000000),
             Name = rng.Next(0, 10000).ToString(),
-            hitPoints = rng.Next(100, 200),
             maxHp = rng.Next(100, 200),
+            hitPoints = rng.Next(100, 200),
             attackSpeed = 1,
             armor = rng.Next(0, 100),
             magicResistance = rng.Next(0, 100),
             damage = rng.Next(20, 100),
+            movementSpeed = 4,
+            attackRange = 1.1f,
             activity = (UnitActivity)Enum.GetValues(typeof(UnitActivity)).GetValue(rng.Next(3))
         };
     }
@@ -46,10 +48,7 @@ public class Unit : ModelBase, INetworkSerializable
         return result;
     }
 
-    public bool IsDead()
-    {
-        return hitPoints <= 0;
-    }
+
 
     [Serializable]
     public enum UnitActivity

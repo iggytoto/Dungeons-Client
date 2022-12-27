@@ -12,7 +12,7 @@ namespace Services.TrainingYard
     {
         private const string GetRosterForUserPath = "/training/getRosterForUser";
         private const string SaveRostersPath = "/training/saveRosters";
-        private const string SaveMatchResultPath = "/training/saveMatchResult";
+        private const string SaveMatchResultPath = "/training/saveTrainingResult";
 
         public void GetRosterForUser(
             long userId,

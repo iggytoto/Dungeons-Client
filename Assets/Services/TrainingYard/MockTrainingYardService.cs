@@ -15,8 +15,10 @@ namespace Services.TrainingYard
             onSuccessHandler?.Invoke(this,
                 new List<Unit>
                 {
-                    Unit.Random(BattleBehaviour.Panic),
-                    Unit.Random(BattleBehaviour.StraightAttack)
+                    Unit.Random(BattleBehaviour.StraightAttack),
+                    Unit.Random(BattleBehaviour.StraightAttack),
+                    Unit.Random(BattleBehaviour.StraightAttack),
+                    Unit.Random(BattleBehaviour.StraightAttack),
                 }.Select(x =>
                 {
                     x.ownerId = userId;
@@ -28,9 +30,10 @@ namespace Services.TrainingYard
         {
             return Task.FromResult(new List<Unit>
             {
-                Unit.Random(BattleBehaviour.Panic),
-                Unit.Random(BattleBehaviour.StraightAttack)
-                
+                Unit.Random(BattleBehaviour.StraightAttack),
+                Unit.Random(BattleBehaviour.StraightAttack),
+                Unit.Random(BattleBehaviour.StraightAttack),
+                Unit.Random(BattleBehaviour.StraightAttack),
             }.Select(x =>
             {
                 x.ownerId = userId;

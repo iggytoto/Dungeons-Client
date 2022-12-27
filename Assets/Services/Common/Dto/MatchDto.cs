@@ -6,8 +6,8 @@ namespace Services.Common
     public class MatchDto
     {
         public long id;
-        public long userOneId;
-        public long userTwoId;
+        public long? userOneId;
+        public long? userTwoId;
         public string status;
         public string serverIpAddress;
         public string serverPort;

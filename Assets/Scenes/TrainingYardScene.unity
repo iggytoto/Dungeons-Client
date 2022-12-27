@@ -122,7 +122,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 23800000, guid: 5b536ff9272a5b5449241ae8c8a5834a, type: 2}
+  m_NavMeshData: {fileID: 0}
 --- !u!1001 &249993
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -704,7 +704,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 112886526}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 101, y: 0.5, z: 101}
+  m_LocalPosition: {x: 105.37, y: 0.5, z: 105.29}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -735,7 +735,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 118961472}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 73, y: 0.5, z: 73}
+  m_LocalPosition: {x: 76.4, y: 0.5, z: 77.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1076,7 +1076,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 183364440}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 103, y: 0.5, z: 103}
+  m_LocalPosition: {x: 107.2, y: 0.5, z: 103}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3821,7 +3821,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 752958480}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 71, y: 0.5, z: 71}
+  m_LocalPosition: {x: 72.1, y: 0.5, z: 78.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4396,7 +4396,7 @@ PrefabInstance:
     - target: {fileID: 4271042742655406263, guid: 9a1a320ee5e28424da56dea2279662cb, type: 3}
       propertyPath: servicesConfiguration
       value: 
-      objectReference: {fileID: 11400000, guid: e04713fe47cecab44b65c337636da9c7, type: 2}
+      objectReference: {fileID: 11400000, guid: 5da9724a3f94bf846a47aa97f4e27700, type: 2}
     - target: {fileID: 4468862614129480654, guid: 9a1a320ee5e28424da56dea2279662cb, type: 3}
       propertyPath: m_Name
       value: GameService
@@ -9415,7 +9415,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1657121233}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 72, y: 0.5, z: 72}
+  m_LocalPosition: {x: 75.7, y: 0.5, z: 72}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10374,7 +10374,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1745568917}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 102, y: 0.5, z: 102}
+  m_LocalPosition: {x: 105.34, y: 0.5, z: 102}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

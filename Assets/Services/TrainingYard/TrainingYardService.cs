@@ -44,17 +44,20 @@ namespace Services.TrainingYard
             return await t.Task;
         }
 
-        public void SaveRosters(IEnumerable<Unit> units)
-        {
-            _apiAdapter.SaveRosters(
-                units.Select(UnitDto.Of),
-                _loginService.UserContext);
-        }
-
-        public void SaveTrainingResult(MatchResultDto result)
+        public void SaveTrainingResult(DateTime date, string matchMakingType, long userOneId, long userTwoId,
+            long winnerUserId,
+            IEnumerable<Unit> processBattleResultsForUnits)
         {
             _apiAdapter.SaveMatchResult(
-                result,
+                new MatchResultDto
+                {
+                    date = date,
+                    matchType = matchMakingType,
+                    unitsState = processBattleResultsForUnits.Select(UnitDto.Of).ToList(),
+                    userOneId = userOneId,
+                    userTwoId = userTwoId,
+                    winnerUserId = winnerUserId,
+                },
                 _loginService.UserContext);
         }
     }

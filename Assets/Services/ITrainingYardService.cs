@@ -18,12 +18,13 @@ public interface ITrainingYardService
     public Task<IEnumerable<Unit>> GetRosterForUserAsync(long userId);
 
     /**
-     * Save rosters, basically, save units. Just saves given units to database. This is and save-update method.
-     */
-    public void SaveRosters(IEnumerable<Unit> units);
-
-    /**
      * Saves training match result to database.
      */
-    public void SaveTrainingResult(MatchResultDto result);
+    void SaveTrainingResult(
+        DateTime result, 
+        string matchMakingType, 
+        long userOneId, 
+        long userTwoId,
+        long winnerUserId, 
+        IEnumerable<Unit> processBattleResultsForUnits);
 }

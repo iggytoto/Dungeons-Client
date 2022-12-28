@@ -65,12 +65,14 @@ public sealed class TrainingBattleFlowController : NetworkBehaviour
 
             yield return new WaitForSeconds(1);
         }
+
+        IsBattleEnded();
         EndBattle();
     }
 
     private void EndBattle()
     {
-        SaveRosters();
+        SaveBattleResult();
         SaveBattleResult();
         CleanUpObjects();
         OnBattleFinished?.Invoke();
@@ -89,7 +91,7 @@ public sealed class TrainingBattleFlowController : NetworkBehaviour
         {
             Destroy(go);
         }
-        
+
         UnitStatuses.Clear();
         _rosterOne.Clear();
         _rosterTwo.Clear();
@@ -97,30 +99,28 @@ public sealed class TrainingBattleFlowController : NetworkBehaviour
 
     private void SaveBattleResult()
     {
-        Debug.Log("Saving battle result");
-        _trainingYardService.SaveTrainingResult(new MatchResultDto
-        {
-            date = DateTime.Now,
-            matchType = "MatchMaking3x3",
-            userOneId = _userOneId,
-            userTwoId = _userTwoId,
-            winnerUserId = _winnerUserId
-        });
-    }
-
-    private void SaveRosters()
-    {
-        Debug.Log("Saving rosters after battle");
+        Debug.Log("Saving results after battle");
         var allUnits = new List<Unit>();
         allUnits.AddRange(_rosterOne.Select(x => x.ToUnit()));
         allUnits.AddRange(_rosterTwo.Select(x => x.ToUnit()));
-        _trainingYardService.SaveRosters(ProcessBattleResultsForUnits(allUnits));
+        _trainingYardService.SaveTrainingResult(
+            DateTime.Now,
+            "MatchMaking3x3",
+            _userOneId,
+            _userTwoId,
+            _winnerUserId,
+            ProcessBattleResultsForUnits(allUnits));
     }
 
     private IEnumerable<Unit> ProcessBattleResultsForUnits(List<Unit> allUnits)
     {
         foreach (var unit in allUnits)
         {
+            if (unit.hitPoints <= 0)
+            {
+                unit.hitPoints = 1;
+            }
+
             unit.trainingExperience += 100;
         }
 

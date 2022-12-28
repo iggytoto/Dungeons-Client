@@ -46,7 +46,9 @@ namespace Services.TrainingYard
                 null));
         }
 
-        public void SaveMatchResult(MatchResultDto result, UserContext loginServiceUserContext)
+        public void SaveMatchResult(
+            MatchResultDto result, 
+            UserContext loginServiceUserContext)
         {
             var requestData = JsonConvert.SerializeObject(result);
             StartCoroutine(DoRequestCoroutine<ResponseBaseDto>(GetConnectionAddress() + SaveMatchResultPath, requestData,

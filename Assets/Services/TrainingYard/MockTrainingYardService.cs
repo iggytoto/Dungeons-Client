@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Model.Units;
-using Services.Common;
 
 namespace Services.TrainingYard
 {
@@ -41,12 +40,10 @@ namespace Services.TrainingYard
             }));
         }
 
-        public void SaveRosters(IEnumerable<Unit> units)
+        public void SaveTrainingResult(DateTime result, string matchMakingType, long userOneId, long userTwoId, long winnerUserId,
+            IEnumerable<Unit> processBattleResultsForUnits)
         {
-        }
-
-        public void SaveTrainingResult(MatchResultDto result)
-        {
+            throw new NotImplementedException();
         }
     }
 }

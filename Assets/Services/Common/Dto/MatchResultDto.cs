@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using Services.Common.Dto;
 
 namespace Services.Common
 {
@@ -10,5 +12,6 @@ namespace Services.Common
         public long winnerUserId;
         public string matchType;
         public DateTime date;
+        public List<UnitDto> unitsState;
     }
 }

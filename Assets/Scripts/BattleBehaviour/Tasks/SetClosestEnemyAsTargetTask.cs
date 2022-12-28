@@ -3,20 +3,17 @@ using UnityEngine;
 
 namespace DefaultNamespace.BattleBehaviour
 {
-    public class SetClosestEnemyAsTargetTask : BattleBehaviorNode
+    public class SetClosestEnemyAsTargetTask : UnitTaskBase
     {
-        private readonly UnitStateController _unit;
-
-        public SetClosestEnemyAsTargetTask(UnitStateController unit)
+        public SetClosestEnemyAsTargetTask(UnitStateController unit) : base(unit)
         {
-            _unit = unit;
         }
 
         public override BattleBehaviorNodeState Evaluate()
         {
             var closestTarget = Object.FindObjectsOfType<UnitStateController>()
-                .Where(u => u.Unit.ownerId != _unit.Unit.ownerId && !u.IsDead())
-                .OrderBy(u => Vector3.Distance(_unit.transform.position, u.transform.position))
+                .Where(u => u.Unit.ownerId != Unit.Unit.ownerId && !u.IsDead())
+                .OrderBy(u => Vector3.Distance(Unit.transform.position, u.transform.position))
                 .FirstOrDefault();
             if (closestTarget == null)
             {
@@ -24,7 +21,7 @@ namespace DefaultNamespace.BattleBehaviour
                 return State;
             }
 
-            Parent.SetData("target", closestTarget);
+            Parent.SetData(TargetDataKey, closestTarget);
             State = BattleBehaviorNodeState.Success;
             return State;
         }

@@ -2,15 +2,32 @@ using UnityEngine;
 
 namespace DefaultNamespace.BattleBehaviour
 {
-    public class UnitTaskBase : BattleBehaviorNode
+    public abstract class UnitTaskBase : BattleBehaviorNode
     {
+        public const string TargetDataKey = "target";
+
         protected readonly Animator Animator;
         protected readonly UnitStateController Unit;
 
-        public UnitTaskBase(UnitStateController unitStateController)
+        protected UnitTaskBase(UnitStateController unitStateController)
         {
             Unit = unitStateController;
             Animator = unitStateController.gameObject.GetComponentInChildren<Animator>();
+        }
+
+        protected UnitStateController GetTarget()
+        {
+            return (UnitStateController)GetData(TargetDataKey);
+        }
+
+        protected bool ClearTarget()
+        {
+            return ClearData(TargetDataKey);
+        }
+
+        public void SetTarget(UnitStateController target)
+        {
+            SetData(TargetDataKey, target);
         }
 
         public override BattleBehaviorNodeState Evaluate()

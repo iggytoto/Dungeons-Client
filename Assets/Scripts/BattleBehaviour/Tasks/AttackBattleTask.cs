@@ -19,7 +19,7 @@ namespace DefaultNamespace.BattleBehaviour
                 return BattleBehaviorNodeState.Failure;
             }
 
-            var target = (UnitStateController)GetData("target");
+            var target = GetTarget();
             if (target == null)
             {
                 State = BattleBehaviorNodeState.Failure;
@@ -31,12 +31,13 @@ namespace DefaultNamespace.BattleBehaviour
             {
                 Animator.SetBool(AnimationConstants.IsRunningBoolean, false);
                 Animator.SetTrigger(AnimationConstants.AttackTrigger);
-                Animator.SetFloat(AnimationConstants.AttackMotionTimeFloat,  AttackAnimationTime * Unit.GetCurrentAttackSpeed());
+                Animator.SetFloat(AnimationConstants.AttackMotionTimeFloat,
+                    AttackAnimationTime * Unit.GetCurrentAttackSpeed());
                 Unit.DoAttack(target);
                 _attackCooldown = 1 / Unit.GetCurrentAttackSpeed();
                 if (target.IsDead())
                 {
-                    ClearData("target");
+                    ClearTarget();
                 }
             }
 

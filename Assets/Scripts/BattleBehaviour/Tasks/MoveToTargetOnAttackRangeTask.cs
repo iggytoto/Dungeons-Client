@@ -25,7 +25,7 @@ namespace DefaultNamespace.BattleBehaviour
                 return BattleBehaviorNodeState.Failure;
             }
 
-            _target = (UnitStateController)GetData("target");
+            _target = GetTarget();
             if (_target == null)
             {
                 State = BattleBehaviorNodeState.Failure;

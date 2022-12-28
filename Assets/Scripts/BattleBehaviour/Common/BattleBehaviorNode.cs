@@ -25,6 +25,7 @@ public class BattleBehaviorNode
     public void SetData(string key, object value)
     {
         _dataContext[key] = value;
+        Parent?.SetData(key,value);
     }
 
     protected object GetData(string key)

@@ -16,7 +16,7 @@ public class Unit : ModelBase, INetworkSerializable
     public long ownerId;
     public long trainingExperience;
     public float movementSpeed;
-    public BattleBehaviour battleBehaviour;
+    public BattleBehavior battleBehavior;
     public UnitActivity activity;
     public UnitType type;
 
@@ -41,10 +41,10 @@ public class Unit : ModelBase, INetworkSerializable
         };
     }
 
-    public static Unit Random(BattleBehaviour bb)
+    public static Unit Random(BattleBehavior bb)
     {
         var result = Random();
-        result.battleBehaviour = bb;
+        result.battleBehavior = bb;
         return result;
     }
 
@@ -81,7 +81,7 @@ public class Unit : ModelBase, INetworkSerializable
         serializer.SerializeValue(ref ownerId);
         serializer.SerializeValue(ref trainingExperience);
         serializer.SerializeValue(ref movementSpeed);
-        serializer.SerializeValue(ref battleBehaviour);
+        serializer.SerializeValue(ref battleBehavior);
         serializer.SerializeValue(ref activity);
         serializer.SerializeValue(ref type);
     }

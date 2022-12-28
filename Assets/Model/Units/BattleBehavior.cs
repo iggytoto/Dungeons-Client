@@ -3,8 +3,9 @@ using System;
 namespace Model.Units
 {
     [Serializable]
-    public enum BattleBehaviour
+    public enum BattleBehavior
     {
+        GuardNearestAlly,
         DoNothing,
         StraightAttack,
         Panic,

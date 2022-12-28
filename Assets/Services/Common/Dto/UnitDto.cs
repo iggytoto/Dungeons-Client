@@ -21,7 +21,7 @@ namespace Services.Common.Dto
         public Unit.UnitActivity activity;
         public float attackRange;
         public float movementSpeed;
-        public BattleBehaviour battleBehavior;
+        public BattleBehavior battleBehavior;
         public UnitType unitType;
         public DateTime startedAt;
 
@@ -42,7 +42,7 @@ namespace Services.Common.Dto
                 activity = activity,
                 type = unitType,
                 attackRange = attackRange,
-                battleBehaviour = battleBehavior,
+                battleBehavior = battleBehavior,
                 movementSpeed = movementSpeed
             };
         }
@@ -68,7 +68,7 @@ namespace Services.Common.Dto
                 trainingExperience = u.trainingExperience,
                 activity = u.activity,
                 attackRange = u.attackRange,
-                battleBehavior = u.battleBehaviour,
+                battleBehavior = u.battleBehavior,
                 movementSpeed = u.movementSpeed,
                 unitType = u.type
             };

@@ -6,10 +6,9 @@ using UnityEngine;
 
 public class UnitStateController : NetworkBehaviour
 {
-    public Unit Unit => _unit.Value;
+    public virtual Unit Unit => _unit.Value;
 
     private readonly NetworkVariable<Unit> _unit = new();
-
 
     public void Init(Unit unit)
     {

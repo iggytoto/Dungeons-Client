@@ -4,7 +4,8 @@ namespace DefaultNamespace.BattleBehaviour
 {
     public abstract class UnitTaskBase : BattleBehaviorNode
     {
-        public const string TargetDataKey = "target";
+        protected const string TargetDataKey = "target";
+        protected const string TargetAllyDataKey = "targetAlly";
 
         protected readonly Animator Animator;
         protected readonly UnitStateController Unit;
@@ -28,6 +29,11 @@ namespace DefaultNamespace.BattleBehaviour
         public void SetTarget(UnitStateController target)
         {
             SetData(TargetDataKey, target);
+        }
+        
+        protected UnitStateController GetTargetAlly()
+        {
+            return (UnitStateController)GetData(TargetAllyDataKey);
         }
 
         public override BattleBehaviorNodeState Evaluate()

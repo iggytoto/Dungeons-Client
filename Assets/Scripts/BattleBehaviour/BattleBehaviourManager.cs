@@ -24,6 +24,9 @@ namespace DefaultNamespace.BattleBehaviour
                 case BattleBehavior.HitAndRun:
                     unitStateController.gameObject.AddComponent<HitAndRunBattleBehavior>();
                     break;
+                case BattleBehavior.AttackBackLines:
+                    unitStateController.gameObject.AddComponent<AttackBackLinesBattleBehavior>();
+                    break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }

@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace DefaultNamespace.BattleBehaviour
@@ -9,6 +11,8 @@ namespace DefaultNamespace.BattleBehaviour
 
         protected readonly Animator Animator;
         protected readonly UnitStateController Unit;
+        
+        private readonly List<UnitStateController> _allUnits = new();
 
         protected UnitTaskBase(UnitStateController unitStateController)
         {
@@ -46,6 +50,16 @@ namespace DefaultNamespace.BattleBehaviour
 
             State = BattleBehaviorNodeState.Running;
             return State;
+        }
+        
+        protected List<UnitStateController> GetAllUnits()
+        {
+            if (!_allUnits.Any())
+            {
+                _allUnits.AddRange(Object.FindObjectsOfType<UnitStateController>());
+            }
+
+            return _allUnits;
         }
     }
 }

@@ -149,6 +149,8 @@
      <Compile Include="Assets\Scripts\BattleBehaviour\Common\NavMeshAgentUnitTaskBase.cs" />
      <Compile Include="Assets\Scripts\BattleBehaviour\HitAndRunBattleBehavior.cs" />
      <Compile Include="Assets\Scripts\BattleBehaviour\Tasks\KeepTargetInRangeTask.cs" />
+     <Compile Include="Assets\Scripts\BattleBehaviour\Tasks\SetFarthestEnemyFromAllyTeamTask.cs" />
+     <Compile Include="Assets\Scripts\BattleBehaviour\AttackBackLinesBattleBehavior.cs" />
      <Folder Include="Assets" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\mergetool.ja.txt" />
      <Folder Include="Assets\Libs\Tiny Fantasy Icons\Keys" />

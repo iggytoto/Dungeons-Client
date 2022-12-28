@@ -4,6 +4,7 @@ namespace DefaultNamespace.Animation
     {
         public const string IsRunningBoolean = "IsRunning";
         public const string AttackTrigger = "Attack";
-        public const string IsDead = "IsDead";
+        public const string AttackMotionTimeFloat = "AttackMotionTime";
+        public const string IsDeadBoolean = "IsDead";
     }
 }

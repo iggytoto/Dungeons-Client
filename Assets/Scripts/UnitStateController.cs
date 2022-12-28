@@ -45,7 +45,7 @@ public class UnitStateController : NetworkBehaviour
         Unit.hitPoints -= unitDamage;
         if (IsDead())
         {
-            gameObject.GetComponentInChildren<Animator>().SetBool(AnimationConstants.IsDead, true);
+            gameObject.GetComponentInChildren<Animator>().SetBool(AnimationConstants.IsDeadBoolean, true);
         }
     }
 

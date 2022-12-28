@@ -31,7 +31,7 @@ namespace DefaultNamespace.BattleBehaviour
             {
                 Animator.SetBool(AnimationConstants.IsRunningBoolean, false);
                 Animator.SetTrigger(AnimationConstants.AttackTrigger);
-                Animator.speed = AttackAnimationTime * Unit.GetCurrentAttackSpeed();
+                Animator.SetFloat(AnimationConstants.AttackMotionTimeFloat,  AttackAnimationTime * Unit.GetCurrentAttackSpeed());
                 Unit.DoAttack(target);
                 _attackCooldown = 1 / Unit.GetCurrentAttackSpeed();
                 if (target.IsDead())

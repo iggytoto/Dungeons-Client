@@ -9,5 +9,6 @@ namespace Model.Units
         DoNothing,
         StraightAttack,
         Panic,
+        HitAndRun
     }
 }

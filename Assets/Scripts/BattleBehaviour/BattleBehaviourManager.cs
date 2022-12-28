@@ -9,17 +9,20 @@ namespace DefaultNamespace.BattleBehaviour
         {
             switch (unitStateController.Unit.battleBehavior)
             {
-                case Model.Units.BattleBehavior.DoNothing:
+                case BattleBehavior.DoNothing:
                     unitStateController.gameObject.AddComponent<DoNothingBattleBehaviour>();
                     break;
-                case Model.Units.BattleBehavior.StraightAttack:
+                case BattleBehavior.StraightAttack:
                     unitStateController.gameObject.AddComponent<AttackClosestEnemyBattleBehavior>();
                     break;
-                case Model.Units.BattleBehavior.Panic:
+                case BattleBehavior.Panic:
                     unitStateController.gameObject.AddComponent<PanicBattleBehavior>();
                     break;
                 case BattleBehavior.GuardNearestAlly:
                     unitStateController.gameObject.AddComponent<GuardNearestAllyBattleBehavior>();
+                    break;
+                case BattleBehavior.HitAndRun:
+                    unitStateController.gameObject.AddComponent<HitAndRunBattleBehavior>();
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();

@@ -146,6 +146,9 @@
      <Compile Include="Assets\Scripts\BattleBehaviour\GuardNearestAllyBattleBehavior.cs" />
      <Compile Include="Assets\Scripts\BattleBehaviour\Tasks\CheckIfTargetInRadiusTargetAllyTask.cs" />
      <Compile Include="Assets\Scripts\DebugUnitStateController.cs" />
+     <Compile Include="Assets\Scripts\BattleBehaviour\Common\NavMeshAgentUnitTaskBase.cs" />
+     <Compile Include="Assets\Scripts\BattleBehaviour\HitAndRunBattleBehavior.cs" />
+     <Compile Include="Assets\Scripts\BattleBehaviour\Tasks\KeepTargetInRangeTask.cs" />
      <Folder Include="Assets" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\mergetool.ja.txt" />
      <Folder Include="Assets\Libs\Tiny Fantasy Icons\Keys" />
@@ -585,6 +588,7 @@
      <Folder Include="Assets\Libs\Tiny Fantasy Icons\Chests" />
      <None Include="Library\PackageCache\com.unity.collections@1.2.4\package.json" />
      <None Include="Library\PackageCache\com.unity.modules.androidjni@1.0.0\package.json" />
+     <Folder Include="Assets\Scenes\TestScene" />
      <Folder Include="Library\PackageCache\com.unity.terrain-tools@4.0.3\Shaders" />
      <Folder Include="Assets\Services\Login" />
      <None Include="Assets\Libs\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />

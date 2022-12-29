@@ -1,11 +1,12 @@
 using System;
+using JetBrains.Annotations;
 
 namespace Services.Dto
 {
     [Serializable]
     public class ResponseBaseDto
     {
-        public long code;
-        public string message;
+        [CanBeNull] public long code;
+        [CanBeNull] public string message;
     }
 }

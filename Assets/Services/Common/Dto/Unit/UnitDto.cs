@@ -1,13 +1,15 @@
 using System;
+using JetBrains.Annotations;
 using Model.Units;
+using Services.Dto;
 
 namespace Services.Common.Dto
 {
     [Serializable]
-    public class UnitDto
+    public class UnitDto : ResponseBaseDto
     {
         public long id;
-        public string name;
+        [CanBeNull] public string name;
         public long ownerId;
         public long hitPoints;
         public long maxHitPoints;
@@ -24,8 +26,9 @@ namespace Services.Common.Dto
         public BattleBehavior battleBehavior;
         public UnitType unitType;
         public DateTime startedAt;
+        public EquipmentDto unitEquip;
 
-        public Unit ToUnit()
+        public Unit ToDomain()
         {
             return new Unit
             {
@@ -43,13 +46,14 @@ namespace Services.Common.Dto
                 type = unitType,
                 attackRange = attackRange,
                 battleBehavior = battleBehavior,
-                movementSpeed = movementSpeed
+                movementSpeed = movementSpeed,
+                equip = unitEquip?.ToDomain()
             };
         }
 
         public UnitForSale ToUnitForSale()
         {
-            return UnitForSale.Of(ToUnit(), goldAmount);
+            return UnitForSale.Of(ToDomain(), goldAmount);
         }
 
         public static UnitDto Of(Unit u)

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using Services.Common.Dto;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -36,7 +37,8 @@ namespace Services.Dto
             string requestType,
             Dictionary<string, string> headers,
             EventHandler<TResponse> successHandler,
-            EventHandler<ErrorResponseDto> errorHandler)
+            EventHandler<ErrorResponseDto> errorHandler,
+            IDtoDeserializer<TResponse> dtoDeserializer)
             where TResponse : ResponseBaseDto
         {
             using var req = new UnityWebRequest(url, requestType);
@@ -61,10 +63,8 @@ namespace Services.Dto
                 case UnityWebRequest.Result.InProgress:
                     break;
                 case UnityWebRequest.Result.Success:
-                    var response =
-                        JsonConvert.DeserializeObject<TResponse>(
-                            System.Text.Encoding.UTF8.GetString(req.downloadHandler.data));
-
+                    var responseString = System.Text.Encoding.UTF8.GetString(req.downloadHandler.data);
+                    var response = dtoDeserializer.Deserialize(responseString);
                     if (response is
                         {
                             code: 0
@@ -89,6 +89,25 @@ namespace Services.Dto
                     StopCoroutine(DoRequestCoroutine(url, requestBody, requestType, successHandler, errorHandler));
                     throw new ArgumentOutOfRangeException();
             }
+        }
+
+        protected IEnumerator DoRequestCoroutine<TResponse>(
+            string url,
+            string requestBody,
+            string requestType,
+            Dictionary<string, string> headers,
+            EventHandler<TResponse> successHandler,
+            EventHandler<ErrorResponseDto> errorHandler)
+            where TResponse : ResponseBaseDto
+        {
+            return DoRequestCoroutine(
+                url,
+                requestBody,
+                requestType,
+                headers,
+                successHandler,
+                errorHandler,
+                new DefaultDtoDeserializer<TResponse>());
         }
 
         protected static string GetTokenValueHeader(UserContext ctx)

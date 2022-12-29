@@ -19,8 +19,10 @@ public class Unit : ModelBase, INetworkSerializable
     public BattleBehavior battleBehavior;
     public UnitActivity activity;
     public UnitType type;
-
+    public Equipment equip;
+    
     public event Action OnDeath;
+
 
     public static Unit Random()
     {

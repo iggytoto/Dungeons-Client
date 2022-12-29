@@ -1,7 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using Newtonsoft.Json;
 using Services.Common;
 using Services.Common.Dto;
 using Services.Dto;
@@ -11,47 +9,30 @@ namespace Services.TrainingYard
     public class TrainingYardServiceApiAdapter : ApiAdapterBase
     {
         private const string GetRosterForUserPath = "/training/getRosterForUser";
-        private const string SaveRostersPath = "/training/saveRosters";
         private const string SaveMatchResultPath = "/training/saveTrainingResult";
 
         public void GetRosterForUser(
-            long userId,
+            UserIdRequestDto dto,
             EventHandler<UnitListResponseDto> onSuccessHandler,
             EventHandler<ErrorResponseDto> onErrorHandler,
             UserContext context)
         {
-            var requestData = JsonConvert.SerializeObject(new UserIdRequestDto
-            {
-                userId = userId
-            });
-            StartCoroutine(DoRequestCoroutine(GetConnectionAddress() + GetRosterForUserPath, requestData, Get,
-                new Dictionary<string, string> { { Authorization, GetTokenValueHeader(context) } },
-                onSuccessHandler,
-                onErrorHandler));
-        }
-
-        public void SaveRosters(IEnumerable<UnitDto> units,
-            UserContext context)
-        {
-            var requestData = JsonConvert.SerializeObject(
-                new UnitListRequestDto
-                {
-                    units = units.ToList()
-                }
-            );
-            StartCoroutine(DoRequestCoroutine<ResponseBaseDto>(GetConnectionAddress() + SaveRostersPath, requestData,
-                Post,
-                new Dictionary<string, string> { { Authorization, GetTokenValueHeader(context) } },
-                null,
-                null));
+            StartCoroutine(
+                DoRequestCoroutine(
+                    GetConnectionAddress() + GetRosterForUserPath,
+                    SerializeDto(dto),
+                    Get,
+                    new Dictionary<string, string> { { Authorization, GetTokenValueHeader(context) } },
+                    onSuccessHandler,
+                    onErrorHandler));
         }
 
         public void SaveMatchResult(
-            MatchResultDto result, 
+            MatchResultDto result,
             UserContext loginServiceUserContext)
         {
-            var requestData = JsonConvert.SerializeObject(result);
-            StartCoroutine(DoRequestCoroutine<ResponseBaseDto>(GetConnectionAddress() + SaveMatchResultPath, requestData,
+            StartCoroutine(DoRequestCoroutine<ResponseBaseDto>(GetConnectionAddress() + SaveMatchResultPath,
+                SerializeDto(result),
                 Post,
                 new Dictionary<string, string> { { Authorization, GetTokenValueHeader(loginServiceUserContext) } },
                 null,

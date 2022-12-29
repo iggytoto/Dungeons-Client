@@ -5,8 +5,8 @@ namespace Model.Units
     [Serializable]
     public enum BattleBehavior
     {
-        GuardNearestAlly,
         DoNothing,
+        GuardNearestAlly,
         StraightAttack,
         Panic,
         HitAndRun,

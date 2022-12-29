@@ -24,7 +24,8 @@ namespace Services.Barracks
                     Get,
                     new Dictionary<string, string> { { Authorization, GetTokenValueHeader(loginServiceUserContext) } },
                     successHandler,
-                    errorHandler));
+                    errorHandler,
+                    new UnitListResponseDtoDeserializer()));
         }
 
         public void TrainUnit(

@@ -74,7 +74,7 @@ public class BarracksService : ServiceBase, IBarrackService
             return;
         }
 
-        RefreshLocal(e.units?.Select(x => x.ToUnit()));
+        RefreshLocal(e.units?.Select(x => x?.ToDomain()));
     }
 
     private void RefreshLocal(IEnumerable<Unit> e)

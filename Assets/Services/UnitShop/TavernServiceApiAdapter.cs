@@ -15,11 +15,17 @@ namespace Services.UnitShop
             EventHandler<UnitListResponseDto> successHandler,
             EventHandler<ErrorResponseDto> errorHandler)
         {
-            StartCoroutine(DoRequestCoroutine(GetConnectionAddress() + GetAvailableUnitsPath, null,
-                Get, new Dictionary<string, string> { { Authorization, GetTokenValueHeader(loginServiceUserContext) } },
-                successHandler,
-                errorHandler));
+            StartCoroutine(
+                DoRequestCoroutine(
+                    GetConnectionAddress() + GetAvailableUnitsPath,
+                    null,
+                    Get,
+                    new Dictionary<string, string> { { Authorization, GetTokenValueHeader(loginServiceUserContext) } },
+                    successHandler,
+                    errorHandler,
+                    new UnitListResponseDtoDeserializer()));
         }
+
         public void BuyUnit(Unit unit,
             UserContext loginServiceUserContext,
             EventHandler<EmptyResponseDto> successHandler,

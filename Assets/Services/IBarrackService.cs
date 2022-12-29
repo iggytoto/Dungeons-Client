@@ -1,12 +1,13 @@
 using System.Collections.ObjectModel;
 using DefaultNamespace;
+using Model.Units;
 
 namespace Services
 {
     /**
      * Barracks functions service
      */
-    public interface IBarrackService : IUnitListProvider<Unit> , IService
+    public interface IBarrackService : IUnitListProvider<Unit>, IService
     {
         /**
          * Collection of available units for player
@@ -21,5 +22,6 @@ namespace Services
 
         ObservableCollection<Unit> IUnitListProvider<Unit>.Units => AvailableUnits;
         void ChangeUnitName(long selectedUnitId, string newName);
+        void ChangeUnitBattleBehavior(long selectedUnitId, BattleBehavior bb);
     }
 }

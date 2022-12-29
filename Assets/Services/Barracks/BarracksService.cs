@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using Model.Units;
 using Services;
 using Services.Barracks;
 using Services.Common.Dto;
@@ -102,6 +103,14 @@ public class BarracksService : ServiceBase, IBarrackService
         _apiAdapter.ChangeUnitName(
             _loginService.UserContext,
             new ChangeUnitNameRequestDto { unitId = selectedUnitId, newName = newName },
+            (_, _) => Refresh());
+    }
+
+    public void ChangeUnitBattleBehavior(long selectedUnitId, BattleBehavior bb)
+    {
+        _apiAdapter.ChangeUnitBattleBehavior(
+            _loginService.UserContext,
+            new ChangeUnitBattleBehaviorRequestDto { unitId = selectedUnitId, newBattleBehavior = bb },
             (_, _) => Refresh());
     }
 }

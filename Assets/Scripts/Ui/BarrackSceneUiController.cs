@@ -1,3 +1,4 @@
+using Model.Units;
 using Services;
 using UnityEngine;
 using UnityEngine.UI;
@@ -32,5 +33,10 @@ public class BarrackSceneUiController : MonoBehaviour
     public void ChangeNameUnitName(string newName)
     {
         _barracksService.ChangeUnitName(selectedUnit.Id, newName);
+    }
+
+    public void ChangeUnitBattleBehavior(BattleBehavior bb)
+    {
+        _barracksService.ChangeUnitBattleBehavior(selectedUnit.Id, bb);
     }
 }

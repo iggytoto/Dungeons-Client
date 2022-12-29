@@ -1,5 +1,6 @@
 using System.Collections.ObjectModel;
 using System.Linq;
+using Model.Units;
 using Services;
 
 public class MockBarracksService : IBarrackService
@@ -30,6 +31,12 @@ public class MockBarracksService : IBarrackService
     {
         var u = AvailableUnits.First(u => u.Id == selectedUnitId);
         u.Name = newName;
+    }
+
+    public void ChangeUnitBattleBehavior(long selectedUnitId, BattleBehavior bb)
+    {
+        var u = AvailableUnits.First(u => u.Id == selectedUnitId);
+        u.battleBehavior = bb;
     }
 
     public string EndpointHttpType { get; set; }

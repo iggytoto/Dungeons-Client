@@ -11,6 +11,11 @@ public class SelectedUnitPanelController : MonoBehaviour
     [SerializeField] public TMP_Text armorText;
     [SerializeField] public TMP_Text mrText;
     [SerializeField] public TMP_Text teText;
+    [SerializeField] public TMP_Text asText;
+    [SerializeField] public TMP_Text arText;
+    [SerializeField] public TMP_Text msText;
+    [SerializeField] public TMP_Text bbText;
+    [SerializeField] public TMP_Text acText;
 
 
     private void Start()
@@ -32,6 +37,11 @@ public class SelectedUnitPanelController : MonoBehaviour
             armorText.text = u.armor.ToString();
             mrText.text = u.magicResistance.ToString();
             teText.text = u.trainingExperience.ToString();
+            asText.text = u.attackSpeed.ToString();
+            arText.text = u.attackRange.ToString();
+            msText.text = u.movementSpeed.ToString();
+            bbText.text = u.battleBehavior.ToString();
+            acText.text = u.activity.ToString();
         }
     }
 
@@ -43,5 +53,10 @@ public class SelectedUnitPanelController : MonoBehaviour
         armorText.text = "";
         mrText.text = "";
         teText.text = "";
+        asText.text = "";
+        arText.text = "";
+        msText.text = "";
+        bbText.text = "";
+        acText.text = "";
     }
 }

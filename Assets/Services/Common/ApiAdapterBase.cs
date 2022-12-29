@@ -105,5 +105,10 @@ namespace Services.Dto
         {
             return $"{endpointHttp}://{endpointAddress}:{endpointPort}";
         }
+
+        protected string SerializeDto(object dto)
+        {
+            return JsonConvert.SerializeObject(dto);
+        }
     }
 }

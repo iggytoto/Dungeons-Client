@@ -23,10 +23,14 @@ public class BarrackSceneUiController : MonoBehaviour
         }
     }
 
-
     public void SetSelectedUnit(Unit u)
     {
         selectedUnit = u;
         trainUnitButton.enabled = u is { activity: Unit.UnitActivity.Idle };
+    }
+
+    public void ChangeNameUnitName(string newName)
+    {
+        _barracksService.ChangeUnitName(selectedUnit.Id, newName);
     }
 }

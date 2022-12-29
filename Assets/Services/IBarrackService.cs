@@ -20,5 +20,6 @@ namespace Services
         public void TrainUnit(long unitId);
 
         ObservableCollection<Unit> IUnitListProvider<Unit>.Units => AvailableUnits;
+        void ChangeUnitName(long selectedUnitId, string newName);
     }
 }

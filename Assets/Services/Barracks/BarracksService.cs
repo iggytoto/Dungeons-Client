@@ -20,7 +20,11 @@ public class BarracksService : ServiceBase, IBarrackService
 
     public void TrainUnit(long selectedUnitId)
     {
-        _apiAdapter.TrainUnit(selectedUnitId, _loginService.UserContext, OnTrainSuccess, OnError);
+        _apiAdapter.TrainUnit(
+            new TrainUnitRequest { unitId = selectedUnitId },
+            _loginService.UserContext,
+            OnTrainSuccess,
+            OnError);
     }
 
     public override void InitService()
@@ -92,4 +96,12 @@ public class BarracksService : ServiceBase, IBarrackService
     }
 
     public ObservableCollection<Unit> Units => AvailableUnits;
+
+    public void ChangeUnitName(long selectedUnitId, string newName)
+    {
+        _apiAdapter.ChangeUnitName(
+            _loginService.UserContext,
+            new ChangeUnitNameRequestDto { unitId = selectedUnitId, newName = newName },
+            (_, _) => Refresh());
+    }
 }

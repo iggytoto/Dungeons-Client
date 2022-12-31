@@ -25,7 +25,10 @@ public class LoginService : ServiceBase, ILoginService
             $"Login service adapter configured with endpoint:{_apiAdapter.GetConnectionAddress()}");
     }
 
-    public void TryLogin(string login, string password, EventHandler<UserContext> onSuccess)
+    public void TryLogin(
+        string login,
+        string password,
+        EventHandler<UserContext> onSuccess)
     {
         if (_apiAdapter == null)
         {
@@ -34,12 +37,12 @@ public class LoginService : ServiceBase, ILoginService
 
         ConnectionState = ConnectionState.Connecting;
         _onLoginSuccessResponseOuter = onSuccess;
-        _apiAdapter.Login(login, password, OnLoginSuccess, OnError);
+        _apiAdapter.Login(new LoginRequest { login = login, password = password }, OnLoginSuccess, OnError);
     }
 
     public void Register(string login, string password)
     {
-        _apiAdapter.Register(login, password, OnRegisterSuccess, OnError);
+        _apiAdapter.Register(new RegisterRequest { login = login, password = password }, OnRegisterSuccess, OnError);
     }
 
     private void OnRegisterSuccess(object sender, RegisterResponse e)

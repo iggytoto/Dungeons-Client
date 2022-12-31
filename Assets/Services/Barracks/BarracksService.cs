@@ -113,4 +113,18 @@ public class BarracksService : ServiceBase, IBarrackService
             new ChangeUnitBattleBehaviorRequestDto { unitId = selectedUnitId, newBattleBehavior = bb },
             (_, _) => Refresh());
     }
+
+    public void UpgradeUnitEquipment(long equipmentId, UnitType unitType, string upgradeParamName)
+    {
+        _apiAdapter.UpgradeUnitEquipment(
+            _loginService.UserContext,
+            new UpgradeUnitEquipmentRequestDto
+            {
+                equipmentId = equipmentId,
+                unitType = unitType,
+                paramNameToUpgrade = upgradeParamName
+            },
+            null,
+            null);
+    }
 }

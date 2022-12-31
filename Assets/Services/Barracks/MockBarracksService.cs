@@ -39,6 +39,10 @@ public class MockBarracksService : IBarrackService
         u.battleBehavior = bb;
     }
 
+    public void UpgradeUnitEquipment(long equipmentId, UnitType unitType, string upgradeParamName)
+    {
+    }
+
     public string EndpointHttpType { get; set; }
     public string EndpointAddress { get; set; }
     public ushort EndpointPort { get; set; }

@@ -4,6 +4,8 @@ using UnityEngine;
 public class TavernSceneUiController : MonoBehaviour
 {
     private ITavernService _tavernService;
+    [SerializeField] private SelectedUnitPanelController selectedUnitPanelController;
+    private Unit _selectedUnit;
 
     private void Start()
     {
@@ -13,6 +15,15 @@ public class TavernSceneUiController : MonoBehaviour
 
     public void OnTavernUnitClicked(Unit unit)
     {
-        _tavernService.BuyUnit(unit);
+        _selectedUnit = unit;
+        selectedUnitPanelController.SetSelectedUnit(unit);
+    }
+
+    public void BuySelectedUnit()
+    {
+        if (_selectedUnit != null)
+        {
+            _tavernService.BuyUnit(_selectedUnit);
+        }
     }
 }

@@ -11,6 +11,7 @@ namespace Services.Barracks
         private const string TrainUnitPath = "/barrack/trainUnit";
         private const string ChangeUnitNamePath = "/barrack/changeUnitName";
         private const string ChangeUnitBattleBehaviorPath = "/barrack/changeUnitBattleBehavior";
+        private const string UpgradeUnitEquipmentPath = "/barrack/upgradeUnitEquipment";
 
         public void GetAvailableUnits(
             UserContext loginServiceUserContext,
@@ -72,6 +73,22 @@ namespace Services.Barracks
                     new Dictionary<string, string> { { Authorization, GetTokenValueHeader(loginServiceUserContext) } },
                     successHandler,
                     null));
+        }
+
+        public void UpgradeUnitEquipment(
+            UserContext userContext,
+            UpgradeUnitEquipmentRequestDto dto,
+            EventHandler<ResponseBaseDto> successHandler,
+            EventHandler<ErrorResponseDto> errorHandler)
+        {
+            StartCoroutine(
+                DoRequestCoroutine(
+                    GetConnectionAddress() + UpgradeUnitEquipmentPath,
+                    SerializeDto(dto),
+                    Post,
+                    new Dictionary<string, string> { { Authorization, GetTokenValueHeader(userContext) } },
+                    successHandler,
+                    errorHandler));
         }
     }
 }

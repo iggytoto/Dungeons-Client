@@ -23,5 +23,6 @@ namespace Services
         ObservableCollection<Unit> IUnitListProvider<Unit>.Units => AvailableUnits;
         void ChangeUnitName(long selectedUnitId, string newName);
         void ChangeUnitBattleBehavior(long selectedUnitId, BattleBehavior bb);
+        void UpgradeUnitEquipment(long equipmentId, UnitType unitType, string upgradeParamName);
     }
 }

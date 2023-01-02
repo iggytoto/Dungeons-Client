@@ -13,6 +13,8 @@ namespace Services.Common.Dto
         public long ownerId;
         public long hitPoints;
         public long maxHitPoints;
+        public long mana;
+        public long maxMana;
         public long armor;
         public long magicResistance;
         public long damage;
@@ -64,6 +66,8 @@ namespace Services.Common.Dto
                 damage = u.damage,
                 hitPoints = u.hitPoints,
                 maxHitPoints = u.maxHp,
+                mana = u.mana,
+                maxMana = u.maxMana,
                 attackSpeed = u.attackSpeed,
                 magicResistance = u.magicResistance,
                 ownerId = u.ownerId,

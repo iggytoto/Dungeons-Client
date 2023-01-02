@@ -15,7 +15,7 @@ namespace DefaultNamespace.BattleBehaviour
                     new SetClosestEnemyAsTargetTask(u),
                     new KeepTargetInRangeTask(u, nma),
                     new CheckIfTargetInAttackRangeTask(u),
-                    new AttackBattleTask(u)
+                    new AttackOrAbilityBattleTask(u)
                 }
             );
         }

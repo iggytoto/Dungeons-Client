@@ -19,7 +19,7 @@ namespace DefaultNamespace.BattleBehaviour
                         new List<BattleBehaviorNode>
                         {
                             new CheckIfTargetInAttackRangeTask(u),
-                            new AttackBattleTask(u)
+                            new AttackOrAbilityBattleTask(u)
                         }
                     ),
                     new MoveToTargetBattleTask(u, nma),

@@ -11,6 +11,8 @@ public class Unit : ModelBase, INetworkSerializable
     public long magicResistance;
     public long damage;
     public long maxHp;
+    public long mana;
+    public long maxMana;
     public float attackSpeed;
     public float attackRange;
     public long ownerId;
@@ -77,6 +79,8 @@ public class Unit : ModelBase, INetworkSerializable
         serializer.SerializeValue(ref magicResistance);
         serializer.SerializeValue(ref damage);
         serializer.SerializeValue(ref maxHp);
+        serializer.SerializeValue(ref mana);
+        serializer.SerializeValue(ref maxMana);
         serializer.SerializeValue(ref attackSpeed);
         serializer.SerializeValue(ref attackRange);
         serializer.SerializeValue(ref ownerId);

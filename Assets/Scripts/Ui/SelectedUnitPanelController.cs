@@ -1,3 +1,4 @@
+using System.Globalization;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,7 +11,6 @@ public class SelectedUnitPanelController : MonoBehaviour
     [SerializeField] public TMP_Text damageText;
     [SerializeField] public TMP_Text armorText;
     [SerializeField] public TMP_Text mrText;
-    [SerializeField] public TMP_Text teText;
     [SerializeField] public TMP_Text asText;
     [SerializeField] public TMP_Text arText;
     [SerializeField] public TMP_Text msText;
@@ -36,9 +36,9 @@ public class SelectedUnitPanelController : MonoBehaviour
             damageText.text = u.damage.ToString();
             armorText.text = u.armor.ToString();
             mrText.text = u.magicResistance.ToString();
-            asText.text = u.attackSpeed.ToString();
-            arText.text = u.attackRange.ToString();
-            msText.text = u.movementSpeed.ToString();
+            asText.text = u.attackSpeed.ToString(CultureInfo.InvariantCulture);
+            arText.text = u.attackRange.ToString(CultureInfo.InvariantCulture);
+            msText.text = u.movementSpeed.ToString(CultureInfo.InvariantCulture);
             bbText.text = u.battleBehavior.ToString();
             acText.text = u.activity.ToString();
         }
@@ -51,7 +51,6 @@ public class SelectedUnitPanelController : MonoBehaviour
         damageText.text = "";
         armorText.text = "";
         mrText.text = "";
-        teText.text = "";
         asText.text = "";
         arText.text = "";
         msText.text = "";

@@ -22,7 +22,7 @@ namespace DefaultNamespace.BattleBehaviour
                             new CheckIfTargetInRadiusTargetAllyTask(u, allyToEnemyRadius),
                             new MoveToTargetBattleTask(u, nma),
                             new CheckIfTargetInAttackRangeTask(u),
-                            new AttackBattleTask(u),
+                            new AttackOrAbilityBattleTask(u)
                         }
                     ),
                     new BattleBehaviorSequence(

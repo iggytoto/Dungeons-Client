@@ -6,7 +6,6 @@ namespace DefaultNamespace.BattleBehaviour
     public class AttackBattleTask : UnitTaskBase
     {
         private float _attackCooldown;
-        private const float AttackAnimationTime = 2.267f;
 
         public AttackBattleTask(UnitStateController unitStateController) : base(unitStateController)
         {
@@ -31,8 +30,10 @@ namespace DefaultNamespace.BattleBehaviour
             {
                 Animator.SetBool(AnimationConstants.IsRunningBoolean, false);
                 Animator.SetTrigger(AnimationConstants.AttackTrigger);
+                var attackClipInfo = Animator.GetCurrentAnimatorClipInfo(1)[0];
+                var animationTime = attackClipInfo.clip.averageDuration;
                 Animator.SetFloat(AnimationConstants.AttackMotionTimeFloat,
-                    AttackAnimationTime * Unit.GetCurrentAttackSpeed());
+                    animationTime * Unit.GetCurrentAttackSpeed() / animationTime);
                 Unit.DoAttack(target);
                 _attackCooldown = 1 / Unit.GetCurrentAttackSpeed();
                 if (target.IsDead())

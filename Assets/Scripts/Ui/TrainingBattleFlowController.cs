@@ -120,8 +120,6 @@ public sealed class TrainingBattleFlowController : NetworkBehaviour
             {
                 unit.hitPoints = 1;
             }
-
-            unit.trainingExperience += 100;
         }
 
         return allUnits;

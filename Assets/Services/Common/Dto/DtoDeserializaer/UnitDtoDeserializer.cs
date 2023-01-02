@@ -25,7 +25,6 @@ namespace Services.Common.Dto
                 magicResistance = jObject["magicResistance"]?.Value<long>() ?? -1,
                 damage = jObject["damage"]?.Value<long>() ?? -1,
                 attackSpeed = jObject["attackSpeed"]?.Value<float>() ?? -1,
-                trainingExperience = jObject["trainingExperience"]?.Value<long>() ?? -1,
                 unitId = jObject["unitId"]?.Value<long>() ?? -1,
                 goldAmount = jObject["goldAmount"]?.Value<long>() ?? -1,
                 activity = unitActivity,

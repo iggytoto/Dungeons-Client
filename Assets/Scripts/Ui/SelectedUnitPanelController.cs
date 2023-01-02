@@ -36,7 +36,6 @@ public class SelectedUnitPanelController : MonoBehaviour
             damageText.text = u.damage.ToString();
             armorText.text = u.armor.ToString();
             mrText.text = u.magicResistance.ToString();
-            teText.text = u.trainingExperience.ToString();
             asText.text = u.attackSpeed.ToString();
             arText.text = u.attackRange.ToString();
             msText.text = u.movementSpeed.ToString();

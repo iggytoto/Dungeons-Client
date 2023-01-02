@@ -17,7 +17,6 @@ namespace Services.Common.Dto
         public long magicResistance;
         public long damage;
         public float attackSpeed;
-        public long trainingExperience;
         public long unitId;
         public long goldAmount;
         public Unit.UnitActivity activity;
@@ -41,7 +40,6 @@ namespace Services.Common.Dto
                 attackSpeed = attackSpeed,
                 magicResistance = magicResistance,
                 ownerId = ownerId,
-                trainingExperience = trainingExperience,
                 activity = activity,
                 type = unitType,
                 attackRange = attackRange,
@@ -69,7 +67,6 @@ namespace Services.Common.Dto
                 attackSpeed = u.attackSpeed,
                 magicResistance = u.magicResistance,
                 ownerId = u.ownerId,
-                trainingExperience = u.trainingExperience,
                 activity = u.activity,
                 attackRange = u.attackRange,
                 battleBehavior = u.battleBehavior,

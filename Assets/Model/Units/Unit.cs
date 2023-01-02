@@ -14,7 +14,6 @@ public class Unit : ModelBase, INetworkSerializable
     public float attackSpeed;
     public float attackRange;
     public long ownerId;
-    public long trainingExperience;
     public float movementSpeed;
     public BattleBehavior battleBehavior;
     public UnitActivity activity;
@@ -81,7 +80,6 @@ public class Unit : ModelBase, INetworkSerializable
         serializer.SerializeValue(ref attackSpeed);
         serializer.SerializeValue(ref attackRange);
         serializer.SerializeValue(ref ownerId);
-        serializer.SerializeValue(ref trainingExperience);
         serializer.SerializeValue(ref movementSpeed);
         serializer.SerializeValue(ref battleBehavior);
         serializer.SerializeValue(ref activity);

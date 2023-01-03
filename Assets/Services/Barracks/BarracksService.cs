@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -114,7 +115,14 @@ public class BarracksService : ServiceBase, IBarrackService
             (_, _) => Refresh());
     }
 
-    public void UpgradeUnitEquipment(long equipmentId, UnitType unitType, string upgradeParamName)
+    public void UpgradeUnitEquipment<TDomain, TDto>(
+        long equipmentId,
+        UnitType unitType,
+        string upgradeParamName,
+        EventHandler<TDomain> onSuccess,
+        Func<TDto, TDomain> dtoMapper)
+        where TDomain : Equipment
+        where TDto : EquipmentDto
     {
         _apiAdapter.UpgradeUnitEquipment(
             _loginService.UserContext,
@@ -124,7 +132,7 @@ public class BarracksService : ServiceBase, IBarrackService
                 unitType = unitType,
                 paramNameToUpgrade = upgradeParamName
             },
-            null,
+            (_, dto) => onSuccess.Invoke(this, dtoMapper.Invoke((TDto)dto)),
             null);
     }
 }

@@ -4,12 +4,12 @@ using Unity.Netcode;
 namespace Model.Units
 {
     [Serializable]
-    public class HumanWarriorEquipment : Equipment , INetworkSerializable
+    public class HumanWarriorEquipment : Equipment, INetworkSerializable
     {
         public static readonly string OffenceParamName = "offence";
         public static readonly string DefenceParamName = "defence";
-        
-        
+
+
         public long defencePoints;
         public long offencePoints;
 

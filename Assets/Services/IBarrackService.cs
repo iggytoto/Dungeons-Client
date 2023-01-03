@@ -1,6 +1,9 @@
+using System;
 using System.Collections.ObjectModel;
 using DefaultNamespace;
 using Model.Units;
+using Services.Common.Dto;
+using Services.Dto;
 
 namespace Services
 {
@@ -23,6 +26,23 @@ namespace Services
         ObservableCollection<Unit> IUnitListProvider<Unit>.Units => AvailableUnits;
         void ChangeUnitName(long selectedUnitId, string newName);
         void ChangeUnitBattleBehavior(long selectedUnitId, BattleBehavior bb);
-        void UpgradeUnitEquipment(long equipmentId, UnitType unitType, string upgradeParamName);
+
+        /**
+         * Request an upgrade for given equipment by id.
+         *
+         * <param name="equipmentId"> equipment id to upgrade</param>
+         * <param name="unitType"> unit type of equipment's unit</param>
+         * <param name="upgradeParamName"> equipment parameter name to upgrade</param>
+         * <param name="onSuccess"> success handler</param>
+         * <param name="dtoMapper"> dto to domain mapper</param>
+         */
+        public void UpgradeUnitEquipment<TDomain, TDto>(
+            long equipmentId,
+            UnitType unitType,
+            string upgradeParamName,
+            EventHandler<TDomain> onSuccess,
+            Func<TDto, TDomain> dtoMapper)
+            where TDomain : Equipment
+            where TDto : EquipmentDto;
     }
 }

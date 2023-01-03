@@ -1,10 +1,12 @@
 using DefaultNamespace;
 using Model.Units;
 using Services;
+using Services.Common.Dto;
+using Services.Dto;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HumaWarriorEquipmentTableController : MonoBehaviour, IEquipmentTableController
+public class HumanWarriorEquipmentTableController : MonoBehaviour, IEquipmentTableController
 {
     [SerializeField] private Button upgradeOffenceButton;
     [SerializeField] private Button upgradeDefenceButton;
@@ -50,14 +52,26 @@ public class HumaWarriorEquipmentTableController : MonoBehaviour, IEquipmentTabl
 
     public void UpgradeDefenceClicked()
     {
-        _barrackService.UpgradeUnitEquipment(_equipment.id, UnitType.HumanWarrior,
-            HumanWarriorEquipment.DefenceParamName);
+        _barrackService.UpgradeUnitEquipment<HumanWarriorEquipment, HumanWarriorEquipmentDto>(_equipment.id,
+            UnitType.HumanWarrior,
+            HumanWarriorEquipment.DefenceParamName, UpdateEquipment, MapDto);
+    }
+
+    private static HumanWarriorEquipment MapDto(HumanWarriorEquipmentDto dto)
+    {
+        return (HumanWarriorEquipment)dto.ToDomain();
+    }
+
+    private void UpdateEquipment(object sender, Equipment e)
+    {
+        SetEquipment(e);
     }
 
     public void UpgradeOffenceClicked()
     {
-        _barrackService.UpgradeUnitEquipment(_equipment.id, UnitType.HumanWarrior,
-            HumanWarriorEquipment.OffenceParamName);
+        _barrackService.UpgradeUnitEquipment<HumanWarriorEquipment, HumanWarriorEquipmentDto>(_equipment.id,
+            UnitType.HumanWarrior,
+            HumanWarriorEquipment.OffenceParamName, UpdateEquipment, MapDto);
     }
 
     public void SetEquipment(Equipment e)

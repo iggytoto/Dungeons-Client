@@ -1,7 +1,9 @@
+using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Model.Units;
 using Services;
+using Services.Common.Dto;
 
 public class MockBarracksService : IBarrackService
 {
@@ -39,7 +41,13 @@ public class MockBarracksService : IBarrackService
         u.battleBehavior = bb;
     }
 
-    public void UpgradeUnitEquipment(long equipmentId, UnitType unitType, string upgradeParamName)
+    public void UpgradeUnitEquipment<TDomain, TDto>(
+        long equipmentId,
+        UnitType unitType,
+        string upgradeParamName,
+        EventHandler<TDomain> onSuccess,
+        Func<TDto, TDomain> dtoMapper)
+        where TDomain : Equipment where TDto : EquipmentDto
     {
     }
 

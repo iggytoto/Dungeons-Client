@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-public class BattleBehaviorNode
+public abstract class BattleBehaviorNode
 {
     protected BattleBehaviorNodeState State;
     public BattleBehaviorNode Parent;
@@ -20,12 +20,12 @@ public class BattleBehaviorNode
         }
     }
 
-    public virtual BattleBehaviorNodeState Evaluate() => BattleBehaviorNodeState.Failure;
+    public abstract BattleBehaviorNodeState Evaluate();
 
     public void SetData(string key, object value)
     {
         _dataContext[key] = value;
-        Parent?.SetData(key,value);
+        Parent?.SetData(key, value);
     }
 
     protected object GetData(string key)
@@ -44,8 +44,10 @@ public class BattleBehaviorNode
             {
                 return result;
             }
+
             node = node.Parent;
         }
+
         return null;
     }
 
@@ -65,18 +67,20 @@ public class BattleBehaviorNode
             {
                 return true;
             }
+
             node = node.Parent;
         }
+
         return false;
     }
 
     private void AttachNode(BattleBehaviorNode child)
     {
+        if (child == null) return;
         child.Parent = this;
         Children.Add(child);
     }
-    
-    
+
 
     public enum BattleBehaviorNodeState
     {

@@ -171,6 +171,9 @@
      <Compile Include="Assets\Scripts\Ui\HumaWarriorEquipmentTableController.cs" />
      <Compile Include="Assets\Scripts\Ui\IEquipmentTableController.cs" />
      <Compile Include="Assets\Services\Common\Dto\UpgradeUnitEquipmentRequestDto.cs" />
+     <Compile Include="Assets\Scripts\BattleBehaviour\Tasks\AttackOrAbilityBattleTask.cs" />
+     <Compile Include="Assets\Scripts\BattleBehaviour\Abilities\AbilityManager.cs" />
+     <Compile Include="Assets\Scripts\BattleBehaviour\Abilities\HumanWarriorAbility.cs" />
      <Folder Include="Assets" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\mergetool.ja.txt" />
      <Folder Include="Assets\Libs\Tiny Fantasy Icons\Keys" />
@@ -427,6 +430,7 @@
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\workspaceserver.zh-Hans.txt" />
      <Folder Include="Assets\Terrains" />
      <Folder Include="Library\PackageCache\com.unity.modules.wind@1.0.0" />
+     <Folder Include="Assets\Scripts\BattleBehaviour\Abilities" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\binmergetool.zh-Hant.txt" />
      <Folder Include="Assets\Libs\Tiny Fantasy Icons\Bones" />
      <Folder Include="Library\PackageCache\com.unity.nuget.mono-cecil@1.10.1" />
@@ -452,6 +456,7 @@
      <Folder Include="Library\PackageCache\com.unity.settings-manager@1.0.3" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\cm-help.zh-Hans.txt" />
      <Folder Include="Assets\Scenes\TrainingYardScene" />
+     <Folder Include="Assets\Resources\Characters\HumanWarrior\Animations" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\semantic.ko.txt" />
      <None Include="Assets\Libs\TextMesh Pro\Shaders\TMP_SDF.shader" />
      <None Include="Library\PackageCache\com.unity.toolchain.win-x86_64-linux-x86_64@2.0.3\ValidationConfig.json" />
@@ -471,6 +476,7 @@
      <Folder Include="Library\PackageCache\com.unity.ugui@1.0.0\Tests" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\xdiff.zh-Hant.txt" />
      <None Include="Assets\Libs\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
+     <Folder Include="Assets\Resources\Characters\HumanWarrior" />
      <None Include="Library\PackageCache\com.unity.terrain-tools@4.0.3\Shaders\ContrastHeight.shader" />
      <None Include="Library\PackageCache\com.unity.modules.umbra@1.0.0\package.json" />
      <None Include="Library\PackageCache\com.unity.nuget.newtonsoft-json@3.0.2\package.json" />

@@ -1,3 +1,4 @@
+using System.Collections;
 using DefaultNamespace.Animation;
 using UnityEngine;
 
@@ -13,6 +14,7 @@ namespace DefaultNamespace.BattleBehaviour
 
         public override BattleBehaviorNodeState Evaluate()
         {
+            _attackCooldown -= Time.deltaTime;
             if (base.Evaluate() == BattleBehaviorNodeState.Failure)
             {
                 return BattleBehaviorNodeState.Failure;
@@ -25,7 +27,6 @@ namespace DefaultNamespace.BattleBehaviour
                 return State;
             }
 
-            _attackCooldown -= Time.deltaTime;
             if (_attackCooldown <= 0)
             {
                 Animator.SetBool(AnimationConstants.IsRunningBoolean, false);
@@ -40,6 +41,9 @@ namespace DefaultNamespace.BattleBehaviour
                 {
                     ClearTarget();
                 }
+
+                State = BattleBehaviorNodeState.Success;
+                return State;
             }
 
             State = BattleBehaviorNodeState.Running;

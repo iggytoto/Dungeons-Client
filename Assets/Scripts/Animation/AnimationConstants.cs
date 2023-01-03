@@ -6,6 +6,6 @@ namespace DefaultNamespace.Animation
         public const string AttackTrigger = "Attack";
         public const string AttackMotionTimeFloat = "AttackMotionTime";
         public const string IsDeadBoolean = "IsDead";
-        public const string AbilityTrigger = "Ability";
+        public const string IsAbilityBoolean = "IsAbility";
     }
 }

@@ -190,18 +190,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8392954386781127559, guid: 6570b5cf75c7e344197da83463bbff8c, type: 3}
   m_PrefabInstance: {fileID: 1798389812}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &300507296
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 300507295}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cefb5a5ea0304af68ecd9eff186432a1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &300507302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -218,9 +206,24 @@ MonoBehaviour:
   ownerId: 2
   hp: 100000
   maxHp: 100000
-  attackRange: 0
-  moveSpeed: 0
-  attackSpeed: 0
+  maxMana: 0
+  mana: 0
+  attackRange: 2
+  moveSpeed: 4
+  attackSpeed: 1
+  type: 1
+--- !u!114 &300507307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 300507295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37087eb4b94a4717aac01bbc4000e886, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &856323161
 GameObject:
   m_ObjectHideFlags: 0
@@ -541,18 +544,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8392954386781127559, guid: 36777493e7198db4b99dbd77365a7da7, type: 3}
   m_PrefabInstance: {fileID: 102888744}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1828531310
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1828531309}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37087eb4b94a4717aac01bbc4000e886, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1828531311
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -569,9 +560,24 @@ MonoBehaviour:
   ownerId: 3
   hp: 111
   maxHp: 111
-  attackRange: 0
+  maxMana: 0
+  mana: 0
+  attackRange: 2
   moveSpeed: 4
   attackSpeed: 1
+  type: 0
+--- !u!114 &1828531316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1828531309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cefb5a5ea0304af68ecd9eff186432a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2142681926
 GameObject:
   m_ObjectHideFlags: 0

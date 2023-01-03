@@ -11,7 +11,7 @@ namespace DefaultNamespace.BattleBehaviour
 
         protected readonly Animator Animator;
         protected readonly UnitStateController Unit;
-        
+
         private readonly List<UnitStateController> _allUnits = new();
 
         protected UnitTaskBase(UnitStateController unitStateController)
@@ -34,7 +34,7 @@ namespace DefaultNamespace.BattleBehaviour
         {
             SetData(TargetDataKey, target);
         }
-        
+
         protected UnitStateController GetTargetAlly()
         {
             return (UnitStateController)GetData(TargetAllyDataKey);
@@ -51,7 +51,7 @@ namespace DefaultNamespace.BattleBehaviour
             State = BattleBehaviorNodeState.Running;
             return State;
         }
-        
+
         protected List<UnitStateController> GetAllUnits()
         {
             if (!_allUnits.Any())
@@ -60,6 +60,11 @@ namespace DefaultNamespace.BattleBehaviour
             }
 
             return _allUnits;
+        }
+
+        protected List<UnitStateController> GetAllLiveEnemies()
+        {
+            return GetAllUnits().Where(u => u.Unit.ownerId != Unit.Unit.ownerId && !u.IsDead()).ToList();
         }
     }
 }

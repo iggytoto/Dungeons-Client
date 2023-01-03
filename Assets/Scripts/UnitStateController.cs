@@ -57,4 +57,14 @@ public class UnitStateController : NetworkBehaviour
     {
         return Unit?.attackSpeed ?? 1;
     }
+
+    public long GetCurrentMana()
+    {
+        return Unit?.mana ?? 0;
+    }
+
+    public long GetMaxMana()
+    {
+        return Unit?.maxMana ?? 0;
+    }
 }

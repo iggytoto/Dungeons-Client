@@ -3621,6 +3621,11 @@ MonoBehaviour:
       SourcePrefabToOverride: {fileID: 0}
       SourceHashToOverride: 0
       OverridingTargetPrefab: {fileID: 0}
+    - Override: 0
+      Prefab: {fileID: 8392954386781127559, guid: 978af14e94ebb0f40936e18f01d0c68d, type: 3}
+      SourcePrefabToOverride: {fileID: 0}
+      SourceHashToOverride: 0
+      OverridingTargetPrefab: {fileID: 0}
     TickRate: 30
     ClientConnectionBufferTimeout: 10
     ConnectionApproval: 0
@@ -4401,7 +4406,7 @@ PrefabInstance:
     - target: {fileID: 4271042742655406263, guid: 9a1a320ee5e28424da56dea2279662cb, type: 3}
       propertyPath: servicesConfiguration
       value: 
-      objectReference: {fileID: 11400000, guid: e04713fe47cecab44b65c337636da9c7, type: 2}
+      objectReference: {fileID: 11400000, guid: 5da9724a3f94bf846a47aa97f4e27700, type: 2}
     - target: {fileID: 4468862614129480654, guid: 9a1a320ee5e28424da56dea2279662cb, type: 3}
       propertyPath: m_Name
       value: GameService

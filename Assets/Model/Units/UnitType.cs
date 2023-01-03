@@ -6,6 +6,7 @@ namespace Model.Units
     public enum UnitType
     {
         Dummy,
-        HumanWarrior
+        HumanWarrior,
+        HumanArcher
     }
 }

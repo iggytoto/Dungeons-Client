@@ -5,3 +5,4 @@ https://assetstore.unity.com/packages/tools/input-management/json-net-for-unity-
 https://assetstore.unity.com/packages/3d/environments/landscapes/terrain-sample-asset-pack-145808
 https://assetstore.unity.com/packages/3d/vegetation/trees/mobile-tree-package-18866
 https://assetstore.unity.com/packages/3d/environments/medieval-village-building-kit-116540
+https://assetstore.unity.com/packages/3d/props/weapons/free-rpg-weapons-199738

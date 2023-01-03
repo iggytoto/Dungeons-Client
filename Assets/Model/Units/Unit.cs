@@ -70,6 +70,26 @@ public class Unit : ModelBase, INetworkSerializable
             equip = new HumanWarriorEquipment()
         };
     }
+    
+    public static Unit HumanArcher()
+    {
+        return new Unit
+        {
+            hitPoints = 100,
+            maxHp = 100,
+            armor = 15,
+            magicResistance = 0,
+            activity = UnitActivity.Idle,
+            battleBehavior = BattleBehavior.StraightAttack,
+            attackRange = 2,
+            attackSpeed = 1,
+            movementSpeed = 6,
+            damage = 50,
+            maxMana = 100,
+            type = UnitType.HumanWarrior,
+            equip = new HumanWarriorEquipment()
+        };
+    }
 
 
     [Serializable]

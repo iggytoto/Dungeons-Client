@@ -1,3 +1,4 @@
+using DefaultNamespace;
 using DefaultNamespace.Animation;
 using DefaultNamespace.BattleBehaviour;
 using Unity.Netcode;
@@ -14,6 +15,7 @@ public class UnitStateController : NetworkBehaviour
     {
         _unit.Value = unit;
         BattleBehaviourManager.UpdateBattleBehaviour(this);
+        gameObject.AddComponent<ManaRegenBehavior>();
     }
 
     public Unit ToUnit()

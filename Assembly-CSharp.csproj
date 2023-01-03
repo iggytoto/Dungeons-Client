@@ -41,6 +41,7 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\ManaRegenBehavior.cs" />
      <Compile Include="Assets\Services\Login\LoginService.cs" />
      <Compile Include="Assets\Services\UnitShop\TavernServiceApiAdapter.cs" />
      <Compile Include="Assets\Scripts\BattleBehaviour\BattleBehaviourManager.cs" />
@@ -596,7 +597,6 @@
      <Folder Include="Assets\Ui" />
      <None Include="Assets\Libs\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\semantic.ja.txt" />
-     <Folder Include="Assets\Scripts" />
      <Folder Include="Library\PackageCache\com.unity.modules.unitywebrequestwww@1.0.0" />
      <Folder Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib" />
      <None Include="Library\PackageCache\com.unity.modules.director@1.0.0\package.json" />

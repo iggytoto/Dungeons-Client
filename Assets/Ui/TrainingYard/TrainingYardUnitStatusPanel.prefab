@@ -169,7 +169,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -2, y: -2}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -516,6 +516,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitNameText: {fileID: 3446252744168565594}
   hpSlider: {fileID: 4360271103279746648}
+  manaSlider: {fileID: 1250659387549248354}
+  unit:
+    Icon: {fileID: 0}
+    Name: 
+    Id: 0
+    hitPoints: 0
+    armor: 0
+    magicResistance: 0
+    damage: 0
+    maxHp: 0
+    mana: 0
+    maxMana: 0
+    attackSpeed: 0
+    attackRange: 0
+    ownerId: 0
+    movementSpeed: 0
+    battleBehavior: 0
+    activity: 0
+    type: 0
 --- !u!1 &7788441056537755491
 GameObject:
   m_ObjectHideFlags: 0
@@ -533,7 +552,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2818584272142363693
 RectTransform:
   m_ObjectHideFlags: 0

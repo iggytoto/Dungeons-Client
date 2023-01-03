@@ -1,3 +1,4 @@
+using System;
 using Model.Units;
 using UnityEngine;
 
@@ -12,7 +13,12 @@ namespace DefaultNamespace
 
         private static string GetPrefab(UnitType type)
         {
-            return "Characters/Dummy/DummyUnitPrefab";
+            return type switch
+            {
+                UnitType.HumanWarrior => "Characters/HumanWarrior/HumanWarriorPrefab",
+                UnitType.Dummy => "Characters/Dummy/DummyUnitPrefab",
+                _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
+            };
         }
     }
 }

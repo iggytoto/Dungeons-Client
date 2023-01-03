@@ -7,6 +7,7 @@ public class TrainingYardUnitStatusPanelController : MonoBehaviour
     [SerializeField] private TMP_Text unitNameText;
 
     [SerializeField] private Slider hpSlider;
+    [SerializeField] private Slider manaSlider;
 
     public Unit unit;
 
@@ -19,6 +20,14 @@ public class TrainingYardUnitStatusPanelController : MonoBehaviour
             hpSlider.minValue = 0;
             hpSlider.value = unit.hitPoints;
         }
+
+        if (manaSlider != null)
+        {
+            manaSlider.maxValue = unit.maxMana;
+            manaSlider.minValue = 0;
+            manaSlider.value = unit.mana;
+        }
+
 
         if (unitNameText != null)
         {

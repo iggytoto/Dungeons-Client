@@ -4,7 +4,6 @@ using DefaultNamespace.BattleBehaviour;
 using Unity.Netcode;
 using UnityEngine;
 
-
 public class UnitStateController : NetworkBehaviour
 {
     public virtual Unit Unit => _unit.Value;
@@ -43,7 +42,7 @@ public class UnitStateController : NetworkBehaviour
 
     private void DoDamage(long unitDamage)
     {
-        Unit.hitPoints -= unitDamage;
+        Unit.hitPoints -= unitDamage * (100 - Unit.armor) / 100;
         if (IsDead())
         {
             gameObject.GetComponentInChildren<Animator>().SetBool(AnimationConstants.IsDeadBoolean, true);

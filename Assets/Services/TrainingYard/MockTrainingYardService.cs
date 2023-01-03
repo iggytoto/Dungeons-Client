@@ -29,10 +29,9 @@ namespace Services.TrainingYard
         {
             return Task.FromResult(new List<Unit>
             {
-                Unit.Random(BattleBehavior.StraightAttack),
-                Unit.Random(BattleBehavior.StraightAttack),
-                Unit.Random(BattleBehavior.StraightAttack),
-                Unit.Random(BattleBehavior.StraightAttack),
+                Unit.HumanWarrior(),
+                Unit.HumanWarrior(),
+                Unit.HumanWarrior(),
             }.Select(x =>
             {
                 x.ownerId = userId;
@@ -43,7 +42,6 @@ namespace Services.TrainingYard
         public void SaveTrainingResult(DateTime result, string matchMakingType, long userOneId, long userTwoId, long winnerUserId,
             IEnumerable<Unit> processBattleResultsForUnits)
         {
-            throw new NotImplementedException();
         }
     }
 }

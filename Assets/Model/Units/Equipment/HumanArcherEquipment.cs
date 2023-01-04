@@ -8,8 +8,8 @@ namespace Model.Units
     {
         public static readonly string MidRangeParamName = "midRange";
         public static readonly string LongRangeParamName = "longRange";
-        public static readonly string FireArrowsParamName = "fireArrows";
-        public static readonly string PoisonArrowsParamName = "poisonArrows";
+        public static readonly string FireArrowsParamName = "fireArrow";
+        public static readonly string PoisonArrowsParamName = "poisonArrow";
 
         public long midRangePoints;
         public long longRangePoints;

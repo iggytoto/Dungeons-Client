@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Newtonsoft.Json;
 using Services.Common.Dto;
 using Services.Dto;
@@ -11,9 +12,10 @@ namespace Services.UnitShop
         private const string GetAvailableUnitsPath = "/tavern/availableUnits";
         private const string BuyUnitPath = "/tavern/buyUnit";
 
-        public void GetAvailableUnits(UserContext loginServiceUserContext,
-            EventHandler<UnitListResponseDto> successHandler,
-            EventHandler<ErrorResponseDto> errorHandler)
+        public void GetAvailableUnits(
+            UserContext loginServiceUserContext,
+            EventHandler<IEnumerable<UnitForSale>> successHandler,
+            EventHandler<string> errorHandler)
         {
             StartCoroutine(
                 DoRequestCoroutine(
@@ -21,24 +23,26 @@ namespace Services.UnitShop
                     null,
                     Get,
                     new Dictionary<string, string> { { Authorization, GetTokenValueHeader(loginServiceUserContext) } },
-                    successHandler,
-                    errorHandler,
+                    (_, dto) => successHandler?.Invoke(this, dto.units.Select(uDto => uDto.ToUnitForSale())),
+                    (_, dto) => errorHandler?.Invoke(this, dto.message),
                     new UnitListResponseDtoDeserializer()));
         }
 
-        public void BuyUnit(Unit unit,
+        public void BuyUnit(
+            Unit unit,
             UserContext loginServiceUserContext,
-            EventHandler<EmptyResponseDto> successHandler,
-            EventHandler<ErrorResponseDto> errorHandler)
+            EventHandler<Unit> successHandler,
+            EventHandler<string> errorHandler)
         {
             var requestBody = JsonConvert.SerializeObject(new BuyUnitRequest
             {
-                unitId = unit.Id
+                type = unit.type
             });
             StartCoroutine(DoRequestCoroutine(GetConnectionAddress() + BuyUnitPath, requestBody, Post,
                 new Dictionary<string, string> { { Authorization, GetTokenValueHeader(loginServiceUserContext) } },
-                successHandler,
-                errorHandler));
+                (_, dto) => successHandler?.Invoke(this, dto.ToDomain()),
+                (_, dto) => errorHandler?.Invoke(this, dto.message),
+                new UnitDtoDeserializer()));
         }
     }
 }

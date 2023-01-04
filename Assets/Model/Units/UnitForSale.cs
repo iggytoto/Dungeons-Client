@@ -17,6 +17,7 @@ public class UnitForSale : Unit
             hitPoints = unit.hitPoints,
             magicResistance = unit.magicResistance,
             ownerId = unit.ownerId,
+            type = unit.type,
             GoldPrice = goldPrice
         };
     }

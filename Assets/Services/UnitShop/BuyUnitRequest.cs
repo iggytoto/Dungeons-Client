@@ -1,10 +1,11 @@
 using System;
+using Model.Units;
 
 namespace Services.UnitShop
 {
     [Serializable]
     public class BuyUnitRequest
     {
-        public long unitId;
+        public UnitType type;
     }
 }

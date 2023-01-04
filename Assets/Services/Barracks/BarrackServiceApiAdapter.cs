@@ -75,11 +75,12 @@ namespace Services.Barracks
                     null));
         }
 
-        public void UpgradeUnitEquipment(
+        public void UpgradeUnitEquipment<TDto>(
             UserContext userContext,
             UpgradeUnitEquipmentRequestDto dto,
-            EventHandler<ResponseBaseDto> successHandler,
+            EventHandler<TDto> successHandler,
             EventHandler<ErrorResponseDto> errorHandler)
+            where TDto : EquipmentDto
         {
             StartCoroutine(
                 DoRequestCoroutine(
@@ -88,7 +89,8 @@ namespace Services.Barracks
                     Post,
                     new Dictionary<string, string> { { Authorization, GetTokenValueHeader(userContext) } },
                     successHandler,
-                    errorHandler));
+                    errorHandler,
+                    UnitEquipmentDeserializerBase.GetDeserializer<TDto>(dto.unitType)));
         }
     }
 }

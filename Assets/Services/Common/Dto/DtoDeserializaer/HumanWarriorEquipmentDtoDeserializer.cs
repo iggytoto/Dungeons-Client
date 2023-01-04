@@ -1,3 +1,4 @@
+using System;
 using Newtonsoft.Json.Linq;
 
 namespace Services.Common.Dto
@@ -7,11 +8,16 @@ namespace Services.Common.Dto
     {
         public override EquipmentDto Deserialize(string json)
         {
+            if (string.IsNullOrEmpty(json))
+            {
+                return null;
+            }
+
             var jObject = JObject.Parse(json);
             return new HumanWarriorEquipmentDto
             {
-                unitId = jObject["unitId"]?.Value<long>() ?? -1,
-                code = jObject["code"]?.Value<long>() ?? -1,
+                id = jObject["id"]?.Value<long?>() ?? -1,
+                unitId = jObject["unitId"]?.Value<long?>() ?? -1,
                 defencePoints = jObject["defencePoints"]?.Value<long>() ?? -1,
                 offencePoints = jObject["offencePoints"]?.Value<long>() ?? -1
             };

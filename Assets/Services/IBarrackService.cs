@@ -3,7 +3,6 @@ using System.Collections.ObjectModel;
 using DefaultNamespace;
 using Model.Units;
 using Services.Common.Dto;
-using Services.Dto;
 
 namespace Services
 {
@@ -16,7 +15,6 @@ namespace Services
          * Collection of available units for player
          */
         public ObservableCollection<Unit> AvailableUnits { get; }
-
 
         /**
          * Sends command to the server to train unit with selected id

@@ -7,11 +7,16 @@ namespace Services.Common.Dto
     {
         public override EquipmentDto Deserialize(string json)
         {
+            if (string.IsNullOrEmpty(json))
+            {
+                return null;
+            }
+
             var jObject = JObject.Parse(json);
             return new HumanArcherEquipmentDto
             {
-                unitId = jObject["unitId"]?.Value<long>() ?? -1,
-                code = jObject["code"]?.Value<long>() ?? -1,
+                id = jObject["id"]?.Value<long?>() ?? -1,
+                unitId = jObject["unitId"]?.Value<long?>() ?? -1,
                 midRangePoints = jObject["midRangePoints"]?.Value<long>() ?? -1,
                 longRangePoints = jObject["longRangePoints"]?.Value<long>() ?? -1,
                 fireArrows = jObject["fireArrows"]?.Value<bool>() ?? false,

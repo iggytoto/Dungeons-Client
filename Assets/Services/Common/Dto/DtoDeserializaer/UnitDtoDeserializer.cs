@@ -14,27 +14,49 @@ namespace Services.Common.Dto
             Enum.TryParse(jObject["unitType"]?.Value<string>(), out UnitType unitType);
             Enum.TryParse(jObject["activity"]?.Value<string>(), out Unit.UnitActivity unitActivity);
             Enum.TryParse(jObject["battleBehavior"]?.Value<string>(), out BattleBehavior battleBehavior);
+            var id = jObject["id"]?.Value<long?>() ?? -1;
+            var name = jObject["name"]?.Value<string>();
+            var ownerId = jObject["ownerId"]?.Value<long?>() ?? -1;
+            var hitPoints = jObject["hitPoints"]?.Value<long>() ?? -1;
+            var maxHitPoints = jObject["maxHitPoints"]?.Value<long>() ?? -1;
+            var armor = jObject["armor"]?.Value<long>() ?? -1;
+            var magicResistance = jObject["magicResistance"]?.Value<long>() ?? -1;
+            var damage = jObject["damage"]?.Value<long>() ?? -1;
+            var attackSpeed = jObject["attackSpeed"]?.Value<float>() ?? -1;
+            var unitId = jObject["unitId"]?.Value<long>() ?? -1;
+            var goldAmount = jObject["goldAmount"]?.Value<long>() ?? -1;
+            var attackRange = jObject["attackRange"]?.Value<float>() ?? -1;
+            var movementSpeed = jObject["movementSpeed"]?.Value<float>() ?? -1;
+            var mana = jObject["mana"]?.Value<long>() ?? -1;
+            var maxMana = jObject["maxMana"]?.Value<long>() ?? -1;
+            var startedAt = jObject["startedAt"]?.Value<DateTime>() ?? new DateTime();
+            var unitEquipJson = jObject["unitEquip"]?.ToString();
+            var unitEquip = string.IsNullOrEmpty(unitEquipJson)
+                ? null
+                : UnitEquipmentDeserializerBase.GetDeserializer(unitType)
+                    ?.Deserialize(unitEquipJson);
             return new UnitDto
             {
-                id = jObject["id"]?.Value<long>() ?? -1,
-                name = jObject["name"]?.Value<string>(),
-                ownerId = jObject["ownerId"]?.Value<long>() ?? -1,
-                hitPoints = jObject["hitPoints"]?.Value<long>() ?? -1,
-                maxHitPoints = jObject["maxHitPoints"]?.Value<long>() ?? -1,
-                armor = jObject["armor"]?.Value<long>() ?? -1,
-                magicResistance = jObject["magicResistance"]?.Value<long>() ?? -1,
-                damage = jObject["damage"]?.Value<long>() ?? -1,
-                attackSpeed = jObject["attackSpeed"]?.Value<float>() ?? -1,
-                unitId = jObject["unitId"]?.Value<long>() ?? -1,
-                goldAmount = jObject["goldAmount"]?.Value<long>() ?? -1,
+                id = id,
+                name = name,
+                ownerId = ownerId,
+                hitPoints = hitPoints,
+                maxHitPoints = maxHitPoints,
+                armor = armor,
+                magicResistance = magicResistance,
+                damage = damage,
+                attackSpeed = attackSpeed,
+                unitId = unitId,
+                goldAmount = goldAmount,
                 activity = unitActivity,
-                attackRange = jObject["attackRange"]?.Value<float>() ?? -1,
-                movementSpeed = jObject["movementSpeed"]?.Value<float>() ?? -1,
+                attackRange = attackRange,
+                movementSpeed = movementSpeed,
                 battleBehavior = battleBehavior,
                 unitType = unitType,
-                startedAt = jObject["startedAt"]?.Value<DateTime>() ?? new DateTime(),
-                unitEquip = UnitEquipmentDeserializerBase.GetDeserializer(unitType)
-                    ?.Deserialize(jObject["unitEquip"]?.ToString())
+                mana = mana,
+                maxMana = maxMana,
+                startedAt = startedAt,
+                unitEquip = unitEquip
             };
         }
     }

@@ -124,7 +124,7 @@ public class BarracksService : ServiceBase, IBarrackService
         where TDomain : Equipment
         where TDto : EquipmentDto
     {
-        _apiAdapter.UpgradeUnitEquipment(
+        _apiAdapter.UpgradeUnitEquipment<TDto>(
             _loginService.UserContext,
             new UpgradeUnitEquipmentRequestDto
             {
@@ -132,7 +132,7 @@ public class BarracksService : ServiceBase, IBarrackService
                 unitType = unitType,
                 paramNameToUpgrade = upgradeParamName
             },
-            (_, dto) => onSuccess.Invoke(this, dtoMapper.Invoke((TDto)dto)),
+            (_, dto) => onSuccess.Invoke(this, dtoMapper.Invoke(dto)),
             null);
     }
 }

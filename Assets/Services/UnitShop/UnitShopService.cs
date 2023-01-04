@@ -1,8 +1,6 @@
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
 using Services;
-using Services.Common.Dto;
-using Services.Dto;
 using Services.UnitShop;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -17,7 +15,7 @@ public class UnitShopService : ServiceBase, ITavernService
     private ObservableCollection<Unit> _availableUnits;
 
     public ObservableCollection<UnitForSale> AvailableUnits { get; } = new();
-    
+
 
     public override void InitService()
     {
@@ -60,27 +58,19 @@ public class UnitShopService : ServiceBase, ITavernService
         _shopRefreshTimer = shopRefreshInterval;
     }
 
-    private void OnError(object sender, ErrorResponseDto e)
+    private void OnError(object sender, string e)
     {
-        Debug.Log(e.message);
+        Debug.Log(e);
     }
 
-    private void OnGetSuccess(object sender, UnitListResponseDto e)
+    private void OnGetSuccess(object sender, IEnumerable<UnitForSale> e)
     {
         AvailableUnits.Clear();
-        if (e.units != null && e.units.Any())
-        {
-            AvailableUnits.AddRange(e.units.Select(x => x.ToUnitForSale()));
-        }
+        AvailableUnits.AddRange(e);
     }
 
     public void BuyUnit(Unit unit)
     {
-        _apiAdapter.BuyUnit(unit, _loginService.UserContext, OnBuyUnitSuccess, OnError);
-    }
-
-    private void OnBuyUnitSuccess(object sender, EmptyResponseDto e)
-    {
-        RefreshShop();
+        _apiAdapter.BuyUnit(unit, _loginService.UserContext, null, OnError);
     }
 }

@@ -10,8 +10,8 @@ namespace DefaultNamespace.BattleBehaviour
         private UnitStateController _targetAlly;
         private readonly float _range;
 
-        public MoveToTargetAllyInRangeTask(UnitStateController unitStateController, NavMeshAgent navMeshAgent,float range) : base(
-            unitStateController,navMeshAgent)
+        public MoveToTargetAllyInRangeTask(UnitStateController unitStateStateController, NavMeshAgent navMeshAgent,float range) : base(
+            unitStateStateController,navMeshAgent)
         {
             _range = range;
         }
@@ -35,7 +35,7 @@ namespace DefaultNamespace.BattleBehaviour
             {
                 var lastPathPoint = Path.Last();
 
-                if (Vector3.Distance(Unit.transform.position, lastPathPoint) >=
+                if (Vector3.Distance(UnitState.transform.position, lastPathPoint) >=
                     _range)
                 {
                     Move();

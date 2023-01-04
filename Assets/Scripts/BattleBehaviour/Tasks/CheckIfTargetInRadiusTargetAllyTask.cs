@@ -6,8 +6,8 @@ namespace DefaultNamespace.BattleBehaviour
     {
         private readonly float _radius;
 
-        public CheckIfTargetInRadiusTargetAllyTask(UnitStateController unitStateController, float radius) : base(
-            unitStateController)
+        public CheckIfTargetInRadiusTargetAllyTask(UnitStateController unitStateStateController, float radius) : base(
+            unitStateStateController)
         {
             _radius = radius;
         }

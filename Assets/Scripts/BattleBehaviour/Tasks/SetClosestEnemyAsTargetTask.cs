@@ -12,8 +12,8 @@ namespace DefaultNamespace.BattleBehaviour
         public override BattleBehaviorNodeState Evaluate()
         {
             var closestTarget = GetAllUnits()
-                .Where(u => u.Unit.ownerId != Unit.Unit.ownerId && !u.IsDead())
-                .OrderBy(u => Vector3.Distance(Unit.transform.position, u.transform.position))
+                .Where(u => u.Unit.ownerId != UnitState.Unit.ownerId && !u.IsDead())
+                .OrderBy(u => Vector3.Distance(UnitState.transform.position, u.transform.position))
                 .FirstOrDefault();
             if (closestTarget == null)
             {

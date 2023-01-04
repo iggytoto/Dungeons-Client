@@ -11,8 +11,8 @@ namespace DefaultNamespace.BattleBehaviour
         private Vector3 _destination;
 
         public MoveToRandomNearPositionTask(
-            UnitStateController unitStateController,
-            float waitInterval) : base(unitStateController)
+            UnitStateController unitStateStateController,
+            float waitInterval) : base(unitStateStateController)
         {
             _waitInterval = waitInterval;
         }
@@ -36,19 +36,19 @@ namespace DefaultNamespace.BattleBehaviour
             }
             else
             {
-                if (Vector3.Distance(Unit.transform.position, _destination) < .01f)
+                if (Vector3.Distance(UnitState.transform.position, _destination) < .01f)
                 {
-                    Unit.transform.position = _destination;
+                    UnitState.transform.position = _destination;
                     _waitingCounter = 0;
                     _isWaiting = true;
                     Animator.SetBool(AnimationConstants.IsRunningBoolean, false);
                 }
                 else
                 {
-                    Unit.gameObject.transform.position =
-                        Vector3.MoveTowards(Unit.transform.position, _destination,
-                            Unit.GetCurrentSpeed() * Time.deltaTime);
-                    Unit.gameObject.transform.LookAt(_destination);
+                    UnitState.gameObject.transform.position =
+                        Vector3.MoveTowards(UnitState.transform.position, _destination,
+                            UnitState.GetCurrentSpeed() * Time.deltaTime);
+                    UnitState.gameObject.transform.LookAt(_destination);
                 }
             }
 
@@ -59,7 +59,7 @@ namespace DefaultNamespace.BattleBehaviour
         private Vector3 GetRandomPositionNearBy()
         {
             var random = Random.insideUnitCircle * 5;
-            return Unit.transform.position + new Vector3(random.x, 0, random.y);
+            return UnitState.transform.position + new Vector3(random.x, 0, random.y);
         }
     }
 }

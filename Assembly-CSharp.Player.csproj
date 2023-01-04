@@ -124,7 +124,7 @@
      <Compile Include="Assets\Scripts\Ui\Common\HorizontalUnitListController.cs" />
      <Compile Include="Assets\Services\ILoginService.cs" />
      <Compile Include="Assets\Scripts\BattleBehaviour\GuardNearestAllyBattleBehavior.cs" />
-     <Compile Include="Assets\Scripts\UnitStateController.cs" />
+     <Compile Include="Assets\Scripts\UnitState\UnitStateController.cs" />
      <Compile Include="Assets\Services\Common\Dto\ChangeUnitNameRequestDto.cs" />
      <Compile Include="Assets\Scripts\Animation\AnimationConstants.cs" />
      <Compile Include="Assets\Services\Login\LoginResponse.cs" />
@@ -179,6 +179,13 @@
      <Compile Include="Assets\Services\Common\Dto\DtoDeserializaer\HumanArcherEquipmentDtoDeserializer.cs" />
      <Compile Include="Assets\Services\Common\Dto\UnitEquipment\HumanArcherEquipmentDto.cs" />
      <Compile Include="Assets\Scripts\Ui\Scenes\Barrack\HumanArcherEquipmentTableController.cs" />
+     <Compile Include="Assets\Scripts\UnitState\Effects\FireArrowsBurningEffect.cs" />
+     <Compile Include="Assets\Scripts\UnitState\Effects\PoisonArrowsEffect.cs" />
+     <Compile Include="Assets\Scripts\UnitState\Effects\Interfaces\IHealingReduction.cs" />
+     <Compile Include="Assets\Model\Damage\Damage.cs" />
+     <Compile Include="Assets\Model\Damage\DamageType.cs" />
+     <Compile Include="Assets\Scripts\UnitState\Effects\Base\Effect.cs" />
+     <Compile Include="Assets\Scripts\UnitState\Effects\Base\DamageOverTimeEffect.cs" />
      <Folder Include="Assets" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\mergetool.ja.txt" />
      <Folder Include="Assets\Libs\Tiny Fantasy Icons\Keys" />
@@ -253,6 +260,7 @@
      <Folder Include="Assets\Libs\Tiny Fantasy Icons" />
      <Folder Include="Assets\Resources\Characters" />
      <Folder Include="Assets\Libs\Blink\Art" />
+     <Folder Include="Assets\Scripts\UnitState\Effects" />
      <None Include="Assets\Libs\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
      <Folder Include="Assets\Libs\TerrainSampleAssets\Textures\Details" />
      <Folder Include="Assets\Libs" />
@@ -353,6 +361,7 @@
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\differences.ja.txt" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\configurehelper.ja.txt" />
      <Folder Include="Library\PackageCache\com.unity.render-pipelines.universal@12.1.8\Textures\FilmGrain" />
+     <Folder Include="Assets\Model\Damage" />
      <Folder Include="Assets\Services\PlayerBank" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\semantic.en.txt" />
      <Folder Include="Library\PackageCache\com.unity.burst@1.7.3" />
@@ -436,6 +445,7 @@
      <Folder Include="Assets\Libs\Blink\Art\Weapons\LowPoly\FreeRPGWeapons\Axes\Axe_2H_Textures" />
      <Folder Include="Assets\Scripts\BattleBehaviour\Tasks" />
      <None Include="Library\PackageCache\com.unity.performance.profile-analyzer@1.1.1\package.json" />
+     <Folder Include="Assets\Scripts\UnitState\Effects\Base" />
      <Folder Include="Assets\Model\Units" />
      <Folder Include="Assets\Libs\Blink\Art\Weapons\LowPoly\FreeRPGWeapons\Axes" />
      <Folder Include="Library\PackageCache\com.unity.toolchain.win-x86_64-linux-x86_64@2.0.3\Tests" />
@@ -548,6 +558,7 @@
      <Folder Include="Assets\Libs\TerrainSampleAssets\Materials" />
      <Folder Include="Library\PackageCache\com.unity.toolchain.win-x86_64-linux-x86_64@2.0.3" />
      <None Include="Library\PackageCache\com.unity.render-pipelines.universal@12.1.8\ValidationExceptions.json" />
+     <Folder Include="Assets\Scripts\UnitState" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\i3.es.txt" />
      <Folder Include="Assets\Libs\TextMesh Pro\Resources\Style Sheets" />
      <Folder Include="Assets\Libs\TerrainSampleAssets\Settings" />
@@ -633,6 +644,7 @@
      <Folder Include="Assets\Libs\Blink\Art\Weapons\LowPoly\FreeRPGWeapons\Spears\Spear_2H_Textures" />
      <Folder Include="Library\PackageCache\com.unity.modules.jsonserialize@1.0.0" />
      <None Include="Library\PackageCache\com.unity.visualscripting@1.7.8\ValidationConfig.json" />
+     <Folder Include="Assets\Scripts\UnitState\Effects\Interfaces" />
      <Folder Include="Assets\Libs\Blink\Art\Weapons\LowPoly\FreeRPGWeapons\Maces" />
      <None Include="Library\PackageCache\com.unity.terrain-tools@4.0.3\Shaders\Generated\NoiseBlitStrata.shader" />
      <None Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\package.json" />

@@ -9,7 +9,8 @@ namespace DefaultNamespace.BattleBehaviour.Abilities
         {
             return unitStateController.Unit.type switch
             {
-                UnitType.HumanWarrior => new SpinToWinAbility(unitStateController),
+                UnitType.HumanWarrior => new HumanWarriorAbility(unitStateController),
+                UnitType.HumanArcher => new HumanArcherAbility(unitStateController),
                 UnitType.Dummy => null,
                 _ => null
             };

@@ -10,14 +10,14 @@ namespace DefaultNamespace.BattleBehaviour
         protected const string TargetAllyDataKey = "targetAlly";
 
         protected readonly Animator Animator;
-        protected readonly UnitStateController Unit;
+        protected readonly UnitStateController UnitState;
 
         private readonly List<UnitStateController> _allUnits = new();
 
-        protected UnitTaskBase(UnitStateController unitStateController)
+        protected UnitTaskBase(UnitStateController unitStateStateController)
         {
-            Unit = unitStateController;
-            Animator = unitStateController.gameObject.GetComponentInChildren<Animator>();
+            UnitState = unitStateStateController;
+            Animator = unitStateStateController.gameObject.GetComponentInChildren<Animator>();
         }
 
         protected UnitStateController GetTarget()
@@ -42,7 +42,7 @@ namespace DefaultNamespace.BattleBehaviour
 
         public override BattleBehaviorNodeState Evaluate()
         {
-            if (Unit == null || Unit.IsDead())
+            if (UnitState == null || UnitState.IsDead())
             {
                 State = BattleBehaviorNodeState.Failure;
                 return State;
@@ -64,7 +64,7 @@ namespace DefaultNamespace.BattleBehaviour
 
         protected List<UnitStateController> GetAllLiveEnemies()
         {
-            return GetAllUnits().Where(u => u.Unit.ownerId != Unit.Unit.ownerId && !u.IsDead()).ToList();
+            return GetAllUnits().Where(u => u.Unit.ownerId != UnitState.Unit.ownerId && !u.IsDead()).ToList();
         }
     }
 }

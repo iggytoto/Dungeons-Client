@@ -6,17 +6,17 @@ namespace DefaultNamespace.BattleBehaviour
 {
     public class SetFarthestEnemyFromAllyTeamTask : UnitTaskBase
     {
-        public SetFarthestEnemyFromAllyTeamTask(UnitStateController unitStateController) : base(unitStateController)
+        public SetFarthestEnemyFromAllyTeamTask(UnitStateController unitStateStateController) : base(unitStateStateController)
         {
         }
 
         public override BattleBehaviorNodeState Evaluate()
         {
             var allUnits = GetAllUnits();
-            var allies = allUnits.Where(u => u.Unit.ownerId == Unit.Unit.ownerId && !u.IsDead());
+            var allies = allUnits.Where(u => u.Unit.ownerId == UnitState.Unit.ownerId && !u.IsDead());
             var center = GetCenter(allies.Select(u => u.transform.position));
             var closestTarget = allUnits
-                .Where(u => u.Unit.ownerId != Unit.Unit.ownerId && !u.IsDead())
+                .Where(u => u.Unit.ownerId != UnitState.Unit.ownerId && !u.IsDead())
                 .OrderByDescending(u => Vector3.Distance(center, u.transform.position))
                 .FirstOrDefault();
             if (closestTarget == null)

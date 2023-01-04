@@ -9,8 +9,8 @@ namespace DefaultNamespace.BattleBehaviour
     {
         private UnitStateController _target;
 
-        public MoveToTargetBattleTask(UnitStateController unitStateController, NavMeshAgent navMeshAgent) : base(
-            unitStateController, navMeshAgent)
+        public MoveToTargetBattleTask(UnitStateController unitStateStateController, NavMeshAgent navMeshAgent) : base(
+            unitStateStateController, navMeshAgent)
         {
         }
 
@@ -33,8 +33,8 @@ namespace DefaultNamespace.BattleBehaviour
             {
                 var lastPathPoint = Path.Last();
 
-                if (Vector3.Distance(Unit.transform.position, lastPathPoint) >=
-                    Unit.GetCurrentAttackRange())
+                if (Vector3.Distance(UnitState.transform.position, lastPathPoint) >=
+                    UnitState.GetCurrentAttackRange())
                 {
                     Move();
                     Animator.SetBool(AnimationConstants.IsRunningBoolean, true);

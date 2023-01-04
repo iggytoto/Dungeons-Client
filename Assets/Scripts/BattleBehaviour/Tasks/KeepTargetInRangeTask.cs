@@ -7,8 +7,8 @@ namespace DefaultNamespace.BattleBehaviour
     public class KeepTargetInRangeTask : NavMeshAgentUnitTaskBase
     {
         public KeepTargetInRangeTask(
-            UnitStateController unitStateController,
-            NavMeshAgent navMeshAgent) : base(unitStateController, navMeshAgent)
+            UnitStateController unitStateStateController,
+            NavMeshAgent navMeshAgent) : base(unitStateStateController, navMeshAgent)
         {
         }
 
@@ -26,8 +26,8 @@ namespace DefaultNamespace.BattleBehaviour
                 return State;
             }
 
-            var distance = Vector3.Distance(Unit.transform.position, target.transform.position);
-            var ar = Unit.GetCurrentAttackRange();
+            var distance = Vector3.Distance(UnitState.transform.position, target.transform.position);
+            var ar = UnitState.GetCurrentAttackRange();
             var minRadius = ar * .9;
 
             if (minRadius <= distance && distance <= ar)
@@ -42,7 +42,7 @@ namespace DefaultNamespace.BattleBehaviour
             Animator.SetBool(AnimationConstants.IsRunningBoolean, true);
             if (minRadius >= distance)
             {
-                destination = Unit.transform.position + Vector3.back;
+                destination = UnitState.transform.position + Vector3.back;
             }
             else
             {

@@ -1,4 +1,3 @@
-using System.Collections;
 using DefaultNamespace.Animation;
 using UnityEngine;
 
@@ -8,7 +7,7 @@ namespace DefaultNamespace.BattleBehaviour
     {
         private float _attackCooldown;
 
-        public AttackBattleTask(UnitStateController unitStateController) : base(unitStateController)
+        public AttackBattleTask(UnitStateController unitStateStateController) : base(unitStateStateController)
         {
         }
 
@@ -34,9 +33,9 @@ namespace DefaultNamespace.BattleBehaviour
                 var attackClipInfo = Animator.GetCurrentAnimatorClipInfo(1)[0];
                 var animationTime = attackClipInfo.clip.averageDuration;
                 Animator.SetFloat(AnimationConstants.AttackMotionTimeFloat,
-                    animationTime * Unit.GetCurrentAttackSpeed() / animationTime);
-                Unit.DoAttack(target);
-                _attackCooldown = 1 / Unit.GetCurrentAttackSpeed();
+                    animationTime * UnitState.GetCurrentAttackSpeed() / animationTime);
+                UnitState.DoAttack(target);
+                _attackCooldown = 1 / UnitState.GetCurrentAttackSpeed();
                 if (target.IsDead())
                 {
                     ClearTarget();

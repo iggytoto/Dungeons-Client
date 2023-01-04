@@ -1,3 +1,4 @@
+using System;
 using Model.Units;
 using UnityEngine;
 
@@ -15,19 +16,26 @@ namespace DefaultNamespace
         [SerializeField] private float moveSpeed;
         [SerializeField] private float attackSpeed;
         [SerializeField] private UnitType type;
-        
-        public override Unit Unit => new()
+
+        private Unit _unit = new Unit();
+
+        private void Awake()
         {
-            Id = id,
-            ownerId = ownerId,
-            hitPoints = hp,
-            maxHp = maxHp,
-            attackRange = attackRange,
-            movementSpeed = moveSpeed,
-            attackSpeed = attackSpeed,
-            mana =  mana,
-            maxMana = maxMana,
-            type = type
-        };
+            _unit = new Unit
+            {
+                Id = id,
+                ownerId = ownerId,
+                hitPoints = hp,
+                maxHp = maxHp,
+                attackRange = attackRange,
+                movementSpeed = moveSpeed,
+                attackSpeed = attackSpeed,
+                mana = mana,
+                maxMana = maxMana,
+                type = type
+            };
+        }
+
+        public override Unit Unit => _unit;
     }
 }

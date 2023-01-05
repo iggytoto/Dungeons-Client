@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   humanWarriorEquipmentTablePrefab: {fileID: 6247296989169160627, guid: 55620127a30464d4ab0b17800658ac77, type: 3}
   humanArcherEquipmentTablePrefab: {fileID: 6247296989169160627, guid: d9df0ef1d6356c847af0e0e6c00b5943, type: 3}
+  humanSpearmanEquipmentTablePrefab: {fileID: 6247296989169160627, guid: ae860eff9d9a91e4788dfd5f1cf60805, type: 3}

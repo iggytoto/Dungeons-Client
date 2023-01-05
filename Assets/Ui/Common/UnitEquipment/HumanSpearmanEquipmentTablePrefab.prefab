@@ -492,7 +492,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: +82.5%AS +0.125AR +30DMG
+  m_text: +60DMG
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -641,7 +641,7 @@ GameObject:
   - component: {fileID: 8365025421831006934}
   - component: {fileID: 3542788122488890208}
   m_Layer: 0
-  m_Name: ImageDefenceLevel5
+  m_Name: ImageDoubleEdgeLevel5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -782,7 +782,7 @@ GameObject:
   - component: {fileID: 1322072999304205791}
   - component: {fileID: 259112315132199544}
   m_Layer: 0
-  m_Name: ImageAttackLevel5
+  m_Name: ImageMidRangeLevel5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -858,7 +858,7 @@ GameObject:
   - component: {fileID: 5578122316298305119}
   - component: {fileID: 1452207626688662278}
   m_Layer: 0
-  m_Name: ImageDefenceLevel4
+  m_Name: ImageDoubleEdgeLevel4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1065,7 +1065,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: +50HP +10%ARM -0.5MS
+  m_text: 20% chance to double circle swing
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1342,7 +1342,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: +135HP +15%MR +30%ARM -1.5MS
+  m_text: 75% chance to double circle swing
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1630,7 +1630,7 @@ GameObject:
   - component: {fileID: 8454831547386336069}
   - component: {fileID: 3882301899637386868}
   m_Layer: 0
-  m_Name: ImageAttackLevel1
+  m_Name: ImageMidRangeLevel1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1760,7 +1760,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: +80%AS +0.125AR +25DMG
+  m_text: +45DMG
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1841,7 +1841,7 @@ GameObject:
   - component: {fileID: 309144428613702722}
   - component: {fileID: 7622960620119136179}
   m_Layer: 0
-  m_Name: ImageAttackLevel4
+  m_Name: ImageMidRangeLevel4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1971,7 +1971,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: +75%AS +0.12AR +20DMG
+  m_text: +35DMG
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2206,7 +2206,7 @@ GameObject:
   - component: {fileID: 3695088994081251848}
   - component: {fileID: 5046306265103323161}
   m_Layer: 0
-  m_Name: ImageAttackLevel2
+  m_Name: ImageMidRangeLevel2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2336,7 +2336,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: +50%AS +0.1AR +10DMG
+  m_text: +15DMG
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2482,9 +2482,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2759055070395824114}
-  - component: {fileID: 1938186313653317578}
+  - component: {fileID: 5013612797170916540}
   m_Layer: 0
-  m_Name: HumanWarriorEquipmentTablePrefab
+  m_Name: HumanSpearmanEquipmentTablePrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2513,7 +2513,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 700, y: 400}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1938186313653317578
+--- !u!114 &5013612797170916540
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2522,23 +2522,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 6247296989169160627}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01364ed7e8a586842a3454b73fb129da, type: 3}
+  m_Script: {fileID: 11500000, guid: 875720e49d394174acc40dd16a3b6d5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upgradeOffenceButton: {fileID: 2644963839315630874}
-  upgradeDefenceButton: {fileID: 723825333429549680}
+  upgradeDoubleEdgeButton: {fileID: 2644963839315630874}
+  upgradeMidRangeButton: {fileID: 723825333429549680}
   currentLevelSprite: {fileID: 21300000, guid: 33cd3b491748050418115b4d3a0b6534, type: 3}
   defaultSprite: {fileID: 21300000, guid: 5659b073e19871d4da7394b6456da365, type: 3}
-  defenceLevel1: {fileID: 6912075890867911339}
-  defenceLevel2: {fileID: 427009669282909107}
-  defenceLevel3: {fileID: 8422382124346457447}
-  defenceLevel4: {fileID: 1452207626688662278}
-  defenceLevel5: {fileID: 3542788122488890208}
-  offenceLevel1: {fileID: 3882301899637386868}
-  offenceLevel2: {fileID: 5046306265103323161}
-  offenceLevel3: {fileID: 2442068751683618799}
-  offenceLevel4: {fileID: 7622960620119136179}
-  offenceLevel5: {fileID: 259112315132199544}
+  doubleEdgeLevel1: {fileID: 6912075890867911339}
+  doubleEdgeLevel2: {fileID: 427009669282909107}
+  doubleEdgeLevel3: {fileID: 8422382124346457447}
+  doubleEdgeLevel4: {fileID: 1452207626688662278}
+  doubleEdgeLevel5: {fileID: 3542788122488890208}
+  midRangeLevel1: {fileID: 3882301899637386868}
+  midRangeLevel2: {fileID: 5046306265103323161}
+  midRangeLevel3: {fileID: 2442068751683618799}
+  midRangeLevel4: {fileID: 7622960620119136179}
+  midRangeLevel5: {fileID: 259112315132199544}
 --- !u!1 &6342159679756759684
 GameObject:
   m_ObjectHideFlags: 0
@@ -2551,7 +2551,7 @@ GameObject:
   - component: {fileID: 8433180061270233186}
   - component: {fileID: 6912075890867911339}
   m_Layer: 0
-  m_Name: ImageDefenceLevel1
+  m_Name: ImageDoubleEdgeLevel1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2888,7 +2888,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: +66%AS +0.11AR +15DMG
+  m_text: +25DMG
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3111,7 +3111,7 @@ GameObject:
   - component: {fileID: 1796981431317037357}
   - component: {fileID: 2442068751683618799}
   m_Layer: 0
-  m_Name: ImageAttackLevel3
+  m_Name: ImageMidRangeLevel3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3241,7 +3241,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "+100HP +25%ARM \n-1.25MS"
+  m_text: 40% chance to double circle swing
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3387,7 +3387,7 @@ GameObject:
   - component: {fileID: 4605030304331997878}
   - component: {fileID: 427009669282909107}
   m_Layer: 0
-  m_Name: ImageDefenceLevel2
+  m_Name: ImageDoubleEdgeLevel2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3463,7 +3463,7 @@ GameObject:
   - component: {fileID: 6419376984503740522}
   - component: {fileID: 8422382124346457447}
   m_Layer: 0
-  m_Name: ImageDefenceLevel3
+  m_Name: ImageDoubleEdgeLevel3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3593,7 +3593,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: +75HP +20%ARM -1MS
+  m_text: 30% chance to double circle swing
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3805,7 +3805,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: +125HP +30%ARM -1.5MS
+  m_text: 50% chance to double circle swing
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3883,7 +3883,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 212181205706472593, guid: 9b39a732ef4bc6a45aa485a6da469ab1, type: 3}
       propertyPath: m_Name
-      value: UpgradeOffenceButton
+      value: UpgradeDoubleEdgeButton
       objectReference: {fileID: 0}
     - target: {fileID: 3113160457397948521, guid: 9b39a732ef4bc6a45aa485a6da469ab1, type: 3}
       propertyPath: m_Pivot.x
@@ -3971,7 +3971,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6077613581527141969, guid: 9b39a732ef4bc6a45aa485a6da469ab1, type: 3}
       propertyPath: m_text
-      value: Upgrade offence
+      value: Upgrade double edge
       objectReference: {fileID: 0}
     - target: {fileID: 6077613581527141969, guid: 9b39a732ef4bc6a45aa485a6da469ab1, type: 3}
       propertyPath: m_fontSize
@@ -3992,18 +3992,18 @@ PrefabInstance:
     - target: {fileID: 7508849925657787819, guid: 9b39a732ef4bc6a45aa485a6da469ab1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1938186313653317578}
+      objectReference: {fileID: 5013612797170916540}
     - target: {fileID: 7508849925657787819, guid: 9b39a732ef4bc6a45aa485a6da469ab1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7508849925657787819, guid: 9b39a732ef4bc6a45aa485a6da469ab1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: UpgradeOffenceClicked
+      value: UpgradeDoubleEdgeClicked
       objectReference: {fileID: 0}
     - target: {fileID: 7508849925657787819, guid: 9b39a732ef4bc6a45aa485a6da469ab1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: HumaWarriorEquipmentTableController, Assembly-CSharp
+      value: HumanSpearmanEquipmentTableController, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 7508849925657787819, guid: 9b39a732ef4bc6a45aa485a6da469ab1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -4036,7 +4036,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 212181205706472593, guid: 9b39a732ef4bc6a45aa485a6da469ab1, type: 3}
       propertyPath: m_Name
-      value: UpgradeDefenceButton
+      value: UpgradeMidRangeButton
       objectReference: {fileID: 0}
     - target: {fileID: 3113160457397948521, guid: 9b39a732ef4bc6a45aa485a6da469ab1, type: 3}
       propertyPath: m_Pivot.x
@@ -4124,7 +4124,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6077613581527141969, guid: 9b39a732ef4bc6a45aa485a6da469ab1, type: 3}
       propertyPath: m_text
-      value: Upgrade defence
+      value: Upgrade mid range
       objectReference: {fileID: 0}
     - target: {fileID: 6077613581527141969, guid: 9b39a732ef4bc6a45aa485a6da469ab1, type: 3}
       propertyPath: m_fontSize
@@ -4145,18 +4145,18 @@ PrefabInstance:
     - target: {fileID: 7508849925657787819, guid: 9b39a732ef4bc6a45aa485a6da469ab1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1938186313653317578}
+      objectReference: {fileID: 5013612797170916540}
     - target: {fileID: 7508849925657787819, guid: 9b39a732ef4bc6a45aa485a6da469ab1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7508849925657787819, guid: 9b39a732ef4bc6a45aa485a6da469ab1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: UpgradeDefenceClicked
+      value: UpgradeMidRangeClicked
       objectReference: {fileID: 0}
     - target: {fileID: 7508849925657787819, guid: 9b39a732ef4bc6a45aa485a6da469ab1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: HumaWarriorEquipmentTableController, Assembly-CSharp
+      value: HumanSpearmanEquipmentTableController, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 7508849925657787819, guid: 9b39a732ef4bc6a45aa485a6da469ab1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName

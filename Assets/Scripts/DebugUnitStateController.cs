@@ -1,5 +1,6 @@
 using System;
 using Model.Units;
+using Unity.Netcode;
 using UnityEngine;
 
 namespace DefaultNamespace
@@ -15,9 +16,14 @@ namespace DefaultNamespace
         [SerializeField] private float attackRange;
         [SerializeField] private float moveSpeed;
         [SerializeField] private float attackSpeed;
+        [SerializeField] private long damage;
         [SerializeField] private UnitType type;
+        [SerializeField] private Equipment _equipment;
 
-        private void Awake()
+        public override UnitType UnitType => type;
+        public override Equipment Equipment => _equipment;
+
+        private void Start()
         {
             Unit.Value = new Unit
             {
@@ -30,8 +36,10 @@ namespace DefaultNamespace
                 attackSpeed = attackSpeed,
                 mana = mana,
                 maxMana = maxMana,
-                type = type
+                type = type,
+                damage = damage
             };
+            _equipment = Equipment.DefaultForType(type);
         }
     }
 }

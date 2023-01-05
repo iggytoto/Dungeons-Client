@@ -28,6 +28,7 @@ namespace BattleBehaviour.Abilities
 
             if (targets.Any() && UnitState.Mana >= UnitState.MaxMana)
             {
+                UnitState.Mana = 0;
                 Animator.SetTrigger(AnimationConstants.AttackTrigger);
                 var attackClipInfo = Animator.GetCurrentAnimatorClipInfo(1)[0];
                 var animationTime = attackClipInfo.clip.averageDuration;

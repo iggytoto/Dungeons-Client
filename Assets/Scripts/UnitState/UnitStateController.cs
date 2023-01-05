@@ -13,19 +13,25 @@ using UnityEngine;
 
 public class UnitStateController : NetworkBehaviour
 {
-    public UnitType UnitType => Unit.Value.type;
+    public virtual UnitType UnitType => Unit.Value.type;
     public BattleBehavior BattleBehavior => Unit.Value.battleBehavior;
-    public Equipment Equipment => Unit.Value.equip;
+    public virtual Equipment Equipment => Unit.Value.equip;
     public float MaxHp => Unit.Value.maxHp;
     public float HitPoints => Unit.Value.hitPoints;
     public string Name => Unit.Value.Name;
     public long OwnerId => Unit.Value.ownerId;
     public long Id => Unit.Value.Id;
-    public float MovementSpeed => Unit.Value.movementSpeed * GetMovementSpeedModificator();
+    public float MovementSpeed => Unit.Value.movementSpeed + Unit.Value.movementSpeed * GetMovementSpeedModificator();
     public float AttackSpeed => Unit.Value.attackSpeed;
     public float AttackRange => Unit.Value.attackRange;
     public long AttackDamage => Unit.Value.damage;
-    public long Mana => Unit.Value.mana;
+
+    public long Mana
+    {
+        get => Unit.Value.mana;
+        set => Unit.Value.mana = value;
+    }
+
     public long MaxMana => Unit.Value.maxMana;
 
     private float GetMovementSpeedModificator()
@@ -53,6 +59,7 @@ public class UnitStateController : NetworkBehaviour
         if (target != null)
         {
             target.DoDamage(Damage.Physical(AttackDamage));
+            Unit.Value.mana += 5;
         }
     }
 
@@ -68,8 +75,8 @@ public class UnitStateController : NetworkBehaviour
     {
         var damageAmount = unitDamage.Type switch
         {
-            DamageType.Physical => unitDamage.Amount * GetCurrentDamageReduction(),
-            DamageType.Magic => unitDamage.Amount * GetCurrentMagicDamageReduction(),
+            DamageType.Physical => unitDamage.Amount * (1f - GetCurrentDamageReduction()),
+            DamageType.Magic => unitDamage.Amount * (1f - GetCurrentMagicDamageReduction()),
             _ => throw new ArgumentOutOfRangeException()
         };
         Unit.Value.hitPoints -= (long)damageAmount;
@@ -82,7 +89,7 @@ public class UnitStateController : NetworkBehaviour
     private float GetCurrentDamageReduction()
     {
         var armorValue = Unit.Value.armor / 100;
-        var effectsValue = _effects.Select(e => e as IArmorChangeEffect).NotNull().Sum(e => e.GetAmount());
+        var effectsValue = _effects.Select(e => e as IArmorChangeEffect).NotNull().Sum(e => e.GetAmount()) / 100;
         return armorValue + effectsValue;
     }
 

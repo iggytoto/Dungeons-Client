@@ -9,5 +9,15 @@ namespace Model.Units
         public long id;
         public long unitId;
         public abstract void NetworkSerialize<T>(BufferSerializer<T> serializer) where T : IReaderWriter;
+
+        public static Equipment DefaultForType(UnitType type)
+        {
+            return type switch
+            {
+                UnitType.HumanWarrior => new HumanWarriorEquipment(),
+                UnitType.HumanArcher => new HumanArcherEquipment(),
+                _ => null
+            };
+        }
     }
 }

@@ -1,5 +1,7 @@
+using System.Linq;
 using DefaultNamespace.Animation;
 using DefaultNamespace.UnitState;
+using Model.Damage;
 using Model.Units;
 using UnityEngine;
 
@@ -7,19 +9,13 @@ namespace DefaultNamespace.BattleBehaviour.Abilities
 {
     public class HumanWarriorAbility : UnitTaskBase
     {
-        private readonly float _duration = 5;
         private float _currentDuration;
         private bool _inProgress;
         private float _attackCoolDown;
-        private readonly HumanWarriorEquipment _equipment;
+        private HumanWarriorEquipment _equipment;
 
         public HumanWarriorAbility(UnitStateController unitStateStateController) : base(unitStateStateController)
         {
-            _equipment = (HumanWarriorEquipment)unitStateStateController.Equipment;
-            if (_equipment != null)
-            {
-                _duration = 5 + (_equipment.defencePoints + _equipment.offencePoints - 2);
-            }
         }
 
         public override BattleBehaviorNodeState Evaluate()
@@ -47,16 +43,18 @@ namespace DefaultNamespace.BattleBehaviour.Abilities
         {
             _attackCoolDown -= Time.deltaTime;
             _currentDuration += Time.deltaTime;
-            if (_currentDuration >= _duration)
+            if (_currentDuration >= GetDuration())
             {
                 return FinishAbility();
             }
 
             if (_attackCoolDown <= 0)
             {
-                foreach (var enemy in GetAllLiveEnemies())
+                foreach (var enemy in GetAllLiveEnemies().Where(e =>
+                             Vector3.Distance(e.transform.position, UnitState.transform.position) <=
+                             UnitState.AttackRange))
                 {
-                    UnitState.DoAttack(enemy);
+                    enemy.DoDamage(Damage.Physical(UnitState.AttackDamage));
                 }
 
                 _attackCoolDown = 1 / UnitState.AttackSpeed;
@@ -76,11 +74,12 @@ namespace DefaultNamespace.BattleBehaviour.Abilities
 
         private BattleBehaviorNodeState StartAbility()
         {
+            UnitState.Mana = 0;
             var protectionEffect = GetProtectionEffect();
             if (protectionEffect != null)
             {
                 var e = UnitState.ApplyEffect<HumanWarriorAbilityProtectionEffect>();
-                e.Init(_duration, protectionEffect.ARM, protectionEffect.Mr);
+                e.Init(GetDuration(), protectionEffect.ARM, protectionEffect.Mr);
             }
 
             Animator.SetBool(AnimationConstants.IsAbilityBoolean, true);
@@ -92,7 +91,8 @@ namespace DefaultNamespace.BattleBehaviour.Abilities
 
         private ProtectionEffect GetProtectionEffect()
         {
-            return _equipment.defencePoints switch
+            var eq = (HumanWarriorEquipment)UnitState.Equipment;
+            return eq.defencePoints switch
             {
                 1 => new ProtectionEffect(5, 0),
                 2 => new ProtectionEffect(10, 0),
@@ -113,6 +113,22 @@ namespace DefaultNamespace.BattleBehaviour.Abilities
 
             public readonly long ARM;
             public readonly long Mr;
+        }
+
+        private float GetDuration()
+        {
+            var eq = GetEquipment();
+            if (eq != null)
+            {
+                return 5 + (eq.defencePoints + eq.offencePoints - 2);
+            }
+
+            return 4;
+        }
+
+        private HumanWarriorEquipment GetEquipment()
+        {
+            return _equipment ??= (HumanWarriorEquipment)UnitState.Equipment;
         }
     }
 }

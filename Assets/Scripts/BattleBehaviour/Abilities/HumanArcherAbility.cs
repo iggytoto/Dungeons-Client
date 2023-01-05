@@ -10,11 +10,10 @@ namespace BattleBehaviour.Abilities
 {
     public class HumanArcherAbility : UnitTaskBase
     {
-        private readonly HumanArcherEquipment _equipment;
+        private HumanArcherEquipment _equipment;
 
         public HumanArcherAbility(UnitStateController unitStateStateController) : base(unitStateStateController)
         {
-            _equipment = (HumanArcherEquipment)unitStateStateController.Equipment;
         }
 
         public override BattleBehaviorNodeState Evaluate()
@@ -38,21 +37,21 @@ namespace BattleBehaviour.Abilities
                 {
                     var additionalDamageAndEffect = CalculateDamageAndEffect();
                     target.DoDamage(Damage.Physical(UnitState.AttackDamage +
-                                                    additionalDamageAndEffect.additionalDamage));
-                    if (_equipment.fireArrows)
+                                                    additionalDamageAndEffect.AdditionalDamage));
+                    if (GetEquipment().fireArrows)
                     {
                         target.ApplyEffect<FireArrowsBurningEffect>();
                     }
 
-                    if (_equipment.poisonArrows)
+                    if (GetEquipment().poisonArrows)
                     {
                         target.ApplyEffect<PoisonArrowsEffect>();
                     }
 
-                    if (!(additionalDamageAndEffect.msIncreaseDuration > 0)) continue;
+                    if (!(additionalDamageAndEffect.MSIncreaseDuration > 0)) continue;
                     var e = UnitState.ApplyEffect<HumanArcherAbilityProtectionEffect>();
-                    e.Init(additionalDamageAndEffect.msIncreaseDuration,
-                        additionalDamageAndEffect.msIncreaseAmount);
+                    e.Init(additionalDamageAndEffect.MSIncreaseDuration,
+                        additionalDamageAndEffect.MSIncreaseAmount);
                 }
 
                 State = BattleBehaviorNodeState.Success;
@@ -65,7 +64,7 @@ namespace BattleBehaviour.Abilities
 
         private AdditionalDamageAndEffect CalculateDamageAndEffect()
         {
-            return (_equipment.midRangePoints, _equipment.longRangePoints) switch
+            return (GetEquipment().midRangePoints, GetEquipment().longRangePoints) switch
             {
                 (0, 1) => new AdditionalDamageAndEffect(25, 0, 0),
                 (0, 2) => new AdditionalDamageAndEffect(50, 0, 0),
@@ -100,14 +99,19 @@ namespace BattleBehaviour.Abilities
 
             public AdditionalDamageAndEffect(long d, long ms, float du)
             {
-                additionalDamage = d;
-                msIncreaseAmount = ms;
-                msIncreaseDuration = du;
+                AdditionalDamage = d;
+                MSIncreaseAmount = ms;
+                MSIncreaseDuration = du;
             }
 
-            public long additionalDamage;
-            public long msIncreaseAmount;
-            public float msIncreaseDuration;
+            public readonly long AdditionalDamage;
+            public readonly long MSIncreaseAmount;
+            public readonly float MSIncreaseDuration;
+        }
+
+        private HumanArcherEquipment GetEquipment()
+        {
+            return _equipment ??= (HumanArcherEquipment)UnitState.Equipment;
         }
     }
 }

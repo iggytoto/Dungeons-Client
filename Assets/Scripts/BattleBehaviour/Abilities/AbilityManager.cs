@@ -1,4 +1,4 @@
-using System;
+using BattleBehaviour.Abilities;
 using Model.Units;
 
 namespace DefaultNamespace.BattleBehaviour.Abilities

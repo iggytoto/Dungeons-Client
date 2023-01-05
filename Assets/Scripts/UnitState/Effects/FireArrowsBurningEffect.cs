@@ -1,4 +1,5 @@
 using Model.Damage;
+using UnitState.Effects.Interfaces;
 
 namespace DefaultNamespace.UnitState
 {

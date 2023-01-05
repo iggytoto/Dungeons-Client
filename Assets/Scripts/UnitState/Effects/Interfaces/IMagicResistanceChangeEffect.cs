@@ -1,4 +1,4 @@
-namespace DefaultNamespace.UnitState
+namespace UnitState.Effects.Interfaces
 {
     public interface IMagicResistanceChangeEffect
     {

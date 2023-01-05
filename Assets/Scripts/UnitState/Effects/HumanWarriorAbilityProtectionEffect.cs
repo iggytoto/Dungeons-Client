@@ -1,3 +1,5 @@
+using UnitState.Effects.Interfaces;
+
 namespace DefaultNamespace.UnitState
 {
     public class HumanWarriorAbilityProtectionEffect : Effect, IArmorChangeEffect, IMagicResistanceChangeEffect

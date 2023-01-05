@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using DefaultNamespace;
 using DefaultNamespace.Animation;
 using DefaultNamespace.BattleBehaviour;
 using DefaultNamespace.UnitState;
 using Model.Damage;
+using UnitState.Effects.Interfaces;
 using Unity.Netcode;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -21,7 +21,6 @@ public class UnitStateController : NetworkBehaviour
     {
         _unit.Value = unit;
         BattleBehaviourManager.UpdateBattleBehaviour(this);
-        gameObject.AddComponent<ManaRegenBehavior>();
     }
 
     public Unit ToUnit()
@@ -43,8 +42,13 @@ public class UnitStateController : NetworkBehaviour
     {
         if (target != null)
         {
-            target.DoDamage(Damage.Physical(Unit.damage));
+            target.DoDamage(Damage.Physical(GetCurrentDamage()));
         }
+    }
+
+    public long GetCurrentDamage()
+    {
+        return Unit.damage;
     }
 
     public TEffect ApplyEffect<TEffect>() where TEffect : Effect

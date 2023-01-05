@@ -15,7 +15,7 @@ namespace DefaultNamespace.BattleBehaviour.Abilities
 
         public HumanWarriorAbility(UnitStateController unitStateStateController) : base(unitStateStateController)
         {
-            _equipment = (HumanWarriorEquipment)unitStateStateController.Unit.equip;
+            _equipment = (HumanWarriorEquipment)unitStateStateController.Equipment;
             if (_equipment != null)
             {
                 _duration = 5 + (_equipment.defencePoints + _equipment.offencePoints - 2);
@@ -34,7 +34,7 @@ namespace DefaultNamespace.BattleBehaviour.Abilities
                 return ProgressAbility();
             }
 
-            if (UnitState.GetCurrentMana() >= UnitState.GetMaxMana())
+            if (UnitState.Mana >= UnitState.MaxMana)
             {
                 return StartAbility();
             }
@@ -59,7 +59,7 @@ namespace DefaultNamespace.BattleBehaviour.Abilities
                     UnitState.DoAttack(enemy);
                 }
 
-                _attackCoolDown = 1 / UnitState.GetCurrentAttackSpeed();
+                _attackCoolDown = 1 / UnitState.AttackSpeed;
             }
 
             State = BattleBehaviorNodeState.Running;

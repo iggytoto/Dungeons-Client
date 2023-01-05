@@ -41,8 +41,6 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\UnitState\Effects\HumanArcherAbilityProtectionEffect.cs" />
-     <Compile Include="Assets\Scripts\UnitState\Effects\Interfaces\IMovementSpeedPercentageChangeEffect.cs" />
      <Compile Include="Assets\Services\Login\LoginService.cs" />
      <Compile Include="Assets\Services\UnitShop\TavernServiceApiAdapter.cs" />
      <Compile Include="Assets\Scripts\BattleBehaviour\BattleBehaviourManager.cs" />
@@ -191,6 +189,8 @@
      <Compile Include="Assets\Scripts\BattleBehaviour\Abilities\HumanArcherAbility.cs" />
      <Compile Include="Assets\Scripts\UnitState\Effects\Interfaces\IMagicResistanceChangeEffect.cs" />
      <Compile Include="Assets\Scripts\UnitState\Effects\Interfaces\IArmorChangeEffect.cs" />
+     <Compile Include="Assets\Scripts\UnitState\Effects\Interfaces\IMovementSpeedPercentageChangeEffect.cs" />
+     <Compile Include="Assets\Scripts\UnitState\Effects\HumanArcherAbilityProtectionEffect.cs" />
      <Folder Include="Assets" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\mergetool.ja.txt" />
      <Folder Include="Assets\Libs\Tiny Fantasy Icons\Keys" />
@@ -265,6 +265,7 @@
      <Folder Include="Assets\Libs\Tiny Fantasy Icons" />
      <Folder Include="Assets\Resources\Characters" />
      <Folder Include="Assets\Libs\Blink\Art" />
+     <Folder Include="Assets\Scripts\UnitState\Effects" />
      <None Include="Assets\Libs\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
      <Folder Include="Assets\Libs\TerrainSampleAssets\Textures\Details" />
      <Folder Include="Assets\Libs" />
@@ -648,6 +649,7 @@
      <Folder Include="Assets\Libs\Blink\Art\Weapons\LowPoly\FreeRPGWeapons\Spears\Spear_2H_Textures" />
      <Folder Include="Library\PackageCache\com.unity.modules.jsonserialize@1.0.0" />
      <None Include="Library\PackageCache\com.unity.visualscripting@1.7.8\ValidationConfig.json" />
+     <Folder Include="Assets\Scripts\UnitState\Effects\Interfaces" />
      <Folder Include="Assets\Libs\Blink\Art\Weapons\LowPoly\FreeRPGWeapons\Maces" />
      <None Include="Library\PackageCache\com.unity.terrain-tools@4.0.3\Shaders\Generated\NoiseBlitStrata.shader" />
      <None Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\package.json" />

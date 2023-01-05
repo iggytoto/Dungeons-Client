@@ -23,7 +23,7 @@ namespace DefaultNamespace.UnitState
             var damageAmount = DotType switch
             {
                 DamageOverTimeType.FixedAmount => DamageAmount,
-                DamageOverTimeType.PercentageOfMaxHp => UnitState.GetMaxHp() * DamageAmount / 100f,
+                DamageOverTimeType.PercentageOfMaxHp => UnitState.MaxHp * DamageAmount / 100f,
                 _ => throw new ArgumentOutOfRangeException()
             };
             var damage = DamageType switch

@@ -33,9 +33,9 @@ namespace DefaultNamespace.BattleBehaviour
                 var attackClipInfo = Animator.GetCurrentAnimatorClipInfo(1)[0];
                 var animationTime = attackClipInfo.clip.averageDuration;
                 Animator.SetFloat(AnimationConstants.AttackMotionTimeFloat,
-                    animationTime * UnitState.GetCurrentAttackSpeed() / animationTime);
+                    animationTime * UnitState.AttackSpeed / animationTime);
                 UnitState.DoAttack(target);
-                _attackCooldown = 1 / UnitState.GetCurrentAttackSpeed();
+                _attackCooldown = 1 / UnitState.AttackSpeed;
                 if (target.IsDead())
                 {
                     ClearTarget();

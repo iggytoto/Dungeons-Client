@@ -36,7 +36,7 @@ namespace DefaultNamespace.BattleBehaviour
             UnitState.transform.position = Vector3.MoveTowards(
                 UnitState.transform.position,
                 Path[0],
-                UnitState.GetCurrentSpeed() * Time.deltaTime);
+                UnitState.MovementSpeed * Time.deltaTime);
             UnitState.transform.LookAt(Path[0]);
         }
     }

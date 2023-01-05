@@ -7,7 +7,7 @@ namespace DefaultNamespace.BattleBehaviour.Abilities
     {
         public static BattleBehaviorNode GetAbilityFor(UnitStateController unitStateController)
         {
-            return unitStateController.Unit.type switch
+            return unitStateController.UnitType switch
             {
                 UnitType.HumanWarrior => new HumanWarriorAbility(unitStateController),
                 UnitType.HumanArcher => new HumanArcherAbility(unitStateController),

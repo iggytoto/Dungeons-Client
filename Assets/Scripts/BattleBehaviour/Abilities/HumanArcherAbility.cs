@@ -14,7 +14,7 @@ namespace BattleBehaviour.Abilities
 
         public HumanArcherAbility(UnitStateController unitStateStateController) : base(unitStateStateController)
         {
-            _equipment = (HumanArcherEquipment)unitStateStateController.Unit.equip;
+            _equipment = (HumanArcherEquipment)unitStateStateController.Equipment;
         }
 
         public override BattleBehaviorNodeState Evaluate()
@@ -26,17 +26,17 @@ namespace BattleBehaviour.Abilities
 
             var targets = GetAllLiveEnemies().OrderBy(e => Guid.NewGuid()).Take(3).ToArray();
 
-            if (targets.Any() && UnitState.GetCurrentMana() >= UnitState.GetMaxMana())
+            if (targets.Any() && UnitState.Mana >= UnitState.MaxMana)
             {
                 Animator.SetTrigger(AnimationConstants.AttackTrigger);
                 var attackClipInfo = Animator.GetCurrentAnimatorClipInfo(1)[0];
                 var animationTime = attackClipInfo.clip.averageDuration;
                 Animator.SetFloat(AnimationConstants.AttackMotionTimeFloat,
-                    animationTime * UnitState.GetCurrentAttackSpeed() / animationTime);
+                    animationTime * UnitState.AttackSpeed / animationTime);
                 foreach (var target in targets)
                 {
                     var additionalDamageAndEffect = CalculateDamageAndEffect();
-                    target.DoDamage(Damage.Physical(UnitState.GetCurrentDamage() +
+                    target.DoDamage(Damage.Physical(UnitState.AttackDamage +
                                                     additionalDamageAndEffect.additionalDamage));
                     if (_equipment.fireArrows)
                     {

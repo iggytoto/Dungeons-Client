@@ -34,7 +34,7 @@ namespace DefaultNamespace.BattleBehaviour
                 var lastPathPoint = Path.Last();
 
                 if (Vector3.Distance(UnitState.transform.position, lastPathPoint) >=
-                    UnitState.GetCurrentAttackRange())
+                    UnitState.AttackRange)
                 {
                     Move();
                     Animator.SetBool(AnimationConstants.IsRunningBoolean, true);

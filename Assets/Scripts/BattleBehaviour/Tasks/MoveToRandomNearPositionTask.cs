@@ -47,7 +47,7 @@ namespace DefaultNamespace.BattleBehaviour
                 {
                     UnitState.gameObject.transform.position =
                         Vector3.MoveTowards(UnitState.transform.position, _destination,
-                            UnitState.GetCurrentSpeed() * Time.deltaTime);
+                            UnitState.MovementSpeed * Time.deltaTime);
                     UnitState.gameObject.transform.LookAt(_destination);
                 }
             }

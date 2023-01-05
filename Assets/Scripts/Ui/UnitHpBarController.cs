@@ -10,17 +10,17 @@ public class UnitHpBarController : MonoBehaviour
 
     private void Update()
     {
-        if (unitStateController == null || unitStateController.Unit == null) return;
+        if (unitStateController == null) return;
         if (slider == null) return;
-        slider.maxValue = unitStateController.Unit.maxHp;
+        slider.maxValue = unitStateController.MaxHp;
         slider.minValue = 0;
-        slider.value = unitStateController.Unit.hitPoints;
+        slider.value = unitStateController.HitPoints;
         if (unitStateController.IsDead())
         {
             gameObject.SetActive(false);
         }
 
         if (nameText == null) return;
-        nameText.text = unitStateController.Unit.Name;
+        nameText.text = unitStateController.Name;
     }
 }

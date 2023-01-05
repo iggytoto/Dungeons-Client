@@ -20,7 +20,7 @@ namespace DefaultNamespace.BattleBehaviour
                 return State;
             }
 
-            if (Vector3.Distance(_unit.transform.position, target.transform.position) <= _unit.GetCurrentAttackRange())
+            if (Vector3.Distance(_unit.transform.position, target.transform.position) <= _unit.AttackRange)
             {
                 State = BattleBehaviorNodeState.Success;
                 return State;

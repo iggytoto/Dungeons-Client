@@ -64,7 +64,7 @@ namespace DefaultNamespace.BattleBehaviour
 
         protected List<UnitStateController> GetAllLiveEnemies()
         {
-            return GetAllUnits().Where(u => u.Unit.ownerId != UnitState.Unit.ownerId && !u.IsDead()).ToList();
+            return GetAllUnits().Where(u => u.OwnerId != UnitState.OwnerId && !u.IsDead()).ToList();
         }
     }
 }

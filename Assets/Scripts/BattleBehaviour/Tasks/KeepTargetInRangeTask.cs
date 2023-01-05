@@ -27,7 +27,7 @@ namespace DefaultNamespace.BattleBehaviour
             }
 
             var distance = Vector3.Distance(UnitState.transform.position, target.transform.position);
-            var ar = UnitState.GetCurrentAttackRange();
+            var ar = UnitState.AttackRange;
             var minRadius = ar * .9;
 
             if (minRadius <= distance && distance <= ar)

@@ -17,11 +17,9 @@ namespace DefaultNamespace
         [SerializeField] private float attackSpeed;
         [SerializeField] private UnitType type;
 
-        private Unit _unit = new Unit();
-
         private void Awake()
         {
-            _unit = new Unit
+            Unit.Value = new Unit
             {
                 Id = id,
                 ownerId = ownerId,
@@ -35,7 +33,5 @@ namespace DefaultNamespace
                 type = type
             };
         }
-
-        public override Unit Unit => _unit;
     }
 }

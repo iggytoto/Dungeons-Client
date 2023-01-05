@@ -7,7 +7,7 @@ namespace DefaultNamespace.BattleBehaviour
     {
         public static void UpdateBattleBehaviour(UnitStateController unitStateController)
         {
-            switch (unitStateController.Unit.battleBehavior)
+            switch (unitStateController.BattleBehavior)
             {
                 case BattleBehavior.DoNothing:
                     unitStateController.gameObject.AddComponent<DoNothingBattleBehaviour>();

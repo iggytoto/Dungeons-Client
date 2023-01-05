@@ -189,6 +189,8 @@
      <Compile Include="Assets\Scripts\BattleBehaviour\Abilities\HumanArcherAbility.cs" />
      <Compile Include="Assets\Scripts\UnitState\Effects\Interfaces\IMagicResistanceChangeEffect.cs" />
      <Compile Include="Assets\Scripts\UnitState\Effects\Interfaces\IArmorChangeEffect.cs" />
+     <Compile Include="Assets\Scripts\UnitState\Effects\Interfaces\IMovementSpeedPercentageChangeEffect.cs" />
+     <Compile Include="Assets\Scripts\UnitState\Effects\HumanArcherAbilityProtectionEffect.cs" />
      <Folder Include="Assets" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\mergetool.ja.txt" />
      <Folder Include="Assets\Libs\Tiny Fantasy Icons\Keys" />

@@ -70,7 +70,27 @@ public class Unit : ModelBase, INetworkSerializable
             equip = new HumanWarriorEquipment()
         };
     }
-    
+
+    public static Unit HumanSpearman()
+    {
+        return new Unit
+        {
+            hitPoints = 50,
+            maxHp = 50,
+            armor = 10,
+            magicResistance = 0,
+            activity = UnitActivity.Idle,
+            battleBehavior = BattleBehavior.StraightAttack,
+            attackRange = 3,
+            attackSpeed = 2,
+            movementSpeed = 7,
+            damage = 40,
+            maxMana = 75,
+            type = UnitType.HumanSpearman,
+            equip = new HumanSpearmanEquipment()
+        };
+    }
+
     public static Unit HumanArcher()
     {
         return new Unit

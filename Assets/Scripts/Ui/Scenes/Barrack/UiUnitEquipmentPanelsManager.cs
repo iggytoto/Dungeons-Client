@@ -9,6 +9,7 @@ public class UiUnitEquipmentPanelsManager : ScriptableObject
 {
     [SerializeField] private GameObject humanWarriorEquipmentTablePrefab;
     [SerializeField] private GameObject humanArcherEquipmentTablePrefab;
+    [SerializeField] private GameObject humanSpearmanEquipmentTablePrefab;
 
     public GameObject GetEquipmentTablePrefabForType(Type t)
     {
@@ -19,6 +20,10 @@ public class UiUnitEquipmentPanelsManager : ScriptableObject
         else if (t == typeof(HumanArcherEquipment))
         {
             return humanArcherEquipmentTablePrefab;
+        }
+        else if (t == typeof(HumanSpearmanEquipment))
+        {
+            return humanSpearmanEquipmentTablePrefab;
         }
 
         return null;

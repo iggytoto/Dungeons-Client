@@ -7,6 +7,7 @@ namespace Model.Units
     {
         Dummy,
         HumanWarrior,
-        HumanArcher
+        HumanArcher,
+        HumanSpearman
     }
 }

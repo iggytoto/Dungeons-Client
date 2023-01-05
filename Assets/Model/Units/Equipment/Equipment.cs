@@ -15,6 +15,7 @@ namespace Model.Units
             return type switch
             {
                 UnitType.HumanWarrior => new HumanWarriorEquipment(),
+                UnitType.HumanSpearman => new HumanSpearmanEquipment(),
                 UnitType.HumanArcher => new HumanArcherEquipment(),
                 _ => null
             };

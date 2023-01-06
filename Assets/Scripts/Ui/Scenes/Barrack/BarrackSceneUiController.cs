@@ -27,7 +27,7 @@ public class BarrackSceneUiController : MonoBehaviour
 
     private void SetupButtons()
     {
-        var isButtonEnabled = _selectedUnit is { activity: Unit.UnitActivity.Idle };
+        var isButtonEnabled = _selectedUnit is { activity: UnitActivity.Idle };
         renameUnitButton.enabled = isButtonEnabled;
         changeBattleBehaviorUnitButton.enabled = isButtonEnabled;
         unitEquipmentButton.enabled = isButtonEnabled;

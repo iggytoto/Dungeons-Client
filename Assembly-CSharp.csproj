@@ -203,6 +203,11 @@
      <Compile Include="Assets\Scripts\BattleBehaviour\Abilities\HumanSpearmanAbility.cs" />
      <Compile Include="Assets\Scripts\BattleBehaviour\Abilities\HumanClericAbility.cs" />
      <Compile Include="Assets\Scripts\UnitState\Effects\Interfaces\IPositiveEffect.cs" />
+     <Compile Include="Assets\Model\Units\Humans\HumanSpearman.cs" />
+     <Compile Include="Assets\Model\Units\Humans\HumanArcher.cs" />
+     <Compile Include="Assets\Model\Units\Humans\HumanCleric.cs" />
+     <Compile Include="Assets\Model\Units\Humans\HumanWarrior.cs" />
+     <Compile Include="Assets\Model\Units\UnitActivity.cs" />
      <Folder Include="Assets" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\mergetool.ja.txt" />
      <Folder Include="Assets\Libs\Tiny Fantasy Icons\Keys" />
@@ -628,6 +633,7 @@
      <Folder Include="Assets\Scenes\Test\BattleBehaviors\HitAndRunBattleBehaviorTestScene" />
      <Folder Include="Library\PackageCache\com.unity.render-pipelines.universal@12.1.8\Textures\BlueNoise16" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\ValidationConfig.json" />
+     <Folder Include="Assets\Model\Units\Humans" />
      <Folder Include="Assets\Libs\Blink\Art\Weapons\LowPoly\FreeRPGWeapons" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\images.ja.txt" />
      <Folder Include="Assets\Scenes\Test\BattleBehaviors\AttackClosestEnemyBattleBehaviorTestScene" />

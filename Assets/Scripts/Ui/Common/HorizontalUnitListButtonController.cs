@@ -1,4 +1,5 @@
 using System;
+using Model.Units;
 using TMPro;
 using UnityEngine;
 
@@ -20,7 +21,7 @@ public class HorizontalUnitListButtonController : MonoBehaviour
         {
             nameText.gameObject.SetActive(true);
             nameText.text = $"{unit.Name}";
-            if (unit.activity != Unit.UnitActivity.Idle)
+            if (unit.activity != UnitActivity.Idle)
             {
                 activityPanel.SetActive(true);
                 activityText.text = unit.activity.ToString();

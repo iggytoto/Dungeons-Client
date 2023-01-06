@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Model.Units;
+using Model.Units.Humans;
 
 namespace Services.TrainingYard
 {
@@ -14,10 +15,10 @@ namespace Services.TrainingYard
             onSuccessHandler?.Invoke(this,
                 new List<Unit>
                 {
-                    Unit.Random(BattleBehavior.StraightAttack),
-                    Unit.Random(BattleBehavior.StraightAttack),
-                    Unit.Random(BattleBehavior.StraightAttack),
-                    Unit.Random(BattleBehavior.StraightAttack),
+                    new HumanWarrior(),
+                    new HumanArcher(),
+                    new HumanSpearman(),
+                    new HumanCleric()
                 }.Select(x =>
                 {
                     x.ownerId = userId;
@@ -29,9 +30,10 @@ namespace Services.TrainingYard
         {
             return Task.FromResult(new List<Unit>
             {
-                Unit.HumanWarrior(),
-                Unit.HumanWarrior(),
-                Unit.HumanWarrior(),
+                new HumanWarrior(),
+                new HumanArcher(),
+                new HumanSpearman(),
+                new HumanCleric()
             }.Select(x =>
             {
                 x.ownerId = userId;

@@ -12,7 +12,7 @@ namespace Services.Common.Dto
         {
             var jObject = JObject.Parse(json);
             Enum.TryParse(jObject["unitType"]?.Value<string>(), out UnitType unitType);
-            Enum.TryParse(jObject["activity"]?.Value<string>(), out Unit.UnitActivity unitActivity);
+            Enum.TryParse(jObject["activity"]?.Value<string>(), out UnitActivity unitActivity);
             Enum.TryParse(jObject["battleBehavior"]?.Value<string>(), out BattleBehavior battleBehavior);
             var id = jObject["id"]?.Value<long?>() ?? -1;
             var name = jObject["name"]?.Value<string>();

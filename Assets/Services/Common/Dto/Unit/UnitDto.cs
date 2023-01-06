@@ -21,7 +21,7 @@ namespace Services.Common.Dto
         public float attackSpeed;
         public long unitId;
         public long goldAmount;
-        public Unit.UnitActivity activity;
+        public UnitActivity activity;
         public float attackRange;
         public float movementSpeed;
         public BattleBehavior battleBehavior;

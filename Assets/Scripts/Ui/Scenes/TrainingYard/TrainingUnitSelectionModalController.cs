@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using DefaultNamespace;
+using Model.Units;
 using Services;
 using Services.Common;
 using Services.Dto;
@@ -31,7 +32,7 @@ public class TrainingUnitSelectionModalController : MonoBehaviour, IUnitListProv
     {
         gameObject.SetActive(true);
         Units.Clear();
-        Units.AddRange(_barrackService.AvailableUnits.Where(u => u.activity == Unit.UnitActivity.Idle));
+        Units.AddRange(_barrackService.AvailableUnits.Where(u => u.activity == UnitActivity.Idle));
     }
 
     public void HideModal()

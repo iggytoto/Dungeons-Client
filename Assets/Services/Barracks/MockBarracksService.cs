@@ -2,6 +2,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Model.Units;
+using Model.Units.Humans;
 using Services;
 using Services.Common.Dto;
 
@@ -9,18 +10,10 @@ public class MockBarracksService : IBarrackService
 {
     public ObservableCollection<Unit> AvailableUnits { get; } = new()
     {
-        Unit.Random(),
-        Unit.Random(),
-        Unit.Random(),
-        Unit.Random(),
-        Unit.Random(),
-        Unit.Random(),
-        Unit.Random(),
-        Unit.Random(),
-        Unit.Random(),
-        Unit.Random(),
-        Unit.Random(),
-        Unit.Random(),
+        new HumanWarrior(),
+        new HumanArcher(),
+        new HumanCleric(),
+        new HumanSpearman()
     };
 
 

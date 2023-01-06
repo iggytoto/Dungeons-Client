@@ -24,11 +24,6 @@ public class MockBarracksService : IBarrackService
     };
 
 
-    public void TrainUnit(long selectedUnitId)
-    {
-        AvailableUnits.Remove(AvailableUnits.First(u => u.Id == selectedUnitId));
-    }
-
     public void ChangeUnitName(long selectedUnitId, string newName)
     {
         var u = AvailableUnits.First(u => u.Id == selectedUnitId);

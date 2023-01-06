@@ -20,15 +20,6 @@ public class BarracksService : ServiceBase, IBarrackService
     private BarrackServiceApiAdapter _apiAdapter;
     private float _refreshTimer;
 
-    public void TrainUnit(long selectedUnitId)
-    {
-        _apiAdapter.TrainUnit(
-            new TrainUnitRequest { unitId = selectedUnitId },
-            _loginService.UserContext,
-            OnTrainSuccess,
-            OnError);
-    }
-
     public override void InitService()
     {
         _loginService = FindObjectOfType<GameService>().LoginService;

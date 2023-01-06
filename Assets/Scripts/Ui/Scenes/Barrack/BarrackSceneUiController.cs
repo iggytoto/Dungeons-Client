@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class BarrackSceneUiController : MonoBehaviour
 {
-    [SerializeField] public Button trainUnitButton;
     [SerializeField] public Button renameUnitButton;
     [SerializeField] public Button changeBattleBehaviorUnitButton;
     [SerializeField] public Button unitEquipmentButton;
@@ -15,18 +14,8 @@ public class BarrackSceneUiController : MonoBehaviour
 
     private void Start()
     {
-        trainUnitButton.enabled = false;
-        trainUnitButton.onClick.AddListener(OnTrainButtonClicked);
         _barracksService = FindObjectOfType<GameService>().BarrackService;
         SetupButtons();
-    }
-
-    private void OnTrainButtonClicked()
-    {
-        if (_selectedUnit != null)
-        {
-            _barracksService.TrainUnit(_selectedUnit.Id);
-        }
     }
 
     public void SetSelectedUnit(Unit u)
@@ -39,7 +28,6 @@ public class BarrackSceneUiController : MonoBehaviour
     private void SetupButtons()
     {
         var isButtonEnabled = _selectedUnit is { activity: Unit.UnitActivity.Idle };
-        trainUnitButton.enabled = isButtonEnabled;
         renameUnitButton.enabled = isButtonEnabled;
         changeBattleBehaviorUnitButton.enabled = isButtonEnabled;
         unitEquipmentButton.enabled = isButtonEnabled;

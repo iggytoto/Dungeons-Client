@@ -16,11 +16,6 @@ namespace Services
          */
         public ObservableCollection<Unit> AvailableUnits { get; }
 
-        /**
-         * Sends command to the server to train unit with selected id
-         */
-        public void TrainUnit(long unitId);
-
         ObservableCollection<Unit> IUnitListProvider<Unit>.Units => AvailableUnits;
         void ChangeUnitName(long selectedUnitId, string newName);
         void ChangeUnitBattleBehavior(long selectedUnitId, BattleBehavior bb);

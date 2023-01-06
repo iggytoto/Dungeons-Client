@@ -29,22 +29,6 @@ namespace Services.Barracks
                     new UnitListResponseDtoDeserializer()));
         }
 
-        public void TrainUnit(
-            TrainUnitRequest dto,
-            UserContext loginServiceUserContext,
-            EventHandler<TrainUnitResponse> successHandler,
-            EventHandler<ErrorResponseDto> errorHandler)
-        {
-            StartCoroutine(
-                DoRequestCoroutine(
-                    GetConnectionAddress() + TrainUnitPath,
-                    SerializeDto(dto),
-                    Get,
-                    new Dictionary<string, string> { { Authorization, GetTokenValueHeader(loginServiceUserContext) } },
-                    successHandler,
-                    errorHandler));
-        }
-
         public void ChangeUnitName(
             UserContext loginServiceUserContext,
             ChangeUnitNameRequestDto changeUnitNameRequestDto,

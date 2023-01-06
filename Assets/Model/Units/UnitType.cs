@@ -8,6 +8,7 @@ namespace Model.Units
         Dummy,
         HumanWarrior,
         HumanArcher,
-        HumanSpearman
+        HumanSpearman,
+        HumanCleric
     }
 }

@@ -2,7 +2,7 @@ using UnitState.Effects.Interfaces;
 
 namespace DefaultNamespace.UnitState
 {
-    public class HumanArcherAbilityProtectionEffect : Effect, IMovementSpeedPercentageChangeEffect
+    public class HumanArcherAbilityProtectionEffect : Effect, IMovementSpeedPercentageChangeEffect, IPositiveEffect
     {
         private float _duration;
         private long _msIncrease;

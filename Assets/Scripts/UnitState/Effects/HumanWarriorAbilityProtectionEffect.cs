@@ -2,7 +2,7 @@ using UnitState.Effects.Interfaces;
 
 namespace DefaultNamespace.UnitState
 {
-    public class HumanWarriorAbilityProtectionEffect : Effect, IArmorChangeEffect, IMagicResistanceChangeEffect
+    public class HumanWarriorAbilityProtectionEffect : Effect, IArmorChangeEffect, IMagicResistanceChangeEffect, IPositiveEffect
     {
         private long _mrIncrease;
         private float _duration;

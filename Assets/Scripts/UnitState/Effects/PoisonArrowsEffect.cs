@@ -2,7 +2,7 @@ using Model.Damage;
 
 namespace DefaultNamespace.UnitState
 {
-    public class PoisonArrowsEffect : DamageOverTimeEffect
+    public class PoisonArrowsEffect : DamageOverTimeEffect, INegativeEffect
     {
         protected override float Interval => 1;
         protected override DamageType DamageType => DamageType.Magic;

@@ -16,6 +16,7 @@ namespace Model.Units
             {
                 UnitType.HumanWarrior => new HumanWarriorEquipment(),
                 UnitType.HumanSpearman => new HumanSpearmanEquipment(),
+                UnitType.HumanCleric => new HumanClericEquipment(),
                 UnitType.HumanArcher => new HumanArcherEquipment(),
                 _ => null
             };

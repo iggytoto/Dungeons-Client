@@ -104,4 +104,26 @@ public class UnitStateController : NetworkBehaviour
     {
         return Unit.Value.hitPoints <= 0;
     }
+
+    public void Heal(long value)
+    {
+        Unit.Value.hitPoints += value;
+        Math.Clamp(Unit.Value.hitPoints, 0, Unit.Value.maxHp);
+    }
+
+    public void ClearPositiveEffects()
+    {
+        foreach (var e in _effects.Where(e => e is IPositiveEffect).ToList())
+        {
+            Destroy(e);
+        }
+    }
+
+    public void ClearNegativeEffects()
+    {
+        foreach (var e in _effects.Where(e => e is INegativeEffect).ToList())
+        {
+            Destroy(e);
+        }
+    }
 }

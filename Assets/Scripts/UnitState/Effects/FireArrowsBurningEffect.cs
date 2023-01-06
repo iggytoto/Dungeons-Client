@@ -6,7 +6,7 @@ namespace DefaultNamespace.UnitState
     /**
      * Fire arrows burning effect its magic DOT effect  that reduces incoming healing.
      */
-    public class FireArrowsBurningEffect : DamageOverTimeEffect, IHealingAmountChangeEffect
+    public class FireArrowsBurningEffect : DamageOverTimeEffect, IHealingAmountChangeEffect, INegativeEffect
     {
         protected override float Interval => 1;
         protected override DamageType DamageType => DamageType.Magic;

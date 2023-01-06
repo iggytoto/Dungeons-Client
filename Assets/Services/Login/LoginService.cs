@@ -37,21 +37,21 @@ public class LoginService : ServiceBase, ILoginService
 
         ConnectionState = ConnectionState.Connecting;
         _onLoginSuccessResponseOuter = onSuccess;
-        _apiAdapter.Login(new LoginRequest { login = login, password = password }, OnLoginSuccess, OnError);
+        _apiAdapter.Login(new LoginRequestDto { login = login, password = password }, OnLoginSuccess, OnError);
     }
 
     public void Register(string login, string password)
     {
-        _apiAdapter.Register(new RegisterRequest { login = login, password = password }, OnRegisterSuccess, OnError);
+        _apiAdapter.Register(new RegisterRequestDto { login = login, password = password }, OnRegisterSuccess, OnError);
     }
 
-    private void OnRegisterSuccess(object sender, RegisterResponse e)
+    private void OnRegisterSuccess(object sender, RegisterResponseDto e)
     {
         var message = $"Successfully registered with userid {e.userId}";
         Debug.Log(message);
     }
 
-    private void OnLoginSuccess(object sender, LoginResponse e)
+    private void OnLoginSuccess(object sender, LoginResponseDto e)
     {
         ConnectionState = ConnectionState.Connected;
         var tokenJson = Encoding.UTF8.GetString(Convert.FromBase64String(e.token));

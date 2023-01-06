@@ -8,28 +8,28 @@ public class LoginServiceApiAdapter : ApiAdapterBase
     private const string RegisterPath = "/auth/register";
 
     public void Login(
-        LoginRequest request,
-        EventHandler<LoginResponse> successHandler,
+        LoginRequestDto requestDto,
+        EventHandler<LoginResponseDto> successHandler,
         EventHandler<ErrorResponseDto> errorHandler)
     {
         StartCoroutine(
             DoRequestCoroutine(
                 GetConnectionAddress() + LoginPath,
-                SerializeDto(request),
+                SerializeDto(requestDto),
                 Post,
                 successHandler,
                 errorHandler));
     }
 
     public void Register(
-        RegisterRequest request,
-        EventHandler<RegisterResponse> successHandler,
+        RegisterRequestDto requestDto,
+        EventHandler<RegisterResponseDto> successHandler,
         EventHandler<ErrorResponseDto> errorHandler)
     {
         StartCoroutine(
             DoRequestCoroutine(
                 GetConnectionAddress() + RegisterPath,
-                SerializeDto(request),
+                SerializeDto(requestDto),
                 Post,
                 successHandler,
                 errorHandler));

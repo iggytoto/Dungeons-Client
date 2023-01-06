@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace Services.MatchMaking
 {
     [Serializable]
-    public class MatchMakingRegisterRequest
+    public class MatchMakingRegisterRequestDto
     {
         public List<long> rosterUnitsIds;
     }

@@ -4,7 +4,7 @@ using Model.Units;
 namespace Services.UnitShop
 {
     [Serializable]
-    public class BuyUnitRequest
+    public class BuyUnitRequestDto
     {
         public UnitType type;
     }

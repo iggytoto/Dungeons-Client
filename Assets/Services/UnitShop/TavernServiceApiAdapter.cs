@@ -34,7 +34,7 @@ namespace Services.UnitShop
             EventHandler<Unit> successHandler,
             EventHandler<string> errorHandler)
         {
-            var requestBody = JsonConvert.SerializeObject(new BuyUnitRequest
+            var requestBody = JsonConvert.SerializeObject(new BuyUnitRequestDto
             {
                 type = unit.type
             });

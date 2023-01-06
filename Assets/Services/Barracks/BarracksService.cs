@@ -83,11 +83,6 @@ public class BarracksService : ServiceBase, IBarrackService
         Debug.Log(e.message);
     }
 
-    private void OnTrainSuccess(object sender, TrainUnitResponse e)
-    {
-        Refresh();
-    }
-
     public ObservableCollection<Unit> Units => AvailableUnits;
 
     public void ChangeUnitName(long selectedUnitId, string newName)

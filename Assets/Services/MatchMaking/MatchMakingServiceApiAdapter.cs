@@ -14,10 +14,10 @@ namespace Services.MatchMaking
         private const string ApplyAsServerPath = "/matchMaking/applyServer";
 
         public void Register(IEnumerable<long> rosterUnitsIds, UserContext context,
-            EventHandler<MatchMakingStatusResponse> successHandler,
+            EventHandler<MatchMakingStatusResponseDto> successHandler,
             EventHandler<ErrorResponseDto> errorHandler)
         {
-            var requestBody = JsonConvert.SerializeObject(new MatchMakingRegisterRequest()
+            var requestBody = JsonConvert.SerializeObject(new MatchMakingRegisterRequestDto()
             {
                 rosterUnitsIds = new List<long>(rosterUnitsIds)
             });
@@ -34,7 +34,7 @@ namespace Services.MatchMaking
                 errorHandler));
         }
 
-        public void Status(UserContext context, EventHandler<MatchMakingStatusResponse> successHandler,
+        public void Status(UserContext context, EventHandler<MatchMakingStatusResponseDto> successHandler,
             EventHandler<ErrorResponseDto> errorHandler)
         {
             StartCoroutine(DoRequestCoroutine(GetConnectionAddress() + StatusPath, null, Get,
@@ -43,10 +43,10 @@ namespace Services.MatchMaking
         }
 
         public void ApplyAsServer(string ip, string port, UserContext context,
-            EventHandler<MatchMakingApplyAsServerResponse> successHandler,
+            EventHandler<MatchMakingApplyAsServerResponseDto> successHandler,
             EventHandler<ErrorResponseDto> errorHandler)
         {
-            var requestBody = JsonConvert.SerializeObject(new MatchMakingApplyAsServerRequest()
+            var requestBody = JsonConvert.SerializeObject(new MatchMakingApplyAsServerRequestDto()
             {
                 ip = ip,
                 port = port

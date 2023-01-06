@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Services.Common;
 
 /**
- * Training yard service. Provides methods for activities in Training arena.
+ * Training yard service. Provides methods for activities in Training arena. This service should be acessed only by servers.
  */
 public interface ITrainingYardService
 {
@@ -21,10 +21,10 @@ public interface ITrainingYardService
      * Saves training match result to database.
      */
     void SaveTrainingResult(
-        DateTime result, 
-        string matchMakingType, 
-        long userOneId, 
+        DateTime result,
+        string matchMakingType,
+        long userOneId,
         long userTwoId,
-        long winnerUserId, 
+        long winnerUserId,
         IEnumerable<Unit> processBattleResultsForUnits);
 }

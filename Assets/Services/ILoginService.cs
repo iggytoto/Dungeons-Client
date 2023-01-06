@@ -2,6 +2,9 @@ using System;
 
 namespace Services
 {
+    /**
+     * Login service provides connection context for the client.
+     */
     public interface ILoginService : IService
     {
         /***

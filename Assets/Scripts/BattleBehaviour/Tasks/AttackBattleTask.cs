@@ -1,3 +1,4 @@
+using System.Collections;
 using DefaultNamespace.Animation;
 using UnityEngine;
 
@@ -22,6 +23,17 @@ namespace DefaultNamespace.BattleBehaviour
             var target = GetTarget();
             if (target == null)
             {
+                if (target.IsDead())
+                {
+                    ClearTarget();
+                }
+
+                State = BattleBehaviorNodeState.Failure;
+                return State;
+            }
+
+            if (Vector3.Distance(target.transform.position, UnitState.transform.position) >= UnitState.AttackRange)
+            {
                 State = BattleBehaviorNodeState.Failure;
                 return State;
             }
@@ -35,19 +47,22 @@ namespace DefaultNamespace.BattleBehaviour
                 Animator.SetFloat(AnimationConstants.AttackMotionTimeFloat,
                     animationTime * UnitState.AttackSpeed / animationTime);
                 UnitState.gameObject.transform.LookAt(target.transform.position);
-                UnitState.DoAttack(target);
+                UnitState.StartCoroutine(DelayedAttack(target, animationTime));
                 _attackCooldown = 1 / UnitState.AttackSpeed;
-                if (target.IsDead())
-                {
-                    ClearTarget();
-                }
-
-                State = BattleBehaviorNodeState.Success;
-                return State;
             }
 
             State = BattleBehaviorNodeState.Running;
             return State;
+        }
+
+        private IEnumerator DelayedAttack(UnitStateController target, float animationTime)
+        {
+            yield return new WaitForSeconds(animationTime);
+            UnitState.DoAttack(target);
+            if (target.IsDead())
+            {
+                ClearTarget();
+            }
         }
     }
 }

@@ -1,8 +1,12 @@
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
+using DefaultNamespace.Animation;
 using DefaultNamespace.BattleBehaviour;
 using DefaultNamespace.UnitState;
 using Model.Damage;
 using Model.Units;
+using UnityEngine;
 
 namespace BattleBehaviour.Abilities
 {
@@ -30,48 +34,69 @@ namespace BattleBehaviour.Abilities
                 }
 
                 UnitState.Mana = 0;
-                foreach (var target in targets)
-                {
-                    var isEnemy = target.OwnerId != UnitState.OwnerId;
-                    if (isEnemy)
-                    {
-                        target.DoDamage(Damage.Magic(UnitState.AttackDamage));
-                        if (abilityParams.Divine)
-                        {
-                            target.DoDamage(Damage.Magic((abilityParams.NumberOfTargets - 1) * 5));
-                        }
-                    }
-                    else
-                    {
-                        target.Heal(UnitState.AttackDamage);
-                        if (abilityParams.Divine)
-                        {
-                            target.Heal((abilityParams.NumberOfTargets - 1) * 5);
-                        }
-                    }
-
-                    if (abilityParams.Shatter)
-                    {
-                        var e = target.ApplyEffect<HumanClericShatterEffect>();
-                        e.Init(abilityParams.NumberOfTargets, isEnemy ? -25 : 25);
-                    }
-
-                    if (abilityParams.Divine)
-                    {
-                        if (isEnemy)
-                        {
-                            target.ClearPositiveEffects();
-                        }
-                        else
-                        {
-                            target.ClearNegativeEffects();
-                        }
-                    }
-                }
+                Animator.SetTrigger(AnimationConstants.AttackTrigger);
+                UnitState.StartCoroutine(DelayedAttack(targets, GetAnimationTime()));
+                State = BattleBehaviorNodeState.Success;
+                return State;
             }
 
             State = BattleBehaviorNodeState.Failure;
             return State;
+        }
+
+        private IEnumerator DelayedAttack(List<UnitStateController> targets, float animationTime)
+        {
+            yield return new WaitForSeconds(animationTime);
+            var abilityParams = GetAbilityParams();
+            foreach (var target in targets)
+            {
+                var isEnemy = target.OwnerId != UnitState.OwnerId;
+                if (isEnemy)
+                {
+                    var damageValue = UnitState.AttackDamage;
+                    if (abilityParams.Divine)
+                    {
+                        damageValue += (abilityParams.NumberOfTargets - 1) * 5;
+                    }
+
+                    target.DoAttack(target, true, Damage.Magic(damageValue), (t) =>
+                    {
+                        if (abilityParams.Shatter)
+                        {
+                            var e = t.ApplyEffect<HumanClericShatterEffect>();
+                            e.Init(abilityParams.NumberOfTargets, -25);
+                        }
+
+                        if (abilityParams.Divine)
+                        {
+                            t.ClearPositiveEffects();
+                        }
+                    });
+                }
+                else
+                {
+                    var healValue = UnitState.AttackDamage;
+                    if (abilityParams.Divine)
+                    {
+                        healValue += (abilityParams.NumberOfTargets - 1) * 5;
+                    }
+
+                    target.DoAttack(target, true, Damage.Magic(0), (t) =>
+                    {
+                        t.Heal(healValue);
+                        if (abilityParams.Shatter)
+                        {
+                            var e = t.ApplyEffect<HumanClericShatterEffect>();
+                            e.Init(abilityParams.NumberOfTargets, 25);
+                        }
+
+                        if (abilityParams.Divine)
+                        {
+                            t.ClearNegativeEffects();
+                        }
+                    });
+                }
+            }
         }
 
         private MulticastParams GetAbilityParams()

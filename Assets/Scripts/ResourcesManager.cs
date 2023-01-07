@@ -4,14 +4,15 @@ using UnityEngine;
 
 namespace DefaultNamespace
 {
+    //todo make it monobehavior and load resources on start
     public abstract class ResourcesManager
     {
-        public static GameObject LoadPrefabForUnitType(UnitType type)
+        public static GameObject LoadUnitPrefabForUnitType(UnitType type)
         {
-            return Resources.Load<GameObject>(GetPrefab(type));
+            return Resources.Load<GameObject>(GetUnitPrefabResourcePath(type));
         }
 
-        private static string GetPrefab(UnitType type)
+        private static string GetUnitPrefabResourcePath(UnitType type)
         {
             return type switch
             {

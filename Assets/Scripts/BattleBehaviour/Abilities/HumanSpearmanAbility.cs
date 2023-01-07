@@ -1,6 +1,8 @@
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
+using DefaultNamespace.Animation;
 using DefaultNamespace.BattleBehaviour;
-using Model.Damage;
 using Model.Units;
 using UnityEngine;
 using Random = System.Random;
@@ -32,19 +34,10 @@ namespace BattleBehaviour.Abilities
                 }
 
                 UnitState.Mana = 0;
-                var abilityParams = GetAbilityParams();
-                var rng = new Random();
-                foreach (var target in targets)
-                {
-                    var isDoubleDamage = rng.Next(0, 100) > (100 - abilityParams.Chance);
-                    target.DoDamage(Damage.Physical(UnitState.AttackDamage));
-                    if (isDoubleDamage)
-                    {
-                        target.DoDamage(Damage.Physical(UnitState.AttackDamage));
-                    }
-
-                    ThrowBack(target, abilityParams.Throwback);
-                }
+                Animator.SetBool(AnimationConstants.IsAbilityBoolean, true);
+                UnitState.StartCoroutine(DelayedAbility(targets, GetAnimationTime()));
+                State = BattleBehaviorNodeState.Success;
+                return State;
             }
 
             State = BattleBehaviorNodeState.Failure;
@@ -100,6 +93,24 @@ namespace BattleBehaviour.Abilities
             {
                 Chance = chance;
                 Throwback = throwback;
+            }
+        }
+
+        private IEnumerator DelayedAbility(List<UnitStateController> targets, float animationTime)
+        {
+            yield return new WaitForSeconds(animationTime);
+            var abilityParams = GetAbilityParams();
+            var rng = new Random();
+            foreach (var target in targets)
+            {
+                var isDoubleDamage = rng.Next(0, 100) > (100 - abilityParams.Chance);
+                UnitState.DoAttack(target);
+                if (isDoubleDamage)
+                {
+                    UnitState.DoAttack(target);
+                }
+
+                ThrowBack(target, abilityParams.Throwback);
             }
         }
     }

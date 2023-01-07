@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DefaultNamespace.Animation;
 using DefaultNamespace.BattleBehaviour;
+using DefaultNamespace.Projectiles;
 using DefaultNamespace.UnitState;
 using Model.Damage;
 using Model.Units;
@@ -54,12 +55,31 @@ public class UnitStateController : NetworkBehaviour
         return Unit.Value;
     }
 
-    public void DoAttack(UnitStateController target)
+    public void DoAttack(
+        UnitStateController target,
+        bool doNotRegenMana = false, 
+        Damage damageOverride = null,
+        Action<UnitStateController> onProjectileHitHandler = null)
     {
         if (target != null)
         {
-            target.DoDamage(Damage.Physical(AttackDamage));
-            Unit.Value.mana += 5;
+            var projectilePrefab = RangedUnitsUtility.GetProjectileFor(Unit.Value);
+            var damage = damageOverride ?? Damage.Physical(AttackDamage);
+            if (projectilePrefab == null)
+            {
+                target.DoDamage(damage);
+            }
+            else
+            {
+                var projectileObject = Instantiate(projectilePrefab);
+                var pc = projectileObject.GetComponent<ProjectileController>();
+                pc.Init(this, target, damage, onProjectileHitHandler);
+            }
+
+            if (!doNotRegenMana)
+            {
+                Unit.Value.mana += 5;
+            }
         }
     }
 
@@ -84,6 +104,8 @@ public class UnitStateController : NetworkBehaviour
         {
             gameObject.GetComponentInChildren<Animator>().SetBool(AnimationConstants.IsDeadBoolean, true);
         }
+
+        Debug.Log($"Unit with id:{Unit.Value.Id} suffered {damageAmount} damage");
     }
 
     private float GetCurrentDamageReduction()

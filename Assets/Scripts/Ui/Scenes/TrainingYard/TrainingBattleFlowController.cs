@@ -145,7 +145,7 @@ public sealed class TrainingBattleFlowController : NetworkBehaviour
     private void SpawnUnits(IEnumerable<Unit> roster, bool playerOne)
     {
         var unitToPrefabMap = roster.ToDictionary(x => x,
-            x => ResourcesManager.LoadPrefabForUnitType(x.type));
+            x => ResourcesManager.LoadUnitPrefabForUnitType(x.type));
         var spawnPositions = new List<GameObject>(playerOne ? teamOneSpawnPositions : teamTwoSpawnPositions);
         foreach (var (unit, prefab) in unitToPrefabMap)
         {

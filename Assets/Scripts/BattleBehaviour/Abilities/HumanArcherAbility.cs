@@ -1,10 +1,13 @@
 using System;
+using System.Collections;
 using System.Linq;
+using DefaultNamespace;
 using DefaultNamespace.Animation;
 using DefaultNamespace.BattleBehaviour;
 using DefaultNamespace.UnitState;
 using Model.Damage;
 using Model.Units;
+using UnityEngine;
 
 namespace BattleBehaviour.Abilities
 {
@@ -29,25 +32,13 @@ namespace BattleBehaviour.Abilities
             {
                 UnitState.Mana = 0;
                 Animator.SetTrigger(AnimationConstants.AttackTrigger);
-                var attackClipInfo = Animator.GetCurrentAnimatorClipInfo(1)[0];
-                var animationTime = attackClipInfo.clip.averageDuration;
+                var animationTime = GetAnimationTime();
                 Animator.SetFloat(AnimationConstants.AttackMotionTimeFloat,
                     animationTime * UnitState.AttackSpeed / animationTime);
                 foreach (var target in targets)
                 {
                     var additionalDamageAndEffect = CalculateDamageAndEffect();
-                    target.DoDamage(Damage.Physical(UnitState.AttackDamage +
-                                                    additionalDamageAndEffect.AdditionalDamage));
-                    if (GetEquipment().fireArrows)
-                    {
-                        target.ApplyEffect<FireArrowsBurningEffect>();
-                    }
-
-                    if (GetEquipment().poisonArrows)
-                    {
-                        target.ApplyEffect<PoisonArrowsEffect>();
-                    }
-
+                    UnitState.StartCoroutine(DelayedAttack(target, animationTime, additionalDamageAndEffect));
                     if (!(additionalDamageAndEffect.MSIncreaseDuration > 0)) continue;
                     var e = UnitState.ApplyEffect<HumanArcherAbilityProtectionEffect>();
                     e.Init(additionalDamageAndEffect.MSIncreaseDuration,
@@ -112,6 +103,29 @@ namespace BattleBehaviour.Abilities
         private HumanArcherEquipment GetEquipment()
         {
             return _equipment ??= (HumanArcherEquipment)UnitState.Equipment;
+        }
+
+        private IEnumerator DelayedAttack(UnitStateController target, float animationTime,
+            AdditionalDamageAndEffect additionalDamageAndEffect)
+        {
+            yield return new WaitForSeconds(animationTime);
+            UnitState.DoAttack(
+                target,
+                true,
+                Damage.Physical(UnitState.AttackDamage +
+                                additionalDamageAndEffect.AdditionalDamage),
+                (t) =>
+                {
+                    if (GetEquipment().fireArrows)
+                    {
+                        t.ApplyEffect<FireArrowsBurningEffect>();
+                    }
+
+                    if (GetEquipment().poisonArrows)
+                    {
+                        t.ApplyEffect<PoisonArrowsEffect>();
+                    }
+                });
         }
     }
 }

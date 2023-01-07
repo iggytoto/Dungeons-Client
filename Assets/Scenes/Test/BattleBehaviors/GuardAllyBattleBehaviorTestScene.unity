@@ -188,7 +188,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8392954386781127559, guid: 36777493e7198db4b99dbd77365a7da7, type: 3}
       propertyPath: m_Name
-      value: DummyUnitPrefab (2)
+      value: Guard
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -2913385943533519307, guid: 36777493e7198db4b99dbd77365a7da7, type: 3}
@@ -370,7 +370,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8392954386781127559, guid: 36777493e7198db4b99dbd77365a7da7, type: 3}
       propertyPath: m_Name
-      value: DummyUnitPrefab (1)
+      value: Guardee
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -2913385943533519307, guid: 36777493e7198db4b99dbd77365a7da7, type: 3}
@@ -498,7 +498,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8392954386781127559, guid: 36777493e7198db4b99dbd77365a7da7, type: 3}
       propertyPath: m_Name
-      value: DummyUnitPrefab
+      value: Enemy
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 36777493e7198db4b99dbd77365a7da7, type: 3}

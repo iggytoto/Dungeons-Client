@@ -1,15 +1,23 @@
 using System;
+using System.Collections.Generic;
 using Model.Units;
 using UnityEngine;
 
 namespace DefaultNamespace
 {
-    //todo make it monobehavior and load resources on start
-    public abstract class ResourcesManager
+    public class ResourcesManager : MonoBehaviour
     {
-        public static GameObject LoadUnitPrefabForUnitType(UnitType type)
+        private readonly Dictionary<UnitType, GameObject> _unitTypePrefabs = new();
+
+
+        public GameObject LoadUnitPrefabForUnitType(UnitType type)
         {
-            return Resources.Load<GameObject>(GetUnitPrefabResourcePath(type));
+            if (!_unitTypePrefabs.ContainsKey(type))
+            {
+                _unitTypePrefabs.Add(type, Resources.Load<GameObject>(GetUnitPrefabResourcePath(type)));
+            }
+
+            return _unitTypePrefabs[type];
         }
 
         private static string GetUnitPrefabResourcePath(UnitType type)

@@ -1,3 +1,5 @@
+using System.Resources;
+using DefaultNamespace;
 using UnityEngine;
 
 namespace Services
@@ -23,11 +25,14 @@ namespace Services
         public ITavernService TavernService { get; set; }
         public ITrainingYardService TrainingYardService { get; set; }
 
+        public ResourcesManager ResourcesManager { get; set; }
+
         private void Awake()
         {
             Debug.Log("Configuration start");
             servicesConfiguration.SetServices(this);
             Debug.Log("Configuration finished");
+            ResourcesManager = gameObject.AddComponent<ResourcesManager>();
         }
     }
 }

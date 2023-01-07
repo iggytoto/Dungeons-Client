@@ -23,11 +23,14 @@ public sealed class TrainingBattleFlowController : NetworkBehaviour
     private long _userTwoId;
     private long _winnerUserId;
     private bool _isBattleInProgress;
+    private ResourcesManager _resourcesManager;
 
 
     private void Start()
     {
-        _trainingYardService = FindObjectOfType<GameService>().TrainingYardService;
+        var gs = FindObjectOfType<GameService>();
+        _trainingYardService = gs.TrainingYardService;
+        _resourcesManager = gs.ResourcesManager;
     }
 
     public async void StartBattle(long userOneId, long userTwoId)
@@ -58,7 +61,7 @@ public sealed class TrainingBattleFlowController : NetworkBehaviour
             secondsWaited++;
             if (IsBattleEnded())
             {
-                EndBattle();
+                StartCoroutine(EndBattle());
                 yield return null;
             }
 
@@ -66,17 +69,19 @@ public sealed class TrainingBattleFlowController : NetworkBehaviour
         }
 
         IsBattleEnded();
-        EndBattle();
+        StartCoroutine(EndBattle());
+        yield return null;
     }
 
-    private void EndBattle()
+    private IEnumerator EndBattle()
     {
-        SaveBattleResult();
+        yield return new WaitForSeconds(30);
         SaveBattleResult();
         CleanUpObjects();
         OnBattleFinished?.Invoke();
         StopAllCoroutines();
         _isBattleInProgress = false;
+        yield return null;
     }
 
     private void CleanUpObjects()
@@ -145,7 +150,7 @@ public sealed class TrainingBattleFlowController : NetworkBehaviour
     private void SpawnUnits(IEnumerable<Unit> roster, bool playerOne)
     {
         var unitToPrefabMap = roster.ToDictionary(x => x,
-            x => ResourcesManager.LoadUnitPrefabForUnitType(x.type));
+            x => _resourcesManager.LoadUnitPrefabForUnitType(x.type));
         var spawnPositions = new List<GameObject>(playerOne ? teamOneSpawnPositions : teamTwoSpawnPositions);
         foreach (var (unit, prefab) in unitToPrefabMap)
         {

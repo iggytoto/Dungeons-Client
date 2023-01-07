@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 8262440938153104795}
   - component: {fileID: 119125009110176229}
-  - component: {fileID: 2257828109191542327}
   - component: {fileID: 3067735086698422217}
   - component: {fileID: 5113243579211180778}
+  - component: {fileID: -460453808955788150}
+  - component: {fileID: -2913385943533519307}
   m_Layer: 6
   m_Name: DummyUnitPrefab
   m_TagString: Untagged
@@ -52,18 +53,6 @@ MonoBehaviour:
   AlwaysReplicateAsRoot: 0
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
---- !u!114 &2257828109191542327
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8392954386781127559}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 663cd8a7ef73f5a47adbc0c3781502c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &3067735086698422217
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -112,6 +101,41 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &-460453808955788150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8392954386781127559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5efeb19d103b43a0b13ba8665b3762fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 0
+  ownerId: 1
+  hp: 100
+  maxHp: 100
+  maxMana: 0
+  mana: 0
+  attackRange: 2
+  moveSpeed: 4
+  attackSpeed: 1
+  damage: 10
+  type: 0
+--- !u!114 &-2913385943533519307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8392954386781127559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37087eb4b94a4717aac01bbc4000e886, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5347994663608554115
 PrefabInstance:
   m_ObjectHideFlags: 0

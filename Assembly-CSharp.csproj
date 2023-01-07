@@ -206,7 +206,6 @@
      <Compile Include="Assets\Scripts\BattleBehaviour\Abilities\HumanClericAbility.cs" />
      <Compile Include="Assets\Model\Currency\Currency.cs" />
      <Compile Include="Assets\Scripts\UnitState\Effects\Interfaces\INegativeEffect.cs" />
-     <Compile Include="Assets\Scripts\UnitState\RangedUnitsUtility.cs" />
      <Compile Include="Assets\Scripts\Projectiles\ProjectileController.cs" />
      <Folder Include="Assets" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\mergetool.ja.txt" />

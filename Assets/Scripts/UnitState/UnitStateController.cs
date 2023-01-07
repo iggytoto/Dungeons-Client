@@ -1,12 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using DefaultNamespace;
 using DefaultNamespace.Animation;
 using DefaultNamespace.BattleBehaviour;
 using DefaultNamespace.Projectiles;
 using DefaultNamespace.UnitState;
 using Model.Damage;
 using Model.Units;
+using Services;
 using UnitState.Effects.Interfaces;
 using Unity.Netcode;
 using Unity.VisualScripting;
@@ -35,6 +37,13 @@ public class UnitStateController : NetworkBehaviour
 
     public long MaxMana => Unit.Value.maxMana;
 
+    private ResourcesManager _resourcesManager;
+
+    private void Start()
+    {
+        _resourcesManager = FindObjectOfType<GameService>().ResourcesManager;
+    }
+
     private float GetMovementSpeedModificator()
     {
         return _effects.Select(e => e as IMovementSpeedPercentageChangeEffect).NotNull()
@@ -57,29 +66,27 @@ public class UnitStateController : NetworkBehaviour
 
     public void DoAttack(
         UnitStateController target,
-        bool doNotRegenMana = false, 
+        bool doNotRegenMana = false,
         Damage damageOverride = null,
         Action<UnitStateController> onProjectileHitHandler = null)
     {
-        if (target != null)
+        if (target == null) return;
+        var projectilePrefab = _resourcesManager.LoadProjectileForUnitType(Unit.Value.type);
+        var damage = damageOverride ?? Damage.Physical(AttackDamage);
+        if (projectilePrefab == null)
         {
-            var projectilePrefab = RangedUnitsUtility.GetProjectileFor(Unit.Value);
-            var damage = damageOverride ?? Damage.Physical(AttackDamage);
-            if (projectilePrefab == null)
-            {
-                target.DoDamage(damage);
-            }
-            else
-            {
-                var projectileObject = Instantiate(projectilePrefab);
-                var pc = projectileObject.GetComponent<ProjectileController>();
-                pc.Init(this, target, damage, onProjectileHitHandler);
-            }
+            target.DoDamage(damage);
+        }
+        else
+        {
+            var projectileObject = Instantiate(projectilePrefab);
+            var pc = projectileObject.GetComponent<ProjectileController>();
+            pc.Init(this, target, damage, onProjectileHitHandler);
+        }
 
-            if (!doNotRegenMana)
-            {
-                Unit.Value.mana += 5;
-            }
+        if (!doNotRegenMana)
+        {
+            Unit.Value.mana += 5;
         }
     }
 

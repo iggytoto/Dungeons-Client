@@ -18,6 +18,9 @@ namespace DefaultNamespace
             {
                 UnitType.HumanWarrior => "Characters/HumanWarrior/HumanWarriorPrefab",
                 UnitType.Dummy => "Characters/Dummy/DummyUnitPrefab",
+                UnitType.HumanArcher => "Characters/HumanArcher/HumanArcherPrefab",
+                UnitType.HumanSpearman => "Characters/HumanSpearman/HumanSpearmanPrefab",
+                UnitType.HumanCleric => "Characters/HumanCleric/HumanClericPrefab",
                 _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
             };
         }

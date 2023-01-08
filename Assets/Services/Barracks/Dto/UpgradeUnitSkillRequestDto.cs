@@ -6,7 +6,7 @@ namespace Services.Common.Dto
     [Serializable]
     public class UpgradeUnitSkillRequestDto
     {
-        public long skillId;
+        public long skillsId;
         public UnitType unitType;
         public string paramNameToUpgrade;
     }

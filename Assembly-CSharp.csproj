@@ -96,7 +96,6 @@
      <Compile Include="Assets\Scripts\UnitState\Effects\HumanArcherAbilityProtectionEffect.cs" />
      <Compile Include="Assets\Services\Common\Dto\UnitListResponseDto.cs" />
      <Compile Include="Assets\Services\Barracks\BarrackServiceApiAdapter.cs" />
-     <Compile Include="Assets\Scripts\Ui\Common\TopPlayerBankAccountPanelController.cs" />
      <Compile Include="Assets\Services\MatchMaking\MockMatchMakingService.cs" />
      <Compile Include="Assets\Model\ModelBase.cs" />
      <Compile Include="Assets\Services\Common\Dto\UnitListRequestDto.cs" />
@@ -138,7 +137,6 @@
      <Compile Include="Assets\Services\Common\Dto\Skills\SkillsDto.cs" />
      <Compile Include="Assets\Services\Common\Dto\Skills\HumanSpearmanSkillsDto.cs" />
      <Compile Include="Assets\Services\PlayerBank\MockPlayerAccountService.cs" />
-     <Compile Include="Assets\Scripts\Ui\Common\HorizontalUnitListController.cs" />
      <Compile Include="Assets\Services\ILoginService.cs" />
      <Compile Include="Assets\Scripts\UnitState\Effects\Interfaces\IMagicResistanceChangeEffect.cs" />
      <Compile Include="Assets\Scripts\BattleBehaviour\GuardNearestAllyBattleBehavior.cs" />
@@ -147,8 +145,6 @@
      <Compile Include="Assets\Scripts\Animation\AnimationConstants.cs" />
      <Compile Include="Assets\Model\Units\Humans\HumanCleric.cs" />
      <Compile Include="Assets\Services\Login\Dto\LoginResponseDto.cs" />
-     <Compile Include="Assets\Scripts\Ui\Common\HorizontalUnitListButtonController.cs" />
-     <Compile Include="Assets\Scripts\Ui\Common\SelectedUnitPanelController.cs" />
      <Compile Include="Assets\Services\Common\Dto\DtoDeserializaer\Skills\UnitSkillsDeserializerBase.cs" />
      <Compile Include="Assets\Services\Login\ConnectionState.cs" />
      <Compile Include="Assets\Services\Common\Dto\MatchResultDto.cs" />
@@ -205,6 +201,8 @@
      <Compile Include="Assets\Scripts\Ui\Scenes\Town\SelectedUnitSkillsPanelUiController.cs" />
      <Compile Include="Assets\Scripts\Ui\Scenes\Town\Skills\ISkillsPanelUiController.cs" />
      <Compile Include="Assets\Scripts\Ui\Scenes\Town\Skills\HumanWarriorSkillsPanelUiController.cs" />
+     <Compile Include="Assets\Scripts\Ui\Common\ToolTipBehaviorUiController.cs" />
+     <Compile Include="Assets\Scripts\Ui\Common\ToolTipUiController.cs" />
      <Folder Include="Assets" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\mergetool.ja.txt" />
      <Folder Include="Assets\Libs\Tiny Fantasy Icons\Keys" />

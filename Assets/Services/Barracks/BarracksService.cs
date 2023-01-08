@@ -114,7 +114,7 @@ public class BarracksService : ServiceBase, IBarrackService
             _loginService.UserContext,
             new UpgradeUnitSkillRequestDto
             {
-                skillId = skillId,
+                skillsId = skillId,
                 unitType = unitType,
                 paramNameToUpgrade = upgradeParamName
             },

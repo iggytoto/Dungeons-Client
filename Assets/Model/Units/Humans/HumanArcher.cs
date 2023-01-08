@@ -15,8 +15,9 @@ namespace Model.Units.Humans
             movementSpeed = 6;
             damage = 50;
             maxMana = 100;
-            type = UnitType.HumanWarrior;
+            type = UnitType.HumanArcher;
             equip = new HumanArcherEquipment();
+            Name = "HumanArcher";
         }
     }
 }

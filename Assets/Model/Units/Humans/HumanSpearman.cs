@@ -17,6 +17,7 @@ namespace Model.Units.Humans
             maxMana = 75;
             type = UnitType.HumanSpearman;
             equip = new HumanSpearmanEquipment();
+            Name = "HumanSpearman";
         }
     }
 }

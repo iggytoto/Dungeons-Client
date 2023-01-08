@@ -19,8 +19,8 @@ MonoBehaviour:
   login: server
   password: password
   reconnectInterval: 5
-  barrackServiceType: 0
+  barrackServiceType: 1
   matchMakingServiceType: 1
   playerAccountServiceType: 0
-  tavernServiceType: 0
+  tavernServiceType: 1
   trainingYardServiceType: 0

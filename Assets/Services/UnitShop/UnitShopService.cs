@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using Model.Units;
 using Services;
 using Services.UnitShop;
 using Unity.VisualScripting;
@@ -69,8 +70,8 @@ public class UnitShopService : ServiceBase, ITavernService
         AvailableUnits.AddRange(e);
     }
 
-    public void BuyUnit(Unit unit)
+    public void BuyUnit(UnitType type)
     {
-        _apiAdapter.BuyUnit(unit, _loginService.UserContext, null, OnError);
+        _apiAdapter.BuyUnit(type, _loginService.UserContext, null, OnError);
     }
 }

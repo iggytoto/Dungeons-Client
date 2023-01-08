@@ -17,6 +17,7 @@ namespace Model.Units.Humans
             maxMana = 100;
             type = UnitType.HumanWarrior;
             equip = new HumanWarriorEquipment();
+            Name = "HumanWarrior";
         }
     }
 }

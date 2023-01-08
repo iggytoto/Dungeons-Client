@@ -43,7 +43,6 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\UnitState\Effects\PoisonArrowsEffect.cs" />
      <Compile Include="Assets\Services\Login\LoginService.cs" />
-     <Compile Include="Assets\Scripts\Ui\Scenes\Barrack\HumanClericEquipmentTableController.cs" />
      <Compile Include="Assets\Services\UnitShop\TavernServiceApiAdapter.cs" />
      <Compile Include="Assets\Scripts\UnitState\Effects\FireArrowsBurningEffect.cs" />
      <Compile Include="Assets\Scripts\BattleBehaviour\BattleBehaviourManager.cs" />
@@ -55,7 +54,6 @@
      <Compile Include="Assets\Scripts\Ui\Scenes\TrainingYard\TrainingUnitSelectionModalController.cs" />
      <Compile Include="Assets\Scripts\BattleBehaviour\Common\BattleBehaviorSelector.cs" />
      <Compile Include="Assets\Scripts\Ui\UnitHpBarController.cs" />
-     <Compile Include="Assets\Scripts\Ui\Scenes\TavernSceneUiController.cs" />
      <Compile Include="Assets\Scripts\Ui\Scenes\TrainingYard\TrainingYardTeamStatusUiController.cs" />
      <Compile Include="Assets\Services\TrainingYard\MockTrainingYardService.cs" />
      <Compile Include="Assets\Scenes\SceneConstants.cs" />
@@ -63,7 +61,6 @@
      <Compile Include="Assets\Services\Common\Dto\DtoDeserializaer\IDtoDeserializer.cs" />
      <Compile Include="Assets\Services\Login\UserContext.cs" />
      <Compile Include="Assets\Scripts\Ui\Common\ToSceneButtonController.cs" />
-     <Compile Include="Assets\Scripts\Ui\Scenes\Barrack\IEquipmentTableController.cs" />
      <Compile Include="Assets\Scripts\Ui\Scenes\TrainingYard\TrainingYardClientFlowController.cs" />
      <Compile Include="Assets\Scripts\UnitState\Effects\Base\Effect.cs" />
      <Compile Include="Assets\Services\Common\Dto\UnitEquipment\HumanClericEquipmentDto.cs" />
@@ -82,7 +79,6 @@
      <Compile Include="Assets\Services\Common\Dto\ResponseBaseDto.cs" />
      <Compile Include="Assets\Model\Units\Equipment\Equipment.cs" />
      <Compile Include="Assets\Scripts\Ui\Common\CurrentGoldAmountUiPanelController.cs" />
-     <Compile Include="Assets\Scripts\Ui\Scenes\Barrack\HumanWarriorEquipmentTableController.cs" />
      <Compile Include="Assets\Scripts\UnitState\Effects\Base\DamageOverTimeEffect.cs" />
      <Compile Include="Assets\Scripts\UnitState\Effects\Interfaces\IPositiveEffect.cs" />
      <Compile Include="Assets\Scripts\BattleBehaviour\Abilities\HumanSpearmanAbility.cs" />
@@ -91,8 +87,6 @@
      <Compile Include="Assets\Scripts\BattleBehaviour\Tasks\AttackBattleTask.cs" />
      <Compile Include="Assets\Services\Common\Dto\Unit\UnitDto.cs" />
      <Compile Include="Assets\Scripts\NetworkManagerDebugHelperController.cs" />
-     <Compile Include="Assets\Scripts\Ui\Scenes\Barrack\ChangeBattleBehaviorController.cs" />
-     <Compile Include="Assets\Scripts\UnitEquipmentTableModalController.cs" />
      <Compile Include="Assets\Scripts\BattleBehaviour\Tasks\SetClosestAllyAsTargetAllyTask.cs" />
      <Compile Include="Assets\Services\IPlayerAccountService.cs" />
      <Compile Include="Assets\Services\UnitShop\Dto\BuyUnitRequestDto.cs" />
@@ -117,12 +111,10 @@
      <Compile Include="Assets\Services\MatchMaking\Dto\MatchMakingStatusResponseDto.cs" />
      <Compile Include="Assets\Scripts\Ui\Common\CurrentTimePanelController.cs" />
      <Compile Include="Assets\Services\Login\LoginServiceApiAdapter.cs" />
-     <Compile Include="Assets\Scripts\Ui\Scenes\Barrack\RenameUnitModalController.cs" />
      <Compile Include="Assets\Scripts\BattleBehaviour\Common\BattleBehaviorNode.cs" />
      <Compile Include="Assets\Model\Units\Unit.cs" />
      <Compile Include="Assets\Scripts\BattleBehaviour\Common\BattleBehaviorSequence.cs" />
      <Compile Include="Assets\Scripts\BattleBehaviour\DoNothingBattleBehaviour.cs" />
-     <Compile Include="Assets\Scripts\Ui\Scenes\Barrack\HumanArcherEquipmentTableController.cs" />
      <Compile Include="Assets\Services\MatchMaking\Dto\MatchMakingApplyAsServerRequestDto.cs" />
      <Compile Include="Assets\Services\MatchMaking\MatchMakingService.cs" />
      <Compile Include="Assets\Services\Common\Dto\DtoDeserializaer\Equipment\HumanWarriorEquipmentDtoDeserializer.cs" />
@@ -141,7 +133,6 @@
      <Compile Include="Assets\Scripts\BattleBehaviour\Abilities\HumanWarriorAbility.cs" />
      <Compile Include="Assets\Services\GameServiceConfiguration\ServicesConfiguration.cs" />
      <Compile Include="Assets\Services\IBarrackService.cs" />
-     <Compile Include="Assets\Scripts\Ui\Scenes\Barrack\HumanSpearmanEquipmentTableController.cs" />
      <Compile Include="Assets\Services\Login\MockLoginService.cs" />
      <Compile Include="Assets\Services\Common\Dto\TokenDto.cs" />
      <Compile Include="Assets\Services\Common\Dto\UnitEquipment\EquipmentDto.cs" />
@@ -149,7 +140,6 @@
      <Compile Include="Assets\Services\PlayerBank\MockPlayerAccountService.cs" />
      <Compile Include="Assets\Scripts\Ui\Common\HorizontalUnitListController.cs" />
      <Compile Include="Assets\Services\ILoginService.cs" />
-     <Compile Include="Assets\Scripts\Ui\Scenes\Barrack\UiUnitEquipmentPanelsManager.cs" />
      <Compile Include="Assets\Scripts\UnitState\Effects\Interfaces\IMagicResistanceChangeEffect.cs" />
      <Compile Include="Assets\Scripts\BattleBehaviour\GuardNearestAllyBattleBehavior.cs" />
      <Compile Include="Assets\Scripts\UnitState\UnitStateController.cs" />
@@ -182,7 +172,6 @@
      <Compile Include="Assets\Scripts\BattleBehaviour\Abilities\HumanArcherAbility.cs" />
      <Compile Include="Assets\Services\Common\Dto\DtoDeserializaer\UnitDtoDeserializer.cs" />
      <Compile Include="Assets\Scripts\BattleBehaviour\Tasks\MoveToTargetOnAttackRangeTask.cs" />
-     <Compile Include="Assets\Scripts\Ui\Scenes\Barrack\BarrackSceneUiController.cs" />
      <Compile Include="Assets\Scripts\Ui\BillboardUiBehavior.cs" />
      <Compile Include="Assets\Services\Common\Dto\ErrorResponseDto.cs" />
      <Compile Include="Assets\Model\Units\UnitForSale.cs" />
@@ -206,8 +195,12 @@
      <Compile Include="Assets\Scripts\BattleBehaviour\Abilities\HumanClericAbility.cs" />
      <Compile Include="Assets\Model\Currency\Currency.cs" />
      <Compile Include="Assets\Scripts\UnitState\Effects\Interfaces\INegativeEffect.cs" />
-     <Compile Include="Assets\Scripts\UnitState\RangedUnitsUtility.cs" />
      <Compile Include="Assets\Scripts\Projectiles\ProjectileController.cs" />
+     <Compile Include="Assets\Scripts\Ui\Scenes\Town\TownSceneUiController.cs" />
+     <Compile Include="Assets\Scripts\Ui\Scenes\Town\BottomHorizontalBarrackUnitListUiController.cs" />
+     <Compile Include="Assets\Scripts\Ui\Scenes\Town\UnitButtonUiController.cs" />
+     <Compile Include="Assets\Scripts\Ui\Scenes\Town\BuyUnitButtonUiController.cs" />
+     <Compile Include="Assets\Scripts\Ui\Scenes\Town\BuyUnitPopupUiController.cs" />
      <Folder Include="Assets" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\mergetool.ja.txt" />
      <Folder Include="Assets\Libs\Tiny Fantasy Icons\Keys" />
@@ -225,6 +218,7 @@
      <Folder Include="Assets\Libs\Blink\Art\Weapons\LowPoly\FreeRPGWeapons\Axes\Axe_1H_Textures" />
      <Folder Include="Assets\Libs\Blink\Art\Weapons\LowPoly\FreeRPGWeapons\Maces\Mace_1H_Textures" />
      <Folder Include="Library\PackageCache\com.unity.test-framework@1.1.31" />
+     <Folder Include="Assets\Scripts\Ui\Scenes\Town" />
      <None Include="Library\PackageCache\com.unity.terrain-tools@4.0.3\Shaders\NoiseLib\Strata\Voronoi.hlsl" />
      <Folder Include="Library\PackageCache\com.unity.searcher@4.9.1" />
      <Folder Include="Library\PackageCache\com.unity.sysroot@2.0.4" />
@@ -327,7 +321,6 @@
      <Folder Include="Library\PackageCache\com.unity.visualscripting@1.7.8" />
      <Folder Include="Library\PackageCache\com.unity.ai.navigation@1.0.0-exp.4\Gizmos" />
      <Folder Include="Library\PackageCache\com.unity.terrain-tools@4.0.3\Shaders\NoiseLib" />
-     <Folder Include="Assets\Ui\Barrack" />
      <None Include="Library\PackageCache\com.unity.ide.visualstudio@2.0.16\ValidationConfig.json" />
      <Folder Include="Library\PackageCache\com.unity.ext.nunit@1.0.6\net35" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\basecommands.zh-Hant.txt" />
@@ -349,7 +342,6 @@
      <Folder Include="Library\PackageCache\com.unity.nuget.newtonsoft-json@3.0.2\Runtime\AOT" />
      <None Include="Assets\Libs\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
      <Folder Include="Assets\Scripts\Ui\Common" />
-     <Folder Include="Assets\Scripts\Ui\Scenes\Barrack" />
      <Folder Include="Assets\Libs\TextMesh Pro\Resources" />
      <Folder Include="Assets\Scenes\Test\BattleBehaviors\AttackBackLineBattleBehaviorTestScene" />
      <Folder Include="Assets\Libs\Blink\Art\Weapons\LowPoly\FreeRPGWeapons\Shield\Shields_Textures" />
@@ -705,7 +697,7 @@
      <Folder Include="Assets\Libs\Tiny Fantasy Icons\Chests" />
      <None Include="Library\PackageCache\com.unity.collections@1.2.4\package.json" />
      <None Include="Library\PackageCache\com.unity.modules.androidjni@1.0.0\package.json" />
-     <Folder Include="Assets\Scenes\TestScene" />
+     <Folder Include="Assets\Scenes\Test\TestScene" />
      <Folder Include="Library\PackageCache\com.unity.terrain-tools@4.0.3\Shaders" />
      <Folder Include="Assets\Services\Login" />
      <Folder Include="Assets\Libs\Blink\Art\Weapons\LowPoly\Demo\Free_RPG_Weapons_DEMO" />

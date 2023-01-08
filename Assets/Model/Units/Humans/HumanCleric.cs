@@ -17,6 +17,7 @@ namespace Model.Units.Humans
             maxMana = 150;
             type = UnitType.HumanCleric;
             equip = new HumanClericEquipment();
+            Name = "HumanCleric";
         }
     }
 }

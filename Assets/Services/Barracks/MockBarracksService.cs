@@ -5,15 +5,16 @@ using Model.Units;
 using Model.Units.Humans;
 using Services;
 using Services.Common.Dto;
+using UnityEngine;
 
-public class MockBarracksService : IBarrackService
+public class MockBarracksService : MonoBehaviour, IBarrackService
 {
-    public ObservableCollection<Unit> AvailableUnits { get; } = new()
+    public ObservableCollection<Unit> AvailableUnits { get;} = new()
     {
-        new HumanWarrior(),
-        new HumanArcher(),
-        new HumanCleric(),
-        new HumanSpearman()
+        new HumanWarrior() { Id = 1 },
+        new HumanArcher() { Id = 2 },
+        new HumanCleric() { Id = 3 },
+        new HumanSpearman() { Id = 4 }
     };
 
 

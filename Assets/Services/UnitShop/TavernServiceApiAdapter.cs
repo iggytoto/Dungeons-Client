@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Model.Units;
 using Newtonsoft.Json;
 using Services.Common.Dto;
 using Services.Dto;
@@ -29,14 +30,14 @@ namespace Services.UnitShop
         }
 
         public void BuyUnit(
-            Unit unit,
+            UnitType type,
             UserContext loginServiceUserContext,
             EventHandler<Unit> successHandler,
             EventHandler<string> errorHandler)
         {
             var requestBody = JsonConvert.SerializeObject(new BuyUnitRequestDto
             {
-                type = unit.type
+                type = type
             });
             StartCoroutine(DoRequestCoroutine(GetConnectionAddress() + BuyUnitPath, requestBody, Post,
                 new Dictionary<string, string> { { Authorization, GetTokenValueHeader(loginServiceUserContext) } },

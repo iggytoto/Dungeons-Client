@@ -77,7 +77,7 @@ public class ServicesConfiguration : ScriptableObject
                 service = null;
                 break;
             case TavernServiceType.Mocked:
-                service = new MockUnitShopService();
+                service = gs.AddComponent<MockUnitShopService>();
                 break;
             case TavernServiceType.Api:
                 var s = gs.AddComponent<UnitShopService>();
@@ -140,7 +140,7 @@ public class ServicesConfiguration : ScriptableObject
                 service = null;
                 break;
             case BarrackServiceType.Mocked:
-                service = new MockBarracksService();
+                service = gs.AddComponent<MockBarracksService>();
                 break;
             case BarrackServiceType.Api:
                 var s = gs.gameObject.AddComponent<BarracksService>();

@@ -117,7 +117,7 @@ namespace DefaultNamespace.BattleBehaviour.Abilities
 
         private float GetDuration()
         {
-            var eq = GetEquipment();
+            var eq = GetSkills();
             if (eq != null)
             {
                 return 5 + (eq.defencePoints + eq.offencePoints - 2);
@@ -126,7 +126,7 @@ namespace DefaultNamespace.BattleBehaviour.Abilities
             return 4;
         }
 
-        private HumanWarriorSkills GetEquipment()
+        private HumanWarriorSkills GetSkills()
         {
             return _skills ??= (HumanWarriorSkills)UnitState.Skills;
         }

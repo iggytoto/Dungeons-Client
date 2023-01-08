@@ -20,7 +20,7 @@ public class Unit : ModelBase, INetworkSerializable
     public BattleBehavior battleBehavior;
     public UnitActivity activity;
     public UnitType type;
-    public Skills equip;
+    public Skills skills;
 
     public void NetworkSerialize<T>(BufferSerializer<T> serializer) where T : IReaderWriter
     {

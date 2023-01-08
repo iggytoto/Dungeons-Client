@@ -101,13 +101,13 @@ namespace BattleBehaviour.Abilities
 
         private MulticastParams GetAbilityParams()
         {
-            var eq = GetEquipment();
+            var eq = GetSkills();
             return eq == null
                 ? new MulticastParams(1, false, false, false)
                 : new MulticastParams((int)(1 + eq.disciplinePoints), eq.shatter, eq.divine, eq.purge);
         }
 
-        private HumanClericSkills GetEquipment()
+        private HumanClericSkills GetSkills()
         {
             return (HumanClericSkills)UnitState.Skills;
         }

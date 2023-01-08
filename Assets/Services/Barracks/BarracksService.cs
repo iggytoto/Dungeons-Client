@@ -101,8 +101,8 @@ public class BarracksService : ServiceBase, IBarrackService
             (_, _) => Refresh());
     }
 
-    public void UpgradeUnitEquipment<TDomain, TDto>(
-        long equipmentId,
+    public void UpgradeUnitSkill<TDomain, TDto>(
+        long skillId,
         UnitType unitType,
         string upgradeParamName,
         EventHandler<TDomain> onSuccess,
@@ -110,11 +110,11 @@ public class BarracksService : ServiceBase, IBarrackService
         where TDomain : Skills
         where TDto : SkillsDto
     {
-        _apiAdapter.UpgradeUnitEquipment<TDto>(
+        _apiAdapter.UpgradeUnitSkills<TDto>(
             _loginService.UserContext,
-            new UpgradeUnitEquipmentRequestDto
+            new UpgradeUnitSkillRequestDto
             {
-                equipmentId = equipmentId,
+                skillId = skillId,
                 unitType = unitType,
                 paramNameToUpgrade = upgradeParamName
             },

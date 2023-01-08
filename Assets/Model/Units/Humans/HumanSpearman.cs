@@ -16,7 +16,7 @@ namespace Model.Units.Humans
             damage = 40;
             maxMana = 75;
             type = UnitType.HumanSpearman;
-            equip = new HumanSpearmanSkills();
+            skills = new HumanSpearmanSkills();
             Name = "HumanSpearman";
         }
     }

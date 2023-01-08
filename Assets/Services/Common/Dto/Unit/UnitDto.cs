@@ -27,7 +27,7 @@ namespace Services.Common.Dto
         public BattleBehavior battleBehavior;
         public UnitType unitType;
         public DateTime startedAt;
-        [CanBeNull] public SkillsDto unitEquip;
+        [CanBeNull] public SkillsDto skills;
 
         public Unit ToDomain()
         {
@@ -47,7 +47,7 @@ namespace Services.Common.Dto
                 attackRange = attackRange,
                 battleBehavior = battleBehavior,
                 movementSpeed = movementSpeed,
-                equip = unitEquip?.ToDomain()
+                skills = skills?.ToDomain()
             };
         }
 

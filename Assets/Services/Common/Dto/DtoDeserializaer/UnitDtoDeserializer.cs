@@ -33,7 +33,7 @@ namespace Services.Common.Dto
             var unitEquipJson = jObject["unitEquip"]?.ToString();
             var unitEquip = string.IsNullOrEmpty(unitEquipJson)
                 ? null
-                : UnitEquipmentDeserializerBase.GetDeserializer(unitType)
+                : UnitSkillsDeserializerBase.GetDeserializer(unitType)
                     ?.Deserialize(unitEquipJson);
             return new UnitDto
             {
@@ -56,7 +56,7 @@ namespace Services.Common.Dto
                 mana = mana,
                 maxMana = maxMana,
                 startedAt = startedAt,
-                unitEquip = unitEquip
+                skills = unitEquip
             };
         }
     }

@@ -4,9 +4,9 @@ using Model.Units;
 namespace Services.Common.Dto
 {
     [Serializable]
-    public class UpgradeUnitEquipmentRequestDto
+    public class UpgradeUnitSkillRequestDto
     {
-        public long equipmentId;
+        public long skillId;
         public UnitType unitType;
         public string paramNameToUpgrade;
     }

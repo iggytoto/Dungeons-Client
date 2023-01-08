@@ -55,7 +55,7 @@ namespace BattleBehaviour.Abilities
 
         private AdditionalDamageAndEffect CalculateDamageAndEffect()
         {
-            return (GetEquipment().midRangePoints, GetEquipment().longRangePoints) switch
+            return (GetSkills().midRangePoints, GetSkills().longRangePoints) switch
             {
                 (0, 1) => new AdditionalDamageAndEffect(25, 0, 0),
                 (0, 2) => new AdditionalDamageAndEffect(50, 0, 0),
@@ -100,7 +100,7 @@ namespace BattleBehaviour.Abilities
             public readonly float MSIncreaseDuration;
         }
 
-        private HumanArcherSkills GetEquipment()
+        private HumanArcherSkills GetSkills()
         {
             return _skills ??= (HumanArcherSkills)UnitState.Skills;
         }
@@ -116,12 +116,12 @@ namespace BattleBehaviour.Abilities
                                 additionalDamageAndEffect.AdditionalDamage),
                 (t) =>
                 {
-                    if (GetEquipment().fireArrows)
+                    if (GetSkills().fireArrows)
                     {
                         t.ApplyEffect<FireArrowsBurningEffect>();
                     }
 
-                    if (GetEquipment().poisonArrows)
+                    if (GetSkills().poisonArrows)
                     {
                         t.ApplyEffect<PoisonArrowsEffect>();
                     }

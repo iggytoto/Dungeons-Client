@@ -8,12 +8,12 @@ public class SelectedUnitSkillsPanelUiController : MonoBehaviour
     public Skills Skills
     {
         get => _skills;
-        set => SetEquipment(value);
+        set => SetSkill(value);
     }
 
     private Skills _skills;
 
-    private void SetEquipment(Skills value)
+    private void SetSkill(Skills value)
     {
         gameObject.SetActive(value != null);
         _skills = value;

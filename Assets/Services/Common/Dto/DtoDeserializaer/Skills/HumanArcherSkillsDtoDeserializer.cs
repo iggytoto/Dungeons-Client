@@ -2,7 +2,7 @@ using Newtonsoft.Json.Linq;
 
 namespace Services.Common.Dto
 {
-    public class HumanArcherEquipmentDtoDeserializer : UnitEquipmentDeserializerBase,
+    public class HumanArcherSkillsDtoDeserializer : UnitSkillsDeserializerBase,
         IDtoDeserializer<HumanArcherSkillsDto>
     {
         public override SkillsDto Deserialize(string json)

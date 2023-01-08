@@ -16,7 +16,7 @@ namespace Model.Units.Humans
             damage = 50;
             maxMana = 100;
             type = UnitType.HumanArcher;
-            equip = new HumanArcherSkills();
+            skills = new HumanArcherSkills();
             Name = "HumanArcher";
         }
     }

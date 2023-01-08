@@ -4,21 +4,21 @@ using Services.Dto;
 
 namespace Services.Common.Dto
 {
-    public abstract class UnitEquipmentDeserializerBase
+    public abstract class UnitSkillsDeserializerBase
     {
         public static IDtoDeserializer<T> GetDeserializer<T>(UnitType type) where T : ResponseBaseDto
         {
             return (IDtoDeserializer<T>)GetDeserializer(type);
         }
 
-        public static UnitEquipmentDeserializerBase GetDeserializer(UnitType type)
+        public static UnitSkillsDeserializerBase GetDeserializer(UnitType type)
         {
             return type switch
             {
                 UnitType.Dummy => null,
-                UnitType.HumanArcher => new HumanArcherEquipmentDtoDeserializer(),
-                UnitType.HumanWarrior => new HumanWarriorEquipmentDtoDeserializer(),
-                UnitType.HumanSpearman => new HumanSpearmanEquipmentDtoDeserializer(),
+                UnitType.HumanArcher => new HumanArcherSkillsDtoDeserializer(),
+                UnitType.HumanWarrior => new HumanWarriorSkillsDtoDeserializer(),
+                UnitType.HumanSpearman => new HumanSpearmanSkillsDtoDeserializer(),
                 _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
             };
         }

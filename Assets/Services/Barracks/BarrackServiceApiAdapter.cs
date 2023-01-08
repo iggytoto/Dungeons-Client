@@ -8,10 +8,9 @@ namespace Services.Barracks
     public class BarrackServiceApiAdapter : ApiAdapterBase
     {
         private const string GetAvailableUnitsPath = "/barrack/availableUnits";
-        private const string TrainUnitPath = "/barrack/trainUnit";
         private const string ChangeUnitNamePath = "/barrack/changeUnitName";
         private const string ChangeUnitBattleBehaviorPath = "/barrack/changeUnitBattleBehavior";
-        private const string UpgradeUnitEquipmentPath = "/barrack/upgradeUnitEquipment";
+        private const string UpgradeUnitSkillsPath = "/barrack/upgradeUnitSkills";
 
         public void GetAvailableUnits(
             UserContext loginServiceUserContext,
@@ -59,22 +58,22 @@ namespace Services.Barracks
                     null));
         }
 
-        public void UpgradeUnitEquipment<TDto>(
+        public void UpgradeUnitSkills<TDto>(
             UserContext userContext,
-            UpgradeUnitEquipmentRequestDto dto,
+            UpgradeUnitSkillRequestDto dto,
             EventHandler<TDto> successHandler,
             EventHandler<ErrorResponseDto> errorHandler)
             where TDto : SkillsDto
         {
             StartCoroutine(
                 DoRequestCoroutine(
-                    GetConnectionAddress() + UpgradeUnitEquipmentPath,
+                    GetConnectionAddress() + UpgradeUnitSkillsPath,
                     SerializeDto(dto),
                     Post,
                     new Dictionary<string, string> { { Authorization, GetTokenValueHeader(userContext) } },
                     successHandler,
                     errorHandler,
-                    UnitEquipmentDeserializerBase.GetDeserializer<TDto>(dto.unitType)));
+                    UnitSkillsDeserializerBase.GetDeserializer<TDto>(dto.unitType)));
         }
     }
 }

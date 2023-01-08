@@ -30,8 +30,8 @@ public class MockBarracksService : MonoBehaviour, IBarrackService
         u.battleBehavior = bb;
     }
 
-    public void UpgradeUnitEquipment<TDomain, TDto>(
-        long equipmentId,
+    public void UpgradeUnitSkill<TDomain, TDto>(
+        long skillId,
         UnitType unitType,
         string upgradeParamName,
         EventHandler<TDomain> onSuccess,

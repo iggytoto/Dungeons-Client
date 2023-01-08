@@ -13,7 +13,7 @@ public class BottomHorizontalBarrackUnitListUiController : MonoBehaviour
     [SerializeField] private GameObject content;
 
     public UnityEvent<Unit> onUnitClicked = new();
-    public UnityEvent<Skills> onUnitEquipmentClicked = new();
+    public UnityEvent<Skills> onUnitSkillsClicked = new();
 
     private IBarrackService _barrackService;
     private readonly List<UnitButtonUiController> _unitButtonControllers = new();
@@ -67,6 +67,6 @@ public class BottomHorizontalBarrackUnitListUiController : MonoBehaviour
     private void OnUnitClickedInternal(object sender, Unit e)
     {
         onUnitClicked.Invoke(e);
-        onUnitEquipmentClicked.Invoke(e.equip);
+        onUnitSkillsClicked.Invoke(e.skills);
     }
 }

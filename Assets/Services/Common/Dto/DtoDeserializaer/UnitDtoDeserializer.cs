@@ -6,7 +6,7 @@ namespace Services.Common.Dto
 {
     public class UnitDtoDeserializer : IDtoDeserializer<UnitDto>
     {
-        private readonly IDtoDeserializer<EquipmentDto> _equipDeserializer;
+        private readonly IDtoDeserializer<SkillsDto> _equipDeserializer;
 
         public UnitDto Deserialize(string json)
         {

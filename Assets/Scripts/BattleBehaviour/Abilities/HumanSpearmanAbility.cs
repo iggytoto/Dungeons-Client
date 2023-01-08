@@ -79,9 +79,9 @@ namespace BattleBehaviour.Abilities
             );
         }
 
-        private HumanSpearmanEquipment GetEquip()
+        private HumanSpearmanSkills GetEquip()
         {
-            return (HumanSpearmanEquipment)UnitState.Equipment;
+            return (HumanSpearmanSkills)UnitState.Skills;
         }
 
         private class CircleSwing

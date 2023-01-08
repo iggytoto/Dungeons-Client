@@ -18,10 +18,10 @@ namespace DefaultNamespace
         [SerializeField] private float attackSpeed;
         [SerializeField] private long damage;
         [SerializeField] private UnitType type;
-        [SerializeField] private Equipment _equipment;
+        [SerializeField] private Skills _skills;
 
         public override UnitType UnitType => type;
-        public override Equipment Equipment => _equipment;
+        public override Skills Skills => _skills;
 
         private void Start()
         {
@@ -39,7 +39,7 @@ namespace DefaultNamespace
                 type = type,
                 damage = damage
             };
-            _equipment = Equipment.DefaultForType(type);
+            _skills = Skills.DefaultForType(type);
         }
     }
 }

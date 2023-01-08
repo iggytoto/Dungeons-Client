@@ -5,11 +5,11 @@ using Services.Dto;
 namespace Services.Common.Dto
 {
     [Serializable]
-    public abstract class EquipmentDto : ResponseBaseDto
+    public abstract class SkillsDto : ResponseBaseDto
     {
         public long id;
         public long unitId;
 
-        public abstract Equipment ToDomain();
+        public abstract Skills ToDomain();
     }
 }

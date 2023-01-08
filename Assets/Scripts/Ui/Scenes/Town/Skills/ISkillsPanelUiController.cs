@@ -5,5 +5,5 @@ using UnityEngine;
 
 public abstract class SkillsPanelUiController : MonoBehaviour
 {
-    public abstract Equipment Skills { get; set; }
+    public abstract Skills Skills { get; set; }
 }

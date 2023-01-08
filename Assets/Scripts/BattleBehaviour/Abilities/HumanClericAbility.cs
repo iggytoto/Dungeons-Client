@@ -107,9 +107,9 @@ namespace BattleBehaviour.Abilities
                 : new MulticastParams((int)(1 + eq.disciplinePoints), eq.shatter, eq.divine, eq.purge);
         }
 
-        private HumanClericEquipment GetEquipment()
+        private HumanClericSkills GetEquipment()
         {
-            return (HumanClericEquipment)UnitState.Equipment;
+            return (HumanClericSkills)UnitState.Skills;
         }
 
         private class MulticastParams

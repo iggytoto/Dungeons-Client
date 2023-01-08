@@ -36,7 +36,7 @@ public class MockBarracksService : MonoBehaviour, IBarrackService
         string upgradeParamName,
         EventHandler<TDomain> onSuccess,
         Func<TDto, TDomain> dtoMapper)
-        where TDomain : Equipment where TDto : EquipmentDto
+        where TDomain : Skills where TDto : SkillsDto
     {
     }
 

@@ -23,6 +23,6 @@ namespace Services.Common.Dto
             };
         }
 
-        public abstract EquipmentDto Deserialize(string json);
+        public abstract SkillsDto Deserialize(string json);
     }
 }

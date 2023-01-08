@@ -16,7 +16,7 @@ namespace Model.Units.Humans
             damage = 50;
             maxMana = 100;
             type = UnitType.HumanWarrior;
-            equip = new HumanWarriorEquipment();
+            equip = new HumanWarriorSkills();
             Name = "HumanWarrior";
         }
     }

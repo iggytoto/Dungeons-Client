@@ -1109,7 +1109,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 3445063769340612286}
         m_TargetAssemblyTypeName: SelectedUnitSkillsPanelUiController, Assembly-CSharp
-        m_MethodName: set_Equipment
+        m_MethodName: set_Skills
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -4,7 +4,7 @@ using Unity.Netcode;
 namespace Model.Units
 {
     [Serializable]
-    public class HumanArcherEquipment : Equipment, INetworkSerializable
+    public class HumanArcherSkills : Skills, INetworkSerializable
     {
         public static readonly string MidRangeParamName = "midRange";
         public static readonly string LongRangeParamName = "longRange";

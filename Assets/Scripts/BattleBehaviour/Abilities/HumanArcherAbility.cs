@@ -13,7 +13,7 @@ namespace BattleBehaviour.Abilities
 {
     public class HumanArcherAbility : UnitTaskBase
     {
-        private HumanArcherEquipment _equipment;
+        private HumanArcherSkills _skills;
 
         public HumanArcherAbility(UnitStateController unitStateStateController) : base(unitStateStateController)
         {
@@ -100,9 +100,9 @@ namespace BattleBehaviour.Abilities
             public readonly float MSIncreaseDuration;
         }
 
-        private HumanArcherEquipment GetEquipment()
+        private HumanArcherSkills GetEquipment()
         {
-            return _equipment ??= (HumanArcherEquipment)UnitState.Equipment;
+            return _skills ??= (HumanArcherSkills)UnitState.Skills;
         }
 
         private IEnumerator DelayedAttack(UnitStateController target, float animationTime,

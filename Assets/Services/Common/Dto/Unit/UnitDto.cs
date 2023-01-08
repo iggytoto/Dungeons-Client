@@ -27,7 +27,7 @@ namespace Services.Common.Dto
         public BattleBehavior battleBehavior;
         public UnitType unitType;
         public DateTime startedAt;
-        [CanBeNull] public EquipmentDto unitEquip;
+        [CanBeNull] public SkillsDto unitEquip;
 
         public Unit ToDomain()
         {

@@ -4,14 +4,14 @@ using Model.Units;
 namespace Services.Common.Dto
 {
     [Serializable]
-    public class HumanWarriorEquipmentDto : EquipmentDto
+    public class HumanWarriorSkillsDto : SkillsDto
     {
         public long defencePoints;
         public long offencePoints;
 
-        public override Equipment ToDomain()
+        public override Skills ToDomain()
         {
-            return new HumanWarriorEquipment
+            return new HumanWarriorSkills
             {
                 id = id,
                 defencePoints = defencePoints,

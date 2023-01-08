@@ -4,7 +4,7 @@ using Model.Units;
 namespace Services.Common.Dto
 {
     [Serializable]
-    public class HumanArcherEquipmentDto : EquipmentDto
+    public class HumanArcherSkillsDto : SkillsDto
     {
         public long midRangePoints;
         public long longRangePoints;
@@ -12,9 +12,9 @@ namespace Services.Common.Dto
         public bool poisonArrows;
 
 
-        public override Equipment ToDomain()
+        public override Skills ToDomain()
         {
-            return new HumanArcherEquipment
+            return new HumanArcherSkills
             {
                 id = id,
                 unitId = unitId,

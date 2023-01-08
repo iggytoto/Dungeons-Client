@@ -12,7 +12,7 @@ namespace DefaultNamespace.BattleBehaviour.Abilities
         private float _currentDuration;
         private bool _inProgress;
         private float _attackCoolDown;
-        private HumanWarriorEquipment _equipment;
+        private HumanWarriorSkills _skills;
 
         public HumanWarriorAbility(UnitStateController unitStateStateController) : base(unitStateStateController)
         {
@@ -91,7 +91,7 @@ namespace DefaultNamespace.BattleBehaviour.Abilities
 
         private ProtectionEffect GetProtectionEffect()
         {
-            var eq = (HumanWarriorEquipment)UnitState.Equipment;
+            var eq = (HumanWarriorSkills)UnitState.Skills;
             return eq.defencePoints switch
             {
                 1 => new ProtectionEffect(5, 0),
@@ -126,9 +126,9 @@ namespace DefaultNamespace.BattleBehaviour.Abilities
             return 4;
         }
 
-        private HumanWarriorEquipment GetEquipment()
+        private HumanWarriorSkills GetEquipment()
         {
-            return _equipment ??= (HumanWarriorEquipment)UnitState.Equipment;
+            return _skills ??= (HumanWarriorSkills)UnitState.Skills;
         }
     }
 }

@@ -4,7 +4,7 @@ using Unity.Netcode;
 namespace Model.Units
 {
     [Serializable]
-    public class HumanClericEquipment : Equipment, INetworkSerializable
+    public class HumanClericSkills : Skills, INetworkSerializable
     {
         public static readonly string Discipline = "discipline";
         public static readonly string Shatter = "shatter";

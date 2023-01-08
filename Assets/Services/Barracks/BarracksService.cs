@@ -107,8 +107,8 @@ public class BarracksService : ServiceBase, IBarrackService
         string upgradeParamName,
         EventHandler<TDomain> onSuccess,
         Func<TDto, TDomain> dtoMapper)
-        where TDomain : Equipment
-        where TDto : EquipmentDto
+        where TDomain : Skills
+        where TDto : SkillsDto
     {
         _apiAdapter.UpgradeUnitEquipment<TDto>(
             _loginService.UserContext,

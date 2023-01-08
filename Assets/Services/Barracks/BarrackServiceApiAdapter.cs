@@ -64,7 +64,7 @@ namespace Services.Barracks
             UpgradeUnitEquipmentRequestDto dto,
             EventHandler<TDto> successHandler,
             EventHandler<ErrorResponseDto> errorHandler)
-            where TDto : EquipmentDto
+            where TDto : SkillsDto
         {
             StartCoroutine(
                 DoRequestCoroutine(

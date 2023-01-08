@@ -16,7 +16,7 @@ namespace Model.Units.Humans
             damage = 25;
             maxMana = 150;
             type = UnitType.HumanCleric;
-            equip = new HumanClericEquipment();
+            equip = new HumanClericSkills();
             Name = "HumanCleric";
         }
     }

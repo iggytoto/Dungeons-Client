@@ -4,9 +4,9 @@ using Newtonsoft.Json.Linq;
 namespace Services.Common.Dto
 {
     public class HumanWarriorEquipmentDtoDeserializer : UnitEquipmentDeserializerBase,
-        IDtoDeserializer<HumanWarriorEquipmentDto>
+        IDtoDeserializer<HumanWarriorSkillsDto>
     {
-        public override EquipmentDto Deserialize(string json)
+        public override SkillsDto Deserialize(string json)
         {
             if (string.IsNullOrEmpty(json))
             {
@@ -14,7 +14,7 @@ namespace Services.Common.Dto
             }
 
             var jObject = JObject.Parse(json);
-            return new HumanWarriorEquipmentDto
+            return new HumanWarriorSkillsDto
             {
                 id = jObject["id"]?.Value<long?>() ?? -1,
                 unitId = jObject["unitId"]?.Value<long?>() ?? -1,
@@ -23,9 +23,9 @@ namespace Services.Common.Dto
             };
         }
 
-        HumanWarriorEquipmentDto IDtoDeserializer<HumanWarriorEquipmentDto>.Deserialize(string json)
+        HumanWarriorSkillsDto IDtoDeserializer<HumanWarriorSkillsDto>.Deserialize(string json)
         {
-            return (HumanWarriorEquipmentDto)Deserialize(json);
+            return (HumanWarriorSkillsDto)Deserialize(json);
         }
     }
 }

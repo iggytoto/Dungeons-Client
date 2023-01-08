@@ -2,7 +2,7 @@ using Unity.Netcode;
 
 namespace Model.Units
 {
-    public class HumanSpearmanEquipment : Equipment
+    public class HumanSpearmanSkills : Skills
     {
         public static readonly string DoubleEdgeParamName = "doubleEdge";
         public static readonly string MidRangeParamName = "midRange";

@@ -5,21 +5,21 @@ public class SelectedUnitSkillsPanelUiController : MonoBehaviour
 {
     [SerializeField] private SkillsPanelUiController humanWarriorPanelUiController;
 
-    public Equipment Equipment
+    public Skills Skills
     {
-        get => _equipment;
+        get => _skills;
         set => SetEquipment(value);
     }
 
-    private Equipment _equipment;
+    private Skills _skills;
 
-    private void SetEquipment(Equipment value)
+    private void SetEquipment(Skills value)
     {
         gameObject.SetActive(value != null);
-        _equipment = value;
+        _skills = value;
         var controller = SwitchOnSkillsController(value);
         if (controller == null) return;
-        controller.Skills = _equipment;
+        controller.Skills = _skills;
         DeactivateControllers();
         controller.gameObject.SetActive(true);
     }
@@ -29,9 +29,9 @@ public class SelectedUnitSkillsPanelUiController : MonoBehaviour
         humanWarriorPanelUiController.gameObject.SetActive(false);
     }
 
-    private SkillsPanelUiController SwitchOnSkillsController(Equipment value)
+    private SkillsPanelUiController SwitchOnSkillsController(Skills value)
     {
-        if (value is HumanWarriorEquipment)
+        if (value is HumanWarriorSkills)
         {
             return humanWarriorPanelUiController;
         }

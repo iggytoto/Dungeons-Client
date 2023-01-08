@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 
@@ -9,12 +10,20 @@ public class UnitButtonUiController : MonoBehaviour
     [SerializeField] private TMP_Text mrUnitText;
     [SerializeField] private TMP_Text damageUnitText;
     [SerializeField] private TMP_Text nameText;
+
+    public event EventHandler<Unit> OnClick;
+
     private Unit _unit;
 
     public Unit Unit
     {
         get => _unit;
         set => OnSetUnit(value);
+    }
+
+    public void OnClicked()
+    {
+        OnClick?.Invoke(this, _unit);
     }
 
     private void OnSetUnit(Unit value)

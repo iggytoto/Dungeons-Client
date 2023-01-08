@@ -119,7 +119,7 @@ GameObject:
   - component: {fileID: 6083546599284759028}
   - component: {fileID: 4236009783980095541}
   m_Layer: 0
-  m_Name: BuyUnitPopupPrefab
+  m_Name: BuyUnitPopup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

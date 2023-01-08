@@ -201,6 +201,10 @@
      <Compile Include="Assets\Scripts\Ui\Scenes\Town\UnitButtonUiController.cs" />
      <Compile Include="Assets\Scripts\Ui\Scenes\Town\BuyUnitButtonUiController.cs" />
      <Compile Include="Assets\Scripts\Ui\Scenes\Town\BuyUnitPopupUiController.cs" />
+     <Compile Include="Assets\Scripts\Ui\Scenes\Town\SelectedUnitPanelUiController.cs" />
+     <Compile Include="Assets\Scripts\Ui\Scenes\Town\SelectedUnitSkillsPanelUiController.cs" />
+     <Compile Include="Assets\Scripts\Ui\Scenes\Town\Skills\ISkillsPanelUiController.cs" />
+     <Compile Include="Assets\Scripts\Ui\Scenes\Town\Skills\HumanWarriorSkillsPanelUiController.cs" />
      <Folder Include="Assets" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\mergetool.ja.txt" />
      <Folder Include="Assets\Libs\Tiny Fantasy Icons\Keys" />
@@ -252,6 +256,7 @@
      <Folder Include="Assets\Libs\Tiny Fantasy Icons\Time" />
      <Folder Include="Library\PackageCache\com.unity.modules.xr@1.0.0" />
      <Folder Include="Assets\Libs\TextMesh Pro\Resources\Sprite Assets" />
+     <Folder Include="Assets\Ui\Town\UnitSkills" />
      <Folder Include="Assets\Scripts\BattleBehaviour\Common" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\mergetool.es.txt" />
      <Folder Include="Library\PackageCache\com.unity.testtools.codecoverage@1.0.1\lib\ReportGenerator" />
@@ -681,7 +686,6 @@
      <Folder Include="Assets\Libs\Blink\Art\Weapons\LowPoly\FreeRPGWeapons\Maces" />
      <None Include="Library\PackageCache\com.unity.terrain-tools@4.0.3\Shaders\Generated\NoiseBlitStrata.shader" />
      <None Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\package.json" />
-     <Folder Include="Assets\Ui\Common\UnitEquipment" />
      <Folder Include="Library\PackageCache\com.unity.textmeshpro@3.0.6\Editor Resources\Shaders" />
      <Folder Include="Library\PackageCache\com.unity.modules.director@1.0.0" />
      <Folder Include="Library\PackageCache\com.unity.modules.audio@1.0.0" />
@@ -712,6 +716,7 @@
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\configurehelper.ko.txt" />
      <Folder Include="Assets\Libs\Tiny Fantasy Icons\Presents" />
      <None Include="Library\PackageCache\com.unity.textmeshpro@3.0.6\PackageConversionData_Assets.json" />
+     <Folder Include="Assets\Scripts\Ui\Scenes\Town\Skills" />
      <None Include="Assets\Libs\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
      <Folder Include="Library\PackageCache\com.unity.transport@1.3.0\Tests" />
      <None Include="Library\PackageCache\com.unity.terrain-tools@4.0.3\Shaders\NoiseLib\None\Perlin.hlsl" />

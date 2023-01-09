@@ -5,6 +5,8 @@ public class SelectedUnitSkillsPanelUiController : MonoBehaviour
 {
     [SerializeField] private SkillPanelUiControllerBase humanWarriorPanelUiController;
     [SerializeField] private SkillPanelUiControllerBase humanArcherPanelUiController;
+    [SerializeField] private SkillPanelUiControllerBase humanSpearmanPanelUiController;
+    [SerializeField] private SkillPanelUiControllerBase humanClericPanelUiController;
 
     public Skills Skills
     {
@@ -28,19 +30,20 @@ public class SelectedUnitSkillsPanelUiController : MonoBehaviour
     private void DeactivateControllers()
     {
         humanWarriorPanelUiController.gameObject.SetActive(false);
+        humanArcherPanelUiController.gameObject.SetActive(false);
+        humanSpearmanPanelUiController.gameObject.SetActive(false);
+        humanClericPanelUiController.gameObject.SetActive(false);
     }
 
     private SkillPanelUiControllerBase SwitchOnSkillsController(Skills value)
     {
-        if (value is HumanWarriorSkills)
+        return value switch
         {
-            return humanWarriorPanelUiController;
-        }
-        else if (value is HumanArcherSkills)
-        {
-            return humanArcherPanelUiController;
-        }
-
-        return null;
+            HumanWarriorSkills => humanWarriorPanelUiController,
+            HumanArcherSkills => humanArcherPanelUiController,
+            HumanSpearmanSkills => humanSpearmanPanelUiController,
+            HumanClericSkills => humanClericPanelUiController,
+            _ => null
+        };
     }
 }

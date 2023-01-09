@@ -66,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Defence
+  m_text: Double-edge
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -144,9 +144,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3795390629929529616}
-  - component: {fileID: 160455095927555715}
+  - component: {fileID: 3336297002818522392}
   m_Layer: 0
-  m_Name: HumanWarriorSkillsPanel
+  m_Name: HumanSpearmanSkillsPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -173,7 +173,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 400, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &160455095927555715
+--- !u!114 &3336297002818522392
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -182,19 +182,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 1775950424958461454}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8d0fdc0979148b5bed5a05ec681eea9, type: 3}
+  m_Script: {fileID: 11500000, guid: 5f3b058838e4cc349a9a7ceac4b633b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defenceL1: {fileID: 8802831927782265933}
-  defenceL2: {fileID: 7220781013894248509}
-  defenceL3: {fileID: 6241094531332381140}
-  defenceL4: {fileID: 7937150986326652086}
-  defenceL5: {fileID: 507288194906036492}
-  offenceL1: {fileID: 6517355343706315384}
-  offenceL2: {fileID: 9020574670152438377}
-  offenceL3: {fileID: 4646673276314155577}
-  offenceL4: {fileID: 219142613929263361}
-  offenceL5: {fileID: 1908841780347564356}
+  doubleEdgeL1: {fileID: 8802831927782265933}
+  doubleEdgeL2: {fileID: 7220781013894248509}
+  doubleEdgeL3: {fileID: 6241094531332381140}
+  doubleEdgeL4: {fileID: 7937150986326652086}
+  doubleEdgeL5: {fileID: 507288194906036492}
+  midRangeL1: {fileID: 6517355343706315384}
+  midRangeL2: {fileID: 9020574670152438377}
+  midRangeL3: {fileID: 4646673276314155577}
+  midRangeL4: {fileID: 219142613929263361}
+  midRangeL5: {fileID: 1908841780347564356}
 --- !u!1 &2198069422008688308
 GameObject:
   m_ObjectHideFlags: 0
@@ -389,7 +389,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Offence
+  m_text: Mid-range
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -747,7 +747,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 212181205706472593, guid: 970db9a7ca39b5349b38cbb153527b37, type: 3}
       propertyPath: m_Name
-      value: DefenceLevel4
+      value: DoubleEdgeLevel4
       objectReference: {fileID: 0}
     - target: {fileID: 3113160457397948521, guid: 970db9a7ca39b5349b38cbb153527b37, type: 3}
       propertyPath: m_Pivot.x
@@ -860,7 +860,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b09ab329e56baf4ca3af90b822d575a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toolTipText: 'Defence Level41: +125HP +30%ARM -1.5MS'
+  toolTipText: 'Double-edge Level 4: 50% chance to double damage enemy on circle-swing'
 --- !u!224 &3253442866484582772 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3113160457397948521, guid: 970db9a7ca39b5349b38cbb153527b37, type: 3}
@@ -886,7 +886,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 212181205706472593, guid: 970db9a7ca39b5349b38cbb153527b37, type: 3}
       propertyPath: m_Name
-      value: DefenceLevel2
+      value: DoubleEdgeLevel2
       objectReference: {fileID: 0}
     - target: {fileID: 3113160457397948521, guid: 970db9a7ca39b5349b38cbb153527b37, type: 3}
       propertyPath: m_Pivot.x
@@ -999,7 +999,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b09ab329e56baf4ca3af90b822d575a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toolTipText: 'Defence Level 1: +75HP +20%ARM -1MS'
+  toolTipText: 'Double-edge Level 2: 30% chance to double damage enemy on circle-swing'
 --- !u!224 &2825375290635490815 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3113160457397948521, guid: 970db9a7ca39b5349b38cbb153527b37, type: 3}
@@ -1025,7 +1025,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 212181205706472593, guid: 970db9a7ca39b5349b38cbb153527b37, type: 3}
       propertyPath: m_Name
-      value: DefenceLevel1
+      value: DoubleEdgeLevel1
       objectReference: {fileID: 0}
     - target: {fileID: 3113160457397948521, guid: 970db9a7ca39b5349b38cbb153527b37, type: 3}
       propertyPath: m_Pivot.x
@@ -1138,7 +1138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b09ab329e56baf4ca3af90b822d575a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toolTipText: 'Defence Level 1: +50HP +10%ARM -0.5MS'
+  toolTipText: 'Double-edge Level 1: 20% chance to double damage enemy on circle-swing'
 --- !u!224 &4118842265980270991 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3113160457397948521, guid: 970db9a7ca39b5349b38cbb153527b37, type: 3}
@@ -1164,7 +1164,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 212181205706472593, guid: 970db9a7ca39b5349b38cbb153527b37, type: 3}
       propertyPath: m_Name
-      value: OffenceLevel2
+      value: MidRangeLevel2
       objectReference: {fileID: 0}
     - target: {fileID: 3113160457397948521, guid: 970db9a7ca39b5349b38cbb153527b37, type: 3}
       propertyPath: m_Pivot.x
@@ -1277,7 +1277,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b09ab329e56baf4ca3af90b822d575a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toolTipText: 'Offence level 2: +66%AS +0.11AR +15DMG'
+  toolTipText: 'Mid-range level 2: +25DMG'
 --- !u!224 &4480911302795018155 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3113160457397948521, guid: 970db9a7ca39b5349b38cbb153527b37, type: 3}
@@ -1303,7 +1303,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 212181205706472593, guid: 970db9a7ca39b5349b38cbb153527b37, type: 3}
       propertyPath: m_Name
-      value: OffenceLevel3
+      value: MidRangeLevel3
       objectReference: {fileID: 0}
     - target: {fileID: 3113160457397948521, guid: 970db9a7ca39b5349b38cbb153527b37, type: 3}
       propertyPath: m_Pivot.x
@@ -1421,7 +1421,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b09ab329e56baf4ca3af90b822d575a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toolTipText: 'Offence level 3: +75%AS +0.12AR +20DMG'
+  toolTipText: 'Mid-range level 3: +35DMG'
 --- !u!114 &4646673276314155577 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7508849925657787819, guid: 970db9a7ca39b5349b38cbb153527b37, type: 3}
@@ -1442,7 +1442,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 212181205706472593, guid: 970db9a7ca39b5349b38cbb153527b37, type: 3}
       propertyPath: m_Name
-      value: OffenceLevel1
+      value: MidRangeLevel1
       objectReference: {fileID: 0}
     - target: {fileID: 3113160457397948521, guid: 970db9a7ca39b5349b38cbb153527b37, type: 3}
       propertyPath: m_Pivot.x
@@ -1560,7 +1560,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b09ab329e56baf4ca3af90b822d575a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toolTipText: 'Offence level 1: +50%AS +0.1AR +10DMG'
+  toolTipText: 'Mid-range level 1: +15DMG'
 --- !u!114 &6517355343706315384 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7508849925657787819, guid: 970db9a7ca39b5349b38cbb153527b37, type: 3}
@@ -1581,7 +1581,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 212181205706472593, guid: 970db9a7ca39b5349b38cbb153527b37, type: 3}
       propertyPath: m_Name
-      value: DefenceLevel3
+      value: DoubleEdgeLevel3
       objectReference: {fileID: 0}
     - target: {fileID: 3113160457397948521, guid: 970db9a7ca39b5349b38cbb153527b37, type: 3}
       propertyPath: m_Pivot.x
@@ -1699,7 +1699,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b09ab329e56baf4ca3af90b822d575a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toolTipText: 'Defence Level31: +100HP +25%ARM -1.25MS'
+  toolTipText: 'Double-edge Level 3: 40% chance to double damage enemy on circle-swing'
 --- !u!114 &6241094531332381140 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7508849925657787819, guid: 970db9a7ca39b5349b38cbb153527b37, type: 3}
@@ -1720,7 +1720,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 212181205706472593, guid: 970db9a7ca39b5349b38cbb153527b37, type: 3}
       propertyPath: m_Name
-      value: OffenceLevel4
+      value: MidRangeLevel4
       objectReference: {fileID: 0}
     - target: {fileID: 3113160457397948521, guid: 970db9a7ca39b5349b38cbb153527b37, type: 3}
       propertyPath: m_Pivot.x
@@ -1849,7 +1849,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b09ab329e56baf4ca3af90b822d575a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toolTipText: 'Offence level 4: +80%AS +0.125AR +25DMG'
+  toolTipText: 'Mid-range level 4: +45DMG'
 --- !u!1001 &8016113585561494695
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1859,7 +1859,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 212181205706472593, guid: 970db9a7ca39b5349b38cbb153527b37, type: 3}
       propertyPath: m_Name
-      value: DefenceLevel5
+      value: DoubleEdgeLevel5
       objectReference: {fileID: 0}
     - target: {fileID: 3113160457397948521, guid: 970db9a7ca39b5349b38cbb153527b37, type: 3}
       propertyPath: m_Pivot.x
@@ -1988,7 +1988,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b09ab329e56baf4ca3af90b822d575a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toolTipText: 'Defence Level 5: +135HP +30%ARM +15%MR -1.5MS'
+  toolTipText: 'Double-edge Level 5: 75% chance to double damage enemy on circle-swing'
 --- !u!1001 &8235212646300159215
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1998,7 +1998,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 212181205706472593, guid: 970db9a7ca39b5349b38cbb153527b37, type: 3}
       propertyPath: m_Name
-      value: OffenceLevel5
+      value: MidRangeLevel5
       objectReference: {fileID: 0}
     - target: {fileID: 3113160457397948521, guid: 970db9a7ca39b5349b38cbb153527b37, type: 3}
       propertyPath: m_Pivot.x
@@ -2127,4 +2127,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b09ab329e56baf4ca3af90b822d575a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toolTipText: 'Offence level 5: +82.5%AS +0.125AR +30DMG'
+  toolTipText: 'Mid-range level 5: +60DMG'

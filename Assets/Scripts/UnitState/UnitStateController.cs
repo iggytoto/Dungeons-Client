@@ -14,6 +14,7 @@ using Unity.Netcode;
 using Unity.VisualScripting;
 using UnityEngine;
 
+[DisallowMultipleComponent]
 public class UnitStateController : NetworkBehaviour
 {
     public virtual UnitType UnitType => Unit.Value.type;

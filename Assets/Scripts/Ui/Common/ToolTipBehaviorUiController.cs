@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+[DisallowMultipleComponent]
 public class ToolTipBehaviorUiController : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private string toolTipText;

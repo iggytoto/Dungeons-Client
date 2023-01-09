@@ -21,7 +21,7 @@ public class ToolTipUiController : MonoBehaviour
         var mp = Input.mousePosition;
         _transform.sizeDelta = new Vector2(tooltipText.preferredWidth + 10, tooltipText.preferredHeight + 10);
         _transform.position =
-            new Vector3(mp.x - tooltipText.preferredWidth / 2, mp.y + tooltipText.preferredHeight / 2, 0);
+            new Vector3(mp.x - tooltipText.preferredWidth / 2 - 20, mp.y + tooltipText.preferredHeight / 2, 0);
     }
 
     public void HideTooltip()

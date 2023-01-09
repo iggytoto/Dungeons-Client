@@ -2018,6 +2018,22 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6191605460979482551, guid: 83a4bbeea11db4345b25703bd0ad22a2, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6191605460979482551, guid: 83a4bbeea11db4345b25703bd0ad22a2, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6191605460979482551, guid: 83a4bbeea11db4345b25703bd0ad22a2, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6191605460979482551, guid: 83a4bbeea11db4345b25703bd0ad22a2, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6454893080093829087, guid: 83a4bbeea11db4345b25703bd0ad22a2, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

@@ -194,7 +194,6 @@
      <Compile Include="Assets\Scripts\Ui\Scenes\Town\BuyUnitButtonUiController.cs" />
      <Compile Include="Assets\Scripts\BattleBehaviour\Tasks\SetFarthestEnemyFromAllyTeamTask.cs" />
      <Compile Include="Assets\Scripts\Ui\Scenes\Town\UnitButtonUiController.cs" />
-     <Compile Include="Assets\Scripts\Ui\Scenes\Town\Skills\ISkillsPanelUiController.cs" />
      <Compile Include="Assets\Model\Units\BattleBehavior.cs" />
      <Compile Include="Assets\Services\Common\Dto\DtoDeserializaer\Skills\HumanSpearmanSkillsDtoDeserializer.cs" />
      <Compile Include="Assets\Services\Login\Dto\RegisterRequestDto.cs" />
@@ -205,6 +204,10 @@
      <Compile Include="Assets\Scripts\UnitState\Effects\Interfaces\INegativeEffect.cs" />
      <Compile Include="Assets\Scripts\Ui\Scenes\Town\Skills\HumanArcherSkillsPanelUiController.cs" />
      <Compile Include="Assets\Scripts\Ui\Scenes\Town\UnitDescriptionPanelUiController.cs" />
+     <Compile Include="Assets\Scripts\Ui\Scenes\Town\Skills\HumanSpearmanSkillsPanelUiController.cs" />
+     <Compile Include="Assets\Scripts\Ui\Scenes\Town\Skills\HumanClericSkillsPanelUiController.cs" />
+     <Compile Include="Assets\Scripts\Ui\Scenes\Town\Skills\SkillPanelUiControllerBase.cs" />
+     <Compile Include="Assets\Services\Common\Dto\Skills\IDtoMapper.cs" />
      <Folder Include="Assets" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\mergetool.ja.txt" />
      <Folder Include="Assets\Libs\Tiny Fantasy Icons\Keys" />

@@ -14,6 +14,11 @@ namespace Services.Common.Dto
 
         public override Skills ToDomain()
         {
+            return ToDomainTyped();
+        }
+
+        public HumanClericSkills ToDomainTyped()
+        {
             return new HumanClericSkills
             {
                 id = id,

@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class SelectedUnitSkillsPanelUiController : MonoBehaviour
 {
-    [SerializeField] private SkillsPanelUiController humanWarriorPanelUiController;
-    [SerializeField] private SkillsPanelUiController humanArcherPanelUiController;
+    [SerializeField] private SkillPanelUiControllerBase humanWarriorPanelUiController;
+    [SerializeField] private SkillPanelUiControllerBase humanArcherPanelUiController;
 
     public Skills Skills
     {
@@ -30,7 +30,7 @@ public class SelectedUnitSkillsPanelUiController : MonoBehaviour
         humanWarriorPanelUiController.gameObject.SetActive(false);
     }
 
-    private SkillsPanelUiController SwitchOnSkillsController(Skills value)
+    private SkillPanelUiControllerBase SwitchOnSkillsController(Skills value)
     {
         if (value is HumanWarriorSkills)
         {

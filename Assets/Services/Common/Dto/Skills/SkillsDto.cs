@@ -11,5 +11,6 @@ namespace Services.Common.Dto
         public long unitId;
 
         public abstract Skills ToDomain();
+
     }
 }

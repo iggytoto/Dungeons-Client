@@ -4,6 +4,7 @@ using UnityEngine;
 public class SelectedUnitSkillsPanelUiController : MonoBehaviour
 {
     [SerializeField] private SkillsPanelUiController humanWarriorPanelUiController;
+    [SerializeField] private SkillsPanelUiController humanArcherPanelUiController;
 
     public Skills Skills
     {
@@ -34,6 +35,10 @@ public class SelectedUnitSkillsPanelUiController : MonoBehaviour
         if (value is HumanWarriorSkills)
         {
             return humanWarriorPanelUiController;
+        }
+        else if (value is HumanArcherSkills)
+        {
+            return humanArcherPanelUiController;
         }
 
         return null;

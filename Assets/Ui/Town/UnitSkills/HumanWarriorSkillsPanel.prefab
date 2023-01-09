@@ -87,6 +87,7 @@ GameObject:
   - component: {fileID: 1768722196239900434}
   - component: {fileID: 689876213417268050}
   - component: {fileID: 679095392089521497}
+  - component: {fileID: 6412998093926980179}
   m_Layer: 0
   m_Name: DefenceLvl1
   m_TagString: Untagged
@@ -152,6 +153,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &6412998093926980179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 904107581071020784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b09ab329e56baf4ca3af90b822d575a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  toolTipText: 'Defence level5: +50HP +10%ARM -0.5MS'
 --- !u!1 &1219494955468815657
 GameObject:
   m_ObjectHideFlags: 0
@@ -163,6 +177,7 @@ GameObject:
   - component: {fileID: 1338627071239828153}
   - component: {fileID: 8052841758210439181}
   - component: {fileID: 4764300395351457399}
+  - component: {fileID: 1123360262009507396}
   m_Layer: 0
   m_Name: DefenceLvl4
   m_TagString: Untagged
@@ -228,6 +243,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1123360262009507396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1219494955468815657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b09ab329e56baf4ca3af90b822d575a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  toolTipText: 'Defence level4: +125HP +30%ARM -1.5MS'
 --- !u!1 &1491319118134368186
 GameObject:
   m_ObjectHideFlags: 0
@@ -413,6 +441,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8d0fdc0979148b5bed5a05ec681eea9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  trainDefenceButton: {fileID: 4788274138545936208}
+  trainOffenceButton: {fileID: 1555281531124959686}
+  activeSprite: {fileID: 21300000, guid: 33cd3b491748050418115b4d3a0b6534, type: 3}
+  notActiveSprite: {fileID: 21300000, guid: 5659b073e19871d4da7394b6456da365, type: 3}
+  defenceL1: {fileID: 679095392089521497}
+  defenceL2: {fileID: 1869313231316937511}
+  defenceL3: {fileID: 6086728701434403488}
+  defenceL4: {fileID: 4764300395351457399}
+  defenceL5: {fileID: 5265434616687695949}
+  offenceL1: {fileID: 6689543504103308891}
+  offenceL2: {fileID: 719845909723962833}
+  offenceL3: {fileID: 1034695163606033637}
+  offenceL4: {fileID: 3841304162525772262}
+  offenceL5: {fileID: 942147335940481852}
 --- !u!1 &2198069422008688308
 GameObject:
   m_ObjectHideFlags: 0
@@ -1229,6 +1271,7 @@ GameObject:
   - component: {fileID: 9076737963473494290}
   - component: {fileID: 1664567422397123396}
   - component: {fileID: 1869313231316937511}
+  - component: {fileID: 7958032588013665393}
   m_Layer: 0
   m_Name: DefenceLvl2
   m_TagString: Untagged
@@ -1294,6 +1337,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &7958032588013665393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8130956087682935724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b09ab329e56baf4ca3af90b822d575a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  toolTipText: 'Defence level5: +75HP +20%ARM -1MS'
 --- !u!1 &8651224821995457791
 GameObject:
   m_ObjectHideFlags: 0
@@ -1305,6 +1361,7 @@ GameObject:
   - component: {fileID: 51442727947962884}
   - component: {fileID: 8613514580442677477}
   - component: {fileID: 6086728701434403488}
+  - component: {fileID: 4957076175774609720}
   m_Layer: 0
   m_Name: DefenceLvl3
   m_TagString: Untagged
@@ -1370,6 +1427,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4957076175774609720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8651224821995457791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b09ab329e56baf4ca3af90b822d575a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  toolTipText: 'Defence level3: +100HP +25%ARM -1.25MS'
 --- !u!1 &9015408339432695335
 GameObject:
   m_ObjectHideFlags: 0
@@ -1618,6 +1688,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3113160457397948521, guid: 9b39a732ef4bc6a45aa485a6da469ab1, type: 3}
   m_PrefabInstance: {fileID: 3046569479643638523}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4788274138545936208 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7508849925657787819, guid: 9b39a732ef4bc6a45aa485a6da469ab1, type: 3}
+  m_PrefabInstance: {fileID: 3046569479643638523}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &9052714048581350509
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1729,6 +1810,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b39a732ef4bc6a45aa485a6da469ab1, type: 3}
+--- !u!114 &1555281531124959686 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7508849925657787819, guid: 9b39a732ef4bc6a45aa485a6da469ab1, type: 3}
+  m_PrefabInstance: {fileID: 9052714048581350509}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &6239061666728666116 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3113160457397948521, guid: 9b39a732ef4bc6a45aa485a6da469ab1, type: 3}

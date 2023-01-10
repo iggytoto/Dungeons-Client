@@ -208,6 +208,7 @@
      <Compile Include="Assets\Scripts\Ui\Scenes\Town\Skills\HumanClericSkillsPanelUiController.cs" />
      <Compile Include="Assets\Scripts\Ui\Scenes\Town\Skills\SkillPanelUiControllerBase.cs" />
      <Compile Include="Assets\Services\Common\Dto\Skills\IDtoMapper.cs" />
+     <Compile Include="Assets\TrainingMatchPanelUiController.cs" />
      <Folder Include="Assets" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\mergetool.ja.txt" />
      <Folder Include="Assets\Libs\Tiny Fantasy Icons\Keys" />

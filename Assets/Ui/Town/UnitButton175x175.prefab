@@ -502,7 +502,7 @@ GameObject:
   - component: {fileID: 6737734359277882512}
   - component: {fileID: 3473500761869106766}
   m_Layer: 0
-  m_Name: UnitButton
+  m_Name: UnitButton175x175
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

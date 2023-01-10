@@ -8,7 +8,6 @@ using UnityEngine;
 
 public class SelectedUnitPanelUiController : MonoBehaviour
 {
-    [SerializeField] TMP_Text nameText;
     [SerializeField] TMP_Text hpText;
     [SerializeField] TMP_Text maxHpText;
     [SerializeField] TMP_Text damageText;
@@ -19,6 +18,7 @@ public class SelectedUnitPanelUiController : MonoBehaviour
     [SerializeField] TMP_Text msText;
     [SerializeField] TMP_Text manaText;
     [SerializeField] TMP_Dropdown bbDropdown;
+    [SerializeField] TMP_InputField nameInputField;
 
     private long _id;
 
@@ -26,6 +26,15 @@ public class SelectedUnitPanelUiController : MonoBehaviour
     {
         bbDropdown.onValueChanged.AddListener(OnBattleBehaviorChanged);
         _barrackService = FindObjectOfType<GameService>().BarrackService;
+        nameInputField.onValueChanged.AddListener(OnNameChanged);
+    }
+
+    private void OnNameChanged(string arg0)
+    {
+        if (!_unit.Name.Equals(arg0))
+        {
+            _barrackService.ChangeUnitName(_id, nameInputField.text);
+        }
     }
 
     private void OnBattleBehaviorChanged(int dropDownIndex)
@@ -47,7 +56,7 @@ public class SelectedUnitPanelUiController : MonoBehaviour
 
         _unit = value;
         _id = _unit?.Id ?? 0;
-        nameText.text = _unit?.Name;
+        nameInputField.text = _unit?.Name;
         hpText.text = _unit?.hitPoints.ToString();
         maxHpText.text = _unit?.maxHp.ToString();
         damageText.text = _unit?.damage.ToString();

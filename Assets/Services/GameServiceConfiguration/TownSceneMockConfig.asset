@@ -21,6 +21,6 @@ MonoBehaviour:
   reconnectInterval: 5
   barrackServiceType: 1
   matchMakingServiceType: 1
-  playerAccountServiceType: 0
+  playerAccountServiceType: 1
   tavernServiceType: 1
-  trainingYardServiceType: 0
+  trainingYardServiceType: 1

@@ -30,11 +30,17 @@ public class UnitButtonUiController : MonoBehaviour
     {
         if (value == null) return;
         _unit = value;
-        hpUnitText.text = value.hitPoints.ToString();
-        maxHpUnitText.text = value.maxHp.ToString();
-        armorUnitText.text = value.armor.ToString();
-        mrUnitText.text = value.magicResistance.ToString();
-        damageUnitText.text = value.damage.ToString();
-        nameText.text = value.Name;
+        if (hpUnitText != null)
+            hpUnitText.text = value.hitPoints.ToString();
+        if (maxHpUnitText != null)
+            maxHpUnitText.text = value.maxHp.ToString();
+        if (armorUnitText != null)
+            armorUnitText.text = value.armor.ToString();
+        if (mrUnitText != null)
+            mrUnitText.text = value.magicResistance.ToString();
+        if (damageUnitText != null)
+            damageUnitText.text = value.damage.ToString();
+        if (nameText != null)
+            nameText.text = value.Name;
     }
 }

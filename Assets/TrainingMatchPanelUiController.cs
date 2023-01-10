@@ -16,6 +16,7 @@ public class TrainingMatchPanelUiController : MonoBehaviour
     [SerializeField] private Button registerMatchMakingButton;
     [SerializeField] private Button cancelMatchMakingButton;
     [SerializeField] private TMP_Text matchMakingStatusText;
+    [SerializeField] private Button closePanelButton;
 
     private readonly List<UnitButtonUiController> _unitButtonUiControllers = new();
     private IMatchMakingService _matchMakingService;
@@ -27,6 +28,17 @@ public class TrainingMatchPanelUiController : MonoBehaviour
         cancelMatchMakingButton.onClick.AddListener(OnCancelMatchMakingClicked);
         registerMatchMakingButton.enabled = false;
         cancelMatchMakingButton.enabled = false;
+        closePanelButton.onClick.AddListener(OnClosePanelButton);
+    }
+
+    private void OnClosePanelButton()
+    {
+        OnCancelMatchMakingClicked();
+        gameObject.SetActive(false);
+        foreach (var unitButtonUiController in _unitButtonUiControllers.ToList())
+        {
+            OnUnitClickedInternal(this, unitButtonUiController.Unit);
+        }
     }
 
     private void OnCancelMatchMakingClicked()
@@ -85,7 +97,8 @@ public class TrainingMatchPanelUiController : MonoBehaviour
 
     private void AddToContentAsButton(Unit u)
     {
-        if (_unitButtonUiControllers.Any(x => x.Unit.Id == u.Id)) return;
+        if (_unitButtonUiControllers.Any(x => x.Unit.Id == u.Id) ||
+            _unitButtonUiControllers.Count == 3) return;
         var button = Instantiate(rosterSelectedUnitButtonPrefab, selectedUnitsContainer.transform);
         var buttonController = button.GetComponent<UnitButtonUiController>();
         buttonController.OnClick += OnUnitClickedInternal;

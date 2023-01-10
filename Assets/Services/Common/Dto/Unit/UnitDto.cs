@@ -1,6 +1,9 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using JetBrains.Annotations;
 using Model.Units;
+using Services.Common.Dto.Items;
 using Services.Dto;
 
 namespace Services.Common.Dto
@@ -28,6 +31,7 @@ namespace Services.Common.Dto
         public UnitType unitType;
         public DateTime startedAt;
         [CanBeNull] public SkillsDto skills;
+        [CanBeNull] public List<ItemDto> items;
 
         public Unit ToDomain()
         {
@@ -47,7 +51,8 @@ namespace Services.Common.Dto
                 attackRange = attackRange,
                 battleBehavior = battleBehavior,
                 movementSpeed = movementSpeed,
-                skills = skills?.ToDomain()
+                skills = skills?.ToDomain(),
+                items = items?.Select(i => i.ToDomain()).ToList()
             };
         }
 

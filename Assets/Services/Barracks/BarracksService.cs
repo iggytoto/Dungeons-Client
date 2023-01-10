@@ -2,10 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using Model.Items;
 using Model.Units;
 using Services;
 using Services.Barracks;
 using Services.Common.Dto;
+using Services.Common.Dto.Items;
 using Services.Dto;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -13,6 +15,7 @@ using UnityEngine;
 public class BarracksService : ServiceBase, IBarrackService
 {
     public ObservableCollection<Unit> AvailableUnits { get; } = new();
+    public ObservableCollection<Item> AvailableItems { get; } = new();
 
 
     [SerializeField] public float refreshInterval = 15;
@@ -55,26 +58,46 @@ public class BarracksService : ServiceBase, IBarrackService
             Debug.LogWarning("User context is not set cannot do without user context");
         }
 
-        _apiAdapter.GetAvailableUnits(_loginService.UserContext, OnGetSuccess, OnError);
+        _apiAdapter.GetAvailableUnits(_loginService.UserContext, OnGetAvailableUnitsSuccess, OnError);
+        _apiAdapter.GetAvailableItems(_loginService.UserContext, OnGetAvailableItemsSuccess, OnError);
         _refreshTimer = refreshInterval;
     }
 
-    private void OnGetSuccess(object sender, UnitListResponseDto e)
+    private void OnGetAvailableUnitsSuccess(object sender, UnitListResponseDto e)
     {
         if (e == null)
         {
             return;
         }
 
-        RefreshLocal(e.units?.Select(x => x?.ToDomain()));
+        RefreshUnitsLocal(e.units?.Select(x => x?.ToDomain()));
     }
 
-    private void RefreshLocal(IEnumerable<Unit> e)
+    private void OnGetAvailableItemsSuccess(object sender, ListResponseDto<ItemDto> listResponseDto)
+    {
+        if (listResponseDto?.items == null)
+        {
+            return;
+        }
+
+        RefreshItemsLocal(listResponseDto.items.Select(x => x?.ToDomain()));
+    }
+
+    private void RefreshUnitsLocal(IEnumerable<Unit> e)
     {
         AvailableUnits.Clear();
         if (e != null)
         {
             AvailableUnits.AddRange(e);
+        }
+    }
+
+    private void RefreshItemsLocal(IEnumerable<Item> e)
+    {
+        AvailableItems.Clear();
+        if (e != null)
+        {
+            AvailableItems.AddRange(e);
         }
     }
 
@@ -99,6 +122,18 @@ public class BarracksService : ServiceBase, IBarrackService
             _loginService.UserContext,
             new ChangeUnitBattleBehaviorRequestDto { unitId = selectedUnitId, newBattleBehavior = bb },
             (_, _) => Refresh());
+    }
+
+    public void EquipItem(Item item, Unit unit)
+    {
+        _apiAdapter.EquipItem(_loginService.UserContext, new EquipItemRequestDto { itemId = item.id, unitId = unit.Id },
+            null, OnError);
+    }
+
+    public void UnEquipItem(Item item)
+    {
+        _apiAdapter.UnEquipItem(_loginService.UserContext, new UnEquipItemRequestDto { itemId = item.id }, null,
+            OnError);
     }
 
     public void UpgradeUnitSkill<TDomain, TDto>(

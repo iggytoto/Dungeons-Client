@@ -1,12 +1,14 @@
 using System;
 using Model.Units;
 using Newtonsoft.Json.Linq;
+using Services.Common.Dto.Items;
 
 namespace Services.Common.Dto
 {
     public class UnitDtoDeserializer : IDtoDeserializer<UnitDto>
     {
         private readonly IDtoDeserializer<SkillsDto> _equipDeserializer;
+        private readonly DefaultListDtoDeserializer<ItemDto> _itemDtoListDeserializer = new();
 
         public UnitDto Deserialize(string json)
         {
@@ -35,6 +37,7 @@ namespace Services.Common.Dto
                 ? null
                 : UnitSkillsDeserializerBase.GetDeserializer(unitType)
                     ?.Deserialize(unitEquipJson);
+            var itemsDto = _itemDtoListDeserializer.Deserialize(jObject["items"]?.ToString());
             return new UnitDto
             {
                 id = id,
@@ -56,7 +59,8 @@ namespace Services.Common.Dto
                 mana = mana,
                 maxMana = maxMana,
                 startedAt = startedAt,
-                skills = unitEquip
+                skills = unitEquip,
+                items = itemsDto
             };
         }
     }

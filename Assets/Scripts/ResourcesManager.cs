@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Model.Items;
 using Model.Units;
 using UnityEngine;
 
@@ -9,7 +10,12 @@ namespace DefaultNamespace
     {
         private readonly Dictionary<UnitType, GameObject> _unitTypePrefabs = new();
         private readonly Dictionary<UnitType, GameObject> _unitTypeProjectiles = new();
+        private static ResourcesManager _instance;
 
+        private void Awake()
+        {
+            _instance = this;
+        }
 
         public GameObject LoadUnitPrefabForUnitType(UnitType type)
         {
@@ -51,6 +57,19 @@ namespace DefaultNamespace
                 UnitType.HumanSpearman => "Characters/HumanSpearman/HumanSpearmanPrefab",
                 UnitType.HumanCleric => "Characters/HumanCleric/HumanClericPrefab",
                 _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
+            };
+        }
+
+        public static ResourcesManager GetInstance()
+        {
+            return _instance;
+        }
+
+        public Sprite GetIconForItem(ItemType t)
+        {
+            return t switch
+            {
+                _ => null
             };
         }
     }

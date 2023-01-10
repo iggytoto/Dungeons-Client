@@ -1,6 +1,7 @@
 using System;
 using System.Collections.ObjectModel;
 using DefaultNamespace;
+using Model.Items;
 using Model.Units;
 using Services.Common.Dto;
 
@@ -16,9 +17,16 @@ namespace Services
          */
         public ObservableCollection<Unit> AvailableUnits { get; }
 
+        /**
+         * Collection of available unequipped items for player
+         */
+        public ObservableCollection<Item> AvailableItems { get; }
+
         ObservableCollection<Unit> IUnitListProvider<Unit>.Units => AvailableUnits;
         void ChangeUnitName(long selectedUnitId, string newName);
         void ChangeUnitBattleBehavior(long selectedUnitId, BattleBehavior bb);
+        void EquipItem(Item item, Unit unit);
+        void UnEquipItem(Item item);
 
         /**
          * Request an upgrade for given skill by id.

@@ -209,6 +209,15 @@
      <Compile Include="Assets\Scripts\Ui\Scenes\Town\Skills\SkillPanelUiControllerBase.cs" />
      <Compile Include="Assets\Services\Common\Dto\Skills\IDtoMapper.cs" />
      <Compile Include="Assets\TrainingMatchPanelUiController.cs" />
+     <Compile Include="Assets\ItemsPanelUiController.cs" />
+     <Compile Include="Assets\Model\Items\Item.cs" />
+     <Compile Include="Assets\Services\Common\Dto\DtoDeserializaer\Skills\HumanClericSkillsDtoDeserializer.cs" />
+     <Compile Include="Assets\Services\Common\Dto\ListResponseDto.cs" />
+     <Compile Include="Assets\Services\Common\Dto\Items\ItemDto.cs" />
+     <Compile Include="Assets\Services\Barracks\Dto\EquipItemRequestDto.cs" />
+     <Compile Include="Assets\Services\Barracks\Dto\UnEquipItemRequestDto.cs" />
+     <Compile Include="Assets\Services\Common\Dto\DtoDeserializaer\DefaultListDtoDeserializer.cs" />
+     <Compile Include="Assets\Model\Items\ItemType.cs" />
      <Folder Include="Assets" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\mergetool.ja.txt" />
      <Folder Include="Assets\Libs\Tiny Fantasy Icons\Keys" />
@@ -513,6 +522,7 @@
      <Folder Include="Assets\Libs\laxer tree pkg\Ambient-Occlusion" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\binmergetool.en.txt" />
      <None Include="Library\PackageCache\com.unity.services.core@1.6.0\package.json" />
+     <Folder Include="Assets\Services\Common\Dto\Items" />
      <Folder Include="Library\PackageCache\com.unity.modules.uielements@1.0.0" />
      <None Include="Library\PackageCache\com.unity.visualscripting@1.7.8\ValidationExceptions.json" />
      <Folder Include="Library\PackageCache\com.unity.modules.unitywebrequestaudio@1.0.0" />
@@ -556,6 +566,7 @@
      <Folder Include="Library\PackageCache\com.unity.editorcoroutines@1.0.0" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\i3.zh-Hant.txt" />
      <Folder Include="Assets\Libs\Medieval Village Building Pack\Materials" />
+     <Folder Include="Assets\Model\Items" />
      <None Include="Library\PackageCache\com.unity.terrain-tools@4.0.3\Shaders\PaintMaterialBrushPreview.shader" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\cm.ko.txt" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\guihelp.zh-Hans.txt" />

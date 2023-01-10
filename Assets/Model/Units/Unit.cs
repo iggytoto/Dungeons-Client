@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using Model.Items;
 using Model.Units;
 using Unity.Netcode;
 using Random = System.Random;
@@ -21,6 +23,7 @@ public class Unit : ModelBase, INetworkSerializable
     public UnitActivity activity;
     public UnitType type;
     public Skills skills;
+    public List<Item> items;
 
     public void NetworkSerialize<T>(BufferSerializer<T> serializer) where T : IReaderWriter
     {

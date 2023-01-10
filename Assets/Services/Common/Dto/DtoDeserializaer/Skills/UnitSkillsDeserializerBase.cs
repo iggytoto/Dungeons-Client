@@ -19,6 +19,7 @@ namespace Services.Common.Dto
                 UnitType.HumanArcher => new HumanArcherSkillsDtoDeserializer(),
                 UnitType.HumanWarrior => new HumanWarriorSkillsDtoDeserializer(),
                 UnitType.HumanSpearman => new HumanSpearmanSkillsDtoDeserializer(),
+                UnitType.HumanCleric => new HumanClericSkillsDtoDeserializer(),
                 _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
             };
         }

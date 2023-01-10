@@ -1803,6 +1803,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bottomHorizontalBarrackUnitListUiController: {fileID: 6297196868654761357}
+  itemsPanelUiController: {fileID: 9068087972629753832}
+  selectedUnitPanelUiController: {fileID: 5600937140702647748}
+  trainingMatchPanelUiController: {fileID: 2505437048227620431}
 --- !u!1 &3421553347724167049
 GameObject:
   m_ObjectHideFlags: 0
@@ -2533,6 +2536,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35b167434fae3a04ba5b7258a9f4fabc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemButtonPrefab: {fileID: 0}
+  itemsContent: {fileID: 4552132686035721504}
 --- !u!1 &5402477341417348392
 GameObject:
   m_ObjectHideFlags: 0
@@ -3167,60 +3172,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitButtonPrefab: {fileID: 3298880151669585274, guid: 775dc29fe02945a46b52cacdb7429319, type: 3}
   content: {fileID: 17371338074761993}
-  onUnitClicked:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5600937140702647748}
-        m_TargetAssemblyTypeName: SelectedUnitPanelUiController, Assembly-CSharp
-        m_MethodName: set_Unit
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 3011592636267764720}
-        m_TargetAssemblyTypeName: UnitDescriptionPanelUiController, Assembly-CSharp
-        m_MethodName: set_Unit
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2505437048227620431}
-        m_TargetAssemblyTypeName: TrainingMatchPanelUiController, Assembly-CSharp
-        m_MethodName: AddToRoster
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onUnitSkillsClicked:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3445063769340612286}
-        m_TargetAssemblyTypeName: SelectedUnitSkillsPanelUiController, Assembly-CSharp
-        m_MethodName: set_Skills
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &6248669094470008910
 GameObject:
   m_ObjectHideFlags: 0
@@ -6533,17 +6484,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 040c7b53c0fc2524ab06b8aac870fd86, type: 3}
---- !u!114 &3445063769340612286 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8194990399983335712, guid: 040c7b53c0fc2524ab06b8aac870fd86, type: 3}
-  m_PrefabInstance: {fileID: 6806389736394176414}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64327b9c7fe5d28408629a5f7f7061f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &4883113361539621359 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2139608792313878129, guid: 040c7b53c0fc2524ab06b8aac870fd86, type: 3}

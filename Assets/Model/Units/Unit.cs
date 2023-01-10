@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Model.Items;
 using Model.Units;
 using Unity.Netcode;
@@ -23,7 +24,7 @@ public class Unit : ModelBase, INetworkSerializable
     public UnitActivity activity;
     public UnitType type;
     public Skills skills;
-    public List<Item> items;
+    public readonly List<Item> items = new();
 
     public void NetworkSerialize<T>(BufferSerializer<T> serializer) where T : IReaderWriter
     {
@@ -43,5 +44,21 @@ public class Unit : ModelBase, INetworkSerializable
         serializer.SerializeValue(ref battleBehavior);
         serializer.SerializeValue(ref activity);
         serializer.SerializeValue(ref type);
+    }
+
+    public bool EquipItem(Item item)
+    {
+        if (items.Any(i => i.Id == item.id))
+        {
+            return false;
+        }
+
+        items.Add(item);
+        return true;
+    }
+
+    public bool UnEquipItem(Item item)
+    {
+        return items.Remove(item);
     }
 }

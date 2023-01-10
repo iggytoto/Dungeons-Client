@@ -35,7 +35,7 @@ namespace Services.Common.Dto
 
         public Unit ToDomain()
         {
-            return new Unit
+            var result = new Unit
             {
                 Id = id,
                 Name = name,
@@ -52,8 +52,14 @@ namespace Services.Common.Dto
                 battleBehavior = battleBehavior,
                 movementSpeed = movementSpeed,
                 skills = skills?.ToDomain(),
-                items = items?.Select(i => i.ToDomain()).ToList()
             };
+            var itms = items?.Select(i => i.ToDomain()).ToList();
+            if (itms != null)
+            {
+                result.items.AddRange(itms);
+            }
+
+            return result;
         }
 
         public UnitForSale ToUnitForSale()

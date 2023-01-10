@@ -193,7 +193,7 @@
      <Compile Include="Assets\Scripts\UnitState\Effects\Interfaces\IHealingAmountChangeEffect.cs" />
      <Compile Include="Assets\Scripts\Ui\Scenes\Town\BuyUnitButtonUiController.cs" />
      <Compile Include="Assets\Scripts\BattleBehaviour\Tasks\SetFarthestEnemyFromAllyTeamTask.cs" />
-     <Compile Include="Assets\Scripts\Ui\Scenes\Town\UnitButtonUiController.cs" />
+     <Compile Include="Assets\Scripts\Ui\Common\UnitButtonUiController.cs" />
      <Compile Include="Assets\Model\Units\BattleBehavior.cs" />
      <Compile Include="Assets\Services\Common\Dto\DtoDeserializaer\Skills\HumanSpearmanSkillsDtoDeserializer.cs" />
      <Compile Include="Assets\Services\Login\Dto\RegisterRequestDto.cs" />
@@ -218,6 +218,7 @@
      <Compile Include="Assets\Services\Barracks\Dto\UnEquipItemRequestDto.cs" />
      <Compile Include="Assets\Services\Common\Dto\DtoDeserializaer\DefaultListDtoDeserializer.cs" />
      <Compile Include="Assets\Model\Items\ItemType.cs" />
+     <Compile Include="Assets\Scripts\Ui\Common\ItemButtonUiController.cs" />
      <Folder Include="Assets" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\mergetool.ja.txt" />
      <Folder Include="Assets\Libs\Tiny Fantasy Icons\Keys" />

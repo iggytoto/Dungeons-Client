@@ -20,9 +20,9 @@ public class MockBarracksService : MonoBehaviour, IBarrackService
 
     public ObservableCollection<Item> AvailableItems { get; } = new()
     {
-        new Item { id = 1 },
-        new Item { id = 2 },
-        new Item { id = 3 }
+        new Item { Id = 1 },
+        new Item { Id = 2 },
+        new Item { Id = 3 }
     };
 
 

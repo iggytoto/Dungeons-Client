@@ -4,7 +4,6 @@ using System.Linq;
 using Model.Items;
 using Model.Units;
 using Unity.Netcode;
-using Random = System.Random;
 
 [Serializable]
 public class Unit : ModelBase, INetworkSerializable
@@ -23,8 +22,8 @@ public class Unit : ModelBase, INetworkSerializable
     public BattleBehavior battleBehavior;
     public UnitActivity activity;
     public UnitType type;
-    public Skills skills;
-    public readonly List<Item> items = new();
+    public Skills Skills;
+    public readonly List<Item> Items = new();
 
     public void NetworkSerialize<T>(BufferSerializer<T> serializer) where T : IReaderWriter
     {
@@ -48,17 +47,17 @@ public class Unit : ModelBase, INetworkSerializable
 
     public bool EquipItem(Item item)
     {
-        if (items.Any(i => i.Id == item.id))
+        if (Items.Any(i => i.Id == item.Id))
         {
             return false;
         }
 
-        items.Add(item);
+        Items.Add(item);
         return true;
     }
 
     public bool UnEquipItem(Item item)
     {
-        return items.Remove(item);
+        return Items.Remove(item);
     }
 }

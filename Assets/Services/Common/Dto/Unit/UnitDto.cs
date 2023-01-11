@@ -51,12 +51,12 @@ namespace Services.Common.Dto
                 attackRange = attackRange,
                 battleBehavior = battleBehavior,
                 movementSpeed = movementSpeed,
-                skills = skills?.ToDomain(),
+                Skills = skills?.ToDomain(),
             };
             var itms = items?.Select(i => i.ToDomain()).ToList();
             if (itms != null)
             {
-                result.items.AddRange(itms);
+                result.Items.AddRange(itms);
             }
 
             return result;

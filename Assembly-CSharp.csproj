@@ -41,6 +41,7 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+     <Compile Include="Assets\Model\Items\ItemRarity.cs" />
      <Compile Include="Assets\Scripts\UnitState\Effects\PoisonArrowsEffect.cs" />
      <Compile Include="Assets\Services\Login\LoginService.cs" />
      <Compile Include="Assets\Services\UnitShop\TavernServiceApiAdapter.cs" />
@@ -567,7 +568,6 @@
      <Folder Include="Library\PackageCache\com.unity.editorcoroutines@1.0.0" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\i3.zh-Hant.txt" />
      <Folder Include="Assets\Libs\Medieval Village Building Pack\Materials" />
-     <Folder Include="Assets\Model\Items" />
      <None Include="Library\PackageCache\com.unity.terrain-tools@4.0.3\Shaders\PaintMaterialBrushPreview.shader" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\cm.ko.txt" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\guihelp.zh-Hans.txt" />

@@ -126,13 +126,13 @@ public class BarracksService : ServiceBase, IBarrackService
 
     public void EquipItem(Item item, Unit unit)
     {
-        _apiAdapter.EquipItem(_loginService.UserContext, new EquipItemRequestDto { itemId = item.id, unitId = unit.Id },
+        _apiAdapter.EquipItem(_loginService.UserContext, new EquipItemRequestDto { itemId = item.Id, unitId = unit.Id },
             null, OnError);
     }
 
     public void UnEquipItem(Item item)
     {
-        _apiAdapter.UnEquipItem(_loginService.UserContext, new UnEquipItemRequestDto { itemId = item.id }, null,
+        _apiAdapter.UnEquipItem(_loginService.UserContext, new UnEquipItemRequestDto { itemId = item.Id }, null,
             OnError);
     }
 

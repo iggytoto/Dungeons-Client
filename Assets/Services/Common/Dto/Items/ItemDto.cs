@@ -12,16 +12,20 @@ namespace Services.Common.Dto.Items
         public long userId;
         public long unitId;
         public ItemType itemType;
+        public string name;
+        public ItemRarity rarity;
 
         public Item ToDomain()
         {
             return new Item
             {
-                id = id,
-                unitId = unitId,
-                userId = userId,
+                Id = id,
+                UnitId = unitId,
+                UserId = userId,
                 ItemType = itemType,
-                icon = ResourcesManager.GetInstance().GetIconForItem(itemType)
+                Rarity = rarity,
+                Name = name,
+                Icon = ResourcesManager.GetInstance().GetIconForItem(itemType)
             };
         }
     }

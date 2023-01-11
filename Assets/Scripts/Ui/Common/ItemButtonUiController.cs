@@ -20,7 +20,7 @@ namespace DefaultNamespace.Ui.Scenes.Town
         private void SetItem(Item value)
         {
             _item = value;
-            icon.sprite = value.icon;
+            icon.sprite = value.Icon;
         }
 
         public void Clicked()

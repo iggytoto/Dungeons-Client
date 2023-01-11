@@ -106,7 +106,7 @@ public class SelectedUnitPanelUiController : MonoBehaviour
         _unit = value;
         if (_unit != null)
         {
-            foreach (var item in _unit.items)
+            foreach (var item in _unit.Items)
             {
                 AddItem(item);
             }

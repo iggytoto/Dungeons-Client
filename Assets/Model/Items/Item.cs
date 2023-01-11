@@ -1,13 +1,10 @@
-using UnityEngine;
-
 namespace Model.Items
 {
     public class Item : ModelBase
     {
-        public long id;
-        public long unitId;
-        public long userId;
+        public long UnitId;
+        public long UserId;
         public ItemType ItemType;
-        public Sprite icon;
+        public ItemRarity Rarity;
     }
 }

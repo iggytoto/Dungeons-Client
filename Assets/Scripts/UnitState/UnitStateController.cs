@@ -19,7 +19,7 @@ public class UnitStateController : NetworkBehaviour
 {
     public virtual UnitType UnitType => Unit.Value.type;
     public BattleBehavior BattleBehavior => Unit.Value.battleBehavior;
-    public virtual Skills Skills => Unit.Value.skills;
+    public virtual Skills Skills => Unit.Value.Skills;
     public float MaxHp => Unit.Value.maxHp;
     public float HitPoints => Unit.Value.hitPoints;
     public string Name => Unit.Value.Name;

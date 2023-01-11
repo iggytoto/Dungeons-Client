@@ -40,16 +40,10 @@ public class MockBarracksService : MonoBehaviour, IBarrackService
 
     public void EquipItem(Item item, Unit unit)
     {
-        var u = AvailableUnits.First(u => u.Id == unit.Id);
-        u.items.Add(item);
-        item.unitId = unit.Id;
     }
 
     public void UnEquipItem(Item item)
     {
-        var u = AvailableUnits.First(u => u.Id == item.unitId);
-        u.items.Remove(item);
-        item.unitId = -1;
     }
 
     public void UpgradeUnitSkill<TDomain, TDto>(

@@ -36,6 +36,7 @@ public class TownSceneUiController : MonoBehaviour
     private void OnBarrackUnitClicked(Unit u)
     {
         trainingMatchPanelUiController.AddToRoster(u);
+        selectedUnitPanelUiController.Unit = u;
     }
 
     private void OnBarrackAvailableUnitsChanged(NotifyCollectionChangedEventArgs units)
@@ -102,6 +103,7 @@ public class TownSceneUiController : MonoBehaviour
         if (!selectedUnitPanelUiController.Unit.UnEquipItem(i)) return;
         _barrackService.UnEquipItem(i);
         itemsPanelUiController.AddItem(i);
+        selectedUnitPanelUiController.RemoveItem(i);
     }
 
     private void EquipItemOnSelectedUnit(Item i)
@@ -109,6 +111,7 @@ public class TownSceneUiController : MonoBehaviour
         if (selectedUnitPanelUiController.Unit == null) return;
         if (!selectedUnitPanelUiController.Unit.EquipItem(i)) return;
         _barrackService.EquipItem(i, selectedUnitPanelUiController.Unit);
-        selectedUnitPanelUiController.UpdateView();
+        itemsPanelUiController.RemoveItem(i);
+        selectedUnitPanelUiController.AddItem(i);
     }
 }

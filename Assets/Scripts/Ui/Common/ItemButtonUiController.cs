@@ -1,13 +1,15 @@
 using System;
 using Model.Items;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace DefaultNamespace.Ui.Scenes.Town
 {
     public class ItemButtonUiController : MonoBehaviour
     {
+        [SerializeField] private Image icon;
         private Item _item;
-        public event EventHandler<Item> OnClick;
+        public event Action<Item> OnClick;
 
         public Item Item
         {
@@ -18,6 +20,12 @@ namespace DefaultNamespace.Ui.Scenes.Town
         private void SetItem(Item value)
         {
             _item = value;
+            icon.sprite = value.icon;
+        }
+
+        public void Clicked()
+        {
+            OnClick?.Invoke(_item);
         }
     }
 }

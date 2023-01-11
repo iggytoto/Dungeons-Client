@@ -26,7 +26,7 @@ public class ItemsPanelUiController : MonoBehaviour
         if (_itemButtonControllers.Any(x => x.Item.Id == item.Id)) return;
         var button = Instantiate(itemButtonPrefab, itemsContent.transform);
         var buttonController = button.GetComponent<ItemButtonUiController>();
-        buttonController.OnClick += (_, i) => OnItemClicked?.Invoke(i);
+        buttonController.OnClick += (i) => OnItemClicked?.Invoke(i);
         buttonController.Item = item;
         _itemButtonControllers.Add(buttonController);
     }

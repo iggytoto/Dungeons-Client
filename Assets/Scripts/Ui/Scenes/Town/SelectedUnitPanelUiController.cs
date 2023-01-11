@@ -1,6 +1,8 @@
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using DefaultNamespace.Ui.Scenes.Town;
 using Model.Items;
 using Model.Units;
 using Services;
@@ -9,6 +11,9 @@ using UnityEngine;
 
 public class SelectedUnitPanelUiController : MonoBehaviour
 {
+    [SerializeField] private GameObject unitItemButtonPrefab;
+    [SerializeField] private GameObject itemsContent;
+
     [SerializeField] private TMP_Text hpText;
     [SerializeField] private TMP_Text maxHpText;
     [SerializeField] private TMP_Text damageText;
@@ -23,6 +28,28 @@ public class SelectedUnitPanelUiController : MonoBehaviour
 
     private Unit _unit;
     private IBarrackService _barrackService;
+    private readonly List<ItemButtonUiController> _itemButtonControllers = new();
+
+    public void RemoveItem(Item i)
+    {
+        var bc = _itemButtonControllers.FirstOrDefault(x => x.Item.Id == i.Id);
+        if (bc == null) return;
+        Destroy(bc.gameObject);
+        _itemButtonControllers.Remove(bc);
+        UpdateView();
+    }
+
+    public void AddItem(Item item)
+    {
+        if (_itemButtonControllers.Any(x => x.Item.Id == item.Id)) return;
+        var button = Instantiate(unitItemButtonPrefab, itemsContent.transform);
+        var buttonController = button.GetComponent<ItemButtonUiController>();
+        buttonController.OnClick += (i) => OnItemClicked?.Invoke(i);
+        buttonController.Item = item;
+        _itemButtonControllers.Add(buttonController);
+        UpdateView();
+    }
+
 
     public event Action<Item> OnItemClicked;
 
@@ -32,7 +59,7 @@ public class SelectedUnitPanelUiController : MonoBehaviour
         set => SetUnit(value);
     }
 
-    public void UpdateView()
+    private void UpdateView()
     {
         nameInputField.text = _unit?.Name;
         hpText.text = _unit?.hitPoints.ToString();
@@ -46,8 +73,8 @@ public class SelectedUnitPanelUiController : MonoBehaviour
         manaText.text = _unit?.maxMana.ToString();
         var optionList = (from object bbValue in Enum.GetValues(typeof(BattleBehavior))
             select new TMP_Dropdown.OptionData(bbValue.ToString())).ToList();
-
         bbDropdown.options = optionList;
+ 
     }
 
     private void Start()
@@ -74,8 +101,24 @@ public class SelectedUnitPanelUiController : MonoBehaviour
 
     private void SetUnit(Unit value)
     {
+        ClearItems();
         gameObject.SetActive(value != null);
         _unit = value;
+        if (_unit != null)
+        {
+            foreach (var item in _unit.items)
+            {
+                AddItem(item);
+            }
+        }
         UpdateView();
+    }
+
+    private void ClearItems()
+    {
+        foreach (var unitItem in _itemButtonControllers.ToArray())
+        {
+            RemoveItem(unitItem.Item);
+        }
     }
 }

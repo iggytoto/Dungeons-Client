@@ -24,6 +24,7 @@ namespace Services
         public IPlayerAccountService PlayerAccountService { get; set; }
         public ITavernService TavernService { get; set; }
         public ITrainingYardService TrainingYardService { get; set; }
+        public IEventsService EventsService { get; set; }
 
         public ResourcesManager ResourcesManager { get; set; }
 

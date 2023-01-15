@@ -2,6 +2,7 @@ namespace Model.Events
 {
     public enum EventType
     {
-        PhoenixRaid
+        PhoenixRaid,
+        MatchMaking3x3
     }
 }

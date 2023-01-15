@@ -41,21 +41,7 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Model\Events\Event.cs" />
-     <Compile Include="Assets\Model\Events\EventInstance.cs" />
-     <Compile Include="Assets\Model\Events\EventInstanceResult.cs" />
-     <Compile Include="Assets\Model\Events\EventInstanceStatus.cs" />
-     <Compile Include="Assets\Model\Events\EventStatus.cs" />
-     <Compile Include="Assets\Model\Events\EventType.cs" />
      <Compile Include="Assets\Scripts\UnitState\Effects\PoisonArrowsEffect.cs" />
-     <Compile Include="Assets\Services\Events\Dto\ApplyAsEventProcessorDto.cs" />
-     <Compile Include="Assets\Services\Events\Dto\EventDto.cs" />
-     <Compile Include="Assets\Services\Events\Dto\EventInstanceDto.cs" />
-     <Compile Include="Assets\Services\Events\Dto\EventInstanceResultDto.cs" />
-     <Compile Include="Assets\Services\Events\Dto\EventRegisterRequestDto.cs" />
-     <Compile Include="Assets\Services\Events\EventsService.cs" />
-     <Compile Include="Assets\Services\Events\EventsServiceApiAdapter.cs" />
-     <Compile Include="Assets\Services\IEventsService.cs" />
      <Compile Include="Assets\Services\Login\LoginService.cs" />
      <Compile Include="Assets\Services\UnitShop\TavernServiceApiAdapter.cs" />
      <Compile Include="Assets\Scripts\UnitState\Effects\FireArrowsBurningEffect.cs" />
@@ -234,6 +220,20 @@
      <Compile Include="Assets\Model\Currency\Currency.cs" />
      <Compile Include="Assets\Scripts\UnitState\Effects\Interfaces\INegativeEffect.cs" />
      <Compile Include="Assets\Scripts\Scenes\ServerScenes\WaitingForEventServerSceneController.cs" />
+     <Compile Include="Assets\Model\Events\EventType.cs" />
+     <Compile Include="Assets\Services\Events\Dto\EventInstanceResultDto.cs" />
+     <Compile Include="Assets\Services\Events\Dto\EventDto.cs" />
+     <Compile Include="Assets\Services\IEventsService.cs" />
+     <Compile Include="Assets\Services\Events\EventsService.cs" />
+     <Compile Include="Assets\Model\Events\EventInstanceResult.cs" />
+     <Compile Include="Assets\Model\Events\EventInstance.cs" />
+     <Compile Include="Assets\Services\Events\Dto\EventRegisterRequestDto.cs" />
+     <Compile Include="Assets\Services\Events\Dto\EventInstanceDto.cs" />
+     <Compile Include="Assets\Model\Events\EventStatus.cs" />
+     <Compile Include="Assets\Model\Events\Event.cs" />
+     <Compile Include="Assets\Services\Events\EventsServiceApiAdapter.cs" />
+     <Compile Include="Assets\Services\Events\Dto\ApplyAsEventProcessorDto.cs" />
+     <Compile Include="Assets\Model\Events\EventInstanceStatus.cs" />
      <Folder Include="Assets" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\mergetool.ja.txt" />
      <Folder Include="Assets\Libs\Tiny Fantasy Icons\Keys" />
@@ -335,6 +335,7 @@
      <Folder Include="Library\PackageCache\com.unity.terrain-tools@4.0.3" />
      <None Include="Assets\Libs\Medieval Village Building Pack\Shaders\RMHATransparency.shader" />
      <Folder Include="Assets\Services\Login\Dto" />
+     <Folder Include="Assets\Services" />
      <Folder Include="Assets\Libs\Blink\Art\Weapons" />
      <Folder Include="Assets\Libs\GUI_Parts\Icons" />
      <Folder Include="Assets\Libs\Blink\Art\Weapons\LowPoly\FreeRPGWeapons\Spears\Spear_1H_Textures" />
@@ -343,6 +344,7 @@
      <Folder Include="Library\PackageCache\com.unity.ext.nunit@1.0.6\net35\unity-custom" />
      <None Include="Library\PackageCache\com.unity.terrain-tools@4.0.3\Shaders\TexelValidity.shader" />
      <None Include="Library\PackageCache\com.unity.terrain-tools@4.0.3\Shaders\NoiseLib\Strata\Perlin.hlsl" />
+     <Folder Include="Assets\Services\Events" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\configurehelper.en.txt" />
      <Folder Include="Library\PackageCache\com.unity.cinemachine@2.8.9\Tests" />
      <None Include="Library\PackageCache\com.unity.toolchain.win-x86_64-linux-x86_64@2.0.3\package.json" />
@@ -359,6 +361,7 @@
      <Folder Include="Library\PackageCache\com.unity.ext.nunit@1.0.6\net35" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\basecommands.zh-Hant.txt" />
      <Folder Include="Assets\Services\Common\Dto\Skills" />
+     <Folder Include="Assets\Services\Events\Dto" />
      <None Include="Assets\Libs\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\cm-help.es.txt" />
      <Folder Include="Assets\Libs\Medieval Village Building Pack\Textures" />
@@ -617,6 +620,7 @@
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\clientcommon.en.txt" />
      <None Include="Library\PackageCache\com.unity.modules.physics@1.0.0\package.json" />
      <Folder Include="Library\PackageCache\com.unity.collab-proxy@1.17.7" />
+     <Folder Include="Assets\Model\Events" />
      <Folder Include="Library\PackageCache\com.unity.render-pipelines.universal@12.1.8\Textures\2D" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\binmergetool.zh-Hans.txt" />
      <Folder Include="Assets\Libs\TerrainSampleAssets\Materials" />
@@ -699,6 +703,7 @@
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\configurehelper.zh-Hans.txt" />
      <None Include="Library\PackageCache\com.unity.terrain-tools@4.0.3\Shaders\NoiseLib\Strata\Billow.hlsl" />
      <Folder Include="Library\PackageCache\com.unity.modules.umbra@1.0.0" />
+     <Folder Include="Assets\Model" />
      <Folder Include="Assets\Libs\TerrainSampleAssets\Textures\Heightmaps" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\mergetool.zh-Hant.txt" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\clientcommon.zh-Hans.txt" />

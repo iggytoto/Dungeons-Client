@@ -1,5 +1,6 @@
 using System;
 using Services;
+using Services.Events;
 using Services.Login;
 using Services.TrainingYard;
 using Unity.VisualScripting;
@@ -10,27 +11,28 @@ using UnityEngine;
     menuName = "Scriptables/Configuration/Services", order = 1)]
 public class ServicesConfiguration : ScriptableObject
 {
-    [Header("Common")]
-    [SerializeField] private string apiHostHttp = "http";
+    [Header("Common")] [SerializeField] private string apiHostHttp = "http";
     [SerializeField] private string apiHostAddress = "localhost";
     [SerializeField] private ushort apiHostPort = 8080;
-    [Header("Login")]
-    [SerializeField] private LoginServiceType loginServiceType = LoginServiceType.None;
+    [Header("Login")] [SerializeField] private LoginServiceType loginServiceType = LoginServiceType.None;
     [SerializeField] public string login = "server";
     [SerializeField] public string password = "password";
     [SerializeField] public float reconnectInterval = 5;
-    [Header("Barrack")]
-    [SerializeField] private BarrackServiceType barrackServiceType = BarrackServiceType.None;
-    [Header("MatchMaking")]
-    [SerializeField] private MatchMakingServiceType matchMakingServiceType = MatchMakingServiceType.None;
-    [Header("PlayerAccount")]
-    [SerializeField] private PlayerAccountServiceType playerAccountServiceType = PlayerAccountServiceType.None;
-    [Header("Tavern")]
-    [SerializeField] private TavernServiceType tavernServiceType = TavernServiceType.None;
-    [Header("TrainingYard")]
-    [SerializeField] private TrainingYardServiceType trainingYardServiceType = TrainingYardServiceType.None;
-    
-    
+    [Header("Barrack")] [SerializeField] private BarrackServiceType barrackServiceType = BarrackServiceType.None;
+
+    [Header("MatchMaking")] [SerializeField]
+    private MatchMakingServiceType matchMakingServiceType = MatchMakingServiceType.None;
+
+    [Header("PlayerAccount")] [SerializeField]
+    private PlayerAccountServiceType playerAccountServiceType = PlayerAccountServiceType.None;
+
+    [Header("Tavern")] [SerializeField] private TavernServiceType tavernServiceType = TavernServiceType.None;
+
+    [Header("TrainingYard")] [SerializeField]
+    private TrainingYardServiceType trainingYardServiceType = TrainingYardServiceType.None;
+
+    [Header("Events")] [SerializeField] private EventsServiceType eventsServiceType = EventsServiceType.None;
+
 
     public void SetServices(GameService gs)
     {
@@ -40,6 +42,31 @@ public class ServicesConfiguration : ScriptableObject
         SetPlayerAccountsService(gs);
         SetTavernService(gs);
         SetTrainingYardService(gs);
+        SetEventsService(gs);
+    }
+
+    private void SetEventsService(GameService gs)
+    {
+        IEventsService service;
+        switch (eventsServiceType)
+        {
+            case EventsServiceType.None:
+                service = null;
+                break;
+            case EventsServiceType.Api:
+                var s = gs.AddComponent<EventsService>();
+                s.EndpointAddress = apiHostAddress;
+                s.EndpointPort = apiHostPort;
+                s.EndpointHttpType = apiHostHttp;
+                s.InitService();
+                service = s;
+                break;
+            case EventsServiceType.Mocked:
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
+
+        gs.EventsService = service;
     }
 
     private void SetTrainingYardService(GameService gs)
@@ -191,6 +218,7 @@ public class ServicesConfiguration : ScriptableObject
             default:
                 throw new ArgumentOutOfRangeException();
         }
+
         gs.LoginService = service;
     }
 
@@ -231,6 +259,13 @@ public class ServicesConfiguration : ScriptableObject
     }
 
     public enum TrainingYardServiceType
+    {
+        None,
+        Mocked,
+        Api
+    }
+
+    public enum EventsServiceType
     {
         None,
         Mocked,

@@ -1,108 +1,87 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+using Model.Events;
 using Services;
-using Services.Common;
 using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using EventType = Model.Events.EventType;
 
-public class WaitingForEventServerSceneController : MonoBehaviour
+public class WaitingForEventServerSceneController : NetworkBehaviour
 {
-//     
-//     private ILoginService _loginService;
-//     private IMatchMakingService _matchMakingService;
-//     private TrainingBattleFlowController _trainingBattleFlowController;
-//     [SerializeField] public string username = "server";
-//     [SerializeField] public string password = "password";
-//     [SerializeField] public string host = "127.0.0.1";
-//     [SerializeField] public string port = "7777";
-//     [SerializeField] public float updateInterval = 5;
-//     private float _updateTime;
-//     private MatchDto _matchStatus;
-//     private bool _matchInProgress;
-//     
-// #if DEDICATED
-//     private void Start()
-//     {
-//         _loginService = FindObjectOfType<GameService>().LoginService;
-//         _matchMakingService = FindObjectOfType<GameService>().MatchMakingService;
-//         _trainingBattleFlowController = FindObjectOfType<TrainingBattleFlowController>();
-//
-//         StartNetCodeServer();
-//     }
-//
-//     private void StartNetCodeServer()
-//     {
-//         NetworkManager.Singleton.StartServer();
-//         NetworkManager.OnClientConnectedCallback += clientId => Debug.Log($"Client connected with id:{clientId}");
-//         NetworkManager.OnClientDisconnectCallback += clientId => Debug.Log($"Client disconnected with id:{clientId}");
-//     }
-//
-//     private void Update()
-//     {
-//         if (!IsServer) return;
-//         _updateTime -= Time.deltaTime;
-//         if (!(_updateTime <= 0)) return;
-//         if (_loginService.UserContext == null || _loginService.ConnectionState == ConnectionState.Disconnected)
-//         {
-//             ProcessLogin();
-//         }
-//         else if (_loginService.ConnectionState == ConnectionState.Connecting)
-//         {
-//         }
-//         else
-//         {
-//             ProcessMatch();
-//         }
-//
-//         _updateTime = updateInterval;
-//     }
-//
-//     private void ProcessMatch()
-//     {
-//         if (_matchStatus == null)
-//         {
-//             _matchMakingService.ApplyForServer(
-//                 host,
-//                 port,
-//                 (_, r) => _matchStatus = r,
-//                 (_, e) => Debug.LogError(e.message));
-//         }
-//         else
-//         {
-//             if (_matchInProgress || _matchStatus.status != "ServerFound") return;
-//             _matchInProgress = true;
-//             Debug.Log("Starting the training...");
-//             _trainingBattleFlowController.OnBattleFinished += OnBattleFinished;
-//             if (_matchStatus.userOneId == null || _matchStatus.userTwoId == null)
-//             {
-//                 throw new InvalidOperationException();
-//             }
-//
-//             _trainingBattleFlowController.StartBattle(
-//                 _matchStatus.userOneId.Value,
-//                 _matchStatus.userTwoId.Value);
-//         }
-//     }
-//
-//     private void ProcessLogin()
-//     {
-//         Debug.Log($"Trying to login with credentials: {username}:{password}");
-//         _loginService.TryLogin(username, password, (_, _) => ProcessMatch());
-//     }
-//
-//     private void OnBattleFinished()
-//     {
-//         Debug.Log("Battle finished");
-//         foreach (var clientId in NetworkManager.Singleton.ConnectedClients.Select(c => c.Key))
-//         {
-//             Debug.Log($"Disconnecting client with id {clientId}");
-//             NetworkManager.DisconnectClient(clientId);
-//         }
-//
-//         _matchInProgress = false;
-//         _matchStatus = null;
-//     }
-// #endif
+    private ILoginService _loginService;
+    private IEventsService _eventsService;
+    [SerializeField] public string username = "server";
+    [SerializeField] public string password = "password";
+    [SerializeField] public string host = "127.0.0.1";
+    [SerializeField] public string port = "7777";
+    [SerializeField] public float updateInterval = 5;
+    private float _updateTime;
+    private EventInstance _eventInstance;
+
+#if DEDICATED
+    private void Start()
+    {
+        _loginService = FindObjectOfType<GameService>().LoginService;
+        _eventsService = FindObjectOfType<GameService>().EventsService;
+
+        StartNetCodeServer();
+    }
+
+    private void StartNetCodeServer()
+    {
+        NetworkManager.Singleton.StartServer();
+    }
+
+    private void Update()
+    {
+        if (!IsServer) return;
+        _updateTime -= Time.deltaTime;
+        if (!(_updateTime <= 0)) return;
+        if (_loginService.UserContext == null || _loginService.ConnectionState == ConnectionState.Disconnected)
+        {
+            ProcessLogin();
+        }
+        else if (_loginService.ConnectionState == ConnectionState.Connecting)
+        {
+        }
+        else
+        {
+            ProcessEvent();
+        }
+
+        _updateTime = updateInterval;
+    }
+
+    private void ProcessEvent()
+    {
+        if (_eventInstance == null)
+        {
+            _eventsService.ApplyAsServer(
+                host,
+                port,
+                (_, r) => _eventInstance = r,
+                (_, e) => Debug.LogError(e.message));
+        }
+        else
+        {
+            switch (_eventInstance.EventType)
+            {
+                case EventType.PhoenixRaid:
+                    SceneManager.LoadScene(SceneConstants.PhoenixRaidSceneName);
+                    break;
+                case EventType.MatchMaking3x3:
+                    SceneManager.LoadScene(SceneConstants.TrainingYardSceneName);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        }
+    }
+
+    private void ProcessLogin()
+    {
+        Debug.Log($"Trying to login with credentials: {username}:{password}");
+        _loginService.TryLogin(username, password, (_, _) => ProcessEvent());
+    }
+#endif
 }

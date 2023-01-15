@@ -70,7 +70,7 @@ public class BarracksService : ServiceBase, IBarrackService
             return;
         }
 
-        RefreshUnitsLocal(e.units?.Select(x => x?.ToDomain()));
+        RefreshUnitsLocal(e.items?.Select(x => x?.ToDomain()));
     }
 
     private void OnGetAvailableItemsSuccess(object sender, ListResponseDto<ItemDto> listResponseDto)

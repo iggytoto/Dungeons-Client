@@ -13,8 +13,8 @@ namespace Services.Barracks
         private const string ChangeUnitNamePath = "/barrack/changeUnitName";
         private const string ChangeUnitBattleBehaviorPath = "/barrack/changeUnitBattleBehavior";
         private const string UpgradeUnitSkillsPath = "/barrack/upgradeUnitSkills";
-        private const string EquipItemPath = "/barrack/equipItem";
-        private const string UnEquipItemPath = "/barrack/unEquipItem";
+        private const string EquipItemPath = "/barrack/equip";
+        private const string UnEquipItemPath = "/barrack/unEquip";
 
         public void GetAvailableUnits(
             UserContext loginServiceUserContext,

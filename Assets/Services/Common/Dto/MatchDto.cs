@@ -1,9 +1,10 @@
 using System;
+using Services.Dto;
 
 namespace Services.Common
 {
     [Serializable]
-    public class MatchDto
+    public class MatchDto : ResponseBaseDto
     {
         public long id;
         public long? userOneId;

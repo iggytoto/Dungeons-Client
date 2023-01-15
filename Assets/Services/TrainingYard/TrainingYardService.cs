@@ -28,7 +28,7 @@ namespace Services.TrainingYard
             EventHandler<string> onErrorHandler)
         {
             _apiAdapter.GetRosterForUser(new UserIdRequestDto { userId = userId },
-                (o, response) => onSuccessHandler.Invoke(o, response.units.Select(dto => dto.ToDomain())),
+                (o, response) => onSuccessHandler.Invoke(o, response.items.Select(dto => dto.ToDomain())),
                 (o, err) => onErrorHandler.Invoke(o, err.message),
                 _loginService.UserContext);
         }
@@ -38,7 +38,7 @@ namespace Services.TrainingYard
             var t = new TaskCompletionSource<IEnumerable<Unit>>();
             _apiAdapter.GetRosterForUser(
                 new UserIdRequestDto { userId =  userId},
-                (_, response) => t.SetResult(response.units.Select(dto => dto.ToDomain())),
+                (_, response) => t.SetResult(response.items.Select(dto => dto.ToDomain())),
                 (_, error) => t.SetException(new Exception(error.message)),
                 _loginService.UserContext);
             return await t.Task;

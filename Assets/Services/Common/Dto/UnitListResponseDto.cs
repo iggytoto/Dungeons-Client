@@ -7,6 +7,6 @@ namespace Services.Common.Dto
     [Serializable]
     public class UnitListResponseDto : ResponseBaseDto
     {
-        public IEnumerable<UnitDto> units;
+        public IEnumerable<UnitDto> items;
     }
 }

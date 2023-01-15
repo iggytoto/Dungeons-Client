@@ -15,7 +15,7 @@ namespace Services.Common.Dto
             {
                 code = jObject["code"]?.Value<long>() ?? 0,
                 message = jObject["message"]?.Value<string>(),
-                units = ProcessUnits(jObject["units"] as JArray)
+                items = ProcessUnits(jObject["items"] as JArray)
             };
         }
 

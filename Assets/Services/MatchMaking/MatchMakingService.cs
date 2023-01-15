@@ -28,7 +28,7 @@ public class MatchMakingService : ServiceBase, IMatchMakingService
         _apiAdapter.Register(
             roster,
             _loginService.UserContext,
-            (o, r) => onSuccess?.Invoke(o, r.match),
+            onSuccess,
             (o, r) => onError?.Invoke(o, r));
     }
 
@@ -47,7 +47,7 @@ public class MatchMakingService : ServiceBase, IMatchMakingService
 
         _apiAdapter.Status(
             _loginService.UserContext,
-            (o, r) => onSuccess?.Invoke(o, r.match),
+            onSuccess,
             (o, r) => onError?.Invoke(o, r));
     }
 

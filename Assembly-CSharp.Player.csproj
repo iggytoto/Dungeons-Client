@@ -119,7 +119,6 @@
      <Compile Include="Assets\Services\Common\Dto\ListResponseDto.cs" />
      <Compile Include="Assets\Scripts\BattleBehaviour\Tasks\MoveToTargetAllyInRangeTask.cs" />
      <Compile Include="Assets\Services\Common\Dto\DtoDeserializaer\DefaultDtoDeserializer.cs" />
-     <Compile Include="Assets\Services\MatchMaking\Dto\MatchMakingStatusResponseDto.cs" />
      <Compile Include="Assets\Scripts\Ui\Common\CurrentTimePanelController.cs" />
      <Compile Include="Assets\Services\Login\LoginServiceApiAdapter.cs" />
      <Compile Include="Assets\Scripts\BattleBehaviour\Common\BattleBehaviorNode.cs" />
@@ -142,6 +141,7 @@
      <Compile Include="Assets\Services\Common\Dto\EmptyResponseDto.cs" />
      <Compile Include="Assets\Scripts\BattleBehaviour\Tasks\CheckIfTargetInRadiusTargetAllyTask.cs" />
      <Compile Include="Assets\Scripts\UnitState\Effects\HumanWarriorAbilityProtectionEffect.cs" />
+     <Compile Include="Assets\Model\Items\ItemRarity.cs" />
      <Compile Include="Assets\Scripts\BattleBehaviour\HitAndRunBattleBehavior.cs" />
      <Compile Include="Assets\Scripts\Lighting\LightingPreset.cs" />
      <Compile Include="Assets\Scripts\BattleBehaviour\Abilities\HumanWarriorAbility.cs" />

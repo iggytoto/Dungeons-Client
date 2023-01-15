@@ -24,7 +24,7 @@ namespace Services.UnitShop
                     null,
                     Get,
                     new Dictionary<string, string> { { Authorization, GetTokenValueHeader(loginServiceUserContext) } },
-                    (_, dto) => successHandler?.Invoke(this, dto.units.Select(uDto => uDto.ToUnitForSale())),
+                    (_, dto) => successHandler?.Invoke(this, dto.items.Select(uDto => uDto.ToUnitForSale())),
                     (_, dto) => errorHandler?.Invoke(this, dto.message),
                     new UnitListResponseDtoDeserializer()));
         }

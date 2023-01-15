@@ -17,9 +17,18 @@ namespace Services.Common.Dto
 
         public List<TResponse> Deserialize(string json)
         {
-            var jObject = JObject.Parse(json);
-            var itemsArray = jObject["units"] as JArray;
-            return itemsArray?.Select(jUnitObject => _itemDeserializer.Deserialize(jUnitObject.ToString())).ToList();
+            if (string.IsNullOrEmpty(json))
+            {
+                return null;
+            }
+
+            if (string.Equals("[]", json))
+            {
+                return new List<TResponse>();
+            }
+
+            var itemsArray = JArray.Parse(json);
+            return itemsArray.Select(jUnitObject => _itemDeserializer.Deserialize(jUnitObject.ToString())).ToList();
         }
     }
 }

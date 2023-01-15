@@ -36,6 +36,7 @@ namespace Services
          * cannot host the matches, only servers do.
          * Receives not null response match if match found for server successfully, otherwise null 
          */
+        [Obsolete("will be transfered to the events")]
         public void ApplyForServer(
             string address,
             string port,

@@ -145,7 +145,7 @@
      <Compile Include="Assets\Scripts\BattleBehaviour\HitAndRunBattleBehavior.cs" />
      <Compile Include="Assets\Scripts\Lighting\LightingPreset.cs" />
      <Compile Include="Assets\Scripts\BattleBehaviour\Abilities\HumanWarriorAbility.cs" />
-     <Compile Include="Assets\Services\GameServiceConfiguration\ServicesConfiguration.cs" />
+     <Compile Include="Assets\Scenes\GameServiceConfiguration\ServicesConfiguration.cs" />
      <Compile Include="Assets\Services\IBarrackService.cs" />
      <Compile Include="Assets\Services\Login\MockLoginService.cs" />
      <Compile Include="Assets\Services\Common\Dto\TokenDto.cs" />
@@ -219,6 +219,7 @@
      <Compile Include="Assets\Scripts\BattleBehaviour\Abilities\HumanClericAbility.cs" />
      <Compile Include="Assets\Model\Currency\Currency.cs" />
      <Compile Include="Assets\Scripts\UnitState\Effects\Interfaces\INegativeEffect.cs" />
+     <Compile Include="Assets\Scripts\Scenes\ServerScenes\WaitingForEventServerSceneController.cs" />
      <Folder Include="Assets" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\mergetool.ja.txt" />
      <Folder Include="Assets\Libs\Tiny Fantasy Icons\Keys" />
@@ -286,6 +287,7 @@
      <None Include="Library\PackageCache\com.unity.terrain-tools@4.0.3\Shaders\NoiseLib\Implementation\BillowImpl.hlsl" />
      <None Include="Library\PackageCache\com.unity.terrain-tools@4.0.3\Shaders\NoiseLib\None\Voronoi.hlsl" />
      <Folder Include="Assets\Libs\TerrainSampleAssets\Models" />
+     <Folder Include="Assets\Scripts\Scenes" />
      <None Include="Library\PackageCache\com.unity.terrain-tools@4.0.3\Shaders\TwistHeight.shader" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\clientcommon.es.txt" />
      <Folder Include="Library\PackageCache\com.unity.cinemachine@2.8.9" />
@@ -443,7 +445,7 @@
      <Folder Include="Assets\Libs\TerrainSampleAssets\TerrainBrushes" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\images.zh-Hant.txt" />
      <None Include="Library\PackageCache\com.unity.modules.unityanalytics@1.0.0\package.json" />
-     <Folder Include="Assets\Services\GameServiceConfiguration" />
+     <Folder Include="Assets\Scenes\GameServiceConfiguration" />
      <Folder Include="Library\PackageCache\com.unity.terrain-tools@4.0.3\Tests" />
      <Folder Include="Assets\Libs\Blink\Art\Weapons\LowPoly\FreeRPGWeapons\Shield" />
      <Folder Include="Library\PackageCache\com.unity.transport@1.3.0" />
@@ -677,6 +679,7 @@
      <Folder Include="Library\PackageCache\com.unity.render-pipelines.core@12.1.8\Tests" />
      <None Include="Library\PackageCache\com.unity.terrain-tools@4.0.3\Shaders\NoiseLib\Fbm\Billow.hlsl" />
      <None Include="Library\PackageCache\com.unity.terrain-tools@4.0.3\Shaders\Generated\NoiseBlitNone.shader" />
+     <Folder Include="Assets\Scenes\Server" />
      <None Include="Library\PackageCache\com.unity.terrain-tools@4.0.3\Shaders\NoiseLib\NoiseImpl.hlsl" />
      <None Include="Library\PackageCache\com.unity.textmeshpro@3.0.6\Editor Resources\Shaders\TMP_SDF Internal Editor.shader" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\xdiff.es.txt" />
@@ -710,6 +713,7 @@
      <Folder Include="Assets\Libs\Medieval Village Building Pack" />
      <None Include="Library\PackageCache\com.unity.terrain-tools@4.0.3\Shaders\PaintHeight.shader" />
      <Folder Include="Library\PackageCache\com.unity.render-pipelines.high-definition@12.1.8\Tests" />
+     <Folder Include="Assets\Scripts\Scenes\ServerScenes" />
      <None Include="Library\PackageCache\com.unity.modules.terrain@1.0.0\package.json" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\commontypes.ko.txt" />
      <None Include="Library\PackageCache\com.unity.cinemachine@2.8.9\package.json" />

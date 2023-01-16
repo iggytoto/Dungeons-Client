@@ -8,19 +8,19 @@ using UnityEngine.Networking;
 
 namespace Services.Dto
 {
-    public class ApiAdapterBase : MonoBehaviour
+    public class ApiAdapter : MonoBehaviour
     {
         public string endpointHttp = "http";
         public string endpointAddress = "localhost";
         public ushort endpointPort = 8080;
         private const string ContentType = "Content-Type";
         private const string ApplicationJson = "application/json";
-        protected const string Post = "POST";
-        protected const string Get = "GET";
-        protected const string Authorization = "Authorization";
+        public const string Post = "POST";
+        public const string Get = "GET";
+        public const string Authorization = "Authorization";
         private const string Bearer = "Bearer ";
 
-        protected IEnumerator DoRequestCoroutine<TResponse>(
+        public IEnumerator DoRequestCoroutine<TResponse>(
             string url,
             string requestBody,
             string requestType,
@@ -31,7 +31,7 @@ namespace Services.Dto
             return DoRequestCoroutine(url, requestBody, requestType, null, successHandler, errorHandler);
         }
 
-        protected IEnumerator DoRequestCoroutine<TResponse>(
+        public IEnumerator DoRequestCoroutine<TResponse>(
             string url,
             string requestBody,
             string requestType,
@@ -91,7 +91,7 @@ namespace Services.Dto
             }
         }
 
-        protected IEnumerator DoRequestCoroutine<TResponse>(
+        public IEnumerator DoRequestCoroutine<TResponse>(
             string url,
             string requestBody,
             string requestType,
@@ -110,6 +110,21 @@ namespace Services.Dto
                 new DefaultDtoDeserializer<TResponse>());
         }
 
+        public string GetConnectionAddress()
+        {
+            return $"{endpointHttp}://{endpointAddress}:{endpointPort}";
+        }
+
+        public static string SerializeDto(object dto)
+        {
+            return JsonConvert.SerializeObject(dto);
+        }
+
+        public Dictionary<string, string> GetAuthHeader(UserContext loginServiceUserContext)
+        {
+            return new Dictionary<string, string> { { Authorization, GetTokenValueHeader(loginServiceUserContext) } };
+        }
+
         protected static string GetTokenValueHeader(UserContext ctx)
         {
             return Bearer + Convert.ToBase64String(
@@ -118,16 +133,6 @@ namespace Services.Dto
                     value = ctx.value,
                     userId = ctx.userId
                 })));
-        }
-
-        public string GetConnectionAddress()
-        {
-            return $"{endpointHttp}://{endpointAddress}:{endpointPort}";
-        }
-
-        protected string SerializeDto(object dto)
-        {
-            return JsonConvert.SerializeObject(dto);
         }
     }
 }

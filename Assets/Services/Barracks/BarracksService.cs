@@ -5,7 +5,6 @@ using System.Linq;
 using Model.Items;
 using Model.Units;
 using Services;
-using Services.Barracks;
 using Services.Common.Dto;
 using Services.Common.Dto.Items;
 using Services.Dto;
@@ -14,24 +13,27 @@ using UnityEngine;
 
 public class BarracksService : ServiceBase, IBarrackService
 {
+    private const string GetAvailableUnitsPath = "/barrack/availableUnits";
+    private const string GetAvailableItemsPath = "/barrack/availableItems";
+    private const string ChangeUnitNamePath = "/barrack/changeUnitName";
+    private const string ChangeUnitBattleBehaviorPath = "/barrack/changeUnitBattleBehavior";
+    private const string UpgradeUnitSkillsPath = "/barrack/upgradeUnitSkills";
+    private const string EquipItemPath = "/barrack/equip";
+    private const string UnEquipItemPath = "/barrack/unEquip";
+
     public ObservableCollection<Unit> AvailableUnits { get; } = new();
     public ObservableCollection<Item> AvailableItems { get; } = new();
 
 
     [SerializeField] public float refreshInterval = 15;
     private ILoginService _loginService;
-    private BarrackServiceApiAdapter _apiAdapter;
     private float _refreshTimer;
 
-    public override void InitService()
+    public new void InitService()
     {
         _loginService = FindObjectOfType<GameService>().LoginService;
-        _apiAdapter = gameObject.AddComponent<BarrackServiceApiAdapter>();
-        _apiAdapter.endpointHttp = EndpointHttp;
-        _apiAdapter.endpointAddress = EndpointHost;
-        _apiAdapter.endpointPort = EndpointPrt;
         Debug.Log(
-            $"Barrack service adapter configured with endpoint:{_apiAdapter.GetConnectionAddress()}");
+            $"Barrack service adapter configured with endpoint:{APIAdapter.GetConnectionAddress()}");
     }
 
     private void Update()
@@ -58,8 +60,22 @@ public class BarracksService : ServiceBase, IBarrackService
             Debug.LogWarning("User context is not set cannot do without user context");
         }
 
-        _apiAdapter.GetAvailableUnits(_loginService.UserContext, OnGetAvailableUnitsSuccess, OnError);
-        _apiAdapter.GetAvailableItems(_loginService.UserContext, OnGetAvailableItemsSuccess, OnError);
+        StartCoroutine(APIAdapter.DoRequestCoroutine(
+            APIAdapter.GetConnectionAddress() + GetAvailableUnitsPath,
+            null,
+            ApiAdapter.Get,
+            APIAdapter.GetAuthHeader(_loginService.UserContext),
+            OnGetAvailableUnitsSuccess,
+            OnError,
+            new UnitListResponseDtoDeserializer()));
+        StartCoroutine(
+            APIAdapter.DoRequestCoroutine<ListResponseDto<ItemDto>>(
+                APIAdapter.GetConnectionAddress() + GetAvailableItemsPath,
+                null,
+                ApiAdapter.Get,
+                APIAdapter.GetAuthHeader(_loginService.UserContext),
+                OnGetAvailableItemsSuccess,
+                OnError));
         _refreshTimer = refreshInterval;
     }
 
@@ -110,30 +126,52 @@ public class BarracksService : ServiceBase, IBarrackService
 
     public void ChangeUnitName(long selectedUnitId, string newName)
     {
-        _apiAdapter.ChangeUnitName(
-            _loginService.UserContext,
-            new ChangeUnitNameRequestDto { unitId = selectedUnitId, newName = newName },
-            (_, _) => Refresh());
+        StartCoroutine(
+            APIAdapter.DoRequestCoroutine<ResponseBaseDto>(
+                APIAdapter.GetConnectionAddress() + ChangeUnitNamePath,
+                ApiAdapter.SerializeDto(new ChangeUnitNameRequestDto
+                    { unitId = selectedUnitId, newName = newName }),
+                ApiAdapter.Post,
+                APIAdapter.GetAuthHeader(_loginService.UserContext),
+                (_, _) => Refresh(),
+                null));
     }
 
     public void ChangeUnitBattleBehavior(long selectedUnitId, BattleBehavior bb)
     {
-        _apiAdapter.ChangeUnitBattleBehavior(
-            _loginService.UserContext,
-            new ChangeUnitBattleBehaviorRequestDto { unitId = selectedUnitId, newBattleBehavior = bb },
-            (_, _) => Refresh());
+        StartCoroutine(
+            APIAdapter.DoRequestCoroutine<ResponseBaseDto>(
+                APIAdapter.GetConnectionAddress() + ChangeUnitBattleBehaviorPath,
+                ApiAdapter.SerializeDto(new ChangeUnitBattleBehaviorRequestDto
+                    { unitId = selectedUnitId, newBattleBehavior = bb }),
+                ApiAdapter.Post,
+                APIAdapter.GetAuthHeader(_loginService.UserContext),
+                (_, _) => Refresh(),
+                null));
     }
 
     public void EquipItem(Item item, Unit unit)
     {
-        _apiAdapter.EquipItem(_loginService.UserContext, new EquipItemRequestDto { itemId = item.Id, unitId = unit.Id },
-            null, OnError);
+        StartCoroutine(
+            APIAdapter.DoRequestCoroutine<ResponseBaseDto>(
+                APIAdapter.GetConnectionAddress() + EquipItemPath,
+                ApiAdapter.SerializeDto(new EquipItemRequestDto { itemId = item.Id, unitId = unit.Id }),
+                ApiAdapter.Post,
+                APIAdapter.GetAuthHeader(_loginService.UserContext),
+                null,
+                OnError));
     }
 
     public void UnEquipItem(Item item)
     {
-        _apiAdapter.UnEquipItem(_loginService.UserContext, new UnEquipItemRequestDto { itemId = item.Id }, null,
-            OnError);
+        StartCoroutine(
+            APIAdapter.DoRequestCoroutine<ResponseBaseDto>(
+                APIAdapter.GetConnectionAddress() + UnEquipItemPath,
+                ApiAdapter.SerializeDto(new UnEquipItemRequestDto { itemId = item.Id }),
+                ApiAdapter.Post,
+                APIAdapter.GetAuthHeader(_loginService.UserContext),
+                null,
+                OnError));
     }
 
     public void UpgradeUnitSkill<TDomain, TDto>(
@@ -145,15 +183,19 @@ public class BarracksService : ServiceBase, IBarrackService
         where TDomain : Skills
         where TDto : SkillsDto
     {
-        _apiAdapter.UpgradeUnitSkills<TDto>(
-            _loginService.UserContext,
-            new UpgradeUnitSkillRequestDto
-            {
-                skillsId = skillId,
-                unitType = unitType,
-                paramNameToUpgrade = upgradeParamName
-            },
-            (_, dto) => onSuccess.Invoke(this, dtoMapper.Invoke(dto)),
-            null);
+        StartCoroutine(
+            APIAdapter.DoRequestCoroutine(
+                APIAdapter.GetConnectionAddress() + UpgradeUnitSkillsPath,
+                ApiAdapter.SerializeDto(new UpgradeUnitSkillRequestDto
+                {
+                    skillsId = skillId,
+                    unitType = unitType,
+                    paramNameToUpgrade = upgradeParamName
+                }),
+                ApiAdapter.Post,
+                APIAdapter.GetAuthHeader(_loginService.UserContext),
+                (_, dto) => onSuccess.Invoke(this, dtoMapper.Invoke(dto)),
+                null,
+                UnitSkillsDeserializerBase.GetDeserializer<TDto>(unitType)));
     }
 }

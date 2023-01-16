@@ -11,7 +11,7 @@ public class MatchMakingService : ServiceBase, IMatchMakingService
     private ILoginService _loginService;
     private MatchMakingServiceApiAdapter _apiAdapter;
 
-    public override void InitService()
+    public new void InitService()
     {
         _apiAdapter = gameObject.AddComponent<MatchMakingServiceApiAdapter>();
         _apiAdapter.endpointHttp = EndpointHttp;

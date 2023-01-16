@@ -6,7 +6,7 @@ using Services.Dto;
 
 namespace Services.MatchMaking
 {
-    public class MatchMakingServiceApiAdapter : ApiAdapterBase
+    public class MatchMakingServiceApiAdapter : ApiAdapter
     {
         private const string RegisterPath = "/matchMaking/register";
         private const string CancelPath = "/matchMaking/cancel";

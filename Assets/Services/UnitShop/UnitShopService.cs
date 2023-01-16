@@ -1,32 +1,33 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using Model.Units;
 using Services;
+using Services.Common.Dto;
+using Services.Dto;
 using Services.UnitShop;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class UnitShopService : ServiceBase, ITavernService
 {
+    private const string GetAvailableUnitsPath = "/tavern/availableUnits";
+    private const string BuyUnitPath = "/tavern/buyUnit";
+
     [SerializeField] public float shopRefreshInterval = 15;
 
     private ILoginService _loginService;
-    private TavernServiceApiAdapter _apiAdapter;
     private float _shopRefreshTimer;
     private ObservableCollection<Unit> _availableUnits;
 
     public ObservableCollection<UnitForSale> AvailableUnits { get; } = new();
 
 
-    public override void InitService()
+    public new void InitService()
     {
         _loginService = FindObjectOfType<GameService>().LoginService;
-        _apiAdapter = gameObject.AddComponent<TavernServiceApiAdapter>();
-        _apiAdapter.endpointHttp = EndpointHttp;
-        _apiAdapter.endpointAddress = EndpointHost;
-        _apiAdapter.endpointPort = EndpointPrt;
         Debug.Log(
-            $"Tavern service adapter configured with endpoint:{_apiAdapter.GetConnectionAddress()}");
+            $"Tavern service adapter configured with endpoint:{APIAdapter.GetConnectionAddress()}");
     }
 
     private void Update()
@@ -55,7 +56,15 @@ public class UnitShopService : ServiceBase, ITavernService
             Debug.LogWarning("User context is not set cannot do without user context");
         }
 
-        _apiAdapter.GetAvailableUnits(_loginService.UserContext, OnGetSuccess, OnError);
+        StartCoroutine(
+            APIAdapter.DoRequestCoroutine(
+                APIAdapter.GetConnectionAddress() + GetAvailableUnitsPath,
+                null,
+                ApiAdapter.Get,
+                APIAdapter.GetAuthHeader(_loginService.UserContext),
+                (_, dto) => OnGetSuccess(this, dto.items.Select(uDto => uDto.ToUnitForSale())),
+                (_, dto) => OnError(this, dto.message),
+                new DefaultDtoDeserializer<ListResponseDto<UnitDto>>()));
         _shopRefreshTimer = shopRefreshInterval;
     }
 
@@ -72,6 +81,14 @@ public class UnitShopService : ServiceBase, ITavernService
 
     public void BuyUnit(UnitType type)
     {
-        _apiAdapter.BuyUnit(type, _loginService.UserContext, null, OnError);
+        StartCoroutine(
+            APIAdapter.DoRequestCoroutine(
+                APIAdapter.GetConnectionAddress() + BuyUnitPath,
+                ApiAdapter.SerializeDto(new BuyUnitRequestDto { type = type }),
+                ApiAdapter.Post,
+                APIAdapter.GetAuthHeader(_loginService.UserContext),
+                null,
+                (_, dto) => OnError(this, dto.message),
+                new UnitDtoDeserializer()));
     }
 }

@@ -7,22 +7,20 @@ using UnityEngine;
 
 public class LoginService : ServiceBase, ILoginService
 {
+    private const string LoginPath = "/auth/login";
+    private const string RegisterPath = "/auth/register";
+
     private static UserContext _userContext;
     private EventHandler<UserContext> _onLoginSuccessResponseOuter;
-    private LoginServiceApiAdapter _apiAdapter;
 
     public ConnectionState ConnectionState { get; private set; } = ConnectionState.Disconnected;
 
     public UserContext UserContext => _userContext;
 
-    public override void InitService()
+    public new void InitService()
     {
-        _apiAdapter = gameObject.AddComponent<LoginServiceApiAdapter>();
-        _apiAdapter.endpointHttp = EndpointHttp;
-        _apiAdapter.endpointAddress = EndpointHost;
-        _apiAdapter.endpointPort = EndpointPrt;
         Debug.Log(
-            $"Login service adapter configured with endpoint:{_apiAdapter.GetConnectionAddress()}");
+            $"Login service adapter configured with endpoint:{APIAdapter.GetConnectionAddress()}");
     }
 
     public void TryLogin(
@@ -30,19 +28,31 @@ public class LoginService : ServiceBase, ILoginService
         string password,
         EventHandler<UserContext> onSuccess)
     {
-        if (_apiAdapter == null)
+        if (APIAdapter == null)
         {
             Debug.LogWarning("TryLogin method called before");
         }
 
         ConnectionState = ConnectionState.Connecting;
         _onLoginSuccessResponseOuter = onSuccess;
-        _apiAdapter.Login(new LoginRequestDto { login = login, password = password }, OnLoginSuccess, OnError);
+        StartCoroutine(
+            APIAdapter.DoRequestCoroutine<LoginResponseDto>(
+                APIAdapter.GetConnectionAddress() + LoginPath,
+                ApiAdapter.SerializeDto(new LoginRequestDto { login = login, password = password }),
+                ApiAdapter.Post,
+                OnLoginSuccess,
+                OnError));
     }
 
     public void Register(string login, string password)
     {
-        _apiAdapter.Register(new RegisterRequestDto { login = login, password = password }, OnRegisterSuccess, OnError);
+        StartCoroutine(
+            APIAdapter.DoRequestCoroutine<RegisterResponseDto>(
+                APIAdapter.GetConnectionAddress() + RegisterPath,
+                ApiAdapter.SerializeDto(new RegisterRequestDto { login = login, password = password }),
+                ApiAdapter.Post,
+                OnRegisterSuccess,
+                OnError));
     }
 
     private void OnRegisterSuccess(object sender, RegisterResponseDto e)

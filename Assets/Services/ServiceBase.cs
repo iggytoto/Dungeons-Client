@@ -1,3 +1,5 @@
+using System;
+using Services.Dto;
 using UnityEngine;
 
 namespace Services
@@ -7,6 +9,7 @@ namespace Services
         protected string EndpointHttp;
         protected string EndpointHost;
         protected ushort EndpointPrt;
+        protected ApiAdapter APIAdapter;
 
         public string EndpointHttpType
         {
@@ -23,6 +26,12 @@ namespace Services
             set => EndpointPrt = value;
         }
 
-        public abstract void InitService();
+        public void InitService()
+        {
+            APIAdapter = gameObject.AddComponent<ApiAdapter>();
+            APIAdapter.endpointHttp = EndpointHttp;
+            APIAdapter.endpointAddress = EndpointHost;
+            APIAdapter.endpointPort = EndpointPrt;
+        }
     }
 }

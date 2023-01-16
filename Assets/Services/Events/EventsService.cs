@@ -18,8 +18,6 @@ namespace Services.Events
         private const string ApplyAsServerPath = "/events/applyAsServer";
         private const string SaveResultPath = "/events/saveEventInstanceResult";
 
-        private ILoginService _loginService;
-
         public void Register(List<long> unitsIds, EventType type, EventHandler<ErrorResponseDto> onError)
         {
             StartCoroutine(
@@ -31,7 +29,6 @@ namespace Services.Events
                         unitsIds = unitsIds
                     }),
                     ApiAdapter.Post,
-                    APIAdapter.GetAuthHeader(_loginService.UserContext),
                     null,
                     onError));
         }
@@ -43,7 +40,6 @@ namespace Services.Events
                     APIAdapter.GetConnectionAddress() + StatusPath,
                     null,
                     ApiAdapter.Get,
-                    APIAdapter.GetAuthHeader(_loginService.UserContext),
                     (_, dto) => onSuccessHandler?.Invoke(this, dto.items.Select(d => d.toDomain()).ToList()),
                     onError));
         }
@@ -59,7 +55,6 @@ namespace Services.Events
                     APIAdapter.GetConnectionAddress() + ApplyAsServerPath,
                     ApiAdapter.SerializeDto(new ApplyAsEventProcessorDto { host = host, port = port }),
                     ApiAdapter.Post,
-                    APIAdapter.GetAuthHeader(_loginService.UserContext),
                     (_, dto) => onSuccessHandler?.Invoke(this, dto.ToDomain()),
                     onError));
         }
@@ -77,16 +72,8 @@ namespace Services.Events
                     APIAdapter.GetConnectionAddress() + SaveResultPath,
                     ApiAdapter.SerializeDto(EventInstanceResultDto.FromDomain(result)),
                     ApiAdapter.Post,
-                    APIAdapter.GetAuthHeader(_loginService.UserContext),
                     null,
                     onError));
-        }
-
-        public new void InitService()
-        {
-            _loginService = FindObjectOfType<GameService>().LoginService;
-            Debug.Log(
-                $"Events service adapter configured with endpoint:{APIAdapter.GetConnectionAddress()}");
         }
     }
 }

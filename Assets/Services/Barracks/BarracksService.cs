@@ -26,15 +26,7 @@ public class BarracksService : ServiceBase, IBarrackService
 
 
     [SerializeField] public float refreshInterval = 15;
-    private ILoginService _loginService;
     private float _refreshTimer;
-
-    public new void InitService()
-    {
-        _loginService = FindObjectOfType<GameService>().LoginService;
-        Debug.Log(
-            $"Barrack service adapter configured with endpoint:{APIAdapter.GetConnectionAddress()}");
-    }
 
     private void Update()
     {
@@ -48,23 +40,10 @@ public class BarracksService : ServiceBase, IBarrackService
 
     private void Refresh()
     {
-        if (_loginService == null)
-        {
-            _refreshTimer = long.MaxValue;
-            Debug.LogError("Login Service dependency not set for UnitShopService");
-            return;
-        }
-
-        if (_loginService.UserContext == null)
-        {
-            Debug.LogWarning("User context is not set cannot do without user context");
-        }
-
         StartCoroutine(APIAdapter.DoRequestCoroutine(
             APIAdapter.GetConnectionAddress() + GetAvailableUnitsPath,
             null,
             ApiAdapter.Get,
-            APIAdapter.GetAuthHeader(_loginService.UserContext),
             OnGetAvailableUnitsSuccess,
             OnError,
             new UnitListResponseDtoDeserializer()));
@@ -73,7 +52,6 @@ public class BarracksService : ServiceBase, IBarrackService
                 APIAdapter.GetConnectionAddress() + GetAvailableItemsPath,
                 null,
                 ApiAdapter.Get,
-                APIAdapter.GetAuthHeader(_loginService.UserContext),
                 OnGetAvailableItemsSuccess,
                 OnError));
         _refreshTimer = refreshInterval;
@@ -132,7 +110,6 @@ public class BarracksService : ServiceBase, IBarrackService
                 ApiAdapter.SerializeDto(new ChangeUnitNameRequestDto
                     { unitId = selectedUnitId, newName = newName }),
                 ApiAdapter.Post,
-                APIAdapter.GetAuthHeader(_loginService.UserContext),
                 (_, _) => Refresh(),
                 null));
     }
@@ -145,7 +122,6 @@ public class BarracksService : ServiceBase, IBarrackService
                 ApiAdapter.SerializeDto(new ChangeUnitBattleBehaviorRequestDto
                     { unitId = selectedUnitId, newBattleBehavior = bb }),
                 ApiAdapter.Post,
-                APIAdapter.GetAuthHeader(_loginService.UserContext),
                 (_, _) => Refresh(),
                 null));
     }
@@ -157,7 +133,6 @@ public class BarracksService : ServiceBase, IBarrackService
                 APIAdapter.GetConnectionAddress() + EquipItemPath,
                 ApiAdapter.SerializeDto(new EquipItemRequestDto { itemId = item.Id, unitId = unit.Id }),
                 ApiAdapter.Post,
-                APIAdapter.GetAuthHeader(_loginService.UserContext),
                 null,
                 OnError));
     }
@@ -169,7 +144,6 @@ public class BarracksService : ServiceBase, IBarrackService
                 APIAdapter.GetConnectionAddress() + UnEquipItemPath,
                 ApiAdapter.SerializeDto(new UnEquipItemRequestDto { itemId = item.Id }),
                 ApiAdapter.Post,
-                APIAdapter.GetAuthHeader(_loginService.UserContext),
                 null,
                 OnError));
     }
@@ -193,7 +167,6 @@ public class BarracksService : ServiceBase, IBarrackService
                     paramNameToUpgrade = upgradeParamName
                 }),
                 ApiAdapter.Post,
-                APIAdapter.GetAuthHeader(_loginService.UserContext),
                 (_, dto) => onSuccess.Invoke(this, dtoMapper.Invoke(dto)),
                 null,
                 UnitSkillsDeserializerBase.GetDeserializer<TDto>(unitType)));

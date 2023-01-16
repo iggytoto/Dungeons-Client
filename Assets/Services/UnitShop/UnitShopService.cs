@@ -16,19 +16,11 @@ public class UnitShopService : ServiceBase, ITavernService
 
     [SerializeField] public float shopRefreshInterval = 15;
 
-    private ILoginService _loginService;
     private float _shopRefreshTimer;
     private ObservableCollection<Unit> _availableUnits;
 
     public ObservableCollection<UnitForSale> AvailableUnits { get; } = new();
 
-
-    public new void InitService()
-    {
-        _loginService = FindObjectOfType<GameService>().LoginService;
-        Debug.Log(
-            $"Tavern service adapter configured with endpoint:{APIAdapter.GetConnectionAddress()}");
-    }
 
     private void Update()
     {
@@ -44,24 +36,11 @@ public class UnitShopService : ServiceBase, ITavernService
 
     private void RefreshShop()
     {
-        if (_loginService == null)
-        {
-            _shopRefreshTimer = long.MaxValue;
-            Debug.LogError("Login Service dependency not set for UnitShopService");
-            return;
-        }
-
-        if (_loginService.UserContext == null)
-        {
-            Debug.LogWarning("User context is not set cannot do without user context");
-        }
-
         StartCoroutine(
             APIAdapter.DoRequestCoroutine(
                 APIAdapter.GetConnectionAddress() + GetAvailableUnitsPath,
                 null,
                 ApiAdapter.Get,
-                APIAdapter.GetAuthHeader(_loginService.UserContext),
                 (_, dto) => OnGetSuccess(this, dto.items.Select(uDto => uDto.ToUnitForSale())),
                 (_, dto) => OnError(this, dto.message),
                 new DefaultDtoDeserializer<ListResponseDto<UnitDto>>()));
@@ -86,7 +65,6 @@ public class UnitShopService : ServiceBase, ITavernService
                 APIAdapter.GetConnectionAddress() + BuyUnitPath,
                 ApiAdapter.SerializeDto(new BuyUnitRequestDto { type = type }),
                 ApiAdapter.Post,
-                APIAdapter.GetAuthHeader(_loginService.UserContext),
                 null,
                 (_, dto) => OnError(this, dto.message),
                 new UnitDtoDeserializer()));

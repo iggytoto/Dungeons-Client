@@ -10,37 +10,40 @@ namespace Services.Dto
 {
     public class ApiAdapter : MonoBehaviour
     {
+        public const string Post = "POST";
+        public const string Get = "GET";
+
         public string endpointHttp = "http";
         public string endpointAddress = "localhost";
         public ushort endpointPort = 8080;
+
         private const string ContentType = "Content-Type";
         private const string ApplicationJson = "application/json";
-        public const string Post = "POST";
-        public const string Get = "GET";
-        public const string Authorization = "Authorization";
+        private const string Authorization = "Authorization";
         private const string Bearer = "Bearer ";
+        private ILoginService _loginService;
 
-        public IEnumerator DoRequestCoroutine<TResponse>(
-            string url,
-            string requestBody,
-            string requestType,
-            EventHandler<TResponse> successHandler,
-            EventHandler<ErrorResponseDto> errorHandler)
-            where TResponse : ResponseBaseDto
+        private void Start()
         {
-            return DoRequestCoroutine(url, requestBody, requestType, null, successHandler, errorHandler);
+            _loginService = FindObjectOfType<GameService>().LoginService;
         }
 
         public IEnumerator DoRequestCoroutine<TResponse>(
             string url,
-            string requestBody,
+            object requestDto,
             string requestType,
-            Dictionary<string, string> headers,
             EventHandler<TResponse> successHandler,
             EventHandler<ErrorResponseDto> errorHandler,
             IDtoDeserializer<TResponse> dtoDeserializer)
             where TResponse : ResponseBaseDto
         {
+            string requestBody = null;
+            if (requestDto != null)
+            {
+                requestBody = SerializeDto(requestDto);
+            }
+
+
             using var req = new UnityWebRequest(url, requestType);
             if (requestBody != null)
             {
@@ -49,13 +52,7 @@ namespace Services.Dto
 
             req.downloadHandler = new DownloadHandlerBuffer();
             req.SetRequestHeader(ContentType, ApplicationJson);
-            if (headers is { Count: > 0 })
-            {
-                foreach (var keyValuePair in headers)
-                {
-                    req.SetRequestHeader(keyValuePair.Key, keyValuePair.Value);
-                }
-            }
+            req.SetRequestHeader(Authorization, GetTokenValueHeader(_loginService.UserContext));
 
             yield return req.SendWebRequest();
             switch (req.result)
@@ -95,7 +92,6 @@ namespace Services.Dto
             string url,
             string requestBody,
             string requestType,
-            Dictionary<string, string> headers,
             EventHandler<TResponse> successHandler,
             EventHandler<ErrorResponseDto> errorHandler)
             where TResponse : ResponseBaseDto
@@ -104,7 +100,6 @@ namespace Services.Dto
                 url,
                 requestBody,
                 requestType,
-                headers,
                 successHandler,
                 errorHandler,
                 new DefaultDtoDeserializer<TResponse>());
@@ -120,6 +115,7 @@ namespace Services.Dto
             return JsonConvert.SerializeObject(dto);
         }
 
+        [Obsolete]
         public Dictionary<string, string> GetAuthHeader(UserContext loginServiceUserContext)
         {
             return new Dictionary<string, string> { { Authorization, GetTokenValueHeader(loginServiceUserContext) } };

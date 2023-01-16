@@ -22,7 +22,7 @@ namespace Services.MatchMaking
                 rosterUnitsIds = new List<long>(rosterUnitsIds)
             });
             StartCoroutine(DoRequestCoroutine(GetConnectionAddress() + RegisterPath, requestBody, Post,
-                new Dictionary<string, string> { { Authorization, GetTokenValueHeader(context) } }, successHandler,
+                successHandler,
                 errorHandler));
         }
 
@@ -30,16 +30,16 @@ namespace Services.MatchMaking
             EventHandler<ErrorResponseDto> errorHandler)
         {
             StartCoroutine(DoRequestCoroutine(GetConnectionAddress() + CancelPath, null, Post,
-                new Dictionary<string, string> { { Authorization, GetTokenValueHeader(context) } }, successHandler,
+                successHandler,
                 errorHandler));
         }
 
-        public void Status(UserContext context, 
+        public void Status(UserContext context,
             EventHandler<MatchDto> successHandler,
             EventHandler<ErrorResponseDto> errorHandler)
         {
             StartCoroutine(DoRequestCoroutine(GetConnectionAddress() + StatusPath, null, Get,
-                new Dictionary<string, string> { { Authorization, GetTokenValueHeader(context) } }, successHandler,
+                successHandler,
                 errorHandler));
         }
 
@@ -53,7 +53,7 @@ namespace Services.MatchMaking
                 port = port
             });
             StartCoroutine(DoRequestCoroutine(GetConnectionAddress() + ApplyAsServerPath, requestBody, Post,
-                new Dictionary<string, string> { { Authorization, GetTokenValueHeader(context) } }, successHandler,
+                successHandler,
                 errorHandler));
         }
     }

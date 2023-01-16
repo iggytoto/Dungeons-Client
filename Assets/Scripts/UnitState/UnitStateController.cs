@@ -8,7 +8,6 @@ using DefaultNamespace.Projectiles;
 using DefaultNamespace.UnitState;
 using Model.Damage;
 using Model.Units;
-using Services;
 using UnitState.Effects.Interfaces;
 using Unity.Netcode;
 using Unity.VisualScripting;
@@ -42,7 +41,7 @@ public class UnitStateController : NetworkBehaviour
 
     private void Start()
     {
-        _resourcesManager = FindObjectOfType<GameService>().ResourcesManager;
+        _resourcesManager = ResourcesManager.GetInstance();
     }
 
     private float GetMovementSpeedModificator()

@@ -8,8 +8,8 @@ namespace DefaultNamespace
 {
     public class ResourcesManager : MonoBehaviour
     {
-        private readonly Dictionary<UnitType, GameObject> _unitTypePrefabs = new();
-        private readonly Dictionary<UnitType, GameObject> _unitTypeProjectiles = new();
+        private static readonly Dictionary<UnitType, GameObject> UnitTypePrefabs = new();
+        private static readonly Dictionary<UnitType, GameObject> UnitTypeProjectiles = new();
         private static ResourcesManager _instance;
 
         private void Awake()
@@ -19,22 +19,22 @@ namespace DefaultNamespace
 
         public GameObject LoadUnitPrefabForUnitType(UnitType type)
         {
-            if (!_unitTypePrefabs.ContainsKey(type))
+            if (!UnitTypePrefabs.ContainsKey(type))
             {
-                _unitTypePrefabs.Add(type, Resources.Load<GameObject>(GetUnitPrefabResourcePath(type)));
+                UnitTypePrefabs.Add(type, Resources.Load<GameObject>(GetUnitPrefabResourcePath(type)));
             }
 
-            return _unitTypePrefabs[type];
+            return UnitTypePrefabs[type];
         }
 
         public GameObject LoadProjectileForUnitType(UnitType type)
         {
-            if (!_unitTypeProjectiles.ContainsKey(type))
+            if (!UnitTypeProjectiles.ContainsKey(type))
             {
-                _unitTypeProjectiles.Add(type, GetProjectileFor(type));
+                UnitTypeProjectiles.Add(type, GetProjectileFor(type));
             }
 
-            return _unitTypeProjectiles[type];
+            return UnitTypeProjectiles[type];
         }
 
         private GameObject GetProjectileFor(UnitType u)

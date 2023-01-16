@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Model.Events;
 using Services.Dto;
+using Services.Events;
 using EventType = Model.Events.EventType;
 
 namespace Services
@@ -11,6 +12,13 @@ namespace Services
      */
     public interface IEventsService : IService
     {
+        /**
+         * Current event that is being processed by the server instance.
+         * Sets automatically after successfull call ApplyAsServer.
+         * Removes automatically after successufll call SaveResult.
+         */
+        public EventInfo EventInfo { get; }
+
         /**
          * Registers player's roster on given event type
          */
@@ -30,7 +38,7 @@ namespace Services
         /**
          * Gets units list that participate in event
          */
-        public void GetEventInstanceRosters(long eventInstanceId, EventHandler<List<Unit>> onSuccessHandler,
+        public void GetEventInstanceRosters(EventHandler<List<Unit>> onSuccessHandler,
             EventHandler<ErrorResponseDto> onError);
 
         /**

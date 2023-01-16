@@ -19,6 +19,8 @@ namespace Services.Events
         private const string SaveResultPath = "/events/saveEventInstanceResult";
         private const string GetDataPath = "/events/getData";
 
+        public EventInfo EventInfo { get; private set; }
+
         public void Register(List<long> unitsIds, EventType type, EventHandler<ErrorResponseDto> onError)
         {
             StartCoroutine(
@@ -51,22 +53,41 @@ namespace Services.Events
             EventHandler<EventInstance> onSuccessHandler,
             EventHandler<ErrorResponseDto> onError)
         {
+            if (EventInfo != null)
+            {
+                throw new InvalidOperationException(
+                    "Server should process current event instance before register to the another one");
+            }
+
             StartCoroutine(
                 APIAdapter.DoRequestCoroutine<EventInstanceDto>(
                     ApplyAsServerPath,
                     ApiAdapter.SerializeDto(new ApplyAsEventProcessorDto { host = host, port = port }),
                     ApiAdapter.Post,
-                    (_, dto) => onSuccessHandler?.Invoke(this, dto.ToDomain()),
+                    (_, dto) => OnSuccessApplyAsServer(onSuccessHandler, dto),
                     onError));
         }
 
-        public void GetEventInstanceRosters(long eventInstanceId, EventHandler<List<Unit>> onSuccessHandler,
+        private void OnSuccessApplyAsServer(EventHandler<EventInstance> onSuccessHandler, EventInstanceDto dto)
+        {
+            EventInfo = new EventInfo(dto.id, dto.eventType);
+            onSuccessHandler?.Invoke(this, dto.ToDomain());
+        }
+
+        public void GetEventInstanceRosters(EventHandler<List<Unit>> onSuccessHandler,
             EventHandler<ErrorResponseDto> onError)
         {
+            if (EventInfo == null)
+            {
+                Debug.LogWarning("Cannot request event instance data, event info in not being received yet");
+                return;
+            }
+
             StartCoroutine(
                 APIAdapter.DoRequestCoroutine<ListResponseDto<UnitDto>>(
                     GetDataPath,
-                    ApiAdapter.SerializeDto(new GetEventInstanceDataRequestDto { eventInstanceId = eventInstanceId }),
+                    ApiAdapter.SerializeDto(new GetEventInstanceDataRequestDto
+                        { eventInstanceId = EventInfo.EventInstanceId }),
                     ApiAdapter.Post,
                     (_, dto) => onSuccessHandler?.Invoke(this, dto.items.Select(d => d.ToDomain()).ToList()),
                     onError));
@@ -79,8 +100,13 @@ namespace Services.Events
                     SaveResultPath,
                     ApiAdapter.SerializeDto(EventInstanceResultDto.FromDomain(result)),
                     ApiAdapter.Post,
-                    null,
+                    OnSuccessSaveResult,
                     onError));
+        }
+
+        private void OnSuccessSaveResult(object sender, ResponseBaseDto e)
+        {
+            EventInfo = null;
         }
     }
 }

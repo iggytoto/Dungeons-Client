@@ -59,7 +59,7 @@
      <Compile Include="Assets\Scripts\Ui\UnitHpBarController.cs" />
      <Compile Include="Assets\Services\Common\Dto\DtoDeserializaer\Skills\HumanClericSkillsDtoDeserializer.cs" />
      <Compile Include="Assets\Scripts\Ui\Scenes\Town\BuyUnitPopupUiController.cs" />
-     <Compile Include="Assets\Services\IEventsService.cs" />
+     <Compile Include="Assets\Services\Events\IEventsService.cs" />
      <Compile Include="Assets\Scripts\Ui\Scenes\TrainingYard\TrainingYardTeamStatusUiController.cs" />
      <Compile Include="Assets\Services\TrainingYard\MockTrainingYardService.cs" />
      <Compile Include="Assets\Scenes\SceneConstants.cs" />
@@ -92,7 +92,7 @@
      <Compile Include="Assets\Scripts\BattleBehaviour\Abilities\HumanSpearmanAbility.cs" />
      <Compile Include="Assets\Scripts\BattleBehaviour\AttackBackLinesBattleBehavior.cs" />
      <Compile Include="Assets\Services\Common\Dto\Skills\IDtoMapper.cs" />
-     <Compile Include="Assets\Services\ITavernService.cs" />
+     <Compile Include="Assets\Services\UnitShop\ITavernService.cs" />
      <Compile Include="Assets\Scripts\Ui\Scenes\Town\Skills\SkillPanelUiControllerBase.cs" />
      <Compile Include="Assets\Services\Common\Dto\Items\ItemDto.cs" />
      <Compile Include="Assets\Services\Events\Dto\EventDto.cs" />
@@ -100,9 +100,9 @@
      <Compile Include="Assets\Services\Common\Dto\Unit\UnitDto.cs" />
      <Compile Include="Assets\Scripts\NetworkManagerDebugHelperController.cs" />
      <Compile Include="Assets\Scripts\BattleBehaviour\Tasks\SetClosestAllyAsTargetAllyTask.cs" />
-     <Compile Include="Assets\Services\IPlayerAccountService.cs" />
+     <Compile Include="Assets\Services\PlayerBank\IPlayerAccountService.cs" />
      <Compile Include="Assets\Services\UnitShop\Dto\BuyUnitRequestDto.cs" />
-     <Compile Include="Assets\Services\ITrainingYardService.cs" />
+     <Compile Include="Assets\Services\TrainingYard\ITrainingYardService.cs" />
      <Compile Include="Assets\Scripts\Ui\Common\ToolTipUiController.cs" />
      <Compile Include="Assets\Model\Units\Humans\HumanArcher.cs" />
      <Compile Include="Assets\Services\Barracks\Dto\UpgradeUnitSkillRequestDto.cs" />
@@ -151,7 +151,7 @@
      <Compile Include="Assets\Scripts\Lighting\LightingPreset.cs" />
      <Compile Include="Assets\Scripts\BattleBehaviour\Abilities\HumanWarriorAbility.cs" />
      <Compile Include="Assets\Scenes\GameServiceConfiguration\ServicesConfiguration.cs" />
-     <Compile Include="Assets\Services\IBarrackService.cs" />
+     <Compile Include="Assets\Services\Barracks\IBarrackService.cs" />
      <Compile Include="Assets\Model\Events\EventType.cs" />
      <Compile Include="Assets\Services\Login\MockLoginService.cs" />
      <Compile Include="Assets\Services\Common\Dto\TokenDto.cs" />
@@ -159,7 +159,7 @@
      <Compile Include="Assets\Services\Common\Dto\Skills\HumanSpearmanSkillsDto.cs" />
      <Compile Include="Assets\Services\PlayerBank\MockPlayerAccountService.cs" />
      <Compile Include="Assets\Scripts\Ui\Scenes\Town\Skills\HumanArcherSkillsPanelUiController.cs" />
-     <Compile Include="Assets\Services\ILoginService.cs" />
+     <Compile Include="Assets\Services\Login\ILoginService.cs" />
      <Compile Include="Assets\Scripts\Ui\Scenes\Town\SelectedUnitSkillsPanelUiController.cs" />
      <Compile Include="Assets\Scripts\UnitState\Effects\Interfaces\IMagicResistanceChangeEffect.cs" />
      <Compile Include="Assets\Scripts\BattleBehaviour\GuardNearestAllyBattleBehavior.cs" />
@@ -189,7 +189,7 @@
      <Compile Include="Assets\Scripts\Ui\Scenes\TrainingYard\TrainingYardUnitStatusPanelController.cs" />
      <Compile Include="Assets\Scripts\BattleBehaviour\Common\BattleBehaviorTree.cs" />
      <Compile Include="Assets\Scripts\BattleBehaviour\Tasks\AttackOrAbilityBattleTask.cs" />
-     <Compile Include="Assets\Services\IMatchMakingService.cs" />
+     <Compile Include="Assets\Services\MatchMaking\IMatchMakingService.cs" />
      <Compile Include="Assets\Scripts\BattleBehaviour\AttackClosestEnemyBattleBehavior.cs" />
      <Compile Include="Assets\Services\Barracks\Dto\UnEquipItemRequestDto.cs" />
      <Compile Include="Assets\Model\Currency\Gold.cs" />
@@ -231,6 +231,8 @@
      <Compile Include="Assets\Scripts\UnitState\Effects\Interfaces\INegativeEffect.cs" />
      <Compile Include="Assets\PhoenixRaidSceneFlowController.cs" />
      <Compile Include="Assets\Services\Events\MockEventsService.cs" />
+     <Compile Include="Assets\Services\Events\Dto\GetEventInstanceDataRequestDto.cs" />
+     <Compile Include="Assets\Services\Events\EventInfo.cs" />
      <Folder Include="Assets" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\mergetool.ja.txt" />
      <Folder Include="Assets\Libs\Tiny Fantasy Icons\Keys" />

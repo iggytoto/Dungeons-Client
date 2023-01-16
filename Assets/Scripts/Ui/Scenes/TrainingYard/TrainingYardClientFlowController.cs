@@ -9,15 +9,13 @@ using UnityEngine.SceneManagement;
 
 public class TrainingYardClientFlowController : NetworkBehaviour
 {
-    private IMatchMakingService _matchMakingService;
-
 #if !DEDICATED
+    private IMatchMakingService _matchMakingService;
     private void Start()
     {
         _matchMakingService = FindObjectOfType<GameService>().MatchMakingService;
         _matchMakingService.Status((_, r) => StartNetCodeClient(r), OnFailedToGetMatchStatus);
     }
-
 
     private static void OnFailedToGetMatchStatus(object sender, ErrorResponseDto e)
     {

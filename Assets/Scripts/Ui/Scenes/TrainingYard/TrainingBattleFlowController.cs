@@ -30,7 +30,7 @@ public sealed class TrainingBattleFlowController : NetworkBehaviour
     {
         var gs = FindObjectOfType<GameService>();
         _trainingYardService = gs.TrainingYardService;
-        _resourcesManager = gs.ResourcesManager;
+        _resourcesManager = ResourcesManager.GetInstance();
     }
 
     public async void StartBattle(long userOneId, long userTwoId)

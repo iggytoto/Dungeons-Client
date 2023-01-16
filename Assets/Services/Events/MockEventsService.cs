@@ -14,8 +14,9 @@ namespace Services.Events
 
         public void InitService()
         {
-            throw new NotImplementedException();
         }
+
+        public EventInfo EventInfo { get; private set; }
 
         public void Register(List<long> unitsIds, EventType type, EventHandler<ErrorResponseDto> onError)
         {
@@ -30,6 +31,8 @@ namespace Services.Events
         public void ApplyAsServer(string host, string port, EventHandler<EventInstance> onSuccessHandler,
             EventHandler<ErrorResponseDto> onError)
         {
+            if (EventInfo != null)
+                throw new InvalidOperationException();
             onSuccessHandler?.Invoke(this,
                 new EventInstance
                 {
@@ -40,11 +43,14 @@ namespace Services.Events
                     EventId = 1,
                     EventType = EventType.PhoenixRaid
                 });
+            EventInfo = new EventInfo(1, EventType.PhoenixRaid);
         }
 
-        public void GetEventInstanceRosters(long eventInstanceId, EventHandler<List<Unit>> onSuccessHandler,
+        public void GetEventInstanceRosters(EventHandler<List<Unit>> onSuccessHandler,
             EventHandler<ErrorResponseDto> onError)
         {
+            if (EventInfo == null)
+                throw new InvalidOperationException();
             onSuccessHandler?.Invoke(this,
                 new List<Unit>
                 {
@@ -55,7 +61,9 @@ namespace Services.Events
 
         public void SaveResult(EventInstanceResult result, EventHandler<ErrorResponseDto> onError)
         {
-            throw new NotImplementedException();
+            if (EventInfo == null)
+                throw new InvalidOperationException();
+            EventInfo = null;
         }
     }
 }

@@ -1,6 +1,4 @@
 using System;
-using System.Resources;
-using DefaultNamespace;
 using UnityEngine;
 
 namespace Services
@@ -21,21 +19,17 @@ namespace Services
 
         public ILoginService LoginService { get; set; }
         public IBarrackService BarrackService { get; set; }
-        [Obsolete]
-        public IMatchMakingService MatchMakingService { get; set; }
+        [Obsolete] public IMatchMakingService MatchMakingService { get; set; }
         public IPlayerAccountService PlayerAccountService { get; set; }
         public ITavernService TavernService { get; set; }
         public ITrainingYardService TrainingYardService { get; set; }
         public IEventsService EventsService { get; set; }
-
-        public ResourcesManager ResourcesManager { get; set; }
 
         private void Awake()
         {
             Debug.Log("Configuration start");
             servicesConfiguration.SetServices(this);
             Debug.Log("Configuration finished");
-            ResourcesManager = gameObject.AddComponent<ResourcesManager>();
         }
     }
 }

@@ -9,6 +9,7 @@ namespace Services
      * Matchmaking service is entry point for registering on a match as a client/player and as the server that
      * is responsible to handle the match.
      */
+    [Obsolete("Will be transferred to the events")]
     public interface IMatchMakingService : IService
     {
         /**
@@ -36,7 +37,6 @@ namespace Services
          * cannot host the matches, only servers do.
          * Receives not null response match if match found for server successfully, otherwise null 
          */
-        [Obsolete("will be transfered to the events")]
         public void ApplyForServer(
             string address,
             string port,

@@ -20,7 +20,7 @@ public class ServicesConfiguration : ScriptableObject
     [SerializeField] public float reconnectInterval = 5;
     [Header("Barrack")] [SerializeField] private BarrackServiceType barrackServiceType = BarrackServiceType.None;
 
-    [Header("MatchMaking")] [SerializeField]
+    [Header("MatchMaking")] [SerializeField] [Obsolete]
     private MatchMakingServiceType matchMakingServiceType = MatchMakingServiceType.None;
 
     [Header("PlayerAccount")] [SerializeField]
@@ -62,6 +62,8 @@ public class ServicesConfiguration : ScriptableObject
                 service = s;
                 break;
             case EventsServiceType.Mocked:
+                service = new MockEventsService();
+                break;
             default:
                 throw new ArgumentOutOfRangeException();
         }
@@ -132,6 +134,7 @@ public class ServicesConfiguration : ScriptableObject
         gs.PlayerAccountService = service;
     }
 
+    [Obsolete]
     private void SetMatchMakingService(GameService gs)
     {
         IMatchMakingService service;

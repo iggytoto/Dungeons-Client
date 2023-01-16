@@ -48,6 +48,11 @@ namespace Services.Events
                 onError);
         }
 
+        public void GetEventInstanceRosters(long eventInstanceId, EventHandler<List<Unit>> onSuccessHandler, EventHandler<ErrorResponseDto> onError)
+        {
+            throw new NotImplementedException();
+        }
+
         public void SaveResult(EventInstanceResult result, EventHandler<ErrorResponseDto> onError)
         {
             _apiAdapter.Save(

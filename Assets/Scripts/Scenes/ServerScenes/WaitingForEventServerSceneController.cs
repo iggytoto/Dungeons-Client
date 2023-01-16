@@ -21,10 +21,14 @@ public class WaitingForEventServerSceneController : NetworkBehaviour
 #if DEDICATED
     private void Start()
     {
-        _loginService = FindObjectOfType<GameService>().LoginService;
-        _eventsService = FindObjectOfType<GameService>().EventsService;
+        var gs = FindObjectOfType<GameService>();
+        _loginService = gs.LoginService;
+        _eventsService = gs.EventsService;
 
-        StartNetCodeServer();
+        if (!NetworkManager.Singleton.IsServer)
+        {
+            StartNetCodeServer();
+        }
     }
 
     private void StartNetCodeServer()
@@ -34,7 +38,7 @@ public class WaitingForEventServerSceneController : NetworkBehaviour
 
     private void Update()
     {
-        if (!IsServer) return;
+        if (!NetworkManager.Singleton.IsServer) return;
         _updateTime -= Time.deltaTime;
         if (!(_updateTime <= 0)) return;
         if (_loginService.UserContext == null || _loginService.ConnectionState == ConnectionState.Disconnected)

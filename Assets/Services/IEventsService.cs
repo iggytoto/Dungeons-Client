@@ -28,6 +28,12 @@ namespace Services
             EventHandler<ErrorResponseDto> onError);
 
         /**
+         * Gets units list that participate in event
+         */
+        public void GetEventInstanceRosters(long eventInstanceId, EventHandler<List<Unit>> onSuccessHandler,
+            EventHandler<ErrorResponseDto> onError);
+
+        /**
          * Server method for saving processing result
          */
         public void SaveResult(EventInstanceResult result, EventHandler<ErrorResponseDto> onError);

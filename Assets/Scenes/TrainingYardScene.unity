@@ -4406,7 +4406,7 @@ PrefabInstance:
     - target: {fileID: 4271042742655406263, guid: 9a1a320ee5e28424da56dea2279662cb, type: 3}
       propertyPath: servicesConfiguration
       value: 
-      objectReference: {fileID: 11400000, guid: 5da9724a3f94bf846a47aa97f4e27700, type: 2}
+      objectReference: {fileID: 11400000, guid: da508565c2430994a946a08f87adf3e3, type: 2}
     - target: {fileID: 4468862614129480654, guid: 9a1a320ee5e28424da56dea2279662cb, type: 3}
       propertyPath: m_Name
       value: GameService
@@ -11128,6 +11128,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6426579679361049001, guid: 2a0a9138a2e491a46a105f6980d0c31f, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6843617480947796308, guid: 2a0a9138a2e491a46a105f6980d0c31f, type: 3}
+      propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7284067856882083036, guid: 2a0a9138a2e491a46a105f6980d0c31f, type: 3}

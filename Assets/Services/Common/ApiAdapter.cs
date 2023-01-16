@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using Newtonsoft.Json;
 using Services.Common.Dto;
 using UnityEngine;
@@ -29,7 +28,7 @@ namespace Services.Dto
         }
 
         public IEnumerator DoRequestCoroutine<TResponse>(
-            string url,
+            string path,
             object requestDto,
             string requestType,
             EventHandler<TResponse> successHandler,
@@ -37,6 +36,7 @@ namespace Services.Dto
             IDtoDeserializer<TResponse> dtoDeserializer)
             where TResponse : ResponseBaseDto
         {
+            var url = GetConnectionAddress() + path;
             string requestBody = null;
             if (requestDto != null)
             {
@@ -89,7 +89,7 @@ namespace Services.Dto
         }
 
         public IEnumerator DoRequestCoroutine<TResponse>(
-            string url,
+            string path,
             string requestBody,
             string requestType,
             EventHandler<TResponse> successHandler,
@@ -97,7 +97,7 @@ namespace Services.Dto
             where TResponse : ResponseBaseDto
         {
             return DoRequestCoroutine(
-                url,
+                path,
                 requestBody,
                 requestType,
                 successHandler,
@@ -105,7 +105,7 @@ namespace Services.Dto
                 new DefaultDtoDeserializer<TResponse>());
         }
 
-        public string GetConnectionAddress()
+        protected string GetConnectionAddress()
         {
             return $"{endpointHttp}://{endpointAddress}:{endpointPort}";
         }
@@ -115,13 +115,7 @@ namespace Services.Dto
             return JsonConvert.SerializeObject(dto);
         }
 
-        [Obsolete]
-        public Dictionary<string, string> GetAuthHeader(UserContext loginServiceUserContext)
-        {
-            return new Dictionary<string, string> { { Authorization, GetTokenValueHeader(loginServiceUserContext) } };
-        }
-
-        protected static string GetTokenValueHeader(UserContext ctx)
+        private static string GetTokenValueHeader(UserContext ctx)
         {
             return Bearer + Convert.ToBase64String(
                 System.Text.Encoding.UTF8.GetBytes(JsonUtility.ToJson(new TokenDto

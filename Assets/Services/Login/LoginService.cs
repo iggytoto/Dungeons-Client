@@ -17,12 +17,6 @@ public class LoginService : ServiceBase, ILoginService
 
     public UserContext UserContext => _userContext;
 
-    public new void InitService()
-    {
-        Debug.Log(
-            $"Login service adapter configured with endpoint:{APIAdapter.GetConnectionAddress()}");
-    }
-
     public void TryLogin(
         string login,
         string password,
@@ -37,7 +31,7 @@ public class LoginService : ServiceBase, ILoginService
         _onLoginSuccessResponseOuter = onSuccess;
         StartCoroutine(
             APIAdapter.DoRequestCoroutine<LoginResponseDto>(
-                APIAdapter.GetConnectionAddress() + LoginPath,
+                LoginPath,
                 ApiAdapter.SerializeDto(new LoginRequestDto { login = login, password = password }),
                 ApiAdapter.Post,
                 OnLoginSuccess,
@@ -48,7 +42,7 @@ public class LoginService : ServiceBase, ILoginService
     {
         StartCoroutine(
             APIAdapter.DoRequestCoroutine<RegisterResponseDto>(
-                APIAdapter.GetConnectionAddress() + RegisterPath,
+                RegisterPath,
                 ApiAdapter.SerializeDto(new RegisterRequestDto { login = login, password = password }),
                 ApiAdapter.Post,
                 OnRegisterSuccess,

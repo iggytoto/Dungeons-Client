@@ -18,7 +18,7 @@ namespace Services.TrainingYard
         {
             StartCoroutine(
                 APIAdapter.DoRequestCoroutine<ListResponseDto<UnitDto>>(
-                    APIAdapter.GetConnectionAddress() + GetRosterForUserPath,
+                    GetRosterForUserPath,
                     ApiAdapter.SerializeDto(new UserIdRequestDto { userId = userId }),
                     ApiAdapter.Get,
                     (o, response) => onSuccessHandler.Invoke(o, response.items.Select(dto => dto.ToDomain())),
@@ -30,7 +30,7 @@ namespace Services.TrainingYard
             var t = new TaskCompletionSource<IEnumerable<Unit>>();
             StartCoroutine(
                 APIAdapter.DoRequestCoroutine<ListResponseDto<UnitDto>>(
-                    APIAdapter.GetConnectionAddress() + GetRosterForUserPath,
+                    GetRosterForUserPath,
                     ApiAdapter.SerializeDto(new UserIdRequestDto { userId = userId }),
                     ApiAdapter.Get,
                     (_, response) => t.SetResult(response.items.Select(dto => dto.ToDomain())),
@@ -44,7 +44,7 @@ namespace Services.TrainingYard
         {
             StartCoroutine(
                 APIAdapter.DoRequestCoroutine<ResponseBaseDto>(
-                    APIAdapter.GetConnectionAddress() + SaveMatchResultPath,
+                    SaveMatchResultPath,
                     ApiAdapter.SerializeDto(new MatchResultDto
                     {
                         date = date,

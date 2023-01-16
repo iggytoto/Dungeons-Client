@@ -38,7 +38,7 @@ public class UnitShopService : ServiceBase, ITavernService
     {
         StartCoroutine(
             APIAdapter.DoRequestCoroutine(
-                APIAdapter.GetConnectionAddress() + GetAvailableUnitsPath,
+                GetAvailableUnitsPath,
                 null,
                 ApiAdapter.Get,
                 (_, dto) => OnGetSuccess(this, dto.items.Select(uDto => uDto.ToUnitForSale())),
@@ -62,7 +62,7 @@ public class UnitShopService : ServiceBase, ITavernService
     {
         StartCoroutine(
             APIAdapter.DoRequestCoroutine(
-                APIAdapter.GetConnectionAddress() + BuyUnitPath,
+                BuyUnitPath,
                 ApiAdapter.SerializeDto(new BuyUnitRequestDto { type = type }),
                 ApiAdapter.Post,
                 null,

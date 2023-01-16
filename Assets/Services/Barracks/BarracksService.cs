@@ -41,7 +41,7 @@ public class BarracksService : ServiceBase, IBarrackService
     private void Refresh()
     {
         StartCoroutine(APIAdapter.DoRequestCoroutine(
-            APIAdapter.GetConnectionAddress() + GetAvailableUnitsPath,
+            GetAvailableUnitsPath,
             null,
             ApiAdapter.Get,
             OnGetAvailableUnitsSuccess,
@@ -49,7 +49,7 @@ public class BarracksService : ServiceBase, IBarrackService
             new UnitListResponseDtoDeserializer()));
         StartCoroutine(
             APIAdapter.DoRequestCoroutine<ListResponseDto<ItemDto>>(
-                APIAdapter.GetConnectionAddress() + GetAvailableItemsPath,
+                GetAvailableItemsPath,
                 null,
                 ApiAdapter.Get,
                 OnGetAvailableItemsSuccess,
@@ -106,7 +106,7 @@ public class BarracksService : ServiceBase, IBarrackService
     {
         StartCoroutine(
             APIAdapter.DoRequestCoroutine<ResponseBaseDto>(
-                APIAdapter.GetConnectionAddress() + ChangeUnitNamePath,
+                ChangeUnitNamePath,
                 ApiAdapter.SerializeDto(new ChangeUnitNameRequestDto
                     { unitId = selectedUnitId, newName = newName }),
                 ApiAdapter.Post,
@@ -118,7 +118,7 @@ public class BarracksService : ServiceBase, IBarrackService
     {
         StartCoroutine(
             APIAdapter.DoRequestCoroutine<ResponseBaseDto>(
-                APIAdapter.GetConnectionAddress() + ChangeUnitBattleBehaviorPath,
+                ChangeUnitBattleBehaviorPath,
                 ApiAdapter.SerializeDto(new ChangeUnitBattleBehaviorRequestDto
                     { unitId = selectedUnitId, newBattleBehavior = bb }),
                 ApiAdapter.Post,
@@ -130,7 +130,7 @@ public class BarracksService : ServiceBase, IBarrackService
     {
         StartCoroutine(
             APIAdapter.DoRequestCoroutine<ResponseBaseDto>(
-                APIAdapter.GetConnectionAddress() + EquipItemPath,
+                EquipItemPath,
                 ApiAdapter.SerializeDto(new EquipItemRequestDto { itemId = item.Id, unitId = unit.Id }),
                 ApiAdapter.Post,
                 null,
@@ -141,7 +141,7 @@ public class BarracksService : ServiceBase, IBarrackService
     {
         StartCoroutine(
             APIAdapter.DoRequestCoroutine<ResponseBaseDto>(
-                APIAdapter.GetConnectionAddress() + UnEquipItemPath,
+                UnEquipItemPath,
                 ApiAdapter.SerializeDto(new UnEquipItemRequestDto { itemId = item.Id }),
                 ApiAdapter.Post,
                 null,
@@ -159,7 +159,7 @@ public class BarracksService : ServiceBase, IBarrackService
     {
         StartCoroutine(
             APIAdapter.DoRequestCoroutine(
-                APIAdapter.GetConnectionAddress() + UpgradeUnitSkillsPath,
+                UpgradeUnitSkillsPath,
                 ApiAdapter.SerializeDto(new UpgradeUnitSkillRequestDto
                 {
                     skillsId = skillId,

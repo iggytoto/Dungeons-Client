@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Model.Events;
+using Model.Units.Humans;
 using Services.Dto;
 
 namespace Services.Events
@@ -41,9 +42,15 @@ namespace Services.Events
                 });
         }
 
-        public void GetEventInstanceRosters(long eventInstanceId, EventHandler<List<Unit>> onSuccessHandler, EventHandler<ErrorResponseDto> onError)
+        public void GetEventInstanceRosters(long eventInstanceId, EventHandler<List<Unit>> onSuccessHandler,
+            EventHandler<ErrorResponseDto> onError)
         {
-            throw new NotImplementedException();
+            onSuccessHandler?.Invoke(this,
+                new List<Unit>
+                {
+                    new HumanWarrior { ownerId = 1, Id = 1 },
+                    new HumanWarrior { ownerId = 2, Id = 2 },
+                });
         }
 
         public void SaveResult(EventInstanceResult result, EventHandler<ErrorResponseDto> onError)

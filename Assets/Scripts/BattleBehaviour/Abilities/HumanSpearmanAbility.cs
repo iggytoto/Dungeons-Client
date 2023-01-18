@@ -33,7 +33,7 @@ namespace BattleBehaviour.Abilities
                     return State;
                 }
 
-                UnitState.Mana = 0;
+                UnitState.ResetMana();
                 Animator.SetBool(AnimationConstants.IsAbilityBoolean, true);
                 UnitState.StartCoroutine(DelayedAbility(targets, GetAnimationTime()));
                 State = BattleBehaviorNodeState.Success;

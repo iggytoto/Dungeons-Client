@@ -30,7 +30,7 @@ namespace BattleBehaviour.Abilities
 
             if (targets.Any() && UnitState.Mana >= UnitState.MaxMana)
             {
-                UnitState.Mana = 0;
+                UnitState.ResetMana();
                 Animator.SetTrigger(AnimationConstants.AttackTrigger);
                 var animationTime = GetAnimationTime();
                 Animator.SetFloat(AnimationConstants.AttackMotionTimeFloat,

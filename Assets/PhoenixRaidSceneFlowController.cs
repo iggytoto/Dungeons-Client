@@ -91,7 +91,7 @@ public class PhoenixRaidSceneFlowController : MonoBehaviour
             var no = go.GetComponent<NetworkObject>();
             var uc = go.GetComponent<UnitStateController>();
             no.Spawn();
-            uc.Init(unit);
+            uc.Init(unit, 1);
         }
     }
 

@@ -28,13 +28,8 @@ public class UnitStateController : NetworkBehaviour
     public float AttackSpeed => Unit.Value.attackSpeed;
     public float AttackRange => Unit.Value.attackRange;
     public long AttackDamage => Unit.Value.damage;
-
-    public long Mana
-    {
-        get => Unit.Value.mana;
-        set => Unit.Value.mana = value;
-    }
-
+    public long TeamId { get; private set; }
+    public long Mana => Unit.Value.mana;
     public long MaxMana => Unit.Value.maxMana;
 
     private ResourcesManager _resourcesManager;
@@ -53,15 +48,11 @@ public class UnitStateController : NetworkBehaviour
     protected readonly NetworkVariable<Unit> Unit = new();
     private readonly List<Effect> _effects = new();
 
-    public void Init(Unit unit)
+    public void Init(Unit unit, int? teamId = null)
     {
         Unit.Value = unit;
         BattleBehaviourManager.UpdateBattleBehaviour(this);
-    }
-
-    public Unit ToUnit()
-    {
-        return Unit.Value;
+        TeamId = (teamId ?? OwnerId);
     }
 
     public void DoAttack(
@@ -154,5 +145,10 @@ public class UnitStateController : NetworkBehaviour
         {
             Destroy(e);
         }
+    }
+
+    public void ResetMana()
+    {
+        Unit.Value.mana = 0;
     }
 }

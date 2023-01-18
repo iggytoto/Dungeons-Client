@@ -10,7 +10,6 @@ namespace DefaultNamespace.BattleBehaviour
         protected const string TargetAllyDataKey = "targetAlly";
 
         protected readonly Animator Animator;
-        protected readonly AnimationEventController AnimationEventController;
         protected readonly UnitStateController UnitState;
 
         private readonly List<UnitStateController> _allUnits = new();
@@ -19,8 +18,6 @@ namespace DefaultNamespace.BattleBehaviour
         {
             UnitState = unitStateStateController;
             Animator = unitStateStateController.gameObject.GetComponentInChildren<Animator>();
-            AnimationEventController =
-                unitStateStateController.gameObject.GetComponentInChildren<AnimationEventController>();
         }
 
         protected UnitStateController GetTarget()
@@ -65,9 +62,9 @@ namespace DefaultNamespace.BattleBehaviour
             return _allUnits;
         }
 
-        protected List<UnitStateController> GetAllLiveEnemies()
+        protected IEnumerable<UnitStateController> GetAllLiveEnemies()
         {
-            return GetAllUnits().Where(u => u.OwnerId != UnitState.OwnerId && !u.IsDead()).ToList();
+            return GetAllUnits().Where(u => u.TeamId != UnitState.TeamId && !u.IsDead()).ToList();
         }
 
         protected float GetAnimationTime()

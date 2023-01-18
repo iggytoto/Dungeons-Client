@@ -74,7 +74,7 @@ namespace DefaultNamespace.BattleBehaviour.Abilities
 
         private BattleBehaviorNodeState StartAbility()
         {
-            UnitState.Mana = 0;
+            UnitState.ResetMana();
             var protectionEffect = GetProtectionEffect();
             if (protectionEffect != null)
             {

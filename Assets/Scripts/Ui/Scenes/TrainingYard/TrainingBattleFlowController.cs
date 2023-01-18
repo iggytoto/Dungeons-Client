@@ -18,7 +18,9 @@ public sealed class TrainingBattleFlowController : NetworkBehaviour
     public ObservableCollection<Unit> UnitStatuses { get; } = new();
     private ITrainingYardService _trainingYardService;
     private readonly List<UnitStateController> _rosterOne = new();
+    private readonly List<Unit> _unitsRosterOne = new();
     private readonly List<UnitStateController> _rosterTwo = new();
+    private readonly List<Unit> _unitsRosterTwo = new();
     private long _userOneId;
     private long _userTwoId;
     private long _winnerUserId;
@@ -105,8 +107,8 @@ public sealed class TrainingBattleFlowController : NetworkBehaviour
     {
         Debug.Log("Saving results after battle");
         var allUnits = new List<Unit>();
-        allUnits.AddRange(_rosterOne.Select(x => x.ToUnit()));
-        allUnits.AddRange(_rosterTwo.Select(x => x.ToUnit()));
+        allUnits.AddRange(_unitsRosterOne);
+        allUnits.AddRange(_unitsRosterTwo);
         _trainingYardService.SaveTrainingResult(
             DateTime.Now,
             "MatchMaking3x3",
@@ -167,10 +169,12 @@ public sealed class TrainingBattleFlowController : NetworkBehaviour
             if (playerOne)
             {
                 _rosterOne.Add(uc);
+                _unitsRosterOne.Add(unit);
             }
             else
             {
                 _rosterTwo.Add(uc);
+                _unitsRosterTwo.Add(unit);
             }
         }
     }

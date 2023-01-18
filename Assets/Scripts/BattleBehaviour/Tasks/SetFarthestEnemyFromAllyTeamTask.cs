@@ -13,10 +13,10 @@ namespace DefaultNamespace.BattleBehaviour
         public override BattleBehaviorNodeState Evaluate()
         {
             var allUnits = GetAllUnits();
-            var allies = allUnits.Where(u => u.OwnerId == UnitState.OwnerId && !u.IsDead());
+            var allies = allUnits.Where(u => u.TeamId == UnitState.TeamId && !u.IsDead());
             var center = GetCenter(allies.Select(u => u.transform.position));
             var closestTarget = allUnits
-                .Where(u => u.OwnerId != UnitState.OwnerId && !u.IsDead())
+                .Where(u => u.TeamId != UnitState.TeamId && !u.IsDead())
                 .OrderByDescending(u => Vector3.Distance(center, u.transform.position))
                 .FirstOrDefault();
             if (closestTarget == null)

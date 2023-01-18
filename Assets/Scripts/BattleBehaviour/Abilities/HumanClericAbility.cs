@@ -33,7 +33,7 @@ namespace BattleBehaviour.Abilities
                     return State;
                 }
 
-                UnitState.Mana = 0;
+                UnitState.ResetMana();
                 Animator.SetTrigger(AnimationConstants.AttackTrigger);
                 UnitState.StartCoroutine(DelayedAttack(targets, GetAnimationTime()));
                 State = BattleBehaviorNodeState.Success;
@@ -50,7 +50,7 @@ namespace BattleBehaviour.Abilities
             var abilityParams = GetAbilityParams();
             foreach (var target in targets)
             {
-                var isEnemy = target.OwnerId != UnitState.OwnerId;
+                var isEnemy = target.TeamId != UnitState.TeamId;
                 if (isEnemy)
                 {
                     var damageValue = UnitState.AttackDamage;

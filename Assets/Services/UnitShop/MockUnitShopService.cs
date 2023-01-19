@@ -22,7 +22,7 @@ public class MockUnitShopService : MonoBehaviour, ITavernService
         UnitForSale.Of(new HumanWarrior(), 100)
     };
 
-    public void BuyUnit(UnitType type)
+    public void BuyUnit(UnitType type, Action<Unit> onSuccess, Action<string> onError)
     {
         var rng = new Random();
         Unit u;

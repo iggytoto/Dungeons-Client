@@ -12,8 +12,8 @@ public interface ITrainingYardService
      * Gets roster for given user. 
      * Returns unit models that were setup in roster by user at the time-point of registration.
      */
-    public void GetRosterForUser(long userId, EventHandler<IEnumerable<Unit>> onSuccessHandler,
-        EventHandler<string> onErrorHandler);
+    public void GetRosterForUser(long userId, Action<IEnumerable<Unit>> onSuccessHandler,
+        Action<string> onErrorHandler);
 
     public Task<IEnumerable<Unit>> GetRosterForUserAsync(long userId);
 

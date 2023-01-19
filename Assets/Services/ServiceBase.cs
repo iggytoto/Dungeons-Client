@@ -10,7 +10,6 @@ namespace Services
         protected string EndpointHost;
         protected ushort EndpointPrt;
         protected ApiAdapter APIAdapter;
-        protected bool Initialized;
 
         public string EndpointHttpType
         {
@@ -33,7 +32,6 @@ namespace Services
             APIAdapter.endpointHttp = EndpointHttp;
             APIAdapter.endpointAddress = EndpointHost;
             APIAdapter.endpointPort = EndpointPrt;
-            Initialized = true;
         }
     }
 }

@@ -18,22 +18,22 @@ namespace Services.Events
 
         public EventInfo EventInfo { get; private set; }
 
-        public void Register(List<long> unitsIds, EventType type, EventHandler<ErrorResponseDto> onError)
+        public void Register(List<long> unitsIds, EventType type, Action<string> onError)
         {
             throw new NotImplementedException();
         }
 
-        public void Status(EventHandler<List<Event>> onSuccessHandler, EventHandler<ErrorResponseDto> onError)
+        public void Status(Action<List<Event>> onSuccessHandler, Action<string> onError)
         {
             throw new NotImplementedException();
         }
 
-        public void ApplyAsServer(string host, string port, EventHandler<EventInstance> onSuccessHandler,
-            EventHandler<ErrorResponseDto> onError)
+        public void ApplyAsServer(string host, string port, Action<EventInstance> onSuccessHandler,
+            Action<string> onError)
         {
             if (EventInfo != null)
                 throw new InvalidOperationException();
-            onSuccessHandler?.Invoke(this,
+            onSuccessHandler?.Invoke(
                 new EventInstance
                 {
                     Host = "localhost",
@@ -46,12 +46,12 @@ namespace Services.Events
             EventInfo = new EventInfo(1, EventType.PhoenixRaid);
         }
 
-        public void GetEventInstanceRosters(EventHandler<List<Unit>> onSuccessHandler,
-            EventHandler<ErrorResponseDto> onError)
+        public void GetEventInstanceRosters(Action<List<Unit>> onSuccessHandler,
+            Action<string> onError)
         {
             if (EventInfo == null)
                 throw new InvalidOperationException();
-            onSuccessHandler?.Invoke(this,
+            onSuccessHandler?.Invoke(
                 new List<Unit>
                 {
                     new HumanWarrior { ownerId = 1, Id = 1 },
@@ -59,7 +59,7 @@ namespace Services.Events
                 });
         }
 
-        public void SaveResult(EventInstanceResult result, EventHandler<ErrorResponseDto> onError)
+        public void SaveResult(EventInstanceResult result, Action<string> onError)
         {
             if (EventInfo == null)
                 throw new InvalidOperationException();

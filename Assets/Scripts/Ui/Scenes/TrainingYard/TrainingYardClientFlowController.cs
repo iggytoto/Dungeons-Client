@@ -14,10 +14,10 @@ public class TrainingYardClientFlowController : NetworkBehaviour
     private void Start()
     {
         _matchMakingService = FindObjectOfType<GameService>().MatchMakingService;
-        _matchMakingService.Status((_, r) => StartNetCodeClient(r), OnFailedToGetMatchStatus);
+        _matchMakingService.Status(StartNetCodeClient, OnFailedToGetMatchStatus);
     }
 
-    private static void OnFailedToGetMatchStatus(object sender, ErrorResponseDto e)
+    private static void OnFailedToGetMatchStatus(ErrorResponseDto e)
     {
         Debug.LogError("Failed to get match status, returning to the town scene");
         SceneManager.LoadScene(SceneConstants.TownSceneName);

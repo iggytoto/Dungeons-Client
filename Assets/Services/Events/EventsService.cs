@@ -21,7 +21,7 @@ namespace Services.Events
 
         public EventInfo EventInfo { get; private set; }
 
-        public void Register(List<long> unitsIds, EventType type, EventHandler<ErrorResponseDto> onError)
+        public void Register(List<long> unitsIds, EventType type, Action<string> onError)
         {
             StartCoroutine(
                 APIAdapter.DoRequestCoroutine<ResponseBaseDto>(
@@ -33,25 +33,25 @@ namespace Services.Events
                     },
                     ApiAdapter.Post,
                     null,
-                    onError));
+                    dto => onError?.Invoke(dto.message)));
         }
 
-        public void Status(EventHandler<List<Event>> onSuccessHandler, EventHandler<ErrorResponseDto> onError)
+        public void Status(Action<List<Event>> onSuccessHandler, Action<string> onError)
         {
             StartCoroutine(
                 APIAdapter.DoRequestCoroutine<ListResponseDto<EventDto>>(
                     StatusPath,
                     null,
                     ApiAdapter.Get,
-                    (_, dto) => onSuccessHandler?.Invoke(this, dto.items.Select(d => d.toDomain()).ToList()),
-                    onError));
+                    dto => onSuccessHandler?.Invoke(dto.items.Select(d => d.toDomain()).ToList()),
+                    dto => onError?.Invoke(dto.message)));
         }
 
         public void ApplyAsServer(
             string host,
             string port,
-            EventHandler<EventInstance> onSuccessHandler,
-            EventHandler<ErrorResponseDto> onError)
+            Action<EventInstance> onSuccessHandler,
+            Action<string> onError)
         {
             if (EventInfo != null)
             {
@@ -64,18 +64,18 @@ namespace Services.Events
                     ApplyAsServerPath,
                     new ApplyAsEventProcessorDto { host = host, port = port },
                     ApiAdapter.Post,
-                    (_, dto) => OnSuccessApplyAsServer(onSuccessHandler, dto),
-                    onError));
+                    dto => OnSuccessApplyAsServer(onSuccessHandler, dto),
+                    dto => onError?.Invoke(dto.message)));
         }
 
-        private void OnSuccessApplyAsServer(EventHandler<EventInstance> onSuccessHandler, EventInstanceDto dto)
+        private void OnSuccessApplyAsServer(Action<EventInstance> onSuccessHandler, EventInstanceDto dto)
         {
             EventInfo = new EventInfo(dto.id, dto.eventType);
-            onSuccessHandler?.Invoke(this, dto.ToDomain());
+            onSuccessHandler?.Invoke(dto.ToDomain());
         }
 
-        public void GetEventInstanceRosters(EventHandler<List<Unit>> onSuccessHandler,
-            EventHandler<ErrorResponseDto> onError)
+        public void GetEventInstanceRosters(Action<List<Unit>> onSuccessHandler,
+            Action<string> onError)
         {
             if (EventInfo == null)
             {
@@ -89,11 +89,11 @@ namespace Services.Events
                     new GetEventInstanceDataRequestDto
                         { eventInstanceId = EventInfo.EventInstanceId },
                     ApiAdapter.Post,
-                    (_, dto) => onSuccessHandler?.Invoke(this, dto.items.Select(d => d.ToDomain()).ToList()),
-                    onError));
+                    dto => onSuccessHandler?.Invoke(dto.items.Select(d => d.ToDomain()).ToList()),
+                    dto => onError?.Invoke(dto.message)));
         }
 
-        public void SaveResult(EventInstanceResult result, EventHandler<ErrorResponseDto> onError)
+        public void SaveResult(EventInstanceResult result, Action<string> onError)
         {
             StartCoroutine(
                 APIAdapter.DoRequestCoroutine<ResponseBaseDto>(
@@ -101,10 +101,10 @@ namespace Services.Events
                     EventInstanceResultDto.FromDomain(result),
                     ApiAdapter.Post,
                     OnSuccessSaveResult,
-                    onError));
+                    dto => onError?.Invoke(dto.message)));
         }
 
-        private void OnSuccessSaveResult(object sender, ResponseBaseDto e)
+        private void OnSuccessSaveResult(ResponseBaseDto e)
         {
             EventInfo = null;
         }

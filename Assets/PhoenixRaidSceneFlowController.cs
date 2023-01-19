@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using DefaultNamespace;
 using Services;
-using Services.Dto;
 using Unity.Netcode;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -16,7 +15,7 @@ public class PhoenixRaidSceneFlowController : MonoBehaviour
 {
 #if DEDICATED
 
-    [SerializeField] private UnitStateController bossController;
+    private UnitStateController bossController  =  null;
 
     private const int BattleTimeoutSeconds = 300;
 
@@ -50,12 +49,12 @@ public class PhoenixRaidSceneFlowController : MonoBehaviour
         _eventsService.GetEventInstanceRosters(OnLoadEventInstanceDataSuccess, OnError);
     }
 
-    private void OnError(object sender, ErrorResponseDto e)
+    private static void OnError(string e)
     {
-        Debug.LogError(e.message);
+        Debug.LogError(e);
     }
 
-    private void OnLoadEventInstanceDataSuccess(object sender, List<Unit> e)
+    private void OnLoadEventInstanceDataSuccess(List<Unit> e)
     {
         Debug.Log("Data loaded successfully");
         _eventParticipants.Clear();

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -18,32 +19,36 @@ public class UnitShopService : ServiceBase, ITavernService
 
     private float _shopRefreshTimer;
     private ObservableCollection<Unit> _availableUnits;
+    private ILoginService _loginService;
 
     public ObservableCollection<UnitForSale> AvailableUnits { get; } = new();
 
+    private void Start()
+    {
+        _loginService = FindObjectOfType<GameService>().LoginService;
+    }
 
     private void Update()
     {
-        if (shopRefreshInterval > 0)
+        if (!(shopRefreshInterval > 0) || _loginService.UserContext == null) return;
+        _shopRefreshTimer -= Time.deltaTime;
+        if (_shopRefreshTimer <= 0)
         {
-            _shopRefreshTimer -= Time.deltaTime;
-            if (_shopRefreshTimer <= 0)
-            {
-                RefreshShop();
-            }
+            RefreshShop(
+                dto => OnGetSuccess(dto.items.Select(uDto => uDto.ToUnitForSale())),
+                dto => OnError(dto.message));
         }
     }
 
-    private void RefreshShop()
+    private void RefreshShop(Action<ListResponseDto<UnitDto>> onSuccess, Action<ErrorResponseDto> onError)
     {
-        if (!Initialized) return;
         StartCoroutine(
             APIAdapter.DoRequestCoroutine(
                 GetAvailableUnitsPath,
                 null,
                 ApiAdapter.Get,
-                (_, dto) => OnGetSuccess(dto.items.Select(uDto => uDto.ToUnitForSale())),
-                (_, dto) => OnError(dto.message),
+                onSuccess,
+                onError,
                 new DefaultListResponseDtoDeserializer<UnitDto>(new UnitDtoDeserializer())));
         _shopRefreshTimer = shopRefreshInterval;
     }
@@ -59,15 +64,15 @@ public class UnitShopService : ServiceBase, ITavernService
         AvailableUnits.AddRange(e);
     }
 
-    public void BuyUnit(UnitType type)
+    public void BuyUnit(UnitType type, Action<Unit> onSuccess, Action<string> onError)
     {
         StartCoroutine(
             APIAdapter.DoRequestCoroutine(
                 BuyUnitPath,
                 new BuyUnitRequestDto { type = type },
                 ApiAdapter.Post,
-                null,
-                (_, dto) => OnError(dto.message),
+                dto => onSuccess?.Invoke(dto.ToDomain()),
+                dto => onError?.Invoke(dto.message),
                 new UnitDtoDeserializer()));
     }
 }

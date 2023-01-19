@@ -6,10 +6,9 @@ using Services.Dto;
 
 public class MockMatchMakingService : IMatchMakingService
 {
-
-    public void Register(IEnumerable<long> roster, EventHandler<MatchDto> onSuccess, EventHandler<ErrorResponseDto> onError)
+    public void Register(IEnumerable<long> roster, Action<MatchDto> onSuccess, Action<ErrorResponseDto> onError)
     {
-        onSuccess?.Invoke(this, new MatchDto
+        onSuccess?.Invoke(new MatchDto
         {
             id = 1,
             serverIpAddress = "127.0.0.1",
@@ -24,9 +23,9 @@ public class MockMatchMakingService : IMatchMakingService
     {
     }
 
-    public void Status(EventHandler<MatchDto> onSuccess, EventHandler<ErrorResponseDto> onError)
+    public void Status(Action<MatchDto> onSuccess, Action<ErrorResponseDto> onError)
     {
-        onSuccess?.Invoke(this, new MatchDto
+        onSuccess?.Invoke(new MatchDto
         {
             id = 1,
             serverIpAddress = "127.0.0.1",
@@ -37,10 +36,10 @@ public class MockMatchMakingService : IMatchMakingService
         });
     }
 
-    public void ApplyForServer(string address, string port, EventHandler<MatchDto> onSuccess,
-        EventHandler<ErrorResponseDto> onError)
+    public void ApplyForServer(string address, string port, Action<MatchDto> onSuccess,
+        Action<ErrorResponseDto> onError)
     {
-        onSuccess?.Invoke(this, new MatchDto
+        onSuccess?.Invoke(new MatchDto
         {
             id = 1,
             serverIpAddress = "127.0.0.1",

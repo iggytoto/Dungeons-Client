@@ -1426,10 +1426,6 @@
      </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="Assembly-CSharp.csproj">
-      <Project>{86363a02-24e9-ee90-320b-0aaa778361b7}</Project>
-      <Name>Assembly-CSharp</Name>
-    </ProjectReference>
     <ProjectReference Include="Unity.RenderPipelines.Universal.Shaders.Player.csproj">
       <Project>{f38029ac-9047-83cd-852a-9e893bfe3b26}</Project>
       <Name>Unity.RenderPipelines.Universal.Shaders.Player</Name>

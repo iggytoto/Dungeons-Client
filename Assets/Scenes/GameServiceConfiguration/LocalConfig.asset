@@ -16,8 +16,8 @@ MonoBehaviour:
   apiHostAddress: localhost
   apiHostPort: 8080
   loginServiceType: 2
-  login: test1
-  password: 
+  login: server
+  password: password
   reconnectInterval: 5
   barrackServiceType: 2
   matchMakingServiceType: 2

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.ObjectModel;
 using DefaultNamespace;
 using Model.Units;
@@ -17,7 +18,7 @@ namespace Services
         /**
          * Command to hire given unit
          */
-        public void BuyUnit(UnitType type);
+        public void BuyUnit(UnitType type, Action<Unit> onSuccess, Action<string> onError);
 
         ObservableCollection<UnitForSale> IUnitListProvider<UnitForSale>.Units => AvailableUnits;
     }

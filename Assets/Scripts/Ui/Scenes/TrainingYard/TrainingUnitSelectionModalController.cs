@@ -68,7 +68,7 @@ public class TrainingUnitSelectionModalController : MonoBehaviour, IUnitListProv
         _refreshTimer = refreshInterval;
     }
 
-    private void OnMmStatusReceived(object sender, MatchDto e)
+    private void OnMmStatusReceived(MatchDto e)
     {
         if (e == null) return;
         switch (e.status)
@@ -79,7 +79,7 @@ public class TrainingUnitSelectionModalController : MonoBehaviour, IUnitListProv
         }
     }
 
-    private static void OnError(object sender, ErrorResponseDto e)
+    private static void OnError(ErrorResponseDto e)
     {
         Debug.LogError(e.message);
     }

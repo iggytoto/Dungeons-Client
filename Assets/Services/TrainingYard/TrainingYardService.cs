@@ -13,28 +13,30 @@ namespace Services.TrainingYard
         private const string GetRosterForUserPath = "/training/getRosterForUser";
         private const string SaveMatchResultPath = "/training/saveTrainingResult";
 
-        public void GetRosterForUser(long userId, EventHandler<IEnumerable<Unit>> onSuccessHandler,
-            EventHandler<string> onErrorHandler)
+        public void GetRosterForUser(long userId, Action<IEnumerable<Unit>> onSuccessHandler,
+            Action<string> onErrorHandler)
         {
             StartCoroutine(
-                APIAdapter.DoRequestCoroutine<ListResponseDto<UnitDto>>(
+                APIAdapter.DoRequestCoroutine(
                     GetRosterForUserPath,
                     new UserIdRequestDto { userId = userId },
                     ApiAdapter.Get,
-                    (o, response) => onSuccessHandler.Invoke(o, response.items.Select(dto => dto.ToDomain())),
-                    (o, err) => onErrorHandler.Invoke(o, err.message)));
+                    dto => onSuccessHandler.Invoke(dto.items.Select(d => d.ToDomain())),
+                    dto => onErrorHandler.Invoke(dto.message),
+                    new DefaultListResponseDtoDeserializer<UnitDto>(new UnitDtoDeserializer())));
         }
 
         public async Task<IEnumerable<Unit>> GetRosterForUserAsync(long userId)
         {
             var t = new TaskCompletionSource<IEnumerable<Unit>>();
             StartCoroutine(
-                APIAdapter.DoRequestCoroutine<ListResponseDto<UnitDto>>(
+                APIAdapter.DoRequestCoroutine(
                     GetRosterForUserPath,
                     new UserIdRequestDto { userId = userId },
                     ApiAdapter.Get,
-                    (_, response) => t.SetResult(response.items.Select(dto => dto.ToDomain())),
-                    (_, error) => t.SetException(new Exception(error.message))));
+                    dto => t.SetResult(dto.items.Select(d => d.ToDomain())),
+                    dto => t.SetException(new Exception(dto.message)),
+                    new DefaultListResponseDtoDeserializer<UnitDto>(new UnitDtoDeserializer())));
             return await t.Task;
         }
 

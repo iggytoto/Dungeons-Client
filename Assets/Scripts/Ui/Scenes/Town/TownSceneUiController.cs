@@ -9,6 +9,7 @@ public class TownSceneUiController : MonoBehaviour
     [SerializeField] private ItemsPanelUiController itemsPanelUiController;
     [SerializeField] private SelectedUnitPanelUiController selectedUnitPanelUiController;
     [SerializeField] private TrainingMatchPanelUiController trainingMatchPanelUiController;
+    [SerializeField] private BuyUnitPopupUiController buyUnitPopupUiController;
     private IBarrackService _barrackService;
 
     private void Start()
@@ -21,6 +22,7 @@ public class TownSceneUiController : MonoBehaviour
         itemsPanelUiController.OnItemClicked += EquipItemOnSelectedUnit;
         selectedUnitPanelUiController.OnItemClicked += UnEquipItemFromSelectedUnit;
         bottomHorizontalBarrackUnitListUiController.OnUnitClicked += OnBarrackUnitClicked;
+        buyUnitPopupUiController.UnitPurchased += OnUnitPurchased;
 
         foreach (var unit in _barrackService.AvailableUnits)
         {
@@ -31,6 +33,11 @@ public class TownSceneUiController : MonoBehaviour
         {
             OnBarrackItemAdded(item);
         }
+    }
+
+    private void OnUnitPurchased(Unit obj)
+    {
+        OnBarrackUnitAdded(obj);
     }
 
     private void OnBarrackUnitClicked(Unit u)

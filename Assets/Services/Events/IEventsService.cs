@@ -22,28 +22,28 @@ namespace Services
         /**
          * Registers player's roster on given event type
          */
-        public void Register(List<long> unitsIds, EventType type, EventHandler<ErrorResponseDto> onError);
+        public void Register(List<long> unitsIds, EventType type, Action<string> onError);
 
         /**
          * Gets all events on which player registered
          */
-        public void Status(EventHandler<List<Event>> onSuccessHandler, EventHandler<ErrorResponseDto> onError);
+        public void Status(Action<List<Event>> onSuccessHandler, Action<string> onError);
 
         /**
          * Server method for processing application
          */
-        public void ApplyAsServer(string host, string port, EventHandler<EventInstance> onSuccessHandler,
-            EventHandler<ErrorResponseDto> onError);
+        public void ApplyAsServer(string host, string port, Action<EventInstance> onSuccessHandler,
+            Action<string> onError);
 
         /**
          * Gets units list that participate in event
          */
-        public void GetEventInstanceRosters(EventHandler<List<Unit>> onSuccessHandler,
-            EventHandler<ErrorResponseDto> onError);
+        public void GetEventInstanceRosters(Action<List<Unit>> onSuccessHandler,
+            Action<string> onError);
 
         /**
          * Server method for saving processing result
          */
-        public void SaveResult(EventInstanceResult result, EventHandler<ErrorResponseDto> onError);
+        public void SaveResult(EventInstanceResult result, Action<string> onError);
     }
 }

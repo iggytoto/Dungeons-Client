@@ -32,11 +32,7 @@ namespace Services.Common.Dto
             var mana = jObject["mana"]?.Value<long>() ?? -1;
             var maxMana = jObject["maxMana"]?.Value<long>() ?? -1;
             var startedAt = jObject["startedAt"]?.Value<DateTime>() ?? new DateTime();
-            var unitEquipJson = jObject["unitEquip"]?.ToString();
-            var unitEquip = string.IsNullOrEmpty(unitEquipJson)
-                ? null
-                : UnitSkillsDeserializerBase.GetDeserializer(unitType)
-                    ?.Deserialize(unitEquipJson);
+            var skills = UnitSkillsDeserializerBase.GetDeserializer(unitType)?.Deserialize(jObject["skills"]?.ToString());
             var itemsDto = _itemDtoListDeserializer.Deserialize(jObject["items"]?.ToString());
             return new UnitDto
             {
@@ -59,7 +55,7 @@ namespace Services.Common.Dto
                 mana = mana,
                 maxMana = maxMana,
                 startedAt = startedAt,
-                skills = unitEquip,
+                skills = skills,
                 items = itemsDto
             };
         }

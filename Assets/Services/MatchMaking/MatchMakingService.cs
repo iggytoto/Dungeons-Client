@@ -20,14 +20,14 @@ public class MatchMakingService : ServiceBase, IMatchMakingService
         _loginService = FindObjectOfType<GameService>().LoginService;
     }
 
-    public void Register(IEnumerable<long> roster, EventHandler<MatchDto> onSuccess,
-        EventHandler<ErrorResponseDto> onError)
+    public void Register(IEnumerable<long> roster, Action<MatchDto> onSuccess,
+        Action<ErrorResponseDto> onError)
     {
         _apiAdapter.Register(
             roster,
             _loginService.UserContext,
             onSuccess,
-            (o, r) => onError?.Invoke(o, r));
+            dto => onError?.Invoke(dto));
     }
 
     public void Cancel()
@@ -35,7 +35,7 @@ public class MatchMakingService : ServiceBase, IMatchMakingService
         _apiAdapter.Cancel(_loginService.UserContext, null, null);
     }
 
-    public void Status(EventHandler<MatchDto> onSuccess, EventHandler<ErrorResponseDto> onError)
+    public void Status(Action<MatchDto> onSuccess, Action<ErrorResponseDto> onError)
     {
         if (_loginService?.UserContext == null)
         {
@@ -46,16 +46,16 @@ public class MatchMakingService : ServiceBase, IMatchMakingService
         _apiAdapter.Status(
             _loginService.UserContext,
             onSuccess,
-            (o, r) => onError?.Invoke(o, r));
+            dto => onError?.Invoke(dto));
     }
 
-    public void ApplyForServer(string address, string port, EventHandler<MatchDto> onSuccess,
-        EventHandler<ErrorResponseDto> onError)
+    public void ApplyForServer(string address, string port, Action<MatchDto> onSuccess,
+        Action<ErrorResponseDto> onError)
     {
         _apiAdapter.ApplyAsServer(address,
             port,
             _loginService.UserContext,
-            (o, r) => onSuccess.Invoke(o, r.match),
+            dto => onSuccess.Invoke(dto.match),
             onError);
     }
 }

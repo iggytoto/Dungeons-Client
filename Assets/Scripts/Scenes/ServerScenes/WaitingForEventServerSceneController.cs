@@ -63,8 +63,8 @@ public class WaitingForEventServerSceneController : NetworkBehaviour
             _eventsService.ApplyAsServer(
                 host,
                 port,
-                (_, r) => _eventInstance = r,
-                (_, e) => Debug.LogError(e.message));
+                ei => _eventInstance = ei,
+                errorMessage => Debug.LogError(errorMessage));
         }
         else
         {
@@ -85,7 +85,7 @@ public class WaitingForEventServerSceneController : NetworkBehaviour
     private void ProcessLogin()
     {
         Debug.Log($"Trying to login with credentials: {username}:{password}");
-        _loginService.TryLogin(username, password, (_, _) => ProcessEvent());
+        _loginService.TryLogin(username, password, _ => ProcessEvent());
     }
 #endif
 }

@@ -12,9 +12,9 @@ public class MockLoginService : ILoginService
         userName = "Username"
     };
 
-    public void TryLogin(string login, string password, EventHandler<UserContext> onSuccess)
+    public void TryLogin(string login, string password, Action<UserContext> onSuccess)
     {
-        onSuccess?.Invoke(this, UserContext);
+        onSuccess?.Invoke(UserContext);
     }
 
     public void Register(string login, string password)
@@ -24,8 +24,8 @@ public class MockLoginService : ILoginService
     public string EndpointHttpType { get; set; }
     public string EndpointAddress { get; set; }
     public ushort EndpointPort { get; set; }
+
     public void InitService()
     {
-        
     }
 }

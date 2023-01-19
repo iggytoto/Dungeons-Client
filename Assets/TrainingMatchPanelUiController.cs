@@ -57,7 +57,7 @@ public class TrainingMatchPanelUiController : MonoBehaviour
         registerMatchMakingButton.enabled = false;
     }
 
-    private void UpdateStatusAndConnectIfServerFound(object sender, MatchDto e)
+    private void UpdateStatusAndConnectIfServerFound(MatchDto e)
     {
         matchMakingStatusText.text = e.status;
         if (e.status == "ServerFound")
@@ -74,7 +74,7 @@ public class TrainingMatchPanelUiController : MonoBehaviour
         _matchMakingService.Status(UpdateStatusAndConnectIfServerFound, OnError);
     }
 
-    private void OnError(object sender, ErrorResponseDto e)
+    private void OnError(ErrorResponseDto e)
     {
         cancelMatchMakingButton.enabled = false;
         registerMatchMakingButton.enabled = _unitButtonUiControllers.Any();

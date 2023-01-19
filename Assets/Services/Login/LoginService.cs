@@ -11,7 +11,7 @@ public class LoginService : ServiceBase, ILoginService
     private const string RegisterPath = "/auth/register";
 
     private static UserContext _userContext;
-    private EventHandler<UserContext> _onLoginSuccessResponseOuter;
+    private Action<UserContext> _onLoginSuccessResponseOuter;
 
     public ConnectionState ConnectionState { get; private set; } = ConnectionState.Disconnected;
 
@@ -20,7 +20,7 @@ public class LoginService : ServiceBase, ILoginService
     public void TryLogin(
         string login,
         string password,
-        EventHandler<UserContext> onSuccess)
+        Action<UserContext> onSuccess)
     {
         if (APIAdapter == null)
         {
@@ -49,21 +49,21 @@ public class LoginService : ServiceBase, ILoginService
                 OnError));
     }
 
-    private void OnRegisterSuccess(object sender, RegisterResponseDto e)
+    private void OnRegisterSuccess(RegisterResponseDto e)
     {
         var message = $"Successfully registered with userid {e.userId}";
         Debug.Log(message);
     }
 
-    private void OnLoginSuccess(object sender, LoginResponseDto e)
+    private void OnLoginSuccess(LoginResponseDto e)
     {
         ConnectionState = ConnectionState.Connected;
         var tokenJson = Encoding.UTF8.GetString(Convert.FromBase64String(e.token));
         _userContext = JsonUtility.FromJson<UserContext>(tokenJson);
-        _onLoginSuccessResponseOuter?.Invoke(this, _userContext);
+        _onLoginSuccessResponseOuter?.Invoke(_userContext);
     }
 
-    private void OnError(object sender, ErrorResponseDto e)
+    private void OnError(ErrorResponseDto e)
     {
         ConnectionState = ConnectionState.Disconnected;
         Debug.LogError(e.message);

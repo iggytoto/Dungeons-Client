@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using Model.Units;
 using Services;
 using UnityEngine;
@@ -8,6 +6,8 @@ using UnityEngine;
 public class BuyUnitPopupUiController : MonoBehaviour
 {
     private ITavernService _tavernService;
+
+    public event Action<Unit> UnitPurchased;
 
     private void Start()
     {
@@ -21,7 +21,17 @@ public class BuyUnitPopupUiController : MonoBehaviour
 
     private void BuyUnitButtonClicked(UnitType type)
     {
-        _tavernService.BuyUnit(type);
+        _tavernService.BuyUnit(type, OnUnitPurchased, OnError);
+    }
+
+    private void OnUnitPurchased(Unit obj)
+    {
+        UnitPurchased?.Invoke(obj);
+    }
+
+    private void OnError(string obj)
+    {
+        Debug.LogError(obj);
     }
 
     public void BuyUnitButtonClicked(string type)

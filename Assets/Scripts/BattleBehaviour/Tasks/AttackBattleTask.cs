@@ -21,13 +21,14 @@ namespace DefaultNamespace.BattleBehaviour
             }
 
             var target = GetTarget();
+            if (target.IsDead())
+            {
+                ClearTarget();
+                target = null;
+            }
+
             if (target == null)
             {
-                if (target.IsDead())
-                {
-                    ClearTarget();
-                }
-
                 State = BattleBehaviorNodeState.Failure;
                 return State;
             }

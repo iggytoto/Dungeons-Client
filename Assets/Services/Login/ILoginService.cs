@@ -20,7 +20,7 @@ namespace Services
         /**
         * Logins with given credentials, if succeeded navigates to the town scene
         */
-        public void TryLogin(string login, string password, EventHandler<UserContext> onSuccess);
+        public void TryLogin(string login, string password, Action<UserContext> onSuccess);
 
         /**
         * Register user with given credentials.

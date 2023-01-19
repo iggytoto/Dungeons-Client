@@ -22,7 +22,7 @@ public class LoginSceneUiController : MonoBehaviour
         _loginService.TryLogin(loginInput.text, passInput.text, OnLoginSuccess);
     }
 
-    private static void OnLoginSuccess(object sender, UserContext e)
+    private static void OnLoginSuccess(UserContext e)
     {
         SceneManager.LoadScene(SceneConstants.TownSceneName);
     }

@@ -17,8 +17,8 @@ namespace Services
          */
         public void Register(
             IEnumerable<long> roster,
-            EventHandler<MatchDto> onSuccess,
-            EventHandler<ErrorResponseDto> onError);
+            Action<MatchDto> onSuccess,
+            Action<ErrorResponseDto> onError);
 
         /**
          * Player can cancel its request for a match. This is working until server is not found for the match.
@@ -29,8 +29,8 @@ namespace Services
          * Player can request match status.
          */
         public void Status(
-            EventHandler<MatchDto> onSuccess,
-            EventHandler<ErrorResponseDto> onError);
+            Action<MatchDto> onSuccess,
+            Action<ErrorResponseDto> onError);
 
         /**
          * Server that is responsible to handle the match can register and apply its services as the players
@@ -40,7 +40,7 @@ namespace Services
         public void ApplyForServer(
             string address,
             string port,
-            EventHandler<MatchDto> onSuccess,
-            EventHandler<ErrorResponseDto> onError);
+            Action<MatchDto> onSuccess,
+            Action<ErrorResponseDto> onError);
     }
 }

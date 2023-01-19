@@ -63,8 +63,8 @@ public class TrainingYardServerFlowController : NetworkBehaviour
             _matchMakingService.ApplyForServer(
                 host,
                 port,
-                (_, r) => _matchStatus = r,
-                (_, e) => Debug.LogError(e.message));
+                dto => _matchStatus = dto,
+                dto => Debug.LogError(dto.message));
         }
         else
         {
@@ -86,7 +86,7 @@ public class TrainingYardServerFlowController : NetworkBehaviour
     private void ProcessLogin()
     {
         Debug.Log($"Trying to login with credentials: {username}:{password}");
-        _loginService.TryLogin(username, password, (_, _) => ProcessMatch());
+        _loginService.TryLogin(username, password, _ => ProcessMatch());
     }
 
     private void OnBattleFinished()

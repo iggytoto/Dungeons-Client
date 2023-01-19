@@ -23,14 +23,26 @@ public class BarracksService : ServiceBase, IBarrackService
 
     public ObservableCollection<Unit> AvailableUnits { get; } = new();
     public ObservableCollection<Item> AvailableItems { get; } = new();
+    public ObservableCollection<Unit> Units => AvailableUnits;
+
+    public event Action<Unit> UnitUpdated;
+    public event Action<Item> ItemUnEquipped;
+    public event Action<Item> ItemEquipped;
 
 
     [SerializeField] public float refreshInterval = 15;
     private float _refreshTimer;
+    private ILoginService _loginService;
+
+
+    private void Start()
+    {
+        _loginService = FindObjectOfType<GameService>().LoginService;
+    }
 
     private void Update()
     {
-        if (!(refreshInterval > 0)) return;
+        if (!(refreshInterval > 0) || _loginService.UserContext == null) return;
         _refreshTimer -= Time.deltaTime;
         if (_refreshTimer <= 0)
         {
@@ -58,7 +70,7 @@ public class BarracksService : ServiceBase, IBarrackService
         _refreshTimer = refreshInterval;
     }
 
-    private void OnGetAvailableUnitsSuccess(object sender, ListResponseDto<UnitDto> listResponseDto)
+    private void OnGetAvailableUnitsSuccess(ListResponseDto<UnitDto> listResponseDto)
     {
         if (listResponseDto == null)
         {
@@ -68,7 +80,7 @@ public class BarracksService : ServiceBase, IBarrackService
         RefreshUnitsLocal(listResponseDto.items?.Select(x => x?.ToDomain()).ToList());
     }
 
-    private void OnGetAvailableItemsSuccess(object sender, ListResponseDto<ItemDto> listResponseDto)
+    private void OnGetAvailableItemsSuccess(ListResponseDto<ItemDto> listResponseDto)
     {
         if (listResponseDto?.items == null)
         {
@@ -96,56 +108,56 @@ public class BarracksService : ServiceBase, IBarrackService
         }
     }
 
-    private static void OnError(object sender, ErrorResponseDto e)
+    private static void OnError(ErrorResponseDto e)
     {
         Debug.Log(e.message);
     }
 
-    public ObservableCollection<Unit> Units => AvailableUnits;
-
     public void ChangeUnitName(long selectedUnitId, string newName)
     {
         StartCoroutine(
-            APIAdapter.DoRequestCoroutine<ResponseBaseDto>(
+            APIAdapter.DoRequestCoroutine(
                 ChangeUnitNamePath,
                 new ChangeUnitNameRequestDto
                     { unitId = selectedUnitId, newName = newName },
                 ApiAdapter.Post,
-                (_, _) => Refresh(),
-                null));
+                OnUnitUpdated,
+                OnError,
+                new UnitDtoDeserializer()));
     }
 
     public void ChangeUnitBattleBehavior(long selectedUnitId, BattleBehavior bb)
     {
         StartCoroutine(
-            APIAdapter.DoRequestCoroutine<ResponseBaseDto>(
+            APIAdapter.DoRequestCoroutine(
                 ChangeUnitBattleBehaviorPath,
                 new ChangeUnitBattleBehaviorRequestDto
                     { unitId = selectedUnitId, newBattleBehavior = bb },
                 ApiAdapter.Post,
-                (_, _) => Refresh(),
-                null));
+                OnUnitUpdated,
+                OnError,
+                new UnitDtoDeserializer()));
     }
 
     public void EquipItem(Item item, Unit unit)
     {
         StartCoroutine(
-            APIAdapter.DoRequestCoroutine<ResponseBaseDto>(
+            APIAdapter.DoRequestCoroutine<ItemDto>(
                 EquipItemPath,
                 new EquipItemRequestDto { itemId = item.Id, unitId = unit.Id },
                 ApiAdapter.Post,
-                null,
+                OnItemEquipped,
                 OnError));
     }
 
     public void UnEquipItem(Item item)
     {
         StartCoroutine(
-            APIAdapter.DoRequestCoroutine<ResponseBaseDto>(
+            APIAdapter.DoRequestCoroutine<ItemDto>(
                 UnEquipItemPath,
                 new UnEquipItemRequestDto { itemId = item.Id },
                 ApiAdapter.Post,
-                null,
+                OnItemUnequipped,
                 OnError));
     }
 
@@ -168,8 +180,41 @@ public class BarracksService : ServiceBase, IBarrackService
                     paramNameToUpgrade = upgradeParamName
                 },
                 ApiAdapter.Post,
-                (_, dto) => onSuccess.Invoke(this, dtoMapper.Invoke(dto)),
-                null,
+                dto => onSuccess.Invoke(this, dtoMapper.Invoke(dto)),
+                OnError,
                 UnitSkillsDeserializerBase.GetDeserializer<TDto>(unitType)));
+    }
+
+    private void OnItemUnequipped(ItemDto obj)
+    {
+        var unequippedItem = obj.ToDomain();
+        var currentItem = AvailableItems.FirstOrDefault(i => i.Id == unequippedItem.Id);
+        var unitWasEquipped = AvailableUnits.FirstOrDefault(u => u.Items.Any(i => i.Id == unequippedItem.Id));
+        if (currentItem != null || unitWasEquipped == null) return;
+        AvailableItems.Add(unequippedItem);
+        unitWasEquipped.UnEquipItem(unequippedItem);
+        UnitUpdated?.Invoke(unitWasEquipped);
+        ItemUnEquipped?.Invoke(unequippedItem);
+    }
+
+    private void OnItemEquipped(ItemDto obj)
+    {
+        var equippedItem = obj.ToDomain();
+        var currentItem = AvailableItems.FirstOrDefault(i => i.Id == equippedItem.Id);
+        var unitToEquip = AvailableUnits.FirstOrDefault(u => equippedItem.UnitId == u.Id);
+        if (currentItem == null || unitToEquip == null) return;
+        unitToEquip.EquipItem(equippedItem);
+        UnitUpdated?.Invoke(unitToEquip);
+        ItemEquipped?.Invoke(equippedItem);
+    }
+
+    private void OnUnitUpdated(UnitDto obj)
+    {
+        var newUnit = obj.ToDomain();
+        var oldUnit = AvailableUnits.FirstOrDefault(x => x.Id == newUnit.Id);
+        if (oldUnit == null) return;
+        AvailableUnits.Remove(oldUnit);
+        AvailableUnits.Add(newUnit);
+        UnitUpdated?.Invoke(newUnit);
     }
 }

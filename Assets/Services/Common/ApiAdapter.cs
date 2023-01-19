@@ -31,8 +31,8 @@ namespace Services.Dto
             string path,
             RequestDto requestDto,
             string requestType,
-            EventHandler<TResponse> successHandler,
-            EventHandler<ErrorResponseDto> errorHandler,
+            Action<TResponse> successHandler,
+            Action<ErrorResponseDto> errorHandler,
             IDtoDeserializer<TResponse> dtoDeserializer)
             where TResponse : ResponseBaseDto
         {
@@ -77,18 +77,18 @@ namespace Services.Dto
                             code: 0
                         })
                     {
-                        successHandler?.Invoke(this, response);
+                        successHandler?.Invoke(response);
                     }
                     else
                     {
-                        errorHandler?.Invoke(this, new ErrorResponseDto { message = response?.message });
+                        errorHandler?.Invoke(new ErrorResponseDto { message = response?.message });
                     }
 
                     break;
                 case UnityWebRequest.Result.ConnectionError:
                 case UnityWebRequest.Result.ProtocolError:
                 case UnityWebRequest.Result.DataProcessingError:
-                    errorHandler.Invoke(this, new ErrorResponseDto { message = req.error });
+                    errorHandler.Invoke(new ErrorResponseDto { message = req.error });
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -99,8 +99,8 @@ namespace Services.Dto
             string path,
             RequestDto requestDto,
             string requestType,
-            EventHandler<TResponse> successHandler,
-            EventHandler<ErrorResponseDto> errorHandler)
+            Action<TResponse> successHandler,
+            Action<ErrorResponseDto> errorHandler)
             where TResponse : ResponseBaseDto
         {
             return DoRequestCoroutine(

@@ -1,11 +1,12 @@
 using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Services.Common.Dto;
 
 namespace Services.Common
 {
     [Serializable]
-    public class UserIdRequestDto
+    public class UserIdRequestDto : RequestDto
     {
         [JsonConverter(typeof(IdToLongConverter))]
         public long userId;

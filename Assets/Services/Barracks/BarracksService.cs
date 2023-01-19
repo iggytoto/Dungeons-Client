@@ -46,25 +46,26 @@ public class BarracksService : ServiceBase, IBarrackService
             ApiAdapter.Get,
             OnGetAvailableUnitsSuccess,
             OnError,
-            new UnitListResponseDtoDeserializer()));
+            new DefaultListResponseDtoDeserializer<UnitDto>(new UnitDtoDeserializer())));
         StartCoroutine(
-            APIAdapter.DoRequestCoroutine<ListResponseDto<ItemDto>>(
+            APIAdapter.DoRequestCoroutine(
                 GetAvailableItemsPath,
                 null,
                 ApiAdapter.Get,
                 OnGetAvailableItemsSuccess,
-                OnError));
+                OnError,
+                new DefaultListResponseDtoDeserializer<ItemDto>(new DefaultDtoDeserializer<ItemDto>())));
         _refreshTimer = refreshInterval;
     }
 
-    private void OnGetAvailableUnitsSuccess(object sender, UnitListResponseDto e)
+    private void OnGetAvailableUnitsSuccess(object sender, ListResponseDto<UnitDto> listResponseDto)
     {
-        if (e == null)
+        if (listResponseDto == null)
         {
             return;
         }
 
-        RefreshUnitsLocal(e.items?.Select(x => x?.ToDomain()));
+        RefreshUnitsLocal(listResponseDto.items?.Select(x => x?.ToDomain()).ToList());
     }
 
     private void OnGetAvailableItemsSuccess(object sender, ListResponseDto<ItemDto> listResponseDto)
@@ -74,7 +75,7 @@ public class BarracksService : ServiceBase, IBarrackService
             return;
         }
 
-        RefreshItemsLocal(listResponseDto.items.Select(x => x?.ToDomain()));
+        RefreshItemsLocal(listResponseDto.items.Select(x => x?.ToDomain()).ToList());
     }
 
     private void RefreshUnitsLocal(IEnumerable<Unit> e)
@@ -107,8 +108,8 @@ public class BarracksService : ServiceBase, IBarrackService
         StartCoroutine(
             APIAdapter.DoRequestCoroutine<ResponseBaseDto>(
                 ChangeUnitNamePath,
-                ApiAdapter.SerializeDto(new ChangeUnitNameRequestDto
-                    { unitId = selectedUnitId, newName = newName }),
+                new ChangeUnitNameRequestDto
+                    { unitId = selectedUnitId, newName = newName },
                 ApiAdapter.Post,
                 (_, _) => Refresh(),
                 null));
@@ -119,8 +120,8 @@ public class BarracksService : ServiceBase, IBarrackService
         StartCoroutine(
             APIAdapter.DoRequestCoroutine<ResponseBaseDto>(
                 ChangeUnitBattleBehaviorPath,
-                ApiAdapter.SerializeDto(new ChangeUnitBattleBehaviorRequestDto
-                    { unitId = selectedUnitId, newBattleBehavior = bb }),
+                new ChangeUnitBattleBehaviorRequestDto
+                    { unitId = selectedUnitId, newBattleBehavior = bb },
                 ApiAdapter.Post,
                 (_, _) => Refresh(),
                 null));
@@ -131,7 +132,7 @@ public class BarracksService : ServiceBase, IBarrackService
         StartCoroutine(
             APIAdapter.DoRequestCoroutine<ResponseBaseDto>(
                 EquipItemPath,
-                ApiAdapter.SerializeDto(new EquipItemRequestDto { itemId = item.Id, unitId = unit.Id }),
+                new EquipItemRequestDto { itemId = item.Id, unitId = unit.Id },
                 ApiAdapter.Post,
                 null,
                 OnError));
@@ -142,7 +143,7 @@ public class BarracksService : ServiceBase, IBarrackService
         StartCoroutine(
             APIAdapter.DoRequestCoroutine<ResponseBaseDto>(
                 UnEquipItemPath,
-                ApiAdapter.SerializeDto(new UnEquipItemRequestDto { itemId = item.Id }),
+                new UnEquipItemRequestDto { itemId = item.Id },
                 ApiAdapter.Post,
                 null,
                 OnError));
@@ -160,12 +161,12 @@ public class BarracksService : ServiceBase, IBarrackService
         StartCoroutine(
             APIAdapter.DoRequestCoroutine(
                 UpgradeUnitSkillsPath,
-                ApiAdapter.SerializeDto(new UpgradeUnitSkillRequestDto
+                new UpgradeUnitSkillRequestDto
                 {
                     skillsId = skillId,
                     unitType = unitType,
                     paramNameToUpgrade = upgradeParamName
-                }),
+                },
                 ApiAdapter.Post,
                 (_, dto) => onSuccess.Invoke(this, dtoMapper.Invoke(dto)),
                 null,

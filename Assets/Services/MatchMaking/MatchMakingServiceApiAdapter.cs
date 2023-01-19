@@ -17,11 +17,10 @@ namespace Services.MatchMaking
             EventHandler<MatchDto> successHandler,
             EventHandler<ErrorResponseDto> errorHandler)
         {
-            var requestBody = JsonConvert.SerializeObject(new MatchMakingRegisterRequestDto()
-            {
-                rosterUnitsIds = new List<long>(rosterUnitsIds)
-            });
-            StartCoroutine(DoRequestCoroutine(GetConnectionAddress() + RegisterPath, requestBody, Post,
+            StartCoroutine(DoRequestCoroutine(GetConnectionAddress() + RegisterPath, new MatchMakingRegisterRequestDto()
+                {
+                    rosterUnitsIds = new List<long>(rosterUnitsIds)
+                }, Post,
                 successHandler,
                 errorHandler));
         }
@@ -47,12 +46,11 @@ namespace Services.MatchMaking
             EventHandler<MatchMakingApplyAsServerResponseDto> successHandler,
             EventHandler<ErrorResponseDto> errorHandler)
         {
-            var requestBody = JsonConvert.SerializeObject(new MatchMakingApplyAsServerRequestDto()
-            {
-                ip = ip,
-                port = port
-            });
-            StartCoroutine(DoRequestCoroutine(GetConnectionAddress() + ApplyAsServerPath, requestBody, Post,
+            StartCoroutine(DoRequestCoroutine(GetConnectionAddress() + ApplyAsServerPath, new MatchMakingApplyAsServerRequestDto()
+                {
+                    ip = ip,
+                    port = port
+                }, Post,
                 successHandler,
                 errorHandler));
         }

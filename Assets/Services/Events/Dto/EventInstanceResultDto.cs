@@ -1,11 +1,12 @@
 using System;
 using System.Collections.Generic;
 using Model.Events;
+using Services.Common.Dto;
 
 namespace Services.Events.Dto
 {
     [Serializable]
-    public class EventInstanceResultDto
+    public class EventInstanceResultDto : RequestDto
     {
         public long eventInstanceId;
         public EventType eventType;

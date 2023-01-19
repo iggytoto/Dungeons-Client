@@ -36,23 +36,24 @@ public class UnitShopService : ServiceBase, ITavernService
 
     private void RefreshShop()
     {
+        if (!Initialized) return;
         StartCoroutine(
             APIAdapter.DoRequestCoroutine(
                 GetAvailableUnitsPath,
                 null,
                 ApiAdapter.Get,
-                (_, dto) => OnGetSuccess(this, dto.items.Select(uDto => uDto.ToUnitForSale())),
-                (_, dto) => OnError(this, dto.message),
-                new DefaultDtoDeserializer<ListResponseDto<UnitDto>>()));
+                (_, dto) => OnGetSuccess(dto.items.Select(uDto => uDto.ToUnitForSale())),
+                (_, dto) => OnError(dto.message),
+                new DefaultListResponseDtoDeserializer<UnitDto>(new UnitDtoDeserializer())));
         _shopRefreshTimer = shopRefreshInterval;
     }
 
-    private void OnError(object sender, string e)
+    private void OnError(string e)
     {
         Debug.Log(e);
     }
 
-    private void OnGetSuccess(object sender, IEnumerable<UnitForSale> e)
+    private void OnGetSuccess(IEnumerable<UnitForSale> e)
     {
         AvailableUnits.Clear();
         AvailableUnits.AddRange(e);
@@ -63,10 +64,10 @@ public class UnitShopService : ServiceBase, ITavernService
         StartCoroutine(
             APIAdapter.DoRequestCoroutine(
                 BuyUnitPath,
-                ApiAdapter.SerializeDto(new BuyUnitRequestDto { type = type }),
+                new BuyUnitRequestDto { type = type },
                 ApiAdapter.Post,
                 null,
-                (_, dto) => OnError(this, dto.message),
+                (_, dto) => OnError(dto.message),
                 new UnitDtoDeserializer()));
     }
 }

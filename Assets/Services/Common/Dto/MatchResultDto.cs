@@ -5,7 +5,7 @@ using Services.Common.Dto;
 namespace Services.Common
 {
     [Serializable]
-    public class MatchResultDto
+    public class MatchResultDto : RequestDto
     {
         public long userOneId;
         public long userTwoId;

@@ -26,11 +26,11 @@ namespace Services.Events
             StartCoroutine(
                 APIAdapter.DoRequestCoroutine<ResponseBaseDto>(
                     RegisterPath,
-                    ApiAdapter.SerializeDto(new EventRegisterRequestDto
+                    new EventRegisterRequestDto
                     {
                         eventType = type,
                         unitsIds = unitsIds
-                    }),
+                    },
                     ApiAdapter.Post,
                     null,
                     onError));
@@ -62,7 +62,7 @@ namespace Services.Events
             StartCoroutine(
                 APIAdapter.DoRequestCoroutine<EventInstanceDto>(
                     ApplyAsServerPath,
-                    ApiAdapter.SerializeDto(new ApplyAsEventProcessorDto { host = host, port = port }),
+                    new ApplyAsEventProcessorDto { host = host, port = port },
                     ApiAdapter.Post,
                     (_, dto) => OnSuccessApplyAsServer(onSuccessHandler, dto),
                     onError));
@@ -86,8 +86,8 @@ namespace Services.Events
             StartCoroutine(
                 APIAdapter.DoRequestCoroutine<ListResponseDto<UnitDto>>(
                     GetDataPath,
-                    ApiAdapter.SerializeDto(new GetEventInstanceDataRequestDto
-                        { eventInstanceId = EventInfo.EventInstanceId }),
+                    new GetEventInstanceDataRequestDto
+                        { eventInstanceId = EventInfo.EventInstanceId },
                     ApiAdapter.Post,
                     (_, dto) => onSuccessHandler?.Invoke(this, dto.items.Select(d => d.ToDomain()).ToList()),
                     onError));
@@ -98,7 +98,7 @@ namespace Services.Events
             StartCoroutine(
                 APIAdapter.DoRequestCoroutine<ResponseBaseDto>(
                     SaveResultPath,
-                    ApiAdapter.SerializeDto(EventInstanceResultDto.FromDomain(result)),
+                    EventInstanceResultDto.FromDomain(result),
                     ApiAdapter.Post,
                     OnSuccessSaveResult,
                     onError));

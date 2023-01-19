@@ -108,7 +108,6 @@
      <Compile Include="Assets\Services\Barracks\Dto\UpgradeUnitSkillRequestDto.cs" />
      <Compile Include="Assets\Scripts\UnitState\Effects\HumanArcherAbilityProtectionEffect.cs" />
      <Compile Include="Assets\Scripts\Ui\Common\ItemButtonUiController.cs" />
-     <Compile Include="Assets\Services\Common\Dto\UnitListResponseDto.cs" />
      <Compile Include="Assets\Services\Events\Dto\EventInstanceDto.cs" />
      <Compile Include="Assets\Services\MatchMaking\MockMatchMakingService.cs" />
      <Compile Include="Assets\Model\ModelBase.cs" />
@@ -182,7 +181,7 @@
      <Compile Include="Assets\Scripts\BattleBehaviour\Tasks\MoveToRandomNearPositionTask.cs" />
      <Compile Include="Assets\Scripts\Ui\Scenes\Town\BottomHorizontalBarrackUnitListUiController.cs" />
      <Compile Include="Assets\Scripts\DebugUnitStateController.cs" />
-     <Compile Include="Assets\Services\Common\Dto\DtoDeserializaer\UnitListResponseDtoDeserializer.cs" />
+     <Compile Include="Assets\Services\Common\Dto\DtoDeserializaer\DefaultListResponseDtoDeserializer.cs" />
      <Compile Include="Assets\Services\Common\Dto\UserIdRequestDto.cs" />
      <Compile Include="Assets\Services\Common\ApiAdapter.cs" />
      <Compile Include="Assets\Services\ServiceBase.cs" />
@@ -233,6 +232,7 @@
      <Compile Include="Assets\Services\Events\MockEventsService.cs" />
      <Compile Include="Assets\Services\Events\Dto\GetEventInstanceDataRequestDto.cs" />
      <Compile Include="Assets\Services\Events\EventInfo.cs" />
+     <Compile Include="Assets\Services\Common\Dto\RequestDto.cs" />
      <Folder Include="Assets" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\mergetool.ja.txt" />
      <Folder Include="Assets\Libs\Tiny Fantasy Icons\Keys" />
@@ -1426,6 +1426,10 @@
      </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp.csproj">
+      <Project>{86363a02-24e9-ee90-320b-0aaa778361b7}</Project>
+      <Name>Assembly-CSharp</Name>
+    </ProjectReference>
     <ProjectReference Include="Unity.RenderPipelines.Universal.Shaders.Player.csproj">
       <Project>{f38029ac-9047-83cd-852a-9e893bfe3b26}</Project>
       <Name>Unity.RenderPipelines.Universal.Shaders.Player</Name>

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6697086511545433353}
   - component: {fileID: 4271042742655406263}
+  - component: {fileID: 4713563546708549982}
   m_Layer: 0
   m_Name: GameService
   m_TagString: Untagged
@@ -44,5 +45,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e399dde6b1f3b744b488a25b7d3aaa0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  endpointAddress: http://localhost
   servicesConfiguration: {fileID: 0}
+--- !u!114 &4713563546708549982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4468862614129480654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d43e79d71afc405eab4896111392a654, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

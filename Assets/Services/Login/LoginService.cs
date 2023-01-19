@@ -32,7 +32,7 @@ public class LoginService : ServiceBase, ILoginService
         StartCoroutine(
             APIAdapter.DoRequestCoroutine<LoginResponseDto>(
                 LoginPath,
-                ApiAdapter.SerializeDto(new LoginRequestDto { login = login, password = password }),
+                new LoginRequestDto { login = login, password = password },
                 ApiAdapter.Post,
                 OnLoginSuccess,
                 OnError));
@@ -43,7 +43,7 @@ public class LoginService : ServiceBase, ILoginService
         StartCoroutine(
             APIAdapter.DoRequestCoroutine<RegisterResponseDto>(
                 RegisterPath,
-                ApiAdapter.SerializeDto(new RegisterRequestDto { login = login, password = password }),
+                new RegisterRequestDto { login = login, password = password },
                 ApiAdapter.Post,
                 OnRegisterSuccess,
                 OnError));

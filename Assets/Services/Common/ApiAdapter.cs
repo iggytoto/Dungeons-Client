@@ -29,7 +29,7 @@ namespace Services.Dto
 
         public IEnumerator DoRequestCoroutine<TResponse>(
             string path,
-            object requestDto,
+            RequestDto requestDto,
             string requestType,
             EventHandler<TResponse> successHandler,
             EventHandler<ErrorResponseDto> errorHandler,
@@ -43,7 +43,6 @@ namespace Services.Dto
                 requestBody = SerializeDto(requestDto);
             }
 
-
             using var req = new UnityWebRequest(url, requestType);
             if (requestBody != null)
             {
@@ -52,7 +51,18 @@ namespace Services.Dto
 
             req.downloadHandler = new DownloadHandlerBuffer();
             req.SetRequestHeader(ContentType, ApplicationJson);
-            req.SetRequestHeader(Authorization, GetTokenValueHeader(_loginService.UserContext));
+            if (!url.Contains("auth"))
+            {
+                if (_loginService.UserContext == null)
+                {
+                    Debug.LogWarning("Request formed before user context is obtained");
+                    yield return null;
+                }
+                else
+                {
+                    req.SetRequestHeader(Authorization, GetTokenValueHeader(_loginService.UserContext));
+                }
+            }
 
             yield return req.SendWebRequest();
             switch (req.result)
@@ -74,23 +84,20 @@ namespace Services.Dto
                         errorHandler?.Invoke(this, new ErrorResponseDto { message = response?.message });
                     }
 
-                    StopCoroutine(DoRequestCoroutine(url, requestBody, requestType, successHandler, errorHandler));
                     break;
                 case UnityWebRequest.Result.ConnectionError:
                 case UnityWebRequest.Result.ProtocolError:
                 case UnityWebRequest.Result.DataProcessingError:
                     errorHandler.Invoke(this, new ErrorResponseDto { message = req.error });
-                    StopCoroutine(DoRequestCoroutine(url, requestBody, requestType, successHandler, errorHandler));
                     break;
                 default:
-                    StopCoroutine(DoRequestCoroutine(url, requestBody, requestType, successHandler, errorHandler));
                     throw new ArgumentOutOfRangeException();
             }
         }
 
         public IEnumerator DoRequestCoroutine<TResponse>(
             string path,
-            string requestBody,
+            RequestDto requestDto,
             string requestType,
             EventHandler<TResponse> successHandler,
             EventHandler<ErrorResponseDto> errorHandler)
@@ -98,7 +105,7 @@ namespace Services.Dto
         {
             return DoRequestCoroutine(
                 path,
-                requestBody,
+                requestDto,
                 requestType,
                 successHandler,
                 errorHandler,

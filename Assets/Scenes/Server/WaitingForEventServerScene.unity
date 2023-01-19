@@ -379,7 +379,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e399dde6b1f3b744b488a25b7d3aaa0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  servicesConfiguration: {fileID: 11400000, guid: da508565c2430994a946a08f87adf3e3, type: 2}
+  servicesConfiguration: {fileID: 11400000, guid: fe45952d386400b43ac3f3477a26dc38, type: 2}
 --- !u!4 &1399231384
 Transform:
   m_ObjectHideFlags: 0

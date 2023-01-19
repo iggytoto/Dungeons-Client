@@ -19,7 +19,7 @@ namespace Services.TrainingYard
             StartCoroutine(
                 APIAdapter.DoRequestCoroutine<ListResponseDto<UnitDto>>(
                     GetRosterForUserPath,
-                    ApiAdapter.SerializeDto(new UserIdRequestDto { userId = userId }),
+                    new UserIdRequestDto { userId = userId },
                     ApiAdapter.Get,
                     (o, response) => onSuccessHandler.Invoke(o, response.items.Select(dto => dto.ToDomain())),
                     (o, err) => onErrorHandler.Invoke(o, err.message)));
@@ -31,7 +31,7 @@ namespace Services.TrainingYard
             StartCoroutine(
                 APIAdapter.DoRequestCoroutine<ListResponseDto<UnitDto>>(
                     GetRosterForUserPath,
-                    ApiAdapter.SerializeDto(new UserIdRequestDto { userId = userId }),
+                    new UserIdRequestDto { userId = userId },
                     ApiAdapter.Get,
                     (_, response) => t.SetResult(response.items.Select(dto => dto.ToDomain())),
                     (_, error) => t.SetException(new Exception(error.message))));
@@ -45,7 +45,7 @@ namespace Services.TrainingYard
             StartCoroutine(
                 APIAdapter.DoRequestCoroutine<ResponseBaseDto>(
                     SaveMatchResultPath,
-                    ApiAdapter.SerializeDto(new MatchResultDto
+                    new MatchResultDto
                     {
                         date = date,
                         matchType = matchMakingType,
@@ -53,7 +53,7 @@ namespace Services.TrainingYard
                         userOneId = userOneId,
                         userTwoId = userTwoId,
                         winnerUserId = winnerUserId,
-                    }),
+                    },
                     ApiAdapter.Post,
                     null,
                     null));

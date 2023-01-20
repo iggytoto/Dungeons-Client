@@ -53,14 +53,13 @@
      <Compile Include="Assets\Model\Damage\DamageType.cs" />
      <Compile Include="Assets\Services\IService.cs" />
      <Compile Include="Assets\Model\Items\ItemType.cs" />
-     <Compile Include="Assets\Scripts\Ui\Scenes\TrainingYard\TrainingUnitSelectionModalController.cs" />
+     <Compile Include="Assets\Scripts\Ui\Scenes\TrainingYard\TrainingUnitSelectionModalUiController.cs" />
      <Compile Include="Assets\Services\Events\EventsService.cs" />
      <Compile Include="Assets\Scripts\BattleBehaviour\Common\BattleBehaviorSelector.cs" />
      <Compile Include="Assets\Scripts\Ui\UnitHpBarController.cs" />
      <Compile Include="Assets\Services\Common\Dto\DtoDeserializaer\Skills\HumanClericSkillsDtoDeserializer.cs" />
      <Compile Include="Assets\Scripts\Ui\Scenes\Town\BuyUnitPopupUiController.cs" />
      <Compile Include="Assets\Services\Events\IEventsService.cs" />
-     <Compile Include="Assets\Scripts\Ui\Scenes\TrainingYard\TrainingYardTeamStatusUiController.cs" />
      <Compile Include="Assets\Services\TrainingYard\MockTrainingYardService.cs" />
      <Compile Include="Assets\Scenes\SceneConstants.cs" />
      <Compile Include="Assets\Scripts\Animation\AnimationEventController.cs" />
@@ -185,7 +184,6 @@
      <Compile Include="Assets\Services\Common\Dto\UserIdRequestDto.cs" />
      <Compile Include="Assets\Services\Common\ApiAdapter.cs" />
      <Compile Include="Assets\Services\ServiceBase.cs" />
-     <Compile Include="Assets\Scripts\Ui\Scenes\TrainingYard\TrainingYardUnitStatusPanelController.cs" />
      <Compile Include="Assets\Scripts\BattleBehaviour\Common\BattleBehaviorTree.cs" />
      <Compile Include="Assets\Scripts\BattleBehaviour\Tasks\AttackOrAbilityBattleTask.cs" />
      <Compile Include="Assets\Services\MatchMaking\IMatchMakingService.cs" />
@@ -233,6 +231,7 @@
      <Compile Include="Assets\Services\Events\Dto\GetEventInstanceDataRequestDto.cs" />
      <Compile Include="Assets\Services\Events\EventInfo.cs" />
      <Compile Include="Assets\Services\Common\Dto\RequestDto.cs" />
+     <Compile Include="Assets\CameraRigController.cs" />
      <Folder Include="Assets" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\mergetool.ja.txt" />
      <Folder Include="Assets\Libs\Tiny Fantasy Icons\Keys" />

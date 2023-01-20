@@ -1802,7 +1802,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 027383c95232f8a469b1882b174bad19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bottomHorizontalBarrackUnitListUiController: {fileID: 6297196868654761357}
+  bottomHorizontalBarrackUnitListUiController: {fileID: 0}
   itemsPanelUiController: {fileID: 9068087972629753832}
   selectedUnitPanelUiController: {fileID: 5600937140702647748}
   trainingMatchPanelUiController: {fileID: 2505437048227620431}
@@ -3092,7 +3092,7 @@ GameObject:
   - component: {fileID: 2088230416495048714}
   - component: {fileID: 2151893261805236497}
   - component: {fileID: 8311328768751200562}
-  - component: {fileID: 6297196868654761357}
+  - component: {fileID: 865393146341972905}
   m_Layer: 0
   m_Name: BottomHorizontalBarrackUnitList
   m_TagString: Untagged
@@ -3159,7 +3159,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &6297196868654761357
+--- !u!114 &865393146341972905
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3168,7 +3168,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6248316285202548895}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c812677b3a449624aa62d24fba6980de, type: 3}
+  m_Script: {fileID: 11500000, guid: 1ba7f5c0dfd34b3f8d8faf220821a6ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   unitButtonPrefab: {fileID: 3298880151669585274, guid: 775dc29fe02945a46b52cacdb7429319, type: 3}

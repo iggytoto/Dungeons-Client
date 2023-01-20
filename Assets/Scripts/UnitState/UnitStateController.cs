@@ -19,8 +19,8 @@ public class UnitStateController : NetworkBehaviour
     public virtual UnitType UnitType => Unit.Value.type;
     public BattleBehavior BattleBehavior => Unit.Value.battleBehavior;
     public virtual Skills Skills => Unit.Value.Skills;
-    public float MaxHp => Unit.Value.maxHp;
-    public float HitPoints => Unit.Value.hitPoints;
+    public long MaxHp => Unit.Value.maxHp;
+    public long HitPoints => Unit.Value.hitPoints;
     public string Name => Unit.Value.Name;
     public long OwnerId => Unit.Value.ownerId;
     public long Id => Unit.Value.Id;
@@ -32,6 +32,8 @@ public class UnitStateController : NetworkBehaviour
     public long Mana => Unit.Value.mana;
     public long MaxMana => Unit.Value.maxMana;
 
+    public List<Effect> Effects { get; } = new();
+
     private ResourcesManager _resourcesManager;
 
     private void Start()
@@ -41,12 +43,11 @@ public class UnitStateController : NetworkBehaviour
 
     private float GetMovementSpeedModificator()
     {
-        return _effects.Select(e => e as IMovementSpeedPercentageChangeEffect).NotNull()
+        return Effects.Select(e => e as IMovementSpeedPercentageChangeEffect).NotNull()
             .Sum(e => e.GetValue()) / 100f;
     }
 
     protected readonly NetworkVariable<Unit> Unit = new();
-    private readonly List<Effect> _effects = new();
 
     public void Init(Unit unit, int? teamId = null)
     {
@@ -84,8 +85,8 @@ public class UnitStateController : NetworkBehaviour
     public TEffect ApplyEffect<TEffect>() where TEffect : Effect
     {
         var e = gameObject.AddComponent<TEffect>();
-        _effects.Add(e);
-        e.OnDestroy += () => _effects.Remove(e);
+        Effects.Add(e);
+        e.OnDestroy += () => Effects.Remove(e);
         return e;
     }
 
@@ -109,14 +110,14 @@ public class UnitStateController : NetworkBehaviour
     private float GetCurrentDamageReduction()
     {
         var armorValue = Unit.Value.armor / 100;
-        var effectsValue = _effects.Select(e => e as IArmorChangeEffect).NotNull().Sum(e => e.GetAmount()) / 100;
+        var effectsValue = Effects.Select(e => e as IArmorChangeEffect).NotNull().Sum(e => e.GetAmount()) / 100;
         return armorValue + effectsValue;
     }
 
     private float GetCurrentMagicDamageReduction()
     {
         var armorValue = Unit.Value.magicResistance / 100;
-        var effectsValue = _effects.Select(e => e as IMagicResistanceChangeEffect).NotNull().Sum(e => e.GetAmount());
+        var effectsValue = Effects.Select(e => e as IMagicResistanceChangeEffect).NotNull().Sum(e => e.GetAmount());
         return armorValue + effectsValue;
     }
 
@@ -133,7 +134,7 @@ public class UnitStateController : NetworkBehaviour
 
     public void ClearPositiveEffects()
     {
-        foreach (var e in _effects.Where(e => e is IPositiveEffect).ToList())
+        foreach (var e in Effects.Where(e => e is IPositiveEffect).ToList())
         {
             Destroy(e);
         }
@@ -141,7 +142,7 @@ public class UnitStateController : NetworkBehaviour
 
     public void ClearNegativeEffects()
     {
-        foreach (var e in _effects.Where(e => e is INegativeEffect).ToList())
+        foreach (var e in Effects.Where(e => e is INegativeEffect).ToList())
         {
             Destroy(e);
         }

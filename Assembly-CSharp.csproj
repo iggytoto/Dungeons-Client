@@ -53,10 +53,9 @@
      <Compile Include="Assets\Model\Damage\DamageType.cs" />
      <Compile Include="Assets\Services\IService.cs" />
      <Compile Include="Assets\Model\Items\ItemType.cs" />
-     <Compile Include="Assets\Scripts\Ui\Scenes\TrainingYard\TrainingUnitSelectionModalUiController.cs" />
+     <Compile Include="Assets\Scripts\Ui\Scenes\Town\TrainingUnitSelectionModalUiController.cs" />
      <Compile Include="Assets\Services\Events\EventsService.cs" />
      <Compile Include="Assets\Scripts\BattleBehaviour\Common\BattleBehaviorSelector.cs" />
-     <Compile Include="Assets\Scripts\Ui\UnitHpBarController.cs" />
      <Compile Include="Assets\Services\Common\Dto\DtoDeserializaer\Skills\HumanClericSkillsDtoDeserializer.cs" />
      <Compile Include="Assets\Scripts\Ui\Scenes\Town\BuyUnitPopupUiController.cs" />
      <Compile Include="Assets\Services\Events\IEventsService.cs" />
@@ -131,7 +130,7 @@
      <Compile Include="Assets\Scripts\BattleBehaviour\DoNothingBattleBehaviour.cs" />
      <Compile Include="Assets\Scripts\Ui\Scenes\Town\Skills\HumanClericSkillsPanelUiController.cs" />
      <Compile Include="Assets\Services\MatchMaking\Dto\MatchMakingApplyAsServerRequestDto.cs" />
-     <Compile Include="Assets\TrainingMatchPanelUiController.cs" />
+     <Compile Include="Assets\Scripts\Ui\Scenes\Town\TrainingMatchPanelUiController.cs" />
      <Compile Include="Assets\Services\MatchMaking\MatchMakingService.cs" />
      <Compile Include="Assets\Services\Common\Dto\DtoDeserializaer\Skills\HumanWarriorSkillsDtoDeserializer.cs" />
      <Compile Include="Assets\Scripts\BattleBehaviour\Common\NavMeshAgentUnitTaskBase.cs" />
@@ -176,9 +175,8 @@
      <Compile Include="Assets\Model\Units\Skills\HumanSpearmanSkills.cs" />
      <Compile Include="Assets\Services\Common\Dto\DtoDeserializaer\DefaultListDtoDeserializer.cs" />
      <Compile Include="Assets\Model\Units\Humans\HumanSpearman.cs" />
-     <Compile Include="Assets\Scripts\Scenes\ServerScenes\WaitingForEventServerSceneController.cs" />
+     <Compile Include="Assets\Scripts\Ui\Scenes\ServerScenes\WaitingForEventServerSceneController.cs" />
      <Compile Include="Assets\Scripts\BattleBehaviour\Tasks\MoveToRandomNearPositionTask.cs" />
-     <Compile Include="Assets\Scripts\Ui\Scenes\Town\BottomHorizontalBarrackUnitListUiController.cs" />
      <Compile Include="Assets\Scripts\DebugUnitStateController.cs" />
      <Compile Include="Assets\Services\Common\Dto\DtoDeserializaer\DefaultListResponseDtoDeserializer.cs" />
      <Compile Include="Assets\Services\Common\Dto\UserIdRequestDto.cs" />
@@ -195,7 +193,6 @@
      <Compile Include="Assets\Scripts\Ui\Scenes\Town\Skills\HumanSpearmanSkillsPanelUiController.cs" />
      <Compile Include="Assets\Services\Common\Dto\DtoDeserializaer\UnitDtoDeserializer.cs" />
      <Compile Include="Assets\Scripts\BattleBehaviour\Tasks\MoveToTargetOnAttackRangeTask.cs" />
-     <Compile Include="Assets\Scripts\Ui\BillboardUiBehavior.cs" />
      <Compile Include="Assets\Services\Common\Dto\ErrorResponseDto.cs" />
      <Compile Include="Assets\Scripts\Ui\Scenes\Town\TownSceneUiController.cs" />
      <Compile Include="Assets\Services\Events\Dto\EventInstanceResultDto.cs" />
@@ -226,12 +223,14 @@
      <Compile Include="Assets\Model\Events\EventInstanceStatus.cs" />
      <Compile Include="Assets\Model\Currency\Currency.cs" />
      <Compile Include="Assets\Scripts\UnitState\Effects\Interfaces\INegativeEffect.cs" />
-     <Compile Include="Assets\PhoenixRaidSceneFlowController.cs" />
+     <Compile Include="Assets\Scripts\Ui\Scenes\PhoenixRaidSceneFlowController.cs" />
      <Compile Include="Assets\Services\Events\MockEventsService.cs" />
      <Compile Include="Assets\Services\Events\Dto\GetEventInstanceDataRequestDto.cs" />
      <Compile Include="Assets\Services\Events\EventInfo.cs" />
      <Compile Include="Assets\Services\Common\Dto\RequestDto.cs" />
      <Compile Include="Assets\CameraRigController.cs" />
+     <Compile Include="Assets\Scripts\Ui\Common\UnitListPanelUiController.cs" />
+     <Compile Include="Assets\UnitStateBarUiController.cs" />
      <Folder Include="Assets" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\mergetool.ja.txt" />
      <Folder Include="Assets\Libs\Tiny Fantasy Icons\Keys" />
@@ -299,7 +298,6 @@
      <None Include="Library\PackageCache\com.unity.terrain-tools@4.0.3\Shaders\NoiseLib\Implementation\BillowImpl.hlsl" />
      <None Include="Library\PackageCache\com.unity.terrain-tools@4.0.3\Shaders\NoiseLib\None\Voronoi.hlsl" />
      <Folder Include="Assets\Libs\TerrainSampleAssets\Models" />
-     <Folder Include="Assets\Scripts\Scenes" />
      <None Include="Library\PackageCache\com.unity.terrain-tools@4.0.3\Shaders\TwistHeight.shader" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\clientcommon.es.txt" />
      <Folder Include="Library\PackageCache\com.unity.cinemachine@2.8.9" />
@@ -333,6 +331,7 @@
      <Folder Include="Library\PackageCache\com.unity.terrain-tools@4.0.3" />
      <None Include="Assets\Libs\Medieval Village Building Pack\Shaders\RMHATransparency.shader" />
      <Folder Include="Assets\Services\Login\Dto" />
+     <Folder Include="Assets\Resources\Images" />
      <Folder Include="Assets\Services" />
      <Folder Include="Assets\Libs\Blink\Art\Weapons" />
      <Folder Include="Assets\Libs\GUI_Parts\Icons" />
@@ -729,7 +728,7 @@
      <Folder Include="Assets\Libs\Medieval Village Building Pack" />
      <None Include="Library\PackageCache\com.unity.terrain-tools@4.0.3\Shaders\PaintHeight.shader" />
      <Folder Include="Library\PackageCache\com.unity.render-pipelines.high-definition@12.1.8\Tests" />
-     <Folder Include="Assets\Scripts\Scenes\ServerScenes" />
+     <Folder Include="Assets\Scripts\Ui\Scenes\ServerScenes" />
      <None Include="Library\PackageCache\com.unity.modules.terrain@1.0.0\package.json" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\commontypes.ko.txt" />
      <None Include="Library\PackageCache\com.unity.cinemachine@2.8.9\package.json" />

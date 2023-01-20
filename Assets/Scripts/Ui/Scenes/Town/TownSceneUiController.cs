@@ -1,11 +1,12 @@
 using System.Collections.Specialized;
+using DefaultNamespace.Ui.Scenes.Town;
 using Model.Items;
 using Services;
 using UnityEngine;
 
 public class TownSceneUiController : MonoBehaviour
 {
-    [SerializeField] private BottomHorizontalBarrackUnitListUiController bottomHorizontalBarrackUnitListUiController;
+    [SerializeField] private UnitListPanelUiController bottomHorizontalBarrackUnitListUiController;
     [SerializeField] private ItemsPanelUiController itemsPanelUiController;
     [SerializeField] private SelectedUnitPanelUiController selectedUnitPanelUiController;
     [SerializeField] private TrainingMatchPanelUiController trainingMatchPanelUiController;

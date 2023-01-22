@@ -1,12 +1,11 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using Model.Events;
 using Model.Units;
 using Model.Units.Humans;
-using Services.Dto;
 using UnityEngine;
-using Event = Model.Events.Event;
 using EventType = Model.Events.EventType;
 
 namespace Services.Events
@@ -18,29 +17,24 @@ namespace Services.Events
         public string EndpointAddress { get; set; }
         public ushort EndpointPort { get; set; }
 
-        private void Start()
-        {
-            _barrackService = FindObjectOfType<GameService>().BarrackService;
-        }
-
         public void InitService()
         {
         }
 
         public EventInfo EventInfo { get; private set; }
+        public ObservableCollection<EventInfo> EventInfos { get; private set; }
+
+        private void Start()
+        {
+            _barrackService = FindObjectOfType<GameService>().BarrackService;
+        }
 
         public void Register(List<long> unitsIds, EventType type, Action<string> onError)
         {
-            foreach (var unitId in unitsIds)
+            foreach (var unit in unitsIds.Select(unitId => _barrackService.AvailableUnits.First(u => u.Id == unitId)))
             {
-                var unit = _barrackService.AvailableUnits.First(u => u.Id == unitId);
                 unit.activity = UnitActivity.Event;
             }
-        }
-
-        public void Status(Action<List<Event>> onSuccessHandler, Action<string> onError)
-        {
-            throw new NotImplementedException();
         }
 
         public void ApplyAsServer(string host, string port, Action<EventInstance> onSuccessHandler,
@@ -58,7 +52,7 @@ namespace Services.Events
                     EventId = 1,
                     EventType = EventType.PhoenixRaid
                 });
-            EventInfo = new EventInfo(1, EventType.PhoenixRaid);
+            EventInfo = new EventInfo(1, EventType.PhoenixRaid, 1);
         }
 
         public void GetEventInstanceRosters(Action<List<Unit>> onSuccessHandler,

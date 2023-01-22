@@ -1,31 +1,45 @@
+using System.Collections.Specialized;
 using System.Linq;
 using DefaultNamespace.Ui.Scenes.Town;
 using Services;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using EventInfo = Services.Events.EventInfo;
 using EventType = Model.Events.EventType;
 
 public class PhoenixRaidPanelUiController : UnitListPanelUiController
 {
     [SerializeField] private Button registerRosterButton;
-    [SerializeField] private Button cancelButton;
+    [SerializeField] private Button connectToEventButton;
     private IEventsService _eventsService;
-
 
     private void Start()
     {
+        connectToEventButton.gameObject.SetActive(false);
         _eventsService = FindObjectOfType<GameService>().EventsService;
         registerRosterButton.onClick.AddListener(OnRegisterClicked);
-        cancelButton.onClick.AddListener(OnCancelClicked);
         registerRosterButton.enabled = false;
-        cancelButton.enabled = true;
         OnUnitClicked += OnUnitClickedInternal;
+        _eventsService.EventInfos.CollectionChanged += (_, events) => OnEventInfosChanged(events);
+        connectToEventButton.onClick.AddListener(OnConnectToEventClicked);
     }
 
-    private void OnCancelClicked()
+    private void OnConnectToEventClicked()
     {
-        ClearUnits();
-        gameObject.SetActive(false);
+        SceneManager.LoadScene(SceneConstants.PhoenixRaidSceneName);
+    }
+
+    private void OnEventInfosChanged(NotifyCollectionChangedEventArgs events)
+    {
+        if (events.NewItems != null)
+        {
+            foreach (EventInfo ei in events.NewItems)
+            {
+                if (ei.EventType != EventType.PhoenixRaid) continue;
+                connectToEventButton.gameObject.SetActive(true);
+            }
+        }
     }
 
     private void OnRegisterClicked()

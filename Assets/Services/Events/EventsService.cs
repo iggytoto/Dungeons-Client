@@ -1,25 +1,39 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using Model.Events;
 using Services.Common.Dto;
 using Services.Dto;
 using Services.Events.Dto;
 using UnityEngine;
-using Event = Model.Events.Event;
 using EventType = Model.Events.EventType;
 
 namespace Services.Events
 {
     public class EventsService : ServiceBase, IEventsService
     {
+        [SerializeField] private float eventsStatusRefreshInterval = 15;
+
         private const string RegisterPath = "/events/register";
         private const string StatusPath = "/events/status";
         private const string ApplyAsServerPath = "/events/applyAsServer";
         private const string SaveResultPath = "/events/saveEventInstanceResult";
         private const string GetDataPath = "/events/getData";
 
+
+        private float _currentEventStatusRefreshTimer;
         public EventInfo EventInfo { get; private set; }
+        public ObservableCollection<EventInfo> EventInfos { get; } = new();
+
+
+        private void Update()
+        {
+            _currentEventStatusRefreshTimer -= Time.deltaTime;
+            if (!(_currentEventStatusRefreshTimer <= 0)) return;
+            RefreshEventsStatuses();
+            _currentEventStatusRefreshTimer = eventsStatusRefreshInterval;
+        }
 
         public void Register(List<long> unitsIds, EventType type, Action<string> onError)
         {
@@ -33,17 +47,6 @@ namespace Services.Events
                     },
                     ApiAdapter.Post,
                     null,
-                    dto => onError?.Invoke(dto.message)));
-        }
-
-        public void Status(Action<List<Event>> onSuccessHandler, Action<string> onError)
-        {
-            StartCoroutine(
-                APIAdapter.DoRequestCoroutine<ListResponseDto<EventDto>>(
-                    StatusPath,
-                    null,
-                    ApiAdapter.Get,
-                    dto => onSuccessHandler?.Invoke(dto.items.Select(d => d.toDomain()).ToList()),
                     dto => onError?.Invoke(dto.message)));
         }
 
@@ -70,7 +73,7 @@ namespace Services.Events
 
         private void OnSuccessApplyAsServer(Action<EventInstance> onSuccessHandler, EventInstanceDto dto)
         {
-            EventInfo = dto != null ? new EventInfo(dto.id, dto.eventType) : null;
+            EventInfo = dto != null ? new EventInfo(dto.id, dto.eventType, dto.eventId) : null;
             onSuccessHandler?.Invoke(dto?.ToDomain());
         }
 
@@ -107,6 +110,33 @@ namespace Services.Events
         private void OnSuccessSaveResult(ResponseBaseDto e)
         {
             EventInfo = null;
+        }
+
+        private void RefreshEventsStatuses()
+        {
+            StartCoroutine(
+                APIAdapter.DoRequestCoroutine<ListResponseDto<EventInstanceDto>>(
+                    StatusPath,
+                    null,
+                    ApiAdapter.Get,
+                    OnRefreshEventsSuccess,
+                    OnError));
+        }
+
+        private void OnRefreshEventsSuccess(ListResponseDto<EventInstanceDto> listDto)
+        {
+            if (listDto == null || !listDto.items.Any()) return;
+            foreach (var eventInstanceDto in listDto.items.Where(
+                         eventDto => EventInfos.All(ei => ei.EventInstanceId != eventDto.id)))
+            {
+                EventInfos.Add(new EventInfo(eventInstanceDto.id, eventInstanceDto.eventType,
+                    eventInstanceDto.eventId));
+            }
+        }
+
+        private void OnError(ErrorResponseDto obj)
+        {
+            Debug.LogError(obj.message);
         }
     }
 }

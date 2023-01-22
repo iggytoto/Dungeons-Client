@@ -3903,7 +3903,7 @@ MonoBehaviour:
   unitButtonPrefab: {fileID: 3298880151669585274, guid: 15d8340e60471df4c9d82e3416d1fe03, type: 3}
   content: {fileID: 1720993334551432413}
   registerRosterButton: {fileID: 1743720711253189648}
-  cancelButton: {fileID: 1828774046723761150}
+  connectToEventButton: {fileID: 1828774046723761150}
 --- !u!1 &6575414750919962989
 GameObject:
   m_ObjectHideFlags: 0
@@ -7956,7 +7956,7 @@ PrefabInstance:
     - target: {fileID: 644767031974944850, guid: 970db9a7ca39b5349b38cbb153527b37, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: f9619563aba8b7542abf0aabdc638afe, type: 3}
+      objectReference: {fileID: 21300000, guid: 5659b073e19871d4da7394b6456da365, type: 3}
     - target: {fileID: 3113160457397948521, guid: 970db9a7ca39b5349b38cbb153527b37, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -8043,11 +8043,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6077613581527141969, guid: 970db9a7ca39b5349b38cbb153527b37, type: 3}
       propertyPath: m_text
-      value: 
+      value: Conntect
       objectReference: {fileID: 0}
     - target: {fileID: 6077613581527141969, guid: 970db9a7ca39b5349b38cbb153527b37, type: 3}
       propertyPath: m_fontSize
-      value: 24
+      value: 9.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 6077613581527141969, guid: 970db9a7ca39b5349b38cbb153527b37, type: 3}
+      propertyPath: m_fontSizeMin
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 7508849925657787819, guid: 970db9a7ca39b5349b38cbb153527b37, type: 3}
       propertyPath: m_Interactable

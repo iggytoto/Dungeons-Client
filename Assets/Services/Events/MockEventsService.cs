@@ -12,6 +12,9 @@ namespace Services.Events
 {
     public class MockEventsService : MonoBehaviour, IEventsService
     {
+        private static EventInfo _eventInfo;
+        private static ObservableCollection<EventInfo> _eventInfos = new();
+
         private IBarrackService _barrackService;
         public string EndpointHttpType { get; set; }
         public string EndpointAddress { get; set; }
@@ -21,8 +24,9 @@ namespace Services.Events
         {
         }
 
-        public EventInfo EventInfo { get; private set; }
-        public ObservableCollection<EventInfo> EventInfos { get; private set; }
+        public EventInfo EventInfo => _eventInfo;
+
+        public ObservableCollection<EventInfo> EventInfos => _eventInfos;
 
         private void Start()
         {
@@ -35,6 +39,8 @@ namespace Services.Events
             {
                 unit.activity = UnitActivity.Event;
             }
+
+            EventInfos.Add(new EventInfo(1, type, 1, "127.0.0.1", "7777"));
         }
 
         public void ApplyAsServer(string host, string port, Action<EventInstance> onSuccessHandler,
@@ -52,7 +58,7 @@ namespace Services.Events
                     EventId = 1,
                     EventType = EventType.PhoenixRaid
                 });
-            EventInfo = new EventInfo(1, EventType.PhoenixRaid, 1);
+            _eventInfo = new EventInfo(1, EventType.PhoenixRaid, 1);
         }
 
         public void GetEventInstanceRosters(Action<List<Unit>> onSuccessHandler,
@@ -72,7 +78,7 @@ namespace Services.Events
         {
             if (EventInfo == null)
                 throw new InvalidOperationException();
-            EventInfo = null;
+            _eventInfo = null;
         }
     }
 }

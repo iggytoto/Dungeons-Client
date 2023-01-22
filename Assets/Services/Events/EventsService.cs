@@ -13,6 +13,9 @@ namespace Services.Events
 {
     public class EventsService : ServiceBase, IEventsService
     {
+        private static EventInfo _eventInfo;
+        private static ObservableCollection<EventInfo> _eventInfos = new();
+
         [SerializeField] private float eventsStatusRefreshInterval = 15;
 
         private const string RegisterPath = "/events/register";
@@ -23,8 +26,8 @@ namespace Services.Events
 
 
         private float _currentEventStatusRefreshTimer;
-        public EventInfo EventInfo { get; private set; }
-        public ObservableCollection<EventInfo> EventInfos { get; } = new();
+        public EventInfo EventInfo => _eventInfo;
+        public ObservableCollection<EventInfo> EventInfos => _eventInfos;
 
 
         private void Update()
@@ -73,7 +76,7 @@ namespace Services.Events
 
         private void OnSuccessApplyAsServer(Action<EventInstance> onSuccessHandler, EventInstanceDto dto)
         {
-            EventInfo = dto != null ? new EventInfo(dto.id, dto.eventType, dto.eventId) : null;
+            _eventInfo = dto != null ? new EventInfo(dto.id, dto.eventType, dto.eventId, dto.host, dto.port) : null;
             onSuccessHandler?.Invoke(dto?.ToDomain());
         }
 
@@ -109,7 +112,7 @@ namespace Services.Events
 
         private void OnSuccessSaveResult(ResponseBaseDto e)
         {
-            EventInfo = null;
+            _eventInfo = null;
         }
 
         private void RefreshEventsStatuses()
@@ -130,7 +133,7 @@ namespace Services.Events
                          eventDto => EventInfos.All(ei => ei.EventInstanceId != eventDto.id)))
             {
                 EventInfos.Add(new EventInfo(eventInstanceDto.id, eventInstanceDto.eventType,
-                    eventInstanceDto.eventId));
+                    eventInstanceDto.eventId, eventInstanceDto.host, eventInstanceDto.port));
             }
         }
 

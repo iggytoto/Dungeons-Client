@@ -1,6 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
+using DefaultNamespace.Ui.Scenes.Town;
 using Services;
 using Services.Common;
 using Services.Dto;
@@ -9,16 +9,13 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class TrainingMatchPanelUiController : MonoBehaviour
+public class TrainingMatchPanelUiController : UnitListPanelUiController
 {
-    [SerializeField] private GameObject rosterSelectedUnitButtonPrefab;
-    [SerializeField] private GameObject selectedUnitsContainer;
     [SerializeField] private Button registerMatchMakingButton;
     [SerializeField] private Button cancelMatchMakingButton;
     [SerializeField] private TMP_Text matchMakingStatusText;
     [SerializeField] private Button closePanelButton;
 
-    private readonly List<UnitButtonUiController> _unitButtonUiControllers = new();
     private IMatchMakingService _matchMakingService;
 
     private void Start()
@@ -29,29 +26,27 @@ public class TrainingMatchPanelUiController : MonoBehaviour
         registerMatchMakingButton.enabled = false;
         cancelMatchMakingButton.enabled = false;
         closePanelButton.onClick.AddListener(OnClosePanelButton);
+        OnUnitClicked += OnUnitClickedInternal;
     }
 
     private void OnClosePanelButton()
     {
         OnCancelMatchMakingClicked();
         gameObject.SetActive(false);
-        foreach (var unitButtonUiController in _unitButtonUiControllers.ToList())
-        {
-            OnUnitClickedInternal(this, unitButtonUiController.Unit);
-        }
+        ClearUnits();
     }
 
     private void OnCancelMatchMakingClicked()
     {
         _matchMakingService.Cancel();
         cancelMatchMakingButton.enabled = false;
-        registerMatchMakingButton.enabled = _unitButtonUiControllers.Any();
+        registerMatchMakingButton.enabled = UnitButtonControllers.Any();
         StopAllCoroutines();
     }
 
     private void OnRegisterMatchMakingClicked()
     {
-        _matchMakingService.Register(_unitButtonUiControllers.Select(ubc => ubc.Unit.Id).ToList(),
+        _matchMakingService.Register(UnitButtonControllers.Select(ubc => ubc.Unit.Id).ToList(),
             UpdateStatusAndConnectIfServerFound, OnError);
         cancelMatchMakingButton.enabled = true;
         registerMatchMakingButton.enabled = false;
@@ -77,42 +72,29 @@ public class TrainingMatchPanelUiController : MonoBehaviour
     private void OnError(ErrorResponseDto e)
     {
         cancelMatchMakingButton.enabled = false;
-        registerMatchMakingButton.enabled = _unitButtonUiControllers.Any();
+        registerMatchMakingButton.enabled = UnitButtonControllers.Any();
         matchMakingStatusText.text = e.message;
     }
 
     public void AddToRoster(Unit u)
     {
-        if (!gameObject.activeSelf || _unitButtonUiControllers.Count > 3)
+        if (!gameObject.activeSelf || UnitButtonControllers.Count > 3)
         {
             return;
         }
 
-        AddToContentAsButton(u);
-        if (_unitButtonUiControllers.Any())
+        if (UnitButtonControllers.Count == 3) return;
+        AddUnit(u);
+        if (UnitButtonControllers.Any())
         {
             registerMatchMakingButton.enabled = true;
         }
     }
 
-    private void AddToContentAsButton(Unit u)
+    private void OnUnitClickedInternal(Unit unit)
     {
-        if (_unitButtonUiControllers.Any(x => x.Unit.Id == u.Id) ||
-            _unitButtonUiControllers.Count == 3) return;
-        var button = Instantiate(rosterSelectedUnitButtonPrefab, selectedUnitsContainer.transform);
-        var buttonController = button.GetComponent<UnitButtonUiController>();
-        buttonController.OnClick += OnUnitClickedInternal;
-        buttonController.Unit = u;
-        _unitButtonUiControllers.Add(buttonController);
-    }
-
-    private void OnUnitClickedInternal(object sender, Unit e)
-    {
-        var bc = _unitButtonUiControllers.FirstOrDefault(x => x.Unit.Id == e.Id);
-        if (bc == null) return;
-        Destroy(bc.gameObject);
-        _unitButtonUiControllers.Remove(bc);
-        if (!_unitButtonUiControllers.Any())
+        RemoveUnit(unit);
+        if (!UnitButtonControllers.Any())
         {
             registerMatchMakingButton.enabled = false;
         }

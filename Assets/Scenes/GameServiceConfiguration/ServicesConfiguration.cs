@@ -62,7 +62,7 @@ public class ServicesConfiguration : ScriptableObject
                 service = s;
                 break;
             case EventsServiceType.Mocked:
-                service = new MockEventsService();
+                service = gs.AddComponent<MockEventsService>();
                 break;
             default:
                 throw new ArgumentOutOfRangeException();

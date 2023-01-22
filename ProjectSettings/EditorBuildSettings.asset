@@ -5,10 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Server/WaitingForEventServerScene.unity
     guid: 616606f860e6a944e9d5b2f1ec46b9a3
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/PhoenixRaidScene.unity
     guid: 0145596a669ff48489c6639f77882af1
   - enabled: 0
@@ -17,7 +17,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/TownScene.unity
     guid: 293af72cb09dd2d4aa0f3178ff51d92c
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/TrainingYardScene.unity
     guid: d27de61e6b7e514499fa3f938cf5d344
   m_configObjects: {}

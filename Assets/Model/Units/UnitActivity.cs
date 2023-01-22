@@ -7,6 +7,7 @@ namespace Model.Units
     {
         Idle,
         Training,
-        Dead
+        Dead,
+        Event
     }
 }

@@ -74,7 +74,6 @@ public class SelectedUnitPanelUiController : MonoBehaviour
         var optionList = (from object bbValue in Enum.GetValues(typeof(BattleBehavior))
             select new TMP_Dropdown.OptionData(bbValue.ToString())).ToList();
         bbDropdown.options = optionList;
- 
     }
 
     private void Start()
@@ -101,8 +100,8 @@ public class SelectedUnitPanelUiController : MonoBehaviour
 
     private void SetUnit(Unit value)
     {
-        ClearItems();
         gameObject.SetActive(value != null);
+        ClearItems();
         _unit = value;
         if (_unit != null)
         {
@@ -111,6 +110,7 @@ public class SelectedUnitPanelUiController : MonoBehaviour
                 AddItem(item);
             }
         }
+
         UpdateView();
     }
 

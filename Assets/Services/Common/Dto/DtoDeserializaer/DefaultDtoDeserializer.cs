@@ -7,7 +7,7 @@ namespace Services.Common.Dto
     {
         public TResponse Deserialize(string json)
         {
-            return JsonConvert.DeserializeObject<TResponse>(json);
+            return string.IsNullOrEmpty(json) ? null : JsonConvert.DeserializeObject<TResponse>(json);
         }
     }
 }

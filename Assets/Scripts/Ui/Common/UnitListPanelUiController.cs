@@ -12,24 +12,32 @@ namespace DefaultNamespace.Ui.Scenes.Town
 
         public event Action<Unit> OnUnitClicked;
 
-        private readonly List<UnitButtonUiController> _unitButtonControllers = new();
+        protected readonly List<UnitButtonUiController> UnitButtonControllers = new();
 
         public void AddUnit(Unit unit)
         {
-            if (_unitButtonControllers.Any(x => x.Unit.Id == unit.Id)) return;
+            if (UnitButtonControllers.Any(x => x.Unit.Id == unit.Id)) return;
             var button = Instantiate(unitButtonPrefab, content.transform);
             var buttonController = button.GetComponent<UnitButtonUiController>();
             buttonController.OnClick += (_, u) => OnUnitClicked?.Invoke(u);
             buttonController.Unit = unit;
-            _unitButtonControllers.Add(buttonController);
+            UnitButtonControllers.Add(buttonController);
         }
 
         public void RemoveUnit(Unit unit)
         {
-            var bc = _unitButtonControllers.FirstOrDefault(x => x.Unit.Id == unit.Id);
+            var bc = UnitButtonControllers.FirstOrDefault(x => x.Unit.Id == unit.Id);
             if (bc == null) return;
             Destroy(bc.gameObject);
-            _unitButtonControllers.Remove(bc);
+            UnitButtonControllers.Remove(bc);
+        }
+
+        protected void ClearUnits()
+        {
+            foreach (var unitButtonUiController in UnitButtonControllers.ToList())
+            {
+                RemoveUnit(unitButtonUiController.Unit);
+            }
         }
     }
 }

@@ -70,18 +70,21 @@ namespace Services.Dto
                 case UnityWebRequest.Result.InProgress:
                     break;
                 case UnityWebRequest.Result.Success:
-                    var responseString = System.Text.Encoding.UTF8.GetString(req.downloadHandler.data);
+                    var responseString = req.downloadHandler.data == null
+                        ? null
+                        : System.Text.Encoding.UTF8.GetString(req.downloadHandler.data);
                     var response = dtoDeserializer.Deserialize(responseString);
-                    if (response is
-                        {
-                            code: 0
-                        })
+                    if (response == null)
+                    {
+                        successHandler?.Invoke(null);
+                    }
+                    else if (response.code == 0)
                     {
                         successHandler?.Invoke(response);
                     }
                     else
                     {
-                        errorHandler?.Invoke(new ErrorResponseDto { message = response?.message });
+                        errorHandler?.Invoke(new ErrorResponseDto { message = response.message });
                     }
 
                     break;

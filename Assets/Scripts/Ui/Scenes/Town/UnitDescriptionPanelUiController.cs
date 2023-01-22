@@ -14,7 +14,8 @@ public class UnitDescriptionPanelUiController : MonoBehaviour
 
     private void SetUnit(Unit value)
     {
-        descriptionText.text = value.type switch
+        gameObject.SetActive(value != null);
+        descriptionText.text = value?.type switch
         {
             UnitType.Dummy =>
                 "Dummy its not a unit. Actually you should not see this text at all because dummy units are not supposed to appear in the live game. If you see this please notify developers.",

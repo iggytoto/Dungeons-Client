@@ -70,8 +70,8 @@ namespace Services.Events
 
         private void OnSuccessApplyAsServer(Action<EventInstance> onSuccessHandler, EventInstanceDto dto)
         {
-            EventInfo = new EventInfo(dto.id, dto.eventType);
-            onSuccessHandler?.Invoke(dto.ToDomain());
+            EventInfo = dto != null ? new EventInfo(dto.id, dto.eventType) : null;
+            onSuccessHandler?.Invoke(dto?.ToDomain());
         }
 
         public void GetEventInstanceRosters(Action<List<Unit>> onSuccessHandler,

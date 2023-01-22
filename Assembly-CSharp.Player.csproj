@@ -231,6 +231,7 @@
      <Compile Include="Assets\CameraRigController.cs" />
      <Compile Include="Assets\Scripts\Ui\Common\UnitListPanelUiController.cs" />
      <Compile Include="Assets\UnitStateBarUiController.cs" />
+     <Compile Include="Assets\PhoenixRaidPanelUiController.cs" />
      <Folder Include="Assets" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\mergetool.ja.txt" />
      <Folder Include="Assets\Libs\Tiny Fantasy Icons\Keys" />

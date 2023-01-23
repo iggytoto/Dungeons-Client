@@ -8,13 +8,14 @@ using Model.Units.Humans;
 using UnityEngine;
 using Event = Model.Events.Event;
 using EventType = Model.Events.EventType;
+using Random = System.Random;
 
 namespace Services.Events
 {
     public class MockEventsService : MonoBehaviour, IEventsService
     {
-        private static EventInstance _eventInfo;
-        private static readonly ObservableCollection<EventInstance> _eventInfos = new();
+        private static readonly ObservableCollection<EventInstance> EventInstancesInfos = new();
+        private static readonly Random Rng = new();
 
         private IBarrackService _barrackService;
         public string EndpointHttpType { get; set; }
@@ -25,14 +26,7 @@ namespace Services.Events
         {
         }
 
-        public EventInstance EventInfo => _eventInfo;
-
-        public ObservableCollection<EventInstance> EventInfos => _eventInfos;
-
-        private void Start()
-        {
-            _barrackService = FindObjectOfType<GameService>().BarrackService;
-        }
+        public ObservableCollection<EventInstance> EventInstances => EventInstancesInfos;
 
         public void Register(List<long> unitsIds, EventType type, Action<Event> onSuccess, Action<string> onError)
         {
@@ -41,42 +35,32 @@ namespace Services.Events
                 unit.activity = UnitActivity.Event;
             }
 
-            onSuccess?.Invoke(new Event() { Id = 1, Status = EventStatus.Planned, EventType = type });
+            var e = new Event { Id = 1, Status = EventStatus.Planned, EventType = type };
+            EventInstances.Add(GetDefaultEventInstance(type));
+            onSuccess?.Invoke(e);
         }
 
         public void Cancel(long eventId, Action<string> onError)
         {
-            EventInfos.Clear();
+            EventInstances.Remove(EventInstances.First(ei => ei.eventId == eventId));
         }
 
         public void Status(Action<List<EventInstance>> onSuccess, Action<string> onError)
         {
-            onSuccess?.Invoke(EventInfos.ToList());
+            onSuccess?.Invoke(EventInstances.ToList());
         }
 
         public void ApplyAsServer(string host, string port, Action<EventInstance> onSuccessHandler,
             Action<string> onError)
         {
-            if (EventInfo != null)
-                throw new InvalidOperationException();
-            onSuccessHandler?.Invoke(
-                new EventInstance
-                {
-                    host = "localhost",
-                    port = "7777",
-                    id = 1,
-                    status = EventInstanceStatus.WaitingForPlayers,
-                    eventId = 1,
-                    eventType = EventType.PhoenixRaid
-                });
-            _eventInfo = new EventInstance { eventType = EventType.PhoenixRaid };
+            var ei = GetDefaultEventInstance(EventType.PhoenixRaid);
+            EventInstances.Add(ei);
+            onSuccessHandler?.Invoke(ei);
         }
 
-        public void GetEventInstanceRosters(Action<List<Unit>> onSuccessHandler,
+        public void GetEventInstanceRosters(long eventInstanceId, Action<List<Unit>> onSuccessHandler,
             Action<string> onError)
         {
-            if (EventInfo == null)
-                throw new InvalidOperationException();
             onSuccessHandler?.Invoke(
                 new List<Unit>
                 {
@@ -87,9 +71,25 @@ namespace Services.Events
 
         public void SaveResult(EventInstanceResult result, Action<string> onError)
         {
-            if (EventInfo == null)
-                throw new InvalidOperationException();
-            _eventInfo = null;
+            EventInstances.Remove(EventInstances.First(ei => ei.id == result.EventInstanceId));
+        }
+
+        private void Start()
+        {
+            _barrackService = FindObjectOfType<GameService>().BarrackService;
+        }
+
+        private static EventInstance GetDefaultEventInstance(EventType type)
+        {
+            return new EventInstance
+            {
+                host = "localhost",
+                port = "7777",
+                id = 1,
+                status = EventInstanceStatus.WaitingForPlayers,
+                eventId = 1,
+                eventType = type
+            };
         }
     }
 }

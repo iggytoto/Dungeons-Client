@@ -4406,7 +4406,7 @@ PrefabInstance:
     - target: {fileID: 4271042742655406263, guid: 9a1a320ee5e28424da56dea2279662cb, type: 3}
       propertyPath: servicesConfiguration
       value: 
-      objectReference: {fileID: 11400000, guid: fe45952d386400b43ac3f3477a26dc38, type: 2}
+      objectReference: {fileID: 11400000, guid: da508565c2430994a946a08f87adf3e3, type: 2}
     - target: {fileID: 4468862614129480654, guid: 9a1a320ee5e28424da56dea2279662cb, type: 3}
       propertyPath: m_Name
       value: GameService
@@ -5034,11 +5034,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1c975754a3e3ed4fab64f48bc200de0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  username: server
-  password: password
-  host: 127.0.0.1
-  port: 7777
-  updateInterval: 5
 --- !u!4 &995597571
 Transform:
   m_ObjectHideFlags: 0

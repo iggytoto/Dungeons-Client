@@ -222,6 +222,7 @@
      <Compile Include="Assets\PhoenixRaidPanelUiController.cs" />
      <Compile Include="Assets\PhoenixRaidClientSceneFlowController.cs" />
      <Compile Include="Assets\Model\Events\TrainingMatch3X3EventInstanceResult.cs" />
+     <Compile Include="Assets\Services\Events\Dto\TrainingMatch3X3EventInstanceResultDto.cs" />
      <Folder Include="Assets" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\mergetool.ja.txt" />
      <Folder Include="Assets\Libs\Tiny Fantasy Icons\Keys" />

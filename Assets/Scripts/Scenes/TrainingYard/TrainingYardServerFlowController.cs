@@ -19,18 +19,15 @@ public class TrainingYardServerFlowController : NetworkBehaviour
     {
         _eventsService = FindObjectOfType<GameService>().EventsService;
         _trainingBattleFlowController = FindObjectOfType<TrainingBattleFlowController>();
-        if (_eventsService.EventInfo == null)
+        var eventInstance =
+            _eventsService.EventInstances.FirstOrDefault(ei => ei.eventType == EventType.TrainingMatch3x3);
+        if (eventInstance == null)
         {
             throw new InvalidOperationException("Current event info is null, cannot process empty event");
         }
 
-        if (_eventsService.EventInfo.eventType != EventType.TrainingMatch3x3)
-        {
-            throw new InvalidOperationException("Wrong event type, scene cannot process this event type");
-        }
-
         Debug.Log("Loading event instance data...");
-        _eventsService.GetEventInstanceRosters(OnLoadEventInstanceDataSuccess, OnError);
+        _eventsService.GetEventInstanceRosters(eventInstance.id, OnLoadEventInstanceDataSuccess, OnError);
     }
 
     private void OnError(string obj)
@@ -47,7 +44,7 @@ public class TrainingYardServerFlowController : NetworkBehaviour
         }
 
         _trainingBattleFlowController.StartBattle(userIds[0], userIds[1], eventData,
-            _eventsService.EventInfos.First(ei => ei.eventType == EventType.TrainingMatch3x3).id);
+            _eventsService.EventInstances.First(ei => ei.eventType == EventType.TrainingMatch3x3).id);
         _trainingBattleFlowController.OnBattleFinished += OnBattleFinished;
     }
 

@@ -15,7 +15,6 @@ namespace Services.Events
 {
     public class EventsService : ServiceBase, IEventsService
     {
-        private static EventInstance _eventInfo;
         private static ObservableCollection<EventInstance> _eventInfos = new();
 
         [SerializeField] private float eventsStatusRefreshInterval = 60;
@@ -28,8 +27,7 @@ namespace Services.Events
 
 
         private float _currentEventStatusRefreshTimer;
-        public EventInstance EventInfo => _eventInfo;
-        public ObservableCollection<EventInstance> EventInfos => _eventInfos;
+        public ObservableCollection<EventInstance> EventInstances => _eventInfos;
 
 
         private void Update()
@@ -88,12 +86,6 @@ namespace Services.Events
             Action<EventInstance> onSuccessHandler,
             Action<string> onError)
         {
-            if (EventInfo != null)
-            {
-                throw new InvalidOperationException(
-                    "Server should process current event instance before register to the another one");
-            }
-
             StartCoroutine(
                 APIAdapter.DoRequestCoroutine<EventInstanceDto>(
                     ApplyAsServerPath,
@@ -105,24 +97,22 @@ namespace Services.Events
 
         private void OnSuccessApplyAsServer(Action<EventInstance> onSuccessHandler, EventInstanceDto dto)
         {
-            _eventInfo = dto?.ToDomain();
+            if (dto != null)
+            {
+                EventInstances.Add(dto.ToDomain());
+            }
+
             onSuccessHandler?.Invoke(dto?.ToDomain());
         }
 
-        public void GetEventInstanceRosters(Action<List<Unit>> onSuccessHandler,
+        public void GetEventInstanceRosters(long eventInstanceId, Action<List<Unit>> onSuccessHandler,
             Action<string> onError)
         {
-            if (EventInfo == null)
-            {
-                Debug.LogWarning("Cannot request event instance data, event info in not being received yet");
-                return;
-            }
-
             StartCoroutine(
                 APIAdapter.DoRequestCoroutine<ListResponseDto<UnitDto>>(
                     GetDataPath,
                     new GetEventInstanceDataRequestDto
-                        { eventInstanceId = EventInfo.id },
+                        { eventInstanceId = eventInstanceId },
                     ApiAdapter.Post,
                     dto => onSuccessHandler?.Invoke(dto.items.Select(d => d.ToDomain()).ToList()),
                     dto => onError?.Invoke(dto.message)));
@@ -130,25 +120,20 @@ namespace Services.Events
 
         public void SaveResult(EventInstanceResult result, Action<string> onError)
         {
+            EventInstances.Remove(EventInstances.First(ei => ei.id == result.EventInstanceId));
             StartCoroutine(
                 APIAdapter.DoRequestCoroutine<ResponseBaseDto>(
                     SaveResultPath,
                     EventInstanceResultDto.FromDomain(result),
                     ApiAdapter.Post,
-                    OnSuccessSaveResult,
+                    null,
                     dto => onError?.Invoke(dto.message)));
         }
-
-        private void OnSuccessSaveResult(ResponseBaseDto e)
-        {
-            _eventInfo = null;
-        }
-
 
         private void OnRefreshEventsSuccess(List<EventInstance> instances)
         {
             if (instances == null) return;
-            EventInfos.AddRange(instances.Where(eventDto => EventInfos.All(ei => ei.id != eventDto.id)));
+            EventInstances.AddRange(instances.Where(eventDto => EventInstances.All(ei => ei.id != eventDto.id)));
         }
     }
 }

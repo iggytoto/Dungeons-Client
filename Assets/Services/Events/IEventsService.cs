@@ -11,17 +11,11 @@ namespace Services
      */
     public interface IEventsService : IService
     {
-        /**
-         * Current event that is being processed by the server instance.
-         * Sets automatically after successful call ApplyAsServer.
-         * Removes automatically after successful call SaveResult.
-         */
-        public EventInstance EventInfo { get; }
 
         /**
          * Information about events that user is registered to.
          */
-        public ObservableCollection<EventInstance> EventInfos { get; }
+        public ObservableCollection<EventInstance> EventInstances { get; }
 
         /**
          * Registers player's roster on given event type
@@ -47,7 +41,7 @@ namespace Services
         /**
          * Gets units list that participate in event
          */
-        public void GetEventInstanceRosters(Action<List<Unit>> onSuccessHandler,
+        public void GetEventInstanceRosters(long eventInstanceId, Action<List<Unit>> onSuccessHandler,
             Action<string> onError);
 
         /**

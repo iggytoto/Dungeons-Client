@@ -11,13 +11,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/PhoenixRaidScene.unity
     guid: 0145596a669ff48489c6639f77882af1
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/LoginScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
     path: Assets/Scenes/TownScene.unity
     guid: 293af72cb09dd2d4aa0f3178ff51d92c
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/TrainingYardScene.unity
     guid: d27de61e6b7e514499fa3f938cf5d344
   m_configObjects: {}

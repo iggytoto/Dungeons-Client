@@ -49,7 +49,7 @@ public class UnitStateController : NetworkBehaviour
 
     protected readonly NetworkVariable<Unit> Unit = new();
 
-    public void Init(Unit unit, int? teamId = null)
+    public void Init(Unit unit, long? teamId = null)
     {
         Unit.Value = unit;
         BattleBehaviourManager.UpdateBattleBehaviour(this);

@@ -15,7 +15,7 @@ public class PhoenixRaidServerFlowController : MonoBehaviour
 {
 #if DEDICATED
 
-    private UnitStateController bossController  =  null;
+    [SerializeField] private UnitStateController bossController;
 
     private const int BattleTimeoutSeconds = 300;
 
@@ -30,23 +30,19 @@ public class PhoenixRaidServerFlowController : MonoBehaviour
         _eventsService = FindObjectOfType<GameService>().EventsService;
         _spawnPositions.AddRange(GameObject.FindGameObjectsWithTag("Respawn"));
         _resourcesManager = ResourcesManager.GetInstance();
-        if (_eventsService.EventInfo == null)
+        var eventInstance = _eventsService.EventInstances.FirstOrDefault(ei => ei.eventType == EventType.PhoenixRaid);
+        if (eventInstance == null)
         {
             throw new InvalidOperationException("Current event info is null, cannot process empty event");
         }
 
-        if (_eventsService.EventInfo.eventType != EventType.PhoenixRaid)
-        {
-            throw new InvalidOperationException("Wrong event type, scene cannot process this event type");
-        }
-
-        LoadEventInstanceData();
+        LoadEventInstanceData(eventInstance.id);
     }
 
-    private void LoadEventInstanceData()
+    private void LoadEventInstanceData(long eventInstanceId)
     {
         Debug.Log("Loading event instance data...");
-        _eventsService.GetEventInstanceRosters(OnLoadEventInstanceDataSuccess, OnError);
+        _eventsService.GetEventInstanceRosters(eventInstanceId, OnLoadEventInstanceDataSuccess, OnError);
     }
 
     private static void OnError(string e)

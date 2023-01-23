@@ -28,6 +28,7 @@ public sealed class TrainingBattleFlowController : NetworkBehaviour
     private ResourcesManager _resourcesManager;
     private IEventsService _eventsService;
     private long _eventInstanceId;
+    private Coroutine _waitForBattleEndCoroutine;
 
 
     private void Start()
@@ -45,16 +46,14 @@ public sealed class TrainingBattleFlowController : NetworkBehaviour
         _rosterOne.Clear();
         _rosterTwo.Clear();
         _eventInstanceId = eventInstanceId;
-        Debug.Log($"Requesting roster for user with id:{userOneId}");
         var rosterOne = rosters.Where(u => u.ownerId == _userOneId).ToList();
-        Debug.Log($"Requesting roster for user with id:{userTwoId}");
-        var rosterTwo = rosters.Where(u => u.ownerId == _userOneId).ToList();
+        var rosterTwo = rosters.Where(u => u.ownerId == _userTwoId).ToList();
         Debug.Log($"Spawning roster for user with id:{userOneId}");
         SpawnUnits(rosterOne, true);
         Debug.Log($"Spawning roster for user with id:{userTwoId}");
         SpawnUnits(rosterTwo, false);
         Debug.Log("Waiting for battle to finish...");
-        StartCoroutine(WaitForBattleEnd());
+        _waitForBattleEndCoroutine = StartCoroutine(WaitForBattleEnd());
     }
 
     private IEnumerator WaitForBattleEnd()
@@ -66,6 +65,7 @@ public sealed class TrainingBattleFlowController : NetworkBehaviour
             if (IsBattleEnded())
             {
                 StartCoroutine(EndBattle());
+                StopCoroutine(_waitForBattleEndCoroutine);
                 yield return null;
             }
 
@@ -73,6 +73,7 @@ public sealed class TrainingBattleFlowController : NetworkBehaviour
         }
 
         IsBattleEnded();
+        StopCoroutine(_waitForBattleEndCoroutine);
         StartCoroutine(EndBattle());
         yield return null;
     }
@@ -148,10 +149,15 @@ public sealed class TrainingBattleFlowController : NetworkBehaviour
     {
         var rosterOneDead = _rosterOne.All(x => x.IsDead());
         var rosterTwoDead = _rosterTwo.All(x => x.IsDead());
+        if (rosterOneDead && rosterTwoDead)
+        {
+            _winnerUserId = -1;
+            return true;
+        }
 
         switch (rosterOneDead)
         {
-            case true when !rosterTwoDead:
+            case true:
                 _winnerUserId = _userOneId;
                 return true;
             case false when rosterTwoDead:

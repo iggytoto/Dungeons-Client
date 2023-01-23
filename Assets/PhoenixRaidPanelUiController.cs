@@ -21,7 +21,7 @@ public class PhoenixRaidPanelUiController : UnitListPanelUiController
         registerRosterButton.onClick.AddListener(OnRegisterClicked);
         registerRosterButton.enabled = false;
         OnUnitClicked += OnUnitClickedInternal;
-        _eventsService.EventInfos.CollectionChanged += (_, events) => OnEventInfosChanged(events);
+        _eventsService.EventInstances.CollectionChanged += (_, events) => OnEventInfosChanged(events);
         connectToEventButton.onClick.AddListener(OnConnectToEventClicked);
     }
 

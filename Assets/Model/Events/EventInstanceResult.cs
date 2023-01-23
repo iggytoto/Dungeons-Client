@@ -6,6 +6,6 @@ namespace Model.Events
     {
         public long EventInstanceId;
         public EventType EventType;
-        public Dictionary<long, int> UnitsHitPoints;
+        public Dictionary<long, long> UnitsHitPoints;
     }
 }

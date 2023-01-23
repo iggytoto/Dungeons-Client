@@ -10,7 +10,7 @@ namespace Services.Events.Dto
     {
         public long eventInstanceId;
         public EventType eventType;
-        public Dictionary<long, int> unitsHitPoints;
+        public Dictionary<long, long> UnitsHitPoints;
 
         public static EventInstanceResultDto FromDomain(EventInstanceResult r)
         {
@@ -18,7 +18,7 @@ namespace Services.Events.Dto
             {
                 eventInstanceId = r.EventInstanceId,
                 eventType = r.EventType,
-                unitsHitPoints = r.UnitsHitPoints
+                UnitsHitPoints = r.UnitsHitPoints
             };
         }
     }

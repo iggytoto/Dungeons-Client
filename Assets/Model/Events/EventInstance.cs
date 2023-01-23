@@ -1,12 +1,15 @@
+using System;
+
 namespace Model.Events
 {
+    [Serializable]
     public class EventInstance
     {
-        public long Id;
-        public long EventId;
-        public string Host;
-        public string Port;
-        public EventInstanceStatus Status;
-        public EventType EventType;
+        public long id;
+        public long eventId;
+        public string host;
+        public string port;
+        public EventInstanceStatus status;
+        public EventType eventType;
     }
 }

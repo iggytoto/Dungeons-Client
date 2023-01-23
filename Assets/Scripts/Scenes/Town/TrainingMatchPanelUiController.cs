@@ -1,13 +1,15 @@
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using DefaultNamespace.Ui.Scenes.Town;
+using Model.Events;
 using Services;
-using Services.Common;
-using Services.Dto;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Event = Model.Events.Event;
+using EventType = Model.Events.EventType;
 
 public class TrainingMatchPanelUiController : UnitListPanelUiController
 {
@@ -15,12 +17,13 @@ public class TrainingMatchPanelUiController : UnitListPanelUiController
     [SerializeField] private Button cancelMatchMakingButton;
     [SerializeField] private TMP_Text matchMakingStatusText;
     [SerializeField] private Button closePanelButton;
+    private long? _mmEventId = null;
 
-    private IMatchMakingService _matchMakingService;
+    private IEventsService _eventsService;
 
     private void Start()
     {
-        _matchMakingService = FindObjectOfType<GameService>().MatchMakingService;
+        _eventsService = FindObjectOfType<GameService>().EventsService;
         registerMatchMakingButton.onClick.AddListener(OnRegisterMatchMakingClicked);
         cancelMatchMakingButton.onClick.AddListener(OnCancelMatchMakingClicked);
         registerMatchMakingButton.enabled = false;
@@ -38,7 +41,8 @@ public class TrainingMatchPanelUiController : UnitListPanelUiController
 
     private void OnCancelMatchMakingClicked()
     {
-        _matchMakingService.Cancel();
+        if (_mmEventId == null) return;
+        _eventsService.Cancel(_mmEventId.Value, OnError);
         cancelMatchMakingButton.enabled = false;
         registerMatchMakingButton.enabled = UnitButtonControllers.Any();
         StopAllCoroutines();
@@ -46,34 +50,40 @@ public class TrainingMatchPanelUiController : UnitListPanelUiController
 
     private void OnRegisterMatchMakingClicked()
     {
-        _matchMakingService.Register(UnitButtonControllers.Select(ubc => ubc.Unit.Id).ToList(),
-            UpdateStatusAndConnectIfServerFound, OnError);
+        _eventsService.Register(
+            UnitButtonControllers.Select(ubc => ubc.Unit.Id).ToList(),
+            EventType.TrainingMatch3x3,
+            OnRegisterSuccessResponse,
+            OnError);
         cancelMatchMakingButton.enabled = true;
         registerMatchMakingButton.enabled = false;
     }
 
-    private void UpdateStatusAndConnectIfServerFound(MatchDto e)
+    private void OnRegisterSuccessResponse(Event e)
     {
-        matchMakingStatusText.text = e.status;
-        if (e.status == "ServerFound")
-        {
-            SceneManager.LoadScene(SceneConstants.TrainingYardSceneName);
-        }
-
+        _mmEventId = e.Id;
         StartCoroutine(WaitForMatchCoroutine());
     }
 
     private IEnumerator WaitForMatchCoroutine()
     {
         yield return new WaitForSeconds(1);
-        _matchMakingService.Status(UpdateStatusAndConnectIfServerFound, OnError);
+        _eventsService.Status(UpdateStatusAndConnectIfServerFound, OnError);
     }
 
-    private void OnError(ErrorResponseDto e)
+    private void UpdateStatusAndConnectIfServerFound(List<EventInstance> obj)
+    {
+        var ei = obj.FirstOrDefault(e => e.eventType == EventType.TrainingMatch3x3);
+        if (ei == null) return;
+        StopAllCoroutines();
+        SceneManager.LoadScene(SceneConstants.TrainingYardSceneName);
+    }
+
+    private void OnError(string errorMessage)
     {
         cancelMatchMakingButton.enabled = false;
         registerMatchMakingButton.enabled = UnitButtonControllers.Any();
-        matchMakingStatusText.text = e.message;
+        matchMakingStatusText.text = errorMessage;
     }
 
     public void AddToRoster(Unit u)

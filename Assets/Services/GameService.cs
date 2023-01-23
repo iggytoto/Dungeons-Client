@@ -19,10 +19,8 @@ namespace Services
 
         public ILoginService LoginService { get; set; }
         public IBarrackService BarrackService { get; set; }
-        [Obsolete] public IMatchMakingService MatchMakingService { get; set; }
         public IPlayerAccountService PlayerAccountService { get; set; }
         public ITavernService TavernService { get; set; }
-        public ITrainingYardService TrainingYardService { get; set; }
         public IEventsService EventsService { get; set; }
 
         private void Awake()

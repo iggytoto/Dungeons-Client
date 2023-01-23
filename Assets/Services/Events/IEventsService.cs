@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Model.Events;
-using Services.Events;
 using EventType = Model.Events.EventType;
 
 namespace Services
@@ -17,17 +16,27 @@ namespace Services
          * Sets automatically after successful call ApplyAsServer.
          * Removes automatically after successful call SaveResult.
          */
-        public EventInfo EventInfo { get; }
+        public EventInstance EventInfo { get; }
 
         /**
          * Information about events that user is registered to.
          */
-        public ObservableCollection<EventInfo> EventInfos { get; }
+        public ObservableCollection<EventInstance> EventInfos { get; }
 
         /**
          * Registers player's roster on given event type
          */
-        public void Register(List<long> unitsIds, EventType type, Action<string> onError);
+        public void Register(List<long> unitsIds, EventType type, Action<Event> onSuccess, Action<string> onError);
+
+        /**
+         * Cancel event registration 
+         */
+        public void Cancel(long eventId, Action<string> onError);
+
+        /**
+         * Request status on all events for the player
+         */
+        public void Status(Action<List<EventInstance>> onSuccess, Action<string> onError);
 
         /**
          * Server method for processing application

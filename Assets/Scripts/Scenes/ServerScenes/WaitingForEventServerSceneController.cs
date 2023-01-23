@@ -68,12 +68,12 @@ public class WaitingForEventServerSceneController : NetworkBehaviour
         }
         else
         {
-            switch (_eventInstance.EventType)
+            switch (_eventInstance.eventType)
             {
                 case EventType.PhoenixRaid:
                     SceneManager.LoadScene(SceneConstants.PhoenixRaidSceneName);
                     break;
-                case EventType.MatchMaking3x3:
+                case EventType.TrainingMatch3x3:
                     SceneManager.LoadScene(SceneConstants.TrainingYardSceneName);
                     break;
                 default:

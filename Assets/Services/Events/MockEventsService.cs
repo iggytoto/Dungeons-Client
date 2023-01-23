@@ -6,14 +6,15 @@ using Model.Events;
 using Model.Units;
 using Model.Units.Humans;
 using UnityEngine;
+using Event = Model.Events.Event;
 using EventType = Model.Events.EventType;
 
 namespace Services.Events
 {
     public class MockEventsService : MonoBehaviour, IEventsService
     {
-        private static EventInfo _eventInfo;
-        private static ObservableCollection<EventInfo> _eventInfos = new();
+        private static EventInstance _eventInfo;
+        private static readonly ObservableCollection<EventInstance> _eventInfos = new();
 
         private IBarrackService _barrackService;
         public string EndpointHttpType { get; set; }
@@ -24,23 +25,33 @@ namespace Services.Events
         {
         }
 
-        public EventInfo EventInfo => _eventInfo;
+        public EventInstance EventInfo => _eventInfo;
 
-        public ObservableCollection<EventInfo> EventInfos => _eventInfos;
+        public ObservableCollection<EventInstance> EventInfos => _eventInfos;
 
         private void Start()
         {
             _barrackService = FindObjectOfType<GameService>().BarrackService;
         }
 
-        public void Register(List<long> unitsIds, EventType type, Action<string> onError)
+        public void Register(List<long> unitsIds, EventType type, Action<Event> onSuccess, Action<string> onError)
         {
             foreach (var unit in unitsIds.Select(unitId => _barrackService.AvailableUnits.First(u => u.Id == unitId)))
             {
                 unit.activity = UnitActivity.Event;
             }
 
-            EventInfos.Add(new EventInfo(1, type, 1, "127.0.0.1", "7777"));
+            onSuccess?.Invoke(new Event() { Id = 1, Status = EventStatus.Planned, EventType = type });
+        }
+
+        public void Cancel(long eventId, Action<string> onError)
+        {
+            EventInfos.Clear();
+        }
+
+        public void Status(Action<List<EventInstance>> onSuccess, Action<string> onError)
+        {
+            onSuccess?.Invoke(EventInfos.ToList());
         }
 
         public void ApplyAsServer(string host, string port, Action<EventInstance> onSuccessHandler,
@@ -51,14 +62,14 @@ namespace Services.Events
             onSuccessHandler?.Invoke(
                 new EventInstance
                 {
-                    Host = "localhost",
-                    Port = "7777",
-                    Id = 1,
-                    Status = EventInstanceStatus.WaitingForPlayers,
-                    EventId = 1,
-                    EventType = EventType.PhoenixRaid
+                    host = "localhost",
+                    port = "7777",
+                    id = 1,
+                    status = EventInstanceStatus.WaitingForPlayers,
+                    eventId = 1,
+                    eventType = EventType.PhoenixRaid
                 });
-            _eventInfo = new EventInfo(1, EventType.PhoenixRaid, 1);
+            _eventInfo = new EventInstance { eventType = EventType.PhoenixRaid };
         }
 
         public void GetEventInstanceRosters(Action<List<Unit>> onSuccessHandler,

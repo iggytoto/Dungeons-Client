@@ -1,11 +1,11 @@
 using System.Collections.Specialized;
 using System.Linq;
 using DefaultNamespace.Ui.Scenes.Town;
+using Model.Events;
 using Services;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using EventInfo = Services.Events.EventInfo;
 using EventType = Model.Events.EventType;
 
 public class PhoenixRaidPanelUiController : UnitListPanelUiController
@@ -34,9 +34,9 @@ public class PhoenixRaidPanelUiController : UnitListPanelUiController
     {
         if (events.NewItems != null)
         {
-            foreach (EventInfo ei in events.NewItems)
+            foreach (EventInstance ei in events.NewItems)
             {
-                if (ei.EventType != EventType.PhoenixRaid) continue;
+                if (ei.eventType != EventType.PhoenixRaid) continue;
                 connectToEventButton.gameObject.SetActive(true);
             }
         }
@@ -44,7 +44,7 @@ public class PhoenixRaidPanelUiController : UnitListPanelUiController
 
     private void OnRegisterClicked()
     {
-        _eventsService.Register(UnitButtonControllers.Select(ubc => ubc.Unit.Id).ToList(), EventType.PhoenixRaid,
+        _eventsService.Register(UnitButtonControllers.Select(ubc => ubc.Unit.Id).ToList(), EventType.PhoenixRaid, null,
             OnError);
     }
 

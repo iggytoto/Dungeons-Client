@@ -2,7 +2,6 @@ using System;
 using Services;
 using Services.Events;
 using Services.Login;
-using Services.TrainingYard;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -20,16 +19,10 @@ public class ServicesConfiguration : ScriptableObject
     [SerializeField] public float reconnectInterval = 5;
     [Header("Barrack")] [SerializeField] private BarrackServiceType barrackServiceType = BarrackServiceType.None;
 
-    [Header("MatchMaking")] [SerializeField] [Obsolete]
-    private MatchMakingServiceType matchMakingServiceType = MatchMakingServiceType.None;
-
     [Header("PlayerAccount")] [SerializeField]
     private PlayerAccountServiceType playerAccountServiceType = PlayerAccountServiceType.None;
 
     [Header("Tavern")] [SerializeField] private TavernServiceType tavernServiceType = TavernServiceType.None;
-
-    [Header("TrainingYard")] [SerializeField]
-    private TrainingYardServiceType trainingYardServiceType = TrainingYardServiceType.None;
 
     [Header("Events")] [SerializeField] private EventsServiceType eventsServiceType = EventsServiceType.None;
 
@@ -38,10 +31,8 @@ public class ServicesConfiguration : ScriptableObject
     {
         SetLoginService(gs);
         SetBarrackService(gs);
-        SetMatchMakingService(gs);
         SetPlayerAccountsService(gs);
         SetTavernService(gs);
-        SetTrainingYardService(gs);
         SetEventsService(gs);
     }
 
@@ -69,32 +60,6 @@ public class ServicesConfiguration : ScriptableObject
         }
 
         gs.EventsService = service;
-    }
-
-    private void SetTrainingYardService(GameService gs)
-    {
-        ITrainingYardService service;
-        switch (trainingYardServiceType)
-        {
-            case TrainingYardServiceType.None:
-                service = null;
-                break;
-            case TrainingYardServiceType.Mocked:
-                service = new MockTrainingYardService();
-                break;
-            case TrainingYardServiceType.Api:
-                var s = gs.AddComponent<TrainingYardService>();
-                s.EndpointAddress = apiHostAddress;
-                s.EndpointPort = apiHostPort;
-                s.EndpointHttpType = apiHostHttp;
-                s.InitService();
-                service = s;
-                break;
-            default:
-                throw new ArgumentOutOfRangeException();
-        }
-
-        gs.TrainingYardService = service;
     }
 
     private void SetTavernService(GameService gs)
@@ -132,33 +97,6 @@ public class ServicesConfiguration : ScriptableObject
             _ => throw new ArgumentOutOfRangeException()
         };
         gs.PlayerAccountService = service;
-    }
-
-    [Obsolete]
-    private void SetMatchMakingService(GameService gs)
-    {
-        IMatchMakingService service;
-        switch (matchMakingServiceType)
-        {
-            case MatchMakingServiceType.None:
-                service = null;
-                break;
-            case MatchMakingServiceType.Mocked:
-                service = new MockMatchMakingService();
-                break;
-            case MatchMakingServiceType.Api:
-                var s = gs.gameObject.AddComponent<MatchMakingService>();
-                s.EndpointAddress = apiHostAddress;
-                s.EndpointPort = apiHostPort;
-                s.EndpointHttpType = apiHostHttp;
-                s.InitService();
-                service = s;
-                break;
-            default:
-                throw new ArgumentOutOfRangeException();
-        }
-
-        gs.MatchMakingService = service;
     }
 
     private void SetBarrackService(GameService gs)
@@ -241,13 +179,6 @@ public class ServicesConfiguration : ScriptableObject
         Api
     }
 
-    public enum MatchMakingServiceType
-    {
-        None,
-        Mocked,
-        Api
-    }
-
     public enum PlayerAccountServiceType
     {
         None,
@@ -255,13 +186,6 @@ public class ServicesConfiguration : ScriptableObject
     }
 
     public enum TavernServiceType
-    {
-        None,
-        Mocked,
-        Api
-    }
-
-    public enum TrainingYardServiceType
     {
         None,
         Mocked,

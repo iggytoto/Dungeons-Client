@@ -6,17 +6,19 @@ using Model.Events;
 using Services.Common.Dto;
 using Services.Dto;
 using Services.Events.Dto;
+using Unity.VisualScripting;
 using UnityEngine;
+using Event = Model.Events.Event;
 using EventType = Model.Events.EventType;
 
 namespace Services.Events
 {
     public class EventsService : ServiceBase, IEventsService
     {
-        private static EventInfo _eventInfo;
-        private static ObservableCollection<EventInfo> _eventInfos = new();
+        private static EventInstance _eventInfo;
+        private static ObservableCollection<EventInstance> _eventInfos = new();
 
-        [SerializeField] private float eventsStatusRefreshInterval = 15;
+        [SerializeField] private float eventsStatusRefreshInterval = 60;
 
         private const string RegisterPath = "/events/register";
         private const string StatusPath = "/events/status";
@@ -26,22 +28,22 @@ namespace Services.Events
 
 
         private float _currentEventStatusRefreshTimer;
-        public EventInfo EventInfo => _eventInfo;
-        public ObservableCollection<EventInfo> EventInfos => _eventInfos;
+        public EventInstance EventInfo => _eventInfo;
+        public ObservableCollection<EventInstance> EventInfos => _eventInfos;
 
 
         private void Update()
         {
             _currentEventStatusRefreshTimer -= Time.deltaTime;
             if (!(_currentEventStatusRefreshTimer <= 0)) return;
-            RefreshEventsStatuses();
+            RefreshEventsStatuses(OnRefreshEventsSuccess, null);
             _currentEventStatusRefreshTimer = eventsStatusRefreshInterval;
         }
 
-        public void Register(List<long> unitsIds, EventType type, Action<string> onError)
+        public void Register(List<long> unitsIds, EventType type, Action<Event> onSuccess, Action<string> onError)
         {
             StartCoroutine(
-                APIAdapter.DoRequestCoroutine<ResponseBaseDto>(
+                APIAdapter.DoRequestCoroutine<EventDto>(
                     RegisterPath,
                     new EventRegisterRequestDto
                     {
@@ -49,7 +51,34 @@ namespace Services.Events
                         unitsIds = unitsIds
                     },
                     ApiAdapter.Post,
+                    dt => onSuccess?.Invoke(dt.toDomain()),
+                    dto => onError?.Invoke(dto.message)));
+        }
+
+        public void Cancel(long eventId, Action<string> onError)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Status(Action<List<EventInstance>> onSuccess, Action<string> onError)
+        {
+            RefreshEventsStatuses(statuses => { onSuccess?.Invoke(statuses); }, onError);
+            _currentEventStatusRefreshTimer = eventsStatusRefreshInterval;
+        }
+
+        private void RefreshEventsStatuses(Action<List<EventInstance>> onSuccess, Action<string> onError)
+        {
+            StartCoroutine(
+                APIAdapter.DoRequestCoroutine<ListResponseDto<EventInstanceDto>>(
+                    StatusPath,
                     null,
+                    ApiAdapter.Get,
+                    dto =>
+                    {
+                        var eventStatuses = dto.items.Select(d => d.ToDomain()).ToList();
+                        onSuccess?.Invoke(eventStatuses);
+                        OnRefreshEventsSuccess(eventStatuses);
+                    },
                     dto => onError?.Invoke(dto.message)));
         }
 
@@ -76,7 +105,7 @@ namespace Services.Events
 
         private void OnSuccessApplyAsServer(Action<EventInstance> onSuccessHandler, EventInstanceDto dto)
         {
-            _eventInfo = dto != null ? new EventInfo(dto.id, dto.eventType, dto.eventId, dto.host, dto.port) : null;
+            _eventInfo = dto?.ToDomain();
             onSuccessHandler?.Invoke(dto?.ToDomain());
         }
 
@@ -93,7 +122,7 @@ namespace Services.Events
                 APIAdapter.DoRequestCoroutine<ListResponseDto<UnitDto>>(
                     GetDataPath,
                     new GetEventInstanceDataRequestDto
-                        { eventInstanceId = EventInfo.EventInstanceId },
+                        { eventInstanceId = EventInfo.id },
                     ApiAdapter.Post,
                     dto => onSuccessHandler?.Invoke(dto.items.Select(d => d.ToDomain()).ToList()),
                     dto => onError?.Invoke(dto.message)));
@@ -115,31 +144,11 @@ namespace Services.Events
             _eventInfo = null;
         }
 
-        private void RefreshEventsStatuses()
-        {
-            StartCoroutine(
-                APIAdapter.DoRequestCoroutine<ListResponseDto<EventInstanceDto>>(
-                    StatusPath,
-                    null,
-                    ApiAdapter.Get,
-                    OnRefreshEventsSuccess,
-                    OnError));
-        }
 
-        private void OnRefreshEventsSuccess(ListResponseDto<EventInstanceDto> listDto)
+        private void OnRefreshEventsSuccess(List<EventInstance> instances)
         {
-            if (listDto == null || !listDto.items.Any()) return;
-            foreach (var eventInstanceDto in listDto.items.Where(
-                         eventDto => EventInfos.All(ei => ei.EventInstanceId != eventDto.id)))
-            {
-                EventInfos.Add(new EventInfo(eventInstanceDto.id, eventInstanceDto.eventType,
-                    eventInstanceDto.eventId, eventInstanceDto.host, eventInstanceDto.port));
-            }
-        }
-
-        private void OnError(ErrorResponseDto obj)
-        {
-            Debug.LogError(obj.message);
+            if (instances == null) return;
+            EventInfos.AddRange(instances.Where(eventDto => EventInfos.All(ei => ei.id != eventDto.id)));
         }
     }
 }

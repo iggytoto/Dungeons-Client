@@ -1,12 +1,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using DefaultNamespace;
+using Model.Events;
 using Services;
 using Unity.Netcode;
 using UnityEngine;
+using EventType = Model.Events.EventType;
 using Random = System.Random;
 
 public sealed class TrainingBattleFlowController : NetworkBehaviour
@@ -15,8 +16,7 @@ public sealed class TrainingBattleFlowController : NetworkBehaviour
     [SerializeField] private List<GameObject> teamTwoSpawnPositions = new();
 
     public event Action OnBattleFinished;
-    public ObservableCollection<Unit> UnitStatuses { get; } = new();
-    private ITrainingYardService _trainingYardService;
+
     private readonly List<UnitStateController> _rosterOne = new();
     private readonly List<Unit> _unitsRosterOne = new();
     private readonly List<UnitStateController> _rosterTwo = new();
@@ -26,16 +26,17 @@ public sealed class TrainingBattleFlowController : NetworkBehaviour
     private long _winnerUserId;
     private bool _isBattleInProgress;
     private ResourcesManager _resourcesManager;
+    private IEventsService _eventsService;
+    private long _eventInstanceId;
 
 
     private void Start()
     {
-        var gs = FindObjectOfType<GameService>();
-        _trainingYardService = gs.TrainingYardService;
         _resourcesManager = ResourcesManager.GetInstance();
+        _eventsService = FindObjectOfType<GameService>().EventsService;
     }
 
-    public async void StartBattle(long userOneId, long userTwoId)
+    public void StartBattle(long userOneId, long userTwoId, List<Unit> rosters, long eventInstanceId)
     {
         if (_isBattleInProgress) return;
         _isBattleInProgress = true;
@@ -43,10 +44,11 @@ public sealed class TrainingBattleFlowController : NetworkBehaviour
         _userTwoId = userTwoId;
         _rosterOne.Clear();
         _rosterTwo.Clear();
+        _eventInstanceId = eventInstanceId;
         Debug.Log($"Requesting roster for user with id:{userOneId}");
-        var rosterOne = await _trainingYardService.GetRosterForUserAsync(userOneId);
+        var rosterOne = rosters.Where(u => u.ownerId == _userOneId).ToList();
         Debug.Log($"Requesting roster for user with id:{userTwoId}");
-        var rosterTwo = await _trainingYardService.GetRosterForUserAsync(userTwoId);
+        var rosterTwo = rosters.Where(u => u.ownerId == _userOneId).ToList();
         Debug.Log($"Spawning roster for user with id:{userOneId}");
         SpawnUnits(rosterOne, true);
         Debug.Log($"Spawning roster for user with id:{userTwoId}");
@@ -98,7 +100,6 @@ public sealed class TrainingBattleFlowController : NetworkBehaviour
             Destroy(go);
         }
 
-        UnitStatuses.Clear();
         _rosterOne.Clear();
         _rosterTwo.Clear();
     }
@@ -109,16 +110,28 @@ public sealed class TrainingBattleFlowController : NetworkBehaviour
         var allUnits = new List<Unit>();
         allUnits.AddRange(_unitsRosterOne);
         allUnits.AddRange(_unitsRosterTwo);
-        _trainingYardService.SaveTrainingResult(
-            DateTime.Now,
-            "MatchMaking3x3",
-            _userOneId,
-            _userTwoId,
-            _winnerUserId,
-            ProcessBattleResultsForUnits(allUnits));
+        allUnits = ProcessBattleResultsForUnits(allUnits);
+        _eventsService.SaveResult(
+            new TrainingMatch3X3EventInstanceResult
+            {
+                Date = DateTime.Now,
+                WinnerId = _winnerUserId,
+                UserOneId = _userOneId,
+                UserTwoId = _userTwoId,
+                EventType = EventType.TrainingMatch3x3,
+                UnitsHitPoints = allUnits.ToDictionary(key => key.Id, value => value.hitPoints),
+                EventInstanceId = _eventInstanceId
+            },
+            OnError
+        );
     }
 
-    private IEnumerable<Unit> ProcessBattleResultsForUnits(List<Unit> allUnits)
+    private void OnError(string obj)
+    {
+        Debug.LogError(obj);
+    }
+
+    private List<Unit> ProcessBattleResultsForUnits(List<Unit> allUnits)
     {
         foreach (var unit in allUnits)
         {
@@ -156,7 +169,6 @@ public sealed class TrainingBattleFlowController : NetworkBehaviour
         var spawnPositions = new List<GameObject>(playerOne ? teamOneSpawnPositions : teamTwoSpawnPositions);
         foreach (var (unit, prefab) in unitToPrefabMap)
         {
-            UnitStatuses.Add(unit);
             var rng = new Random();
             var positionIndex = rng.Next(spawnPositions.Count);
             var position = spawnPositions[positionIndex];

@@ -1,7 +1,7 @@
 using System;
 using System.Linq;
+using Model.Events;
 using Services;
-using Services.Events;
 using Unity.Netcode;
 using Unity.Netcode.Transports.UTP;
 using UnityEngine;
@@ -16,7 +16,7 @@ public class PhoenixRaidClientSceneFlowController : MonoBehaviour
     private void Start()
     {
         _eventsService = FindObjectOfType<GameService>().EventsService;
-        var eiInfo = _eventsService.EventInfos.FirstOrDefault(ei => ei.EventType == EventType.PhoenixRaid);
+        var eiInfo = _eventsService.EventInfos.FirstOrDefault(ei => ei.eventType == EventType.PhoenixRaid);
         if (eiInfo == null)
         {
             Debug.LogError("There was no event info for PhoenixRaid returning back to Town");
@@ -27,23 +27,23 @@ public class PhoenixRaidClientSceneFlowController : MonoBehaviour
         StartNetCodeClient(eiInfo);
     }
 
-    private void StartNetCodeClient(EventInfo ei)
+    private void StartNetCodeClient(EventInstance ei)
     {
         var transport = (UnityTransport)NetworkManager.Singleton.NetworkConfig.NetworkTransport;
         transport.ConnectionData = new UnityTransport.ConnectionAddressData
         {
-            Address = ei.Host,
-            Port = Convert.ToUInt16(ei.Port)
+            Address = ei.host,
+            Port = Convert.ToUInt16(ei.port)
         };
         NetworkManager.Singleton.StartClient();
         NetworkManager.Singleton.OnTransportFailure += () => OnNetworkTransportFail(ei);
         NetworkManager.Singleton.OnClientDisconnectCallback += OnClientDisconnected;
     }
 
-    private static void OnNetworkTransportFail(EventInfo eventInfo)
+    private static void OnNetworkTransportFail(EventInstance eventInfo)
     {
         Debug.Log(
-            $"Failed to connect to event instance:{eventInfo.EventId} on server:{eventInfo.Host}:{eventInfo.Port} with type:{eventInfo.EventType} returning to Town");
+            $"Failed to connect to event instance:{eventInfo.id} on server:{eventInfo.host}:{eventInfo.port} with type:{eventInfo.eventType} returning to Town");
         SceneManager.LoadScene(SceneConstants.TownSceneName);
     }
 

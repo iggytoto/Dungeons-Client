@@ -18,12 +18,12 @@ namespace Services.Events.Dto
         {
             return new EventInstance
             {
-                Id = id,
-                Host = host,
-                Port = port,
-                Status = status,
-                EventId = eventId,
-                EventType = eventType
+                id = id,
+                host = host,
+                port = port,
+                status = status,
+                eventId = eventId,
+                eventType = eventType
             };
         }
     }

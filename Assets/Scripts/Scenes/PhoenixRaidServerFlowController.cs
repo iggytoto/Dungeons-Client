@@ -11,7 +11,7 @@ using UnityEngine.SceneManagement;
 using EventType = Model.Events.EventType;
 using Random = System.Random;
 
-public class PhoenixRaidSceneFlowController : MonoBehaviour
+public class PhoenixRaidServerFlowController : MonoBehaviour
 {
 #if DEDICATED
 
@@ -35,7 +35,7 @@ public class PhoenixRaidSceneFlowController : MonoBehaviour
             throw new InvalidOperationException("Current event info is null, cannot process empty event");
         }
 
-        if (_eventsService.EventInfo.EventType != EventType.PhoenixRaid)
+        if (_eventsService.EventInfo.eventType != EventType.PhoenixRaid)
         {
             throw new InvalidOperationException("Wrong event type, scene cannot process this event type");
         }

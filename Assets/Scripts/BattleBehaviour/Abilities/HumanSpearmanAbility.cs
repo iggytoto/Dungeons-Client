@@ -24,9 +24,7 @@ namespace BattleBehaviour.Abilities
 
             if (UnitState.Mana >= UnitState.MaxMana)
             {
-                var targets = GetAllLiveEnemies().Where(e =>
-                        Vector3.Distance(UnitState.transform.position, e.transform.position) <= UnitState.AttackRange)
-                    .ToList();
+                var targets = GetAllLiveEnemies().Where(IsWithinAttackRange).ToList();
                 if (targets.Count == 0)
                 {
                     State = BattleBehaviorNodeState.Failure;

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -460453808955788150}
   - component: {fileID: 2269500591827095554}
   m_Layer: 6
-  m_Name: DummyUnitPrefab
+  m_Name: PhoenixPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 8392954386781127559}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5601736533686089064}
@@ -113,16 +113,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5efeb19d103b43a0b13ba8665b3762fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 0
-  ownerId: 1
-  hp: 100
-  maxHp: 100
-  maxMana: 0
+  id: -1
+  ownerId: -1
+  hp: 10000
+  maxHp: 10000
+  maxMana: 50
   mana: 0
-  attackRange: 2
-  moveSpeed: 4
-  attackSpeed: 1
-  damage: 10
+  attackRange: 5
+  moveSpeed: 6
+  attackSpeed: 2
+  damage: 35
   type: 0
 --- !u!136 &2269500591827095554
 CapsuleCollider:

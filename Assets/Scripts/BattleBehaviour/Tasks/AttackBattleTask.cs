@@ -33,7 +33,7 @@ namespace DefaultNamespace.BattleBehaviour
                 return State;
             }
 
-            if (Vector3.Distance(target.transform.position, UnitState.transform.position) >= UnitState.AttackRange)
+            if (!IsWithinAttackRange(target))
             {
                 State = BattleBehaviorNodeState.Failure;
                 return State;

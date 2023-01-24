@@ -26,7 +26,7 @@ namespace DefaultNamespace.BattleBehaviour
                 return State;
             }
 
-            var distance = Vector3.Distance(UnitState.transform.position, target.transform.position);
+            var distance = GetDistanceToTarget(target);
             var ar = UnitState.AttackRange;
             var minRadius = ar * .9;
 

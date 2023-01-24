@@ -71,5 +71,16 @@ namespace DefaultNamespace.BattleBehaviour
         {
             return Animator.GetCurrentAnimatorClipInfo(1)[0].clip.averageDuration;
         }
+
+        protected bool IsWithinAttackRange(UnitStateController target)
+        {
+            return GetDistanceToTarget(target) <= UnitState.AttackRange;
+        }
+
+        protected float GetDistanceToTarget(UnitStateController target)
+        {
+            var currentPosition = UnitState.transform.position;
+            return Vector3.Distance(currentPosition, target.Collider.ClosestPointOnBounds(currentPosition));
+        }
     }
 }

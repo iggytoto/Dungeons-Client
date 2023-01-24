@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2257828109191542327}
   - component: {fileID: 3067735086698422217}
   - component: {fileID: 5113243579211180778}
+  - component: {fileID: 4916859188878765044}
   m_Layer: 6
   m_Name: HumanArcherPrefab
   m_TagString: Untagged
@@ -113,6 +114,20 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!136 &4916859188878765044
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8392954386781127559}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1001 &533439858564541879
 PrefabInstance:
   m_ObjectHideFlags: 0

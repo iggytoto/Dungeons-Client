@@ -43,6 +43,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\UnitState\Effects\PoisonArrowsEffect.cs" />
      <Compile Include="Assets\Services\Login\LoginService.cs" />
+     <Compile Include="Assets\PhoenixRaidPanelUiController.cs" />
      <Compile Include="Assets\Scripts\UnitState\Effects\FireArrowsBurningEffect.cs" />
      <Compile Include="Assets\Scripts\BattleBehaviour\BattleBehaviourManager.cs" />
      <Compile Include="Assets\Scripts\Scenes\Town\Skills\HumanWarriorSkillsPanelUiController.cs" />
@@ -103,6 +104,7 @@
      <Compile Include="Assets\Scripts\Common\ItemButtonUiController.cs" />
      <Compile Include="Assets\Services\Events\Dto\EventInstanceDto.cs" />
      <Compile Include="Assets\Model\ModelBase.cs" />
+     <Compile Include="Assets\Services\Common\Dto\RequestDto.cs" />
      <Compile Include="Assets\Services\Common\Dto\UnitListRequestDto.cs" />
      <Compile Include="Assets\Scripts\Common\ToolTipBehaviorUiController.cs" />
      <Compile Include="Assets\Scripts\BattleBehaviour\Tasks\KeepTargetInRangeTask.cs" />
@@ -113,6 +115,7 @@
      <Compile Include="Assets\Scripts\UnitState\Effects\Interfaces\IMovementSpeedPercentageChangeEffect.cs" />
      <Compile Include="Assets\Services\Common\Dto\ListResponseDto.cs" />
      <Compile Include="Assets\Scripts\BattleBehaviour\Tasks\MoveToTargetAllyInRangeTask.cs" />
+     <Compile Include="Assets\Services\Events\MockEventsService.cs" />
      <Compile Include="Assets\Services\Common\Dto\DtoDeserializaer\DefaultDtoDeserializer.cs" />
      <Compile Include="Assets\Scripts\Common\CurrentTimePanelController.cs" />
      <Compile Include="Assets\Model\Events\EventStatus.cs" />
@@ -145,10 +148,12 @@
      <Compile Include="Assets\Services\Common\Dto\TokenDto.cs" />
      <Compile Include="Assets\Services\Common\Dto\Skills\SkillsDto.cs" />
      <Compile Include="Assets\Services\Common\Dto\Skills\HumanSpearmanSkillsDto.cs" />
+     <Compile Include="Assets\Services\Events\Dto\GetEventInstanceDataRequestDto.cs" />
      <Compile Include="Assets\Services\PlayerBank\MockPlayerAccountService.cs" />
      <Compile Include="Assets\Scripts\Scenes\Town\Skills\HumanArcherSkillsPanelUiController.cs" />
      <Compile Include="Assets\Services\Login\ILoginService.cs" />
      <Compile Include="Assets\Scripts\Scenes\Town\SelectedUnitSkillsPanelUiController.cs" />
+     <Compile Include="Assets\UnitStateBarUiController.cs" />
      <Compile Include="Assets\Scripts\UnitState\Effects\Interfaces\IMagicResistanceChangeEffect.cs" />
      <Compile Include="Assets\Scripts\BattleBehaviour\GuardNearestAllyBattleBehavior.cs" />
      <Compile Include="Assets\Scripts\UnitState\UnitStateController.cs" />
@@ -157,6 +162,7 @@
      <Compile Include="Assets\Scripts\Animation\AnimationConstants.cs" />
      <Compile Include="Assets\Model\Units\Humans\HumanCleric.cs" />
      <Compile Include="Assets\Services\Login\Dto\LoginResponseDto.cs" />
+     <Compile Include="Assets\Scripts\Common\UnitListPanelUiController.cs" />
      <Compile Include="Assets\Services\Common\Dto\DtoDeserializaer\Skills\UnitSkillsDeserializerBase.cs" />
      <Compile Include="Assets\Scripts\Scenes\Town\UnitDescriptionPanelUiController.cs" />
      <Compile Include="Assets\Services\Login\ConnectionState.cs" />
@@ -173,6 +179,8 @@
      <Compile Include="Assets\Services\Common\Dto\UserIdRequestDto.cs" />
      <Compile Include="Assets\Services\Common\ApiAdapter.cs" />
      <Compile Include="Assets\Services\ServiceBase.cs" />
+     <Compile Include="Assets\CameraRigController.cs" />
+     <Compile Include="Assets\Scripts\Scenes\PhoenixRaidServerFlowController.cs" />
      <Compile Include="Assets\Scripts\BattleBehaviour\Common\BattleBehaviorTree.cs" />
      <Compile Include="Assets\Scripts\BattleBehaviour\Tasks\AttackOrAbilityBattleTask.cs" />
      <Compile Include="Assets\Scripts\BattleBehaviour\AttackClosestEnemyBattleBehavior.cs" />
@@ -183,6 +191,7 @@
      <Compile Include="Assets\Scripts\Scenes\Town\Skills\HumanSpearmanSkillsPanelUiController.cs" />
      <Compile Include="Assets\Services\Common\Dto\DtoDeserializaer\UnitDtoDeserializer.cs" />
      <Compile Include="Assets\Scripts\BattleBehaviour\Tasks\MoveToTargetOnAttackRangeTask.cs" />
+     <Compile Include="Assets\Model\Events\TrainingMatch3X3EventInstanceResult.cs" />
      <Compile Include="Assets\Services\Common\Dto\ErrorResponseDto.cs" />
      <Compile Include="Assets\Scripts\Scenes\Town\TownSceneUiController.cs" />
      <Compile Include="Assets\Services\Events\Dto\EventInstanceResultDto.cs" />
@@ -193,7 +202,9 @@
      <Compile Include="Assets\Scripts\UnitState\Effects\HumanClericShatterEffect.cs" />
      <Compile Include="Assets\Scripts\Projectiles\ProjectileController.cs" />
      <Compile Include="Assets\Services\Common\Dto\DtoDeserializaer\Skills\HumanArcherSkillsDtoDeserializer.cs" />
+     <Compile Include="Assets\PhoenixRaidClientSceneFlowController.cs" />
      <Compile Include="Assets\Services\GameService.cs" />
+     <Compile Include="Assets\Services\Events\Dto\TrainingMatch3X3EventInstanceResultDto.cs" />
      <Compile Include="Assets\Model\Items\Item.cs" />
      <Compile Include="Assets\Services\Barracks\Dto\ChangeUnitBattleBehaviorRequestDto.cs" />
      <Compile Include="Assets\Services\Login\PermanentLoginService.cs" />
@@ -212,17 +223,6 @@
      <Compile Include="Assets\Model\Events\EventInstanceStatus.cs" />
      <Compile Include="Assets\Model\Currency\Currency.cs" />
      <Compile Include="Assets\Scripts\UnitState\Effects\Interfaces\INegativeEffect.cs" />
-     <Compile Include="Assets\Scripts\Scenes\PhoenixRaidServerFlowController.cs" />
-     <Compile Include="Assets\Services\Events\MockEventsService.cs" />
-     <Compile Include="Assets\Services\Events\Dto\GetEventInstanceDataRequestDto.cs" />
-     <Compile Include="Assets\Services\Common\Dto\RequestDto.cs" />
-     <Compile Include="Assets\CameraRigController.cs" />
-     <Compile Include="Assets\Scripts\Common\UnitListPanelUiController.cs" />
-     <Compile Include="Assets\UnitStateBarUiController.cs" />
-     <Compile Include="Assets\PhoenixRaidPanelUiController.cs" />
-     <Compile Include="Assets\PhoenixRaidClientSceneFlowController.cs" />
-     <Compile Include="Assets\Model\Events\TrainingMatch3X3EventInstanceResult.cs" />
-     <Compile Include="Assets\Services\Events\Dto\TrainingMatch3X3EventInstanceResultDto.cs" />
      <Folder Include="Assets" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\localization\mergetool.ja.txt" />
      <Folder Include="Assets\Libs\Tiny Fantasy Icons\Keys" />
@@ -709,6 +709,7 @@
      <Folder Include="Assets\Libs\Blink\Art\Weapons\LowPoly\FreeRPGWeapons\Maces" />
      <None Include="Library\PackageCache\com.unity.terrain-tools@4.0.3\Shaders\Generated\NoiseBlitStrata.shader" />
      <None Include="Library\PackageCache\com.unity.netcode.gameobjects@1.1.0\package.json" />
+     <Folder Include="Assets\Resources\Characters\Phoenix" />
      <Folder Include="Library\PackageCache\com.unity.textmeshpro@3.0.6\Editor Resources\Shaders" />
      <Folder Include="Library\PackageCache\com.unity.modules.director@1.0.0" />
      <Folder Include="Library\PackageCache\com.unity.modules.audio@1.0.0" />

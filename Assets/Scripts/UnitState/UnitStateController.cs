@@ -14,6 +14,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 [DisallowMultipleComponent]
+[RequireComponent(typeof(Collider))]
 public class UnitStateController : NetworkBehaviour
 {
     public virtual UnitType UnitType => Unit.Value.type;
@@ -31,14 +32,15 @@ public class UnitStateController : NetworkBehaviour
     public long TeamId { get; private set; }
     public long Mana => Unit.Value.mana;
     public long MaxMana => Unit.Value.maxMana;
-
     public List<Effect> Effects { get; } = new();
+    public Collider Collider { get; private set; }
 
     private ResourcesManager _resourcesManager;
 
-    private void Start()
+    protected void Start()
     {
         _resourcesManager = ResourcesManager.GetInstance();
+        Collider = gameObject.GetComponent<Collider>();
     }
 
     private float GetMovementSpeedModificator()

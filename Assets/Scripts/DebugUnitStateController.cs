@@ -1,6 +1,4 @@
-using System;
 using Model.Units;
-using Unity.Netcode;
 using UnityEngine;
 
 namespace DefaultNamespace
@@ -18,13 +16,14 @@ namespace DefaultNamespace
         [SerializeField] private float attackSpeed;
         [SerializeField] private long damage;
         [SerializeField] private UnitType type;
-        [SerializeField] private Skills _skills;
+        private Skills _skills;
 
         public override UnitType UnitType => type;
         public override Skills Skills => _skills;
 
-        private void Start()
+        private new void Start()
         {
+            base.Start();
             Unit.Value = new Unit
             {
                 Id = id,

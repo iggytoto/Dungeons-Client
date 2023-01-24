@@ -65,7 +65,13 @@ namespace Services.Events
                 new List<Unit>
                 {
                     new HumanWarrior { ownerId = 1, Id = 1 },
-                    new HumanWarrior { ownerId = 2, Id = 2 },
+                    new HumanArcher() { ownerId = 1, Id = 2 },
+                    new HumanCleric() { ownerId = 1, Id = 3 },
+                    new HumanSpearman() { ownerId = 1, Id = 4 },
+                    new HumanWarrior { ownerId = 2, Id = 5 },
+                    new HumanArcher() { ownerId = 2, Id = 6 },
+                    new HumanCleric() { ownerId = 2, Id = 7 },
+                    new HumanSpearman() { ownerId = 2, Id = 8 },
                 });
         }
 

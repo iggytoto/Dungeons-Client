@@ -50,9 +50,7 @@ namespace DefaultNamespace.BattleBehaviour.Abilities
 
             if (_attackCoolDown <= 0)
             {
-                foreach (var enemy in GetAllLiveEnemies().Where(e =>
-                             Vector3.Distance(e.transform.position, UnitState.transform.position) <=
-                             UnitState.AttackRange))
+                foreach (var enemy in GetAllLiveEnemies().Where(IsWithinAttackRange))
                 {
                     enemy.DoDamage(Damage.Physical(UnitState.AttackDamage));
                 }

@@ -2,12 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using DefaultNamespace;
 using DefaultNamespace.Ui.Scenes.Town;
 using Model.Items;
 using Model.Units;
 using Services;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SelectedUnitPanelUiController : MonoBehaviour
 {
@@ -25,6 +27,7 @@ public class SelectedUnitPanelUiController : MonoBehaviour
     [SerializeField] private TMP_Text manaText;
     [SerializeField] private TMP_Dropdown bbDropdown;
     [SerializeField] private TMP_InputField nameInputField;
+    [SerializeField] private Image image;
 
     private Unit _unit;
     private IBarrackService _barrackService;
@@ -74,6 +77,7 @@ public class SelectedUnitPanelUiController : MonoBehaviour
         var optionList = (from object bbValue in Enum.GetValues(typeof(BattleBehavior))
             select new TMP_Dropdown.OptionData(bbValue.ToString())).ToList();
         bbDropdown.options = optionList;
+        image.sprite =  ResourcesManager.GetInstance().LoadIcon150X300ForUnit(_unit?.type);
     }
 
     private void Start()

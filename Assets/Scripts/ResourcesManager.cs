@@ -10,6 +10,8 @@ namespace DefaultNamespace
     {
         private static readonly Dictionary<UnitType, GameObject> UnitTypePrefabs = new();
         private static readonly Dictionary<UnitType, GameObject> UnitTypeProjectiles = new();
+        private static readonly Dictionary<UnitType, Sprite> UnitTypeIcons150X300 = new();
+        private static readonly Dictionary<UnitType, Sprite> UnitTypeIcons200X200 = new();
         private static ResourcesManager _instance;
 
         private void Awake()
@@ -65,10 +67,49 @@ namespace DefaultNamespace
             return _instance;
         }
 
+        public Sprite LoadIcon200X200ForUnit(UnitType unitType)
+        {
+            if (!UnitTypeIcons200X200.ContainsKey(unitType))
+            {
+                UnitTypeIcons200X200.Add(unitType, Resources.Load<Sprite>(GetUnitIcon200X200ResourcePath(unitType)));
+            }
+
+            return UnitTypeIcons200X200[unitType];
+        }
+
         public Sprite GetIconForItem(ItemType t)
         {
             return t switch
             {
+                _ => null
+            };
+        }
+
+        public Sprite LoadIcon150X300ForUnit(UnitType? unitType)
+        {
+            if (unitType == null) return null;
+            if (!UnitTypeIcons150X300.ContainsKey(unitType.Value))
+            {
+                UnitTypeIcons150X300.Add(unitType.Value, Resources.Load<Sprite>(GetUnitIcon150X300ResourcePath(unitType.Value)));
+            }
+
+            return UnitTypeIcons150X300[unitType.Value];
+        }
+
+        private static string GetUnitIcon150X300ResourcePath(UnitType unitType)
+        {
+            return unitType switch
+            {
+                UnitType.HumanArcher => "Images/HumanArcherImage150x300",
+                _ => null
+            };
+        }
+
+        private static string GetUnitIcon200X200ResourcePath(UnitType unitType)
+        {
+            return unitType switch
+            {
+                UnitType.HumanArcher => "Images/HumanArcherImage200x200",
                 _ => null
             };
         }

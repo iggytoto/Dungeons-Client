@@ -1,6 +1,8 @@
 using System;
+using DefaultNamespace;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UnitButtonUiController : MonoBehaviour
 {
@@ -10,6 +12,7 @@ public class UnitButtonUiController : MonoBehaviour
     [SerializeField] private TMP_Text mrUnitText;
     [SerializeField] private TMP_Text damageUnitText;
     [SerializeField] private TMP_Text nameText;
+    [SerializeField] private Image image;
 
     public event EventHandler<Unit> OnClick;
 
@@ -42,5 +45,7 @@ public class UnitButtonUiController : MonoBehaviour
             damageUnitText.text = value.damage.ToString();
         if (nameText != null)
             nameText.text = value.Name;
+        if (image != null)
+            image.sprite = ResourcesManager.GetInstance().LoadIcon200X200ForUnit(value.type);
     }
 }

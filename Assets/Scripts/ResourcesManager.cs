@@ -10,8 +10,8 @@ namespace DefaultNamespace
     {
         private static readonly Dictionary<UnitType, GameObject> UnitTypePrefabs = new();
         private static readonly Dictionary<UnitType, GameObject> UnitTypeProjectiles = new();
-        private static readonly Dictionary<UnitType, Sprite> UnitTypeIcons150X300 = new();
-        private static readonly Dictionary<UnitType, Sprite> UnitTypeIcons200X200 = new();
+        private static readonly Dictionary<UnitType, Sprite> UnitTypeIcons1To2 = new();
+        private static readonly Dictionary<UnitType, Sprite> UnitTypeIcons1To1 = new();
         private static ResourcesManager _instance;
 
         private void Awake()
@@ -69,12 +69,12 @@ namespace DefaultNamespace
 
         public Sprite LoadIcon200X200ForUnit(UnitType unitType)
         {
-            if (!UnitTypeIcons200X200.ContainsKey(unitType))
+            if (!UnitTypeIcons1To1.ContainsKey(unitType))
             {
-                UnitTypeIcons200X200.Add(unitType, Resources.Load<Sprite>(GetUnitIcon200X200ResourcePath(unitType)));
+                UnitTypeIcons1To1.Add(unitType, Resources.Load<Sprite>(GetUnitIcon1To1ResourcePath(unitType)));
             }
 
-            return UnitTypeIcons200X200[unitType];
+            return UnitTypeIcons1To1[unitType];
         }
 
         public Sprite GetIconForItem(ItemType t)
@@ -88,28 +88,32 @@ namespace DefaultNamespace
         public Sprite LoadIcon150X300ForUnit(UnitType? unitType)
         {
             if (unitType == null) return null;
-            if (!UnitTypeIcons150X300.ContainsKey(unitType.Value))
+            if (!UnitTypeIcons1To2.ContainsKey(unitType.Value))
             {
-                UnitTypeIcons150X300.Add(unitType.Value, Resources.Load<Sprite>(GetUnitIcon150X300ResourcePath(unitType.Value)));
+                UnitTypeIcons1To2.Add(unitType.Value, Resources.Load<Sprite>(GetUnitIcon1To2ResourcePath(unitType.Value)));
             }
 
-            return UnitTypeIcons150X300[unitType.Value];
+            return UnitTypeIcons1To2[unitType.Value];
         }
 
-        private static string GetUnitIcon150X300ResourcePath(UnitType unitType)
+        private static string GetUnitIcon1To2ResourcePath(UnitType unitType)
         {
             return unitType switch
             {
-                UnitType.HumanArcher => "Images/HumanArcherImage150x300",
+                UnitType.HumanArcher => "Images/HumanArcherImage1to2",
+                UnitType.HumanCleric => "Images/HumanClericImage1to2",
+                UnitType.HumanSpearman => "Images/HumanSpearmanImage1to2",
                 _ => null
             };
         }
 
-        private static string GetUnitIcon200X200ResourcePath(UnitType unitType)
+        private static string GetUnitIcon1To1ResourcePath(UnitType unitType)
         {
             return unitType switch
             {
-                UnitType.HumanArcher => "Images/HumanArcherImage200x200",
+                UnitType.HumanArcher => "Images/HumanArcherImage1to1",
+                UnitType.HumanCleric => "Images/HumanClericImage1to1",
+                UnitType.HumanSpearman => "Images/HumanSpearmanImage1to1",
                 _ => null
             };
         }

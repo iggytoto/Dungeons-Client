@@ -7,11 +7,7 @@ namespace DefaultNamespace.Ui.Scenes.Town.Skills
 {
     public class HumanClericSkillsPanelUiController : SkillPanelUiControllerBase
     {
-        [SerializeField] private Button disciplineL1;
-        [SerializeField] private Button disciplineL2;
-        [SerializeField] private Button disciplineL3;
-        [SerializeField] private Button disciplineL4;
-        [SerializeField] private Button disciplineL5;
+        [SerializeField] private Button discipline;
         [SerializeField] private Button shatter;
         [SerializeField] private Button divine;
         [SerializeField] private Button purge;
@@ -42,11 +38,7 @@ namespace DefaultNamespace.Ui.Scenes.Town.Skills
 
         protected override void SetupButtons()
         {
-            disciplineL1.onClick.AddListener(OnTrainDisciplineEdgeClicked);
-            disciplineL2.onClick.AddListener(OnTrainDisciplineEdgeClicked);
-            disciplineL3.onClick.AddListener(OnTrainDisciplineEdgeClicked);
-            disciplineL4.onClick.AddListener(OnTrainDisciplineEdgeClicked);
-            disciplineL5.onClick.AddListener(OnTrainDisciplineEdgeClicked);
+            discipline.onClick.AddListener(OnTrainDisciplineEdgeClicked);
             shatter.onClick.AddListener(OnTrainShatterClicked);
             divine.onClick.AddListener(OnTrainDivineClicked);
             purge.onClick.AddListener(OnTrainPurgeClicked);
@@ -55,11 +47,8 @@ namespace DefaultNamespace.Ui.Scenes.Town.Skills
         protected override void ProcessButtons()
         {
             var skills = GetSkills<HumanClericSkills>();
-            disciplineL1.enabled = skills.disciplinePoints == 0;
-            disciplineL2.enabled = skills.disciplinePoints == 1;
-            disciplineL3.enabled = skills.disciplinePoints == 2;
-            disciplineL4.enabled = skills.disciplinePoints == 3;
-            disciplineL5.enabled = skills.disciplinePoints == 4;
+            discipline.enabled = skills.disciplinePoints < 5 && skills.disciplinePoints + (skills.shatter ? 1 : 0) +
+                (skills.divine ? 1 : 0) + (skills.purge ? 1 : 0) < 6;
             shatter.enabled = !skills.shatter;
             divine.enabled = !skills.divine;
             purge.enabled = !skills.purge;

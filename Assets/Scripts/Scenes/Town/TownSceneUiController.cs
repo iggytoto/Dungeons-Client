@@ -12,7 +12,6 @@ public class TownSceneUiController : MonoBehaviour
     [SerializeField] private TrainingMatchPanelUiController trainingMatchPanelUiController;
     [SerializeField] private BuyUnitPopupUiController buyUnitPopupUiController;
     [SerializeField] private PhoenixRaidPanelUiController phoenixRaidPanelUiController;
-    [SerializeField] private UnitDescriptionPanelUiController unitDescriptionPanelUiController;
     [SerializeField] private SelectedUnitSkillsPanelUiController selectedUnitSkillsPanelUiController;
     
     private IBarrackService _barrackService;
@@ -51,7 +50,6 @@ public class TownSceneUiController : MonoBehaviour
         phoenixRaidPanelUiController.AddToRoster(u);
         selectedUnitPanelUiController.Unit = u;
         selectedUnitSkillsPanelUiController.Skills = u.Skills;
-        unitDescriptionPanelUiController.Unit = u;
     }
 
     private void OnBarrackAvailableUnitsChanged(NotifyCollectionChangedEventArgs units)

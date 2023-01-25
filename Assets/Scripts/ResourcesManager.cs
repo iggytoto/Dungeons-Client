@@ -103,6 +103,7 @@ namespace DefaultNamespace
                 UnitType.HumanArcher => "Images/HumanArcherImage1to2",
                 UnitType.HumanCleric => "Images/HumanClericImage1to2",
                 UnitType.HumanSpearman => "Images/HumanSpearmanImage1to2",
+                UnitType.HumanWarrior => "Images/HumanWarriorImage1to2",
                 _ => null
             };
         }
@@ -114,6 +115,7 @@ namespace DefaultNamespace
                 UnitType.HumanArcher => "Images/HumanArcherImage1to1",
                 UnitType.HumanCleric => "Images/HumanClericImage1to1",
                 UnitType.HumanSpearman => "Images/HumanSpearmanImage1to1",
+                UnitType.HumanWarrior => "Images/HumanWarriorImage1to1",
                 _ => null
             };
         }

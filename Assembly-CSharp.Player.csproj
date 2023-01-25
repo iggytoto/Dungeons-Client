@@ -164,7 +164,6 @@
      <Compile Include="Assets\Services\Login\Dto\LoginResponseDto.cs" />
      <Compile Include="Assets\Scripts\Common\UnitListPanelUiController.cs" />
      <Compile Include="Assets\Services\Common\Dto\DtoDeserializaer\Skills\UnitSkillsDeserializerBase.cs" />
-     <Compile Include="Assets\Scripts\Scenes\Town\UnitDescriptionPanelUiController.cs" />
      <Compile Include="Assets\Services\Login\ConnectionState.cs" />
      <Compile Include="Assets\Services\Common\Dto\MatchResultDto.cs" />
      <Compile Include="Assets\Model\Events\EventInstanceResult.cs" />

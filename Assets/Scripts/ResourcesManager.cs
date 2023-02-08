@@ -100,10 +100,10 @@ namespace DefaultNamespace
         {
             return unitType switch
             {
-                UnitType.HumanArcher => "Images/HumanArcherImage1to2",
-                UnitType.HumanCleric => "Images/HumanClericImage1to2",
-                UnitType.HumanSpearman => "Images/HumanSpearmanImage1to2",
-                UnitType.HumanWarrior => "Images/HumanWarriorImage1to2",
+                UnitType.HumanArcher => "Images/Characters/HumanArcherImage1to2",
+                UnitType.HumanCleric => "Images/Characters/HumanClericImage1to2",
+                UnitType.HumanSpearman => "Images/Characters/HumanSpearmanImage1to2",
+                UnitType.HumanWarrior => "Images/Characters/HumanWarriorImage1to2",
                 _ => null
             };
         }
@@ -112,10 +112,10 @@ namespace DefaultNamespace
         {
             return unitType switch
             {
-                UnitType.HumanArcher => "Images/HumanArcherImage1to1",
-                UnitType.HumanCleric => "Images/HumanClericImage1to1",
-                UnitType.HumanSpearman => "Images/HumanSpearmanImage1to1",
-                UnitType.HumanWarrior => "Images/HumanWarriorImage1to1",
+                UnitType.HumanArcher => "Images/Characters/HumanArcherImage1to1",
+                UnitType.HumanCleric => "Images/Characters/HumanClericImage1to1",
+                UnitType.HumanSpearman => "Images/Characters/HumanSpearmanImage1to1",
+                UnitType.HumanWarrior => "Images/Characters/HumanWarriorImage1to1",
                 _ => null
             };
         }
